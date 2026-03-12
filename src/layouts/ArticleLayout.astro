@@ -1,0 +1,76 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  author: string;
+  category: string;
+  tags: string[];
+}
+
+const { title, description, pubDate, author, category, tags } = Astro.props;
+
+const formattedDate = pubDate.toLocaleDateString('es-MX', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  type="article"
+  publishedTime={pubDate.toISOString()}
+>
+  <article class="pt-28 pb-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <header class="mb-10">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="bg-secondary/10 text-secondary text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+            {category}
+          </span>
+          <time class="text-accent text-sm" datetime={pubDate.toISOString()}>
+            {formattedDate}
+          </time>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-light leading-tight mb-4">
+          {title}
+        </h1>
+        <p class="text-accent text-lg leading-relaxed">{description}</p>
+        <div class="mt-4 flex items-center gap-2 text-accent text-sm">
+          <span>Por</span>
+          <span class="text-light font-medium">{author}</span>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <div class="prose prose-invert prose-lg max-w-none prose-headings:text-light prose-headings:font-bold prose-p:text-accent prose-a:text-secondary prose-strong:text-light prose-li:text-accent prose-hr:border-primary/30">
+        <slot />
+      </div>
+
+      <!-- Tags -->
+      {tags.length > 0 && (
+        <footer class="mt-12 pt-8 border-t border-primary/30">
+          <div class="flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span class="bg-primary/50 text-accent text-xs px-3 py-1 rounded-full">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </footer>
+      )}
+
+      <!-- Back -->
+      <div class="mt-8">
+        <a href="/blog" class="text-secondary hover:text-red-400 text-sm font-medium transition-colors">
+          ← Volver al blog
+        </a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
