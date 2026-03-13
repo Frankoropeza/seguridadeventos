@@ -27,30 +27,29 @@ const schema = buildFAQSchema(faq);
   <section class="relative bg-gradient-to-br from-dark via-primary to-dark py-16 lg:py-24 border-b border-primary overflow-hidden">
     <div class="absolute top-4 right-4 bg-secondary/15 border border-secondary/30 text-secondary text-xs font-bold px-3 py-1.5 rounded-full">📍 Guadalajara</div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <span class="text-secondary text-xs font-bold uppercase tracking-widest">Cobertura local</span>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-light mt-3 leading-tight">Seguridad para Eventos en Guadalajara — Jalisco</h1>
-        <p class="text-accent text-lg leading-relaxed mt-5 max-w-2xl">Seguridad privada profesional para eventos en Guadalajara y zona metropolitana. Ferias, conciertos, corporativos y eventos sociales. Licencia DGSSP federal.</p>
-        <div class="flex flex-col sm:flex-row gap-4 mt-8">
-          <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3.5 rounded-lg font-bold uppercase text-sm tracking-wide transition-colors">Cotizar en Guadalajara</a>
-          <a href={"https://wa.me/" + WHATSAPP_NUMBER} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-green-500/40 hover:border-green-400 text-light px-7 py-3.5 rounded-lg font-semibold text-sm transition-colors">💬 WhatsApp</a>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Col 1 -->
+        <div>
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest">Cobertura local</span>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-light mt-3 leading-tight">Seguridad para Eventos en Guadalajara — Jalisco</h1>
+          <p class="text-accent text-lg leading-relaxed mt-5 mb-8">Seguridad profesional certificada. Cotización en menos de 24 horas.</p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3.5 rounded-lg font-bold uppercase text-sm tracking-wide transition-colors">Cotizar en Guadalajara</a>
+            <a href={"https://wa.me/" + WHATSAPP_NUMBER} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-green-500/40 hover:border-green-400 text-light px-7 py-3.5 rounded-lg font-semibold text-sm transition-colors">💬 WhatsApp</a>
+          </div>
+          <div class="grid grid-cols-2 gap-6 mt-10 pt-8 border-t border-primary">
+            {[{val:"80+",label:"Eventos protegidos"},{val:"300+",label:"Guardias disponibles"},{val:"0",label:"Incidentes graves"},{val:"24h",label:"Respuesta cotización"}].map((s:any)=>(
+              <div><div class="text-2xl font-black text-secondary">{s.val}</div><div class="text-accent text-xs mt-1">{s.label}</div></div>
+            ))}
+          </div>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-8 border-t border-primary">
-          <div>
-            <div class="text-3xl font-black text-secondary">80+</div>
-            <div class="text-accent text-xs mt-1">Eventos en GDL</div>
+        <!-- Col 2: párrafos SEO -->
+        <div class="flex flex-col gap-6">
+          <div class="bg-primary/60 border border-primary-light rounded-2xl p-7">
+            <p class="text-accent leading-relaxed text-sm"><strong class="text-light">SeguridadEventos</strong> es la empresa de <strong class="text-light">seguridad privada para eventos en Guadalajara</strong> y toda la Zona Metropolitana de Jalisco. Operamos en los recintos más importantes: <strong class="text-light">Expo Guadalajara, Auditorio Telmex, Arena VFG, Teatro Diana, Estadio Akron y Estadio Jalisco</strong>. Nuestros más de <strong class="text-light">300 guardias certificados DGSSP</strong> cubren Guadalajara, Zapopan, Tlaquepaque, Tonalá y toda el área metropolitana.</p>
           </div>
-          <div>
-            <div class="text-3xl font-black text-secondary">300+</div>
-            <div class="text-accent text-xs mt-1">Guardias disponibles</div>
-          </div>
-          <div>
-            <div class="text-3xl font-black text-secondary">25+</div>
-            <div class="text-accent text-xs mt-1">Venues cubiertos</div>
-          </div>
-          <div>
-            <div class="text-3xl font-black text-secondary">15+</div>
-            <div class="text-accent text-xs mt-1">Años operando</div>
+          <div class="bg-primary/60 border border-primary-light rounded-2xl p-7">
+            <p class="text-accent leading-relaxed text-sm">Con <strong class="text-light">licencia federal DGSSP vigente</strong> y coordinación directa con Protección Civil Jalisco, garantizamos operaciones de seguridad profesional para conciertos, ferias como la <strong class="text-light">FIL Guadalajara</strong>, eventos corporativos en hoteles y bodas en haciendas de Tlaquepaque. <strong class="text-light">Cotización en 24 horas</strong>, plan operativo personalizado y cero incidentes graves en más de 80 eventos en la Perla de Occidente.</p>
           </div>
         </div>
       </div>

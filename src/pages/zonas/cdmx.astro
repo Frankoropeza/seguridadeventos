@@ -27,30 +27,29 @@ const schema = buildFAQSchema(faq);
   <section class="relative bg-gradient-to-br from-dark via-primary to-dark py-16 lg:py-24 border-b border-primary overflow-hidden">
     <div class="absolute top-4 right-4 bg-secondary/15 border border-secondary/30 text-secondary text-xs font-bold px-3 py-1.5 rounded-full">📍 Ciudad de México</div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <span class="text-secondary text-xs font-bold uppercase tracking-widest">Cobertura local</span>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-light mt-3 leading-tight">Seguridad para Eventos en CDMX — Ciudad de México</h1>
-        <p class="text-accent text-lg leading-relaxed mt-5 max-w-2xl">Empresa de seguridad privada para eventos en la Ciudad de México. Conciertos, corporativos, ferias, bodas y eventos masivos. Licencia DGSSP. Cotización en 24 hrs.</p>
-        <div class="flex flex-col sm:flex-row gap-4 mt-8">
-          <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3.5 rounded-lg font-bold uppercase text-sm tracking-wide transition-colors">Cotizar en Ciudad de México</a>
-          <a href={"https://wa.me/" + WHATSAPP_NUMBER} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-green-500/40 hover:border-green-400 text-light px-7 py-3.5 rounded-lg font-semibold text-sm transition-colors">💬 WhatsApp</a>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Col 1 -->
+        <div>
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest">Cobertura local</span>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-light mt-3 leading-tight">Seguridad para Eventos en CDMX — Ciudad de México</h1>
+          <p class="text-accent text-lg leading-relaxed mt-5 mb-8">Seguridad profesional certificada. Cotización en menos de 24 horas.</p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3.5 rounded-lg font-bold uppercase text-sm tracking-wide transition-colors">Cotizar en CDMX</a>
+            <a href={"https://wa.me/" + WHATSAPP_NUMBER} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-green-500/40 hover:border-green-400 text-light px-7 py-3.5 rounded-lg font-semibold text-sm transition-colors">💬 WhatsApp</a>
+          </div>
+          <div class="grid grid-cols-2 gap-6 mt-10 pt-8 border-t border-primary">
+            {[{val:"300+",label:"Eventos protegidos"},{val:"800+",label:"Guardias disponibles"},{val:"0",label:"Incidentes graves"},{val:"24h",label:"Respuesta cotización"}].map((s:any)=>(
+              <div><div class="text-2xl font-black text-secondary">{s.val}</div><div class="text-accent text-xs mt-1">{s.label}</div></div>
+            ))}
+          </div>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-8 border-t border-primary">
-          <div>
-            <div class="text-3xl font-black text-secondary">300+</div>
-            <div class="text-accent text-xs mt-1">Eventos en CDMX</div>
+        <!-- Col 2: párrafos SEO -->
+        <div class="flex flex-col gap-6">
+          <div class="bg-primary/60 border border-primary-light rounded-2xl p-7">
+            <p class="text-accent leading-relaxed text-sm">En <strong class="text-light">SeguridadEventos</strong> somos la empresa de <strong class="text-light">seguridad privada para eventos en la Ciudad de México</strong> con mayor experiencia y cobertura. Contamos con más de <strong class="text-light">800 guardias certificados DGSSP y STPS</strong> operando en las 16 alcaldías: Cuauhtémoc, Miguel Hidalgo, Benito Juárez, Coyoacán, Iztapalapa y toda la CDMX. Cubrimos los principales venues: <strong class="text-light">Foro Sol, Auditorio Nacional, Arena CDMX, Centro Citibanamex, Expo Santa Fe y el WTC</strong>.</p>
           </div>
-          <div>
-            <div class="text-3xl font-black text-secondary">800+</div>
-            <div class="text-accent text-xs mt-1">Guardias disponibles</div>
-          </div>
-          <div>
-            <div class="text-3xl font-black text-secondary">50+</div>
-            <div class="text-accent text-xs mt-1">Venues cubiertos</div>
-          </div>
-          <div>
-            <div class="text-3xl font-black text-secondary">0</div>
-            <div class="text-accent text-xs mt-1">Incidentes graves</div>
+          <div class="bg-primary/60 border border-primary-light rounded-2xl p-7">
+            <p class="text-accent leading-relaxed text-sm">Nuestra <strong class="text-light">licencia DGSSP federal</strong> nos permite coordinar con Protección Civil CDMX, bomberos y Secretaría de Seguridad Ciudadana en cada evento. Ofrecemos <strong class="text-light">cotización personalizada en menos de 24 horas</strong> para conciertos, convenciones, ferias, bodas, eventos deportivos y masivos en toda la capital. Con más de <strong class="text-light">300 eventos protegidos en CDMX</strong>, somos la empresa que los organizadores de la Ciudad de México eligen.</p>
           </div>
         </div>
       </div>
