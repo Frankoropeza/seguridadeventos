@@ -1,0 +1,107 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTABanner from '@/components/CTABanner.astro';
+---
+
+<BaseLayout
+  title="Certificaciones y Licencias — SeguridadEventos México"
+  description="Nuestras certificaciones: Licencia DGSSP federal, Certificación STPS, ISO 9001:2015, registro DGSP. Verificables ante las autoridades correspondientes."
+>
+  <section class="py-16 lg:py-20 bg-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <span class="text-secondary text-xs font-bold uppercase tracking-widest">Respaldo oficial</span>
+        <h1 class="text-3xl sm:text-4xl font-black text-light mt-3">Certificaciones y Licencias</h1>
+        <p class="text-accent mt-3 max-w-2xl mx-auto">Operamos con todas las autorizaciones federales y locales. Cada certificación es verificable ante la autoridad correspondiente.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {[
+          {
+            siglas: "DGSSP",
+            nombre: "Dirección General de Seguridad Privada",
+            autoridad: "Secretaría de Seguridad y Protección Ciudadana",
+            desc: "Licencia federal que nos autoriza a prestar servicios de seguridad privada en todo el territorio nacional. Renovada anualmente con cumplimiento total de requisitos.",
+            vigencia: "Vigente",
+            color: "secondary",
+            items: ["Autorización federal para operar en toda la República", "Registro de todo el personal operativo", "Verificable en el portal de la SSPC", "Renovación anual con auditoría"],
+          },
+          {
+            siglas: "STPS",
+            nombre: "Secretaría del Trabajo y Previsión Social",
+            autoridad: "Gobierno Federal",
+            desc: "Certificación de capacitación del personal operativo. Todo nuestro equipo cuenta con constancias DC-3 que acreditan su formación en seguridad privada.",
+            vigencia: "Vigente",
+            color: "gold",
+            items: ["Constancias DC-3 de todo el personal", "Capacitación inicial de 120+ horas", "Actualización anual obligatoria", "Evaluaciones de competencia laboral"],
+          },
+          {
+            siglas: "ISO 9001",
+            nombre: "Sistema de Gestión de Calidad",
+            autoridad: "Organismo certificador acreditado por EMA",
+            desc: "Nuestros procesos de planeación, operación y seguimiento de servicios de seguridad están certificados bajo la norma internacional ISO 9001:2015.",
+            vigencia: "Vigente",
+            color: "green",
+            items: ["Procesos documentados y estandarizados", "Auditorías internas periódicas", "Mejora continua medible", "Satisfacción del cliente monitoreada"],
+          },
+          {
+            siglas: "DGSP CDMX",
+            nombre: "Dirección General de Seguridad Privada CDMX",
+            autoridad: "Gobierno de la Ciudad de México",
+            desc: "Registro adicional ante las autoridades de seguridad pública de la Ciudad de México, nuestra sede principal de operaciones.",
+            vigencia: "Vigente",
+            color: "blue",
+            items: ["Registro municipal vigente en CDMX", "Complementa la licencia federal DGSSP", "Requisito para operar en eventos de gobierno", "Verificable ante autoridades locales"],
+          },
+        ].map((cert: any) => (
+          <div class="bg-primary border border-primary-light rounded-xl p-8 hover:border-secondary/30 transition-colors">
+            <div class="flex items-center gap-4 mb-5">
+              <div class={`w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                cert.color === 'secondary' ? 'bg-secondary/20 border-2 border-secondary/40' :
+                cert.color === 'gold' ? 'bg-yellow-900/30 border-2 border-yellow-600/40' :
+                cert.color === 'green' ? 'bg-green-900/30 border-2 border-green-700/40' :
+                'bg-blue-900/30 border-2 border-blue-700/40'
+              }`}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class={
+                  cert.color === 'secondary' ? 'text-secondary' :
+                  cert.color === 'gold' ? 'text-yellow-500' :
+                  cert.color === 'green' ? 'text-green-400' : 'text-blue-400'
+                } aria-hidden="true">
+                  <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+              </div>
+              <div>
+                <h2 class="text-light font-black text-xl">{cert.siglas}</h2>
+                <p class="text-accent text-xs">{cert.nombre}</p>
+                <span class="text-green-400 text-xs font-bold uppercase">✓ {cert.vigencia}</span>
+              </div>
+            </div>
+            <p class="text-accent text-sm leading-relaxed mb-5">{cert.desc}</p>
+            <p class="text-accent/60 text-xs mb-4">Emitida por: {cert.autoridad}</p>
+            <ul class="space-y-2">
+              {cert.items.map((item: string) => (
+                <li class="flex items-center gap-2 text-xs text-accent">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0" aria-hidden="true">
+                    <path d="M5 13l4 4L19 7"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <!-- Verificación -->
+      <div class="mt-12 bg-primary/50 border border-primary-light rounded-xl p-8 text-center max-w-3xl mx-auto">
+        <h2 class="text-xl font-black text-light mb-3">¿Quieres verificar nuestras certificaciones?</h2>
+        <p class="text-accent text-sm leading-relaxed mb-4">Todas nuestras licencias y certificaciones son verificables ante las autoridades correspondientes. Solicita los datos de verificación y compruébalo tú mismo.</p>
+        <a href="/contacto" class="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold uppercase text-sm tracking-wide transition-colors">
+          Solicitar datos de verificación
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner titulo="Seguridad certificada para tu evento" subtitulo="La tranquilidad de trabajar con una empresa que cumple con todos los requisitos legales." variant="dark" />
+</BaseLayout>

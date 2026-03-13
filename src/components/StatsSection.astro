@@ -1,0 +1,37 @@
+---
+
+const stats = [
+  { number: '500+', label: 'Eventos Protegidos' },
+  { number: '1,000+', label: 'Guardias Certificados' },
+  { number: '15+', label: 'Años de Experiencia' },
+  { number: '0', label: 'Incidentes Graves' },
+];
+---
+
+<section class="bg-dark py-20 sm:py-28">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Heading -->
+    <div class="text-center mb-14">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-light mb-4">
+        Los Números <span class="text-secondary">Hablan</span>
+      </h2>
+      <p class="text-accent text-lg sm:text-xl max-w-xl mx-auto">
+        Trayectoria comprobada en seguridad para eventos a nivel nacional
+      </p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12">
+      {stats.map((stat) => (
+        <div class="text-center">
+          <div class="text-4xl sm:text-5xl md:text-6xl font-black text-secondary mb-2">
+            {stat.number}
+          </div>
+          <div class="text-accent text-sm sm:text-base font-medium uppercase tracking-wider">
+            {stat.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

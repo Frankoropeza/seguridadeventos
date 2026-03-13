@@ -1,54 +1,39 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogCard from '@/components/BlogCard.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const posts = (await getCollection('blog', ({ data }: { data: { draft: boolean } }) => !data.draft));
 ---
 
 <BaseLayout
-  title="Blog"
-  description="Artículos y guías sobre seguridad para eventos, control de acceso, protección VIP y más."
+  title="Blog de Seguridad para Eventos — Guias y Consejos"
+  description="Articulos especializados sobre seguridad en eventos, control de acceso, proteccion VIP y planificacion de seguridad para todo tipo de eventos en Mexico."
 >
-  <section class="pt-28 pb-20 bg-dark min-h-screen">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="mb-12">
-        <span class="text-secondary text-sm font-semibold uppercase tracking-widest">Recursos</span>
-        <h1 class="text-3xl sm:text-4xl font-black text-light mt-2">Blog de Seguridad</h1>
-        <p class="text-accent mt-4 max-w-2xl">
-          Consejos, guías y análisis sobre seguridad en eventos por nuestros expertos.
-        </p>
-      </div>
-
-      {posts.length === 0 ? (
-        <p class="text-accent">Próximamente publicaremos contenido. Vuelve pronto.</p>
-      ) : (
-        <div class="space-y-6">
-          {posts.map((post) => (
-            <a
-              href={`/blog/${post.slug}`}
-              class="block bg-primary/20 border border-primary/40 rounded-xl p-6 hover:border-secondary/30 transition-all group"
-            >
-              <div class="flex items-center gap-3 mb-3">
-                <span class="bg-secondary/10 text-secondary text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-                  {post.data.category}
-                </span>
-                <time class="text-accent text-xs" datetime={post.data.pubDate.toISOString()}>
-                  {post.data.pubDate.toLocaleDateString('es-MX', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </time>
-              </div>
-              <h2 class="text-xl font-bold text-light group-hover:text-secondary transition-colors mb-2">
-                {post.data.title}
-              </h2>
-              <p class="text-accent text-sm leading-relaxed">{post.data.description}</p>
-            </a>
-          ))}
-        </div>
-      )}
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+    <div class="text-center mb-14">
+      <span class="text-secondary text-sm font-semibold uppercase tracking-widest">Recursos y conocimiento</span>
+      <h1 class="text-3xl sm:text-4xl font-black text-light mt-2">Blog de Seguridad para Eventos</h1>
+      <p class="text-accent mt-4 max-w-2xl mx-auto">
+        Guias practicas, consejos de expertos y analisis del sector de seguridad privada para eventos en Mexico.
+      </p>
     </div>
-  </section>
+
+    {posts.length === 0 ? (
+      <div class="text-center py-20">
+        <p class="text-accent text-lg">Proximamente publicaremos contenido especializado. Vuelve pronto.</p>
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post: any) => (
+          <BlogCard
+            titulo={post.data.title}
+            descripcion={post.data.description}
+            slug={post.slug}
+            categoria={post.data.category}
+          />
+        ))}
+      </div>
+    )}
+  </div>
 </BaseLayout>

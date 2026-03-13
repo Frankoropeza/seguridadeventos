@@ -1,0 +1,61 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import { ZONAS_NAV, WHATSAPP_NUMBER } from '@/lib/config';
+
+const zonaData = [
+  { slug: "cdmx", nombre: "Ciudad de México", desc: "Cobertura completa en las 16 alcaldías. Foro Sol, Centro Citibanamex, Auditorio Nacional y más.", eventos: "300+", icon: "🏛️" },
+  { slug: "guadalajara", nombre: "Guadalajara", desc: "Expo Guadalajara, Auditorio Telmex, Arena VFG y toda la zona metropolitana de Jalisco.", eventos: "80+", icon: "🌮" },
+  { slug: "monterrey", nombre: "Monterrey", desc: "CINTERMEX, Arena Monterrey, Estadio BBVA y la zona metropolitana de Nuevo León.", eventos: "60+", icon: "🏔️" },
+  { slug: "puebla", nombre: "Puebla", desc: "Centro de Convenciones, Acrópolis y haciendas de Cholula. Eventos corporativos y sociales.", eventos: "40+", icon: "⛪" },
+  { slug: "cancun", nombre: "Cancún", desc: "Zona Hotelera, Riviera Maya, resorts y centros de convenciones. Bodas destino y congresos.", eventos: "50+", icon: "🏖️" },
+];
+---
+
+<BaseLayout
+  title="Cobertura Nacional — Seguridad para Eventos en México"
+  description="SeguridadEventos opera en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Más de 500 eventos protegidos en toda la República Mexicana. Licencia DGSSP federal."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+    <SectionHeader
+      eyebrow="Cobertura nacional"
+      titulo="Operamos en las principales ciudades de México"
+      subtitulo="Más de 500 eventos protegidos. Personal local certificado en cada ciudad. Licencia DGSSP federal."
+    />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {zonaData.map((z: any) => (
+        <article class="relative flex flex-col bg-primary border border-primary-light rounded-xl p-6 hover:border-secondary/40 transition-all group">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-3xl">{z.icon}</span>
+            <div>
+              <h2 class="text-light font-bold text-lg">{z.nombre}</h2>
+              <span class="text-secondary text-xs font-bold">{z.eventos} eventos</span>
+            </div>
+          </div>
+          <p class="text-accent text-sm leading-relaxed flex-1 mb-5">{z.desc}</p>
+          <div class="flex gap-3">
+            <a href={`/zonas/${z.slug}`} class="flex-1 bg-secondary hover:bg-red-700 text-white px-4 py-2.5 rounded-lg text-sm font-bold text-center transition-colors">
+              Ver cobertura →
+            </a>
+            <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%2C+necesito+seguridad+para+un+evento+en+${encodeURIComponent(z.nombre)}`} target="_blank" rel="noopener" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2.5 rounded-lg text-sm font-bold text-center transition-colors">
+              💬
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Mapa conceptual -->
+    <div class="mt-16 bg-primary border border-primary-light rounded-xl p-8 text-center">
+      <h2 class="text-2xl font-black text-light mb-3">¿Tu evento está en otra ciudad?</h2>
+      <p class="text-accent mb-6 max-w-xl mx-auto">Nuestra licencia DGSSP federal nos permite operar en toda la República Mexicana. Si tu evento es en una ciudad no listada, contáctanos y coordinamos personal certificado.</p>
+      <a href="/cotizar" class="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold uppercase text-sm tracking-wide transition-colors">
+        Cotizar en otra ciudad
+      </a>
+    </div>
+  </div>
+
+  <CTABanner titulo="Seguridad profesional donde lo necesites" subtitulo="CDMX, Guadalajara, Monterrey, Puebla, Cancún y toda la República. Cotización en 24 horas." />
+</BaseLayout>

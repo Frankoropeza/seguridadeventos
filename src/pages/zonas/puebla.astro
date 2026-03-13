@@ -1,0 +1,140 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildFAQSchema } from '@/lib/seo';
+
+const faq = [
+  { q: "¿Cubren todo tipo de eventos en Puebla?", a: "Sí, cubrimos conciertos, eventos corporativos, ferias, bodas, eventos deportivos, eventos masivos y más en Puebla y su zona metropolitana. Contamos con personal local certificado." },
+  { q: "¿Cuántos guardias tienen disponibles en Puebla?", a: "Contamos con 150+ guardias certificados disponibles en Puebla. Para eventos masivos podemos desplegar equipos desde otras sedes." },
+  { q: "¿Tienen licencia para operar en Puebla?", a: "Sí, contamos con licencia DGSSP federal que nos autoriza a operar en toda la República Mexicana, incluyendo Puebla. Además, cumplimos con los registros locales correspondientes." },
+  { q: "¿Cuánto cuesta la seguridad para un evento en Puebla?", a: "El costo depende del tipo de evento, aforo, duración y servicios requeridos. Solicita una cotización personalizada y te respondemos en menos de 24 horas con una propuesta detallada." },
+];
+
+const schema = buildFAQSchema(faq);
+---
+
+<BaseLayout
+  title="Seguridad para Eventos en Puebla — Puebla de Zaragoza"
+  description="Seguridad privada para eventos en Puebla: conciertos, ferias, eventos corporativos, bodas y eventos culturales. Personal certificado DGSSP y STPS."
+  canonical="https://seguridadeventos.com.mx/zonas/puebla"
+  schema={schema}
+>
+
+  <!-- Hero -->
+  <section class="relative bg-gradient-to-br from-dark via-primary to-dark py-16 lg:py-24 border-b border-primary overflow-hidden">
+    <div class="absolute top-4 right-4 bg-secondary/15 border border-secondary/30 text-secondary text-xs font-bold px-3 py-1.5 rounded-full">📍 Puebla</div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="text-secondary text-xs font-bold uppercase tracking-widest">Cobertura local</span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-light mt-3 leading-tight">Seguridad para Eventos en Puebla — Puebla de Zaragoza</h1>
+        <p class="text-accent text-lg leading-relaxed mt-5 max-w-2xl">Seguridad privada para eventos en Puebla: conciertos, ferias, eventos corporativos, bodas y eventos culturales. Personal certificado DGSSP y STPS.</p>
+        <div class="flex flex-col sm:flex-row gap-4 mt-8">
+          <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3.5 rounded-lg font-bold uppercase text-sm tracking-wide transition-colors">Cotizar en Puebla</a>
+          <a href={"https://wa.me/" + WHATSAPP_NUMBER} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-green-500/40 hover:border-green-400 text-light px-7 py-3.5 rounded-lg font-semibold text-sm transition-colors">💬 WhatsApp</a>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-8 border-t border-primary">
+          <div>
+            <div class="text-3xl font-black text-secondary">40+</div>
+            <div class="text-accent text-xs mt-1">Eventos en Puebla</div>
+          </div>
+          <div>
+            <div class="text-3xl font-black text-secondary">150+</div>
+            <div class="text-accent text-xs mt-1">Guardias disponibles</div>
+          </div>
+          <div>
+            <div class="text-3xl font-black text-secondary">15+</div>
+            <div class="text-accent text-xs mt-1">Venues cubiertos</div>
+          </div>
+          <div>
+            <div class="text-3xl font-black text-secondary">15+</div>
+            <div class="text-accent text-xs mt-1">Años operando</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Venues -->
+  <section class="py-16 bg-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeader eyebrow="Venues y recintos" titulo={"Principales venues en Puebla"} subtitulo="Operamos en los recintos más importantes de la zona. Conocemos cada venue y sus requerimientos." />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <ul class="space-y-3 col-span-1 sm:col-span-2 lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <li class="flex items-center gap-2 text-accent text-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Centro de Convenciones de Puebla</li>
+            <li class="flex items-center gap-2 text-accent text-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Acrópolis Puebla</li>
+            <li class="flex items-center gap-2 text-accent text-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Centro Expositor</li>
+            <li class="flex items-center gap-2 text-accent text-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Estadio Cuauhtémoc</li>
+            <li class="flex items-center gap-2 text-accent text-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Teatro Principal</li>
+            <li class="flex items-center gap-2 text-accent text-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Complejo Cultural Universitario BUAP</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Zonas -->
+  <section class="py-16 bg-primary/30 border-y border-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeader eyebrow="Cobertura" titulo={"Zonas que cubrimos en Puebla"} />
+      <div class="flex flex-wrap gap-3 justify-center">
+            <span class="bg-primary border border-primary-light px-3 py-1.5 rounded-full text-accent text-xs">Puebla Centro</span>
+            <span class="bg-primary border border-primary-light px-3 py-1.5 rounded-full text-accent text-xs">Angelópolis</span>
+            <span class="bg-primary border border-primary-light px-3 py-1.5 rounded-full text-accent text-xs">Cholula</span>
+            <span class="bg-primary border border-primary-light px-3 py-1.5 rounded-full text-accent text-xs">Atlixco</span>
+            <span class="bg-primary border border-primary-light px-3 py-1.5 rounded-full text-accent text-xs">San Andrés Cholula</span>
+            <span class="bg-primary border border-primary-light px-3 py-1.5 rounded-full text-accent text-xs">Cuautlancingo</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section class="py-16 bg-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeader eyebrow="Lo que hacemos" titulo={"Servicios destacados en Puebla"} />
+      <ul class="space-y-4 max-w-2xl mx-auto">
+          <li class="flex items-start gap-3 text-accent"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0 mt-0.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Eventos en Centro de Convenciones</span></li>
+          <li class="flex items-start gap-3 text-accent"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0 mt-0.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Bodas en haciendas de Cholula</span></li>
+          <li class="flex items-start gap-3 text-accent"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0 mt-0.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Feria de Puebla</span></li>
+          <li class="flex items-start gap-3 text-accent"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0 mt-0.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Eventos corporativos VW y Audi</span></li>
+          <li class="flex items-start gap-3 text-accent"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0 mt-0.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Eventos culturales en el Centro Histórico</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 bg-primary/30 border-y border-primary">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-black text-light mb-8 text-center">Preguntas Frecuentes — Puebla</h2>
+      <div class="space-y-4" id="faq-zona">
+        {faq.map((item: {q: string; a: string}) => (
+          <div class="bg-primary border border-primary-light rounded-xl overflow-hidden faq-item">
+            <button class="w-full text-left flex justify-between items-center gap-4 px-6 py-4 text-light font-semibold text-sm hover:text-secondary transition-colors" aria-expanded="false">
+              <span>{item.q}</span>
+              <svg class="w-5 h-5 flex-shrink-0 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-answer hidden px-6 pb-5"><p class="text-accent text-sm leading-relaxed">{item.a}</p></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner titulo={"¿Necesitas seguridad para tu evento en Puebla?"} subtitulo="Cotización personalizada en menos de 24 horas. Sin compromiso." />
+
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.faq-item button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const answer = item?.querySelector('.faq-answer');
+      const icon = btn.querySelector('svg');
+      const isOpen = !answer?.classList.contains('hidden');
+      answer?.classList.toggle('hidden', isOpen);
+      icon?.classList.toggle('rotate-180', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+</script>

@@ -1,0 +1,38 @@
+---
+
+const clients = [
+  'Productora Musical',
+  'Corporativo Internacional',
+  'Gobierno CDMX',
+  'Arena / Venue',
+  'Agencia de Eventos',
+  'Hotel 5 Estrellas',
+  'Centro de Convenciones',
+  'Festival Nacional',
+];
+---
+
+<section class="bg-dark py-20 sm:py-28">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Heading -->
+    <div class="text-center mb-14">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-light mb-4">
+        Confían en <span class="text-secondary">Nosotros</span>
+      </h2>
+      <p class="text-accent text-lg sm:text-xl max-w-xl mx-auto">
+        Empresas y organizaciones que eligen nuestra seguridad
+      </p>
+    </div>
+
+    <!-- Clients Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">
+      {clients.map((client) => (
+        <div class="bg-primary/20 border border-primary-light/30 rounded-xl h-28 sm:h-32 flex items-center justify-center px-4 hover:border-accent/40 transition-colors">
+          <span class="text-accent/60 text-sm sm:text-base font-medium text-center leading-tight">
+            {client}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

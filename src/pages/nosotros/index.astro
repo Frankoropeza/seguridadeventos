@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TrustSection from '@/components/TrustSection.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import { STATS } from '@/lib/config';
+---
+
+<BaseLayout
+  title="Nosotros — Empresa de Seguridad para Eventos en México"
+  description="Conoce a SeguridadEventos: más de 15 años protegiendo eventos en México. +500 eventos, +1,200 guardias certificados. Licencia DGSSP, certificación STPS e ISO 9001."
+>
+  <!-- Hero -->
+  <section class="relative bg-gradient-to-br from-dark via-primary to-dark py-16 lg:py-24 border-b border-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="text-secondary text-xs font-bold uppercase tracking-widest">Nuestra historia</span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-light mt-3 leading-tight">
+          Más de 15 años protegiendo eventos en México
+        </h1>
+        <p class="text-accent text-lg leading-relaxed mt-5 max-w-2xl">
+          Somos una empresa mexicana especializada en seguridad privada para eventos. Nacimos de la convicción de que todo evento merece transcurrir con tranquilidad, profesionalismo y cero incidentes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-12 bg-primary/40 border-b border-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+        {STATS.map((s: {valor: string; etiqueta: string}) => (
+          <div>
+            <div class="text-4xl font-black text-secondary">{s.valor}</div>
+            <div class="text-accent text-sm mt-1">{s.etiqueta}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Historia -->
+  <section class="py-20 bg-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <SectionHeader eyebrow="Quiénes somos" titulo="Profesionales de la seguridad en eventos" align="left" />
+          <div class="space-y-4 text-accent leading-relaxed">
+            <p>SeguridadEventos nació de la experiencia directa en la industria del entretenimiento y los eventos corporativos. Nuestros fundadores trabajaron en seguridad operativa durante años antes de crear una empresa que elevara los estándares del sector.</p>
+            <p>Hoy somos referencia en <strong class="text-light">seguridad para conciertos, convenciones, ferias, eventos deportivos, bodas y eventos masivos</strong> en las principales ciudades de México: CDMX, Guadalajara, Monterrey, Puebla y Cancún.</p>
+            <p>Cada evento es diferente. Por eso diseñamos <strong class="text-light">planes operativos personalizados</strong> para cada cliente, con personal seleccionado específicamente para el tipo de evento y sus requerimientos.</p>
+          </div>
+        </div>
+        <div class="bg-primary border border-primary-light rounded-xl p-8 space-y-6">
+          <h3 class="text-light font-bold text-lg">Nuestros valores</h3>
+          {[
+            { icon: "🛡️", titulo: "Profesionalismo", desc: "Cada guardia es certificado, evaluado y supervisado. No improvisamos." },
+            { icon: "🤝", titulo: "Compromiso", desc: "Tu evento es nuestra responsabilidad. No dejamos cabos sueltos." },
+            { icon: "👁️", titulo: "Discreción", desc: "La mejor seguridad es la que no se nota pero siempre está presente." },
+            { icon: "⚡", titulo: "Respuesta inmediata", desc: "Cotización en 24 horas. Despliegue en el tiempo acordado. Sin excusas." },
+          ].map((v: any) => (
+            <div class="flex items-start gap-4">
+              <span class="text-2xl flex-shrink-0">{v.icon}</span>
+              <div>
+                <h4 class="text-light font-bold text-sm">{v.titulo}</h4>
+                <p class="text-accent text-sm">{v.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipo -->
+  <section class="py-20 bg-primary/30 border-y border-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeader eyebrow="Capital humano" titulo="Nuestro equipo" subtitulo="Más de 1,200 profesionales certificados listos para proteger tu evento." />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          { titulo: "Guardias de seguridad", cantidad: "1,000+", desc: "Licencia DGSSP individual, certificación STPS y evaluación periódica." },
+          { titulo: "Supervisores", cantidad: "80+", desc: "Mínimo 5 años de experiencia. Líderes de operaciones en campo." },
+          { titulo: "Agentes VIP", cantidad: "50+", desc: "Protección ejecutiva, escoltas certificados, entrenamiento avanzado." },
+          { titulo: "Staff operativo", cantidad: "70+", desc: "Coordinadores, logística, tecnología, administración y soporte." },
+        ].map((e: any) => (
+          <div class="bg-dark border border-primary-light rounded-xl p-6 text-center">
+            <div class="text-3xl font-black text-secondary mb-1">{e.cantidad}</div>
+            <h3 class="text-light font-bold text-sm mb-2">{e.titulo}</h3>
+            <p class="text-accent text-xs leading-relaxed">{e.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <TrustSection />
+  <ProcessSection />
+
+  <CTABanner titulo="¿Listo para trabajar con profesionales?" subtitulo="Más de 500 eventos avalan nuestro compromiso. Cotización personalizada en 24 horas." />
+</BaseLayout>

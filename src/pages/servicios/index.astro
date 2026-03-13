@@ -1,0 +1,55 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import { getCollection } from 'astro:content';
+
+const servicios = (await getCollection('servicios'))
+  .sort((a: any, b: any) => a.data.orden - b.data.orden);
+
+const serviceCards = [
+  { icon: "🎵", title: "Conciertos y Festivales", desc: "Seguridad para eventos musicales, control de multitudes y protección de artistas. Más de 200 conciertos protegidos.", features: ["Control de multitudes", "Protección backstage", "Coordinación con autoridades"], slug: "seguridad-conciertos-festivales", badge: "Popular" },
+  { icon: "🏢", title: "Eventos Corporativos", desc: "Seguridad discreta para convenciones, lanzamientos, juntas de consejo y galas corporativas con estándares internacionales.", features: ["Control de acceso ejecutivo", "Personal bilingüe", "Dress code adaptable"], slug: "seguridad-eventos-corporativos" },
+  { icon: "🚪", title: "Control de Acceso", desc: "Sistemas integrales de verificación, detección de armas, gestión de aforo y credencialización profesional.", features: ["Arcos detectores de metales", "Escaneo digital de boletos", "Conteo de aforo en tiempo real"], slug: "control-acceso-eventos", badge: "Esencial" },
+  { icon: "⭐", title: "Seguridad VIP", desc: "Protección discreta para celebridades, artistas, ejecutivos y personalidades de alto perfil durante eventos.", features: ["Escoltas certificados", "Rutas de seguridad", "Anti-paparazzi"], slug: "seguridad-vip" },
+  { icon: "👔", title: "Protección Ejecutiva", desc: "Servicio especializado para CEOs, directivos y empresarios durante eventos corporativos y viajes de negocios.", features: ["Agentes con 5+ años", "Chofer de seguridad", "NDA obligatorio"], slug: "proteccion-ejecutiva" },
+  { icon: "🎪", title: "Ferias y Exposiciones", desc: "Seguridad integral para ferias comerciales: vigilancia de stands, protección de mercancía y control de proveedores.", features: ["Vigilancia 24/7", "Control de expositores", "Seguridad nocturna"], slug: "seguridad-ferias-exposiciones" },
+  { icon: "🎉", title: "Eventos Sociales", desc: "Seguridad discreta para bodas, XV años, bautizos y fiestas privadas. Tu evento transcurre sin preocupaciones.", features: ["Dress code adaptable", "Valet parking seguro", "Control de invitados"], slug: "seguridad-eventos-sociales" },
+  { icon: "⚽", title: "Eventos Deportivos", desc: "Seguridad especializada: control de barras, separación de aficiones, protección de atletas y gestión de multitudes.", features: ["Control de barras", "Anti-invasión de cancha", "Seguridad de ruta"], slug: "seguridad-eventos-deportivos" },
+  { icon: "🏟️", title: "Eventos Masivos", desc: "Operación de seguridad para más de 10,000 asistentes. Coordinación con Protección Civil y protocolos de evacuación.", features: ["Drones de vigilancia", "Centro de comando", "Plan de contingencia"], slug: "seguridad-masivos", featured: true },
+  { icon: "🔧", title: "Montaje y Desmontaje", desc: "Vigilancia profesional durante montaje/desmontaje: control de proveedores, custodia de equipo e inventario de activos.", features: ["Inventario fotográfico", "Custodia nocturna", "Control de carga"], slug: "seguridad-montaje-desmontaje" },
+];
+---
+
+<BaseLayout
+  title="Servicios de Seguridad para Eventos en México"
+  description="10 servicios especializados de seguridad privada para eventos: conciertos, corporativos, ferias, VIP, deportivos y masivos. Licencia DGSSP, personal certificado STPS. Cotización en 24 hrs."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+    <SectionHeader
+      eyebrow="Soluciones completas"
+      titulo="Servicios de Seguridad para Eventos"
+      subtitulo="10 servicios especializados para proteger cualquier tipo de evento. Desde una boda íntima hasta un festival con 100,000 asistentes."
+    />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {serviceCards.map((s: any) => (
+        <ServiceCard
+          icon={s.icon}
+          title={s.title}
+          description={s.desc}
+          features={s.features}
+          href={`/servicios/${s.slug}`}
+          badge={s.badge}
+          featured={s.featured}
+        />
+      ))}
+    </div>
+  </div>
+
+  <CTABanner
+    titulo="¿No encuentras tu tipo de evento?"
+    subtitulo="Tenemos experiencia en eventos de todo tipo. Cuéntanos sobre el tuyo y diseñamos un plan de seguridad a la medida."
+  />
+</BaseLayout>

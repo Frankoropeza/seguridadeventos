@@ -1,0 +1,94 @@
+---
+import ServiceLayout from '@/layouts/ServiceLayout.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const servicios = await getCollection('servicios');
+  return servicios.map((servicio: CollectionEntry<'servicios'>) => ({
+    params: { slug: servicio.slug },
+    props: servicio,
+  }));
+}
+
+type Props = CollectionEntry<'servicios'>;
+
+const servicio = Astro.props;
+const { Content } = await servicio.render();
+
+// FAQ por servicio
+const faqMap: Record<string, Array<{ q: string; a: string }>> = {
+  "seguridad-conciertos-festivales": [
+    { q: "¿Cuántos guardias necesito para un concierto de 5,000 personas?", a: "Para un concierto de 5,000 personas recomendamos entre 30 y 60 elementos, dependiendo del venue, tipo de música, y si hay zonas VIP o pit. Incluimos supervisores de zona y equipo de respuesta rápida." },
+    { q: "¿Trabajan con artistas internacionales?", a: "Sí, tenemos experiencia coordinando seguridad con riders técnicos de artistas internacionales. Nuestro personal clave es bilingüe y conoce los protocolos de seguridad estándar de la industria musical." },
+    { q: "¿Incluyen coordinación con Protección Civil?", a: "Absolutamente. Para cualquier concierto tramitamos y coordinamos con Protección Civil, bomberos y servicios de emergencia. El plan de contingencia está incluido en nuestro servicio." },
+    { q: "¿Qué pasa si hay un incidente grave durante el concierto?", a: "Contamos con protocolos de emergencia probados que incluyen evacuación parcial/total, comunicación de crisis, coordinación con servicios de emergencia y cadena de mando clara. Nuestro equipo está entrenado para actuar en segundos." },
+  ],
+  "seguridad-eventos-corporativos": [
+    { q: "¿Su personal puede vestir de traje para un evento formal?", a: "Sí, nuestro personal se adapta al dress code del evento. Para eventos corporativos formales utilizan traje oscuro, camisa y corbata. Para eventos más casuales ajustamos la vestimenta según indicaciones del cliente." },
+    { q: "¿Ofrecen personal bilingüe?", a: "Sí, contamos con personal con dominio de inglés para eventos corporativos internacionales. Podemos asignar agentes bilingües en puntos clave como registro, áreas VIP y recepción." },
+    { q: "¿Pueden firmar un NDA?", a: "Todos nuestros agentes asignados a eventos corporativos firman un Acuerdo de Confidencialidad (NDA) que cubre identidad de asistentes, contenido de presentaciones y toda información sensible." },
+    { q: "¿Qué incluye el reporte post-evento?", a: "El informe incluye: estadísticas de acceso, incidencias registradas, observaciones de seguridad, recomendaciones para futuros eventos y registro fotográfico de puntos clave de la operación." },
+  ],
+  "control-acceso-eventos": [
+    { q: "¿Cuántas personas pueden procesar por hora?", a: "Con nuestro sistema optimizado procesamos hasta 1,200 personas por hora por punto de acceso. Esto incluye verificación de boleto y revisión básica de seguridad." },
+    { q: "¿Tienen sus propios arcos detectores de metales?", a: "Sí, contamos con equipos propios: arcos detectores de metales portátiles, detectores manuales (wand) y equipos de inspección. No rentamos equipo; esto garantiza que siempre esté en óptimas condiciones." },
+    { q: "¿Pueden integrar su sistema con mi plataforma de boletos?", a: "Trabajamos con las principales plataformas de boletaje (Ticketmaster, Boletia, Eventbrite, sistemas propios). Nuestros lectores de QR son compatibles con la mayoría de formatos estándar." },
+    { q: "¿Qué hacen con los objetos decomisados?", a: "Los objetos decomisados se almacenan en un punto de resguardo identificado. Al finalizar el evento, las personas pueden reclamar objetos no peligrosos. Los objetos ilegales se entregan a la autoridad correspondiente." },
+  ],
+  "seguridad-vip": [
+    { q: "¿Cuál es la diferencia entre seguridad VIP y protección ejecutiva?", a: "La seguridad VIP se enfoca en proteger a personas de alto perfil durante eventos específicos (artistas, celebridades). La protección ejecutiva es un servicio continuo para directivos empresariales. Ambos requieren personal altamente calificado, pero los protocolos y el contexto son diferentes." },
+    { q: "¿Ofrecen vehículos blindados?", a: "Sí, bajo solicitud podemos coordinar vehículos blindados para traslado de VIPs. Contamos con proveedores certificados de transporte blindado en CDMX, Guadalajara y Monterrey." },
+    { q: "¿Cuánto cuesta la seguridad VIP?", a: "El costo depende del nivel de protección (estándar, premium o máxima seguridad), duración del servicio y servicios adicionales. Solicita una cotización personalizada y te respondemos en menos de 24 horas." },
+    { q: "¿Su personal tiene entrenamiento en primeros auxilios?", a: "Sí, todo nuestro personal VIP está certificado en primeros auxilios, RCP y uso de DEA. Además, para eventos de alto riesgo podemos incluir un paramédico dedicado al equipo VIP." },
+  ],
+  "proteccion-ejecutiva": [
+    { q: "¿Cuál es el perfil de sus agentes de protección ejecutiva?", a: "Nuestros agentes tienen mínimo 5 años de experiencia en seguridad, licencia DGSSP individual, certificación STPS, evaluaciones psicométricas semestrales, dominio de inglés y presentación ejecutiva impecable." },
+    { q: "¿Pueden proteger a un ejecutivo durante todo un viaje de negocios?", a: "Sí, ofrecemos protección ejecutiva puerta a puerta. Desde la llegada al aeropuerto, traslados, reuniones, cenas y hasta la salida. Coordinamos con seguridad del hotel y de las empresas que visita." },
+    { q: "¿Cómo manejan la coordinación con mi equipo de seguridad corporativa?", a: "Antes del evento realizamos una reunión de coordinación con su equipo de seguridad para alinear protocolos, definir roles y establecer canales de comunicación. Trabajamos como extensión de su equipo, no como reemplazo." },
+    { q: "¿Ofrecen servicio de contravigilancia?", a: "Sí, en nuestro paquete Corporate Shield incluimos agentes de contravigilancia que detectan seguimientos, fotografía no autorizada y posibles amenazas antes de que se materialicen." },
+  ],
+  "seguridad-ferias-exposiciones": [
+    { q: "¿Ofrecen seguridad nocturna entre días de feria?", a: "Sí, uno de nuestros servicios más solicitados es la custodia nocturna del recinto ferial. Mantenemos vigilancia 24/7 con rondines y control de acceso para proteger la mercancía de los expositores." },
+    { q: "¿Pueden controlar el acceso de los proveedores de montaje?", a: "Sí, implementamos un sistema de registro y credencialización para proveedores. Cada expositor autoriza a sus proveedores y nosotros verificamos identidad, empresa y zona de trabajo autorizada." },
+    { q: "¿Qué pasa si un expositor reporta un robo?", a: "Activamos protocolo de incidencia: aseguramos la escena, revisamos registros de CCTV y bitácora de accesos, identificamos posibles sospechosos y coordinamos con el organizador. Elaboramos un acta de hechos para efectos de seguro." },
+    { q: "¿Manejan la seguridad de todo el recinto o solo de áreas específicas?", a: "Podemos cubrir el recinto completo o zonas específicas según las necesidades del organizador. Lo más común es seguridad integral: accesos, piso de exposición, estacionamientos y custodia nocturna." },
+  ],
+  "seguridad-eventos-sociales": [
+    { q: "¿Su personal se adapta al dress code de una boda?", a: "Absolutamente. Nuestro personal puede vestir traje formal, semi-formal o casual elegante según las indicaciones del cliente. El objetivo es que se integren al ambiente sin que los invitados los perciban como seguridad." },
+    { q: "¿Pueden manejar invitados conflictivos sin causar escena?", a: "Nuestro personal está capacitado en manejo de conflictos y desescalamiento. Si un invitado tiene un comportamiento inadecuado, lo abordamos con discreción y firmeza, siempre buscando resolver sin interrumpir la celebración." },
+    { q: "¿Ofrecen servicio de valet parking?", a: "Sí, podemos incluir valet parking profesional como servicio adicional. Nuestros valets están asegurados y capacitados. También ofrecemos vigilancia de estacionamiento sin servicio de valet." },
+    { q: "¿Cuántos guardias necesito para una boda de 200 personas?", a: "Para una boda de 200 invitados recomendamos 3-4 elementos de seguridad: 1 en acceso principal, 1-2 en rondines y 1 en estacionamiento. Si hay valet parking o zonas amplias, podemos ajustar según el venue." },
+  ],
+  "seguridad-eventos-deportivos": [
+    { q: "¿Tienen experiencia con barras de fútbol?", a: "Sí, hemos trabajado en partidos con barras organizadas. Conocemos los protocolos de separación de aficiones, control de pirotecnia, detección de alcohol y coordinación con policía para la llegada y salida de las barras." },
+    { q: "¿Pueden cubrir la seguridad de un maratón?", a: "Sí, ofrecemos seguridad de ruta para maratones y carreras: control vehicular en cruces, vigilancia en puntos de hidratación, asistencia a corredores y seguridad en zona de meta y premiación." },
+    { q: "¿Cómo previenen las invasiones de cancha?", a: "Desplegamos elementos de seguridad en primera fila del terreno de juego, con comunicación por radio para anticipar movimientos. Nuestro record: 0 invasiones en los eventos bajo nuestra operación." },
+    { q: "¿Trabajan con ligas profesionales?", a: "Trabajamos con organizadores de eventos deportivos de todos los niveles. Para ligas profesionales coordinamos con la seguridad propia del equipo/liga y cumplimos con los protocolos específicos de cada competición." },
+  ],
+  "seguridad-masivos": [
+    { q: "¿Cuántos elementos necesito para un festival de 50,000 personas?", a: "Para un evento de 50,000 personas recomendamos entre 120 y 150 elementos en rotación, incluyendo guardias, supervisores, respuesta rápida, operadores de CCTV y personal de puesto de mando. El número exacto depende del venue y la duración." },
+    { q: "¿Incluyen coordinación con Protección Civil?", a: "Sí, es obligatorio y está incluido en nuestro servicio. Tramitamos el Programa Interno de Protección Civil, coordinamos con bomberos, Cruz Roja/ERUM, policía y tránsito. Presentamos el plan de contingencia ante autoridades." },
+    { q: "¿Tienen drones de vigilancia?", a: "Sí, contamos con drones con cámara HD para vigilancia aérea en eventos masivos al aire libre. Los drones complementan la seguridad en piso permitiendo una visión panorámica en tiempo real desde el puesto de mando." },
+    { q: "¿Qué seguros incluyen?", a: "Contamos con seguro de responsabilidad civil que cubre daños a terceros durante la operación de seguridad. El monto de cobertura se ajusta según el aforo del evento. Proporcionamos copia de la póliza al organizador." },
+  ],
+  "seguridad-montaje-desmontaje": [
+    { q: "¿Cuántos días antes del evento inician la seguridad?", a: "Iniciamos desde el primer día de montaje. Lo más común es 2-5 días antes del evento para ferias y 3-7 días para conciertos y festivales grandes. Coordinamos el cronograma con el organizador." },
+    { q: "¿Hacen inventario de todo lo que entra?", a: "Sí, realizamos un inventario fotográfico y en bitácora de los activos principales que ingresan al recinto. Al desmontaje, verificamos que todo salga con su dueño legítimo. Esto previene pérdidas y facilita reclamaciones de seguro." },
+    { q: "¿Tienen seguridad nocturna?", a: "Sí, mantenemos custodia 24/7 del recinto durante todo el periodo de montaje, evento y desmontaje. El equipo nocturno realiza rondines programados y controla accesos con bitácora." },
+    { q: "¿Controlan la salida de equipo?", a: "Sí, en la fase de desmontaje verificamos que cada proveedor retire únicamente su equipo autorizado. Usamos un sistema de 'vale de salida' autorizado por el organizador o el expositor dueño del equipo." },
+  ],
+};
+
+const currentFaq = faqMap[servicio.slug] || [];
+---
+
+<ServiceLayout
+  titulo={servicio.data.title}
+  descripcion={servicio.data.description}
+  slug={servicio.slug}
+  emoji={servicio.data.emoji}
+  faq={currentFaq}
+>
+  <Content />
+</ServiceLayout>

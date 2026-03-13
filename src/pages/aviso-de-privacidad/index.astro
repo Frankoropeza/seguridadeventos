@@ -1,0 +1,45 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE_NAME, EMAIL_CONTACT, ADDRESS_DISPLAY } from '@/lib/config';
+---
+
+<BaseLayout title="Aviso de Privacidad" description="Aviso de privacidad de SeguridadEventos. Protección de datos personales conforme a la LFPDPPP." noindex={true}>
+  <section class="py-16 bg-dark">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-black text-light mb-8">Aviso de Privacidad</h1>
+      <div class="prose prose-invert prose-lg max-w-none prose-headings:font-bold prose-headings:text-light prose-p:text-accent prose-li:text-accent prose-strong:text-light">
+        <p><strong>{SITE_NAME}</strong>, con domicilio en {ADDRESS_DISPLAY}, es responsable del tratamiento de los datos personales que nos proporcione, los cuales serán protegidos conforme a lo dispuesto por la <strong>Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)</strong>.</p>
+
+        <h2>Datos personales que recabamos</h2>
+        <p>Para las finalidades señaladas en este aviso de privacidad, podemos recabar sus datos personales de distintas formas: cuando usted nos los proporciona directamente a través de nuestro formulario de contacto, WhatsApp, correo electrónico o vía telefónica.</p>
+        <ul>
+          <li>Nombre completo</li>
+          <li>Número de teléfono</li>
+          <li>Correo electrónico</li>
+          <li>Empresa u organización</li>
+          <li>Datos del evento (tipo, fecha, ubicación, aforo)</li>
+        </ul>
+
+        <h2>Finalidades del tratamiento</h2>
+        <p>Sus datos personales serán utilizados para:</p>
+        <ul>
+          <li>Elaborar y enviar cotizaciones de servicios de seguridad</li>
+          <li>Dar seguimiento a solicitudes de servicio</li>
+          <li>Coordinar la operación de seguridad contratada</li>
+          <li>Enviar información relevante sobre nuestros servicios (solo con su consentimiento)</li>
+        </ul>
+
+        <h2>Transferencia de datos</h2>
+        <p>{SITE_NAME} no transferirá sus datos personales a terceros sin su consentimiento, salvo en los casos previstos por la LFPDPPP y su Reglamento.</p>
+
+        <h2>Derechos ARCO</h2>
+        <p>Usted tiene derecho a Acceder, Rectificar, Cancelar u Oponerse al tratamiento de sus datos personales (derechos ARCO). Para ejercer estos derechos, envíe su solicitud a: <a href={`mailto:${EMAIL_CONTACT}`}>{EMAIL_CONTACT}</a></p>
+
+        <h2>Cambios al aviso de privacidad</h2>
+        <p>Nos reservamos el derecho de efectuar modificaciones al presente aviso de privacidad. Las modificaciones estarán disponibles en esta página.</p>
+
+        <p><em>Última actualización: enero 2024</em></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

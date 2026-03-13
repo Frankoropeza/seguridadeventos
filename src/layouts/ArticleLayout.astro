@@ -1,76 +1,104 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { SITE } from '@/lib/config';
+import { buildArticleSchema } from '@/lib/seo';
 
 interface Props {
   title: string;
   description: string;
-  pubDate: Date;
-  author: string;
-  category: string;
-  tags: string[];
+  categoria?: string;
+  imagen?: string;
+  readTime?: number;
+  canonical?: string;
 }
 
-const { title, description, pubDate, author, category, tags } = Astro.props;
+const {
+  title,
+  description,
+  categoria = 'Blog',
+  imagen,
+  readTime = 5,
+  canonical,
+} = Astro.props;
 
-const formattedDate = pubDate.toLocaleDateString('es-MX', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-});
+const schema = buildArticleSchema(title, description, canonical || new URL(Astro.url.pathname, SITE).toString(), imagen);
 ---
 
-<BaseLayout
-  title={title}
-  description={description}
-  type="article"
-  publishedTime={pubDate.toISOString()}
->
-  <article class="pt-28 pb-16">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Header -->
-      <header class="mb-10">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="bg-secondary/10 text-secondary text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
-            {category}
-          </span>
-          <time class="text-accent text-sm" datetime={pubDate.toISOString()}>
-            {formattedDate}
-          </time>
-        </div>
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-light leading-tight mb-4">
-          {title}
-        </h1>
-        <p class="text-accent text-lg leading-relaxed">{description}</p>
-        <div class="mt-4 flex items-center gap-2 text-accent text-sm">
-          <span>Por</span>
-          <span class="text-light font-medium">{author}</span>
-        </div>
-      </header>
+<BaseLayout title={title} description={description} canonical={canonical} schema={schema}>
 
-      <!-- Content -->
-      <div class="prose prose-invert prose-lg max-w-none prose-headings:text-light prose-headings:font-bold prose-p:text-accent prose-a:text-secondary prose-strong:text-light prose-li:text-accent prose-hr:border-primary/30">
-        <slot />
-      </div>
+  <!-- Breadcrumb -->
+  <nav class="bg-primary/50 border-b border-primary py-3" aria-label="Breadcrumb">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ol class="flex items-center gap-2 text-xs text-accent flex-wrap">
+        <li><a href="/" class="hover:text-light transition-colors">Inicio</a></li>
+        <li aria-hidden="true" class="text-primary-light">›</li>
+        <li><a href="/blog" class="hover:text-light transition-colors">Blog</a></li>
+        <li aria-hidden="true" class="text-primary-light">›</li>
+        <li class="text-light font-semibold" aria-current="page">{title}</li>
+      </ol>
+    </div>
+  </nav>
 
-      <!-- Tags -->
-      {tags.length > 0 && (
-        <footer class="mt-12 pt-8 border-t border-primary/30">
-          <div class="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <span class="bg-primary/50 text-accent text-xs px-3 py-1 rounded-full">
-                #{tag}
-              </span>
-            ))}
-          </div>
-        </footer>
-      )}
+  <!-- Imagen hero (si hay) -->
+  {imagen && (
+    <div class="w-full h-64 md:h-96 overflow-hidden bg-primary">
+      <img src={imagen} alt={title} class="w-full h-full object-cover" loading="eager" width="1200" height="630" />
+    </div>
+  )}
 
-      <!-- Back -->
-      <div class="mt-8">
-        <a href="/blog" class="text-secondary hover:text-red-400 text-sm font-medium transition-colors">
-          ← Volver al blog
-        </a>
+  <!-- Artículo -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <div class="mb-8">
+      <span class="bg-secondary/15 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+        {categoria}
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-light mt-4 mb-4 leading-tight">
+        {title}
+      </h1>
+      <div class="flex items-center gap-4 text-accent text-sm">
+        <span class="flex items-center gap-1">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>
+          </svg>
+          {readTime} min de lectura
+        </span>
+        <span>·</span>
+        <span>SeguridadEventos</span>
       </div>
     </div>
-  </article>
+
+    <article class="prose prose-invert prose-lg max-w-none
+      prose-headings:font-black prose-headings:text-light
+      prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-primary prose-h2:pb-3
+      prose-h3:text-xl prose-h3:text-secondary prose-h3:mt-8
+      prose-p:text-accent prose-p:leading-relaxed
+      prose-li:text-accent
+      prose-strong:text-light
+      prose-a:text-secondary prose-a:no-underline hover:prose-a:underline
+      prose-blockquote:border-secondary prose-blockquote:bg-primary/50 prose-blockquote:rounded-r-lg prose-blockquote:py-4 prose-blockquote:px-5
+    ">
+      <slot />
+    </article>
+
+    <!-- Tags / Navegación -->
+    <div class="mt-12 pt-8 border-t border-primary flex justify-between items-center flex-wrap gap-4">
+      <a href="/blog" class="flex items-center gap-2 text-secondary hover:text-red-400 text-sm font-semibold transition-colors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Volver al blog
+      </a>
+      <a href="/cotizar" class="bg-secondary hover:bg-red-700 text-white px-5 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide transition-colors">
+        Cotizar seguridad
+      </a>
+    </div>
+  </div>
+
+  <CTABanner
+    titulo="¿Buscas seguridad profesional para tu evento?"
+    subtitulo="Cuéntanos sobre tu evento y te enviamos una propuesta personalizada en 24 horas."
+    variant="dark"
+  />
+
 </BaseLayout>

@@ -1,0 +1,207 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CTABanner from '@components/CTABanner.astro';
+import TrustBadges from '@components/TrustBadges.astro';
+
+const title = "Seguridad para Bodas, Quinceañeras y Eventos Sociales";
+const description = "Seguridad discreta para bodas, quinceañeras y eventos sociales. Gestion de invitados, vigilancia de estacionamiento, proteccion de regalos y mas.";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Se nota la presencia de seguridad en una boda?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, nuestro personal opera de forma completamente discreta. Los guardias pueden vestir de acuerdo al codigo del evento, utilizar comunicacion via earpiece y posicionarse en puntos estrategicos sin interferir con la celebracion. La mayoria de los invitados no percibe la presencia de seguridad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Ofrecen seguridad para quinceañeras?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si, contamos con paquetes especificos para quinceañeras que incluyen control de acceso con lista de invitados, vigilancia del estacionamiento, proteccion de la mesa de regalos, custodia durante el vals y la fiesta, y acompañamiento seguro al finalizar el evento."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Como manejan la lista de invitados?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Coordinamos con el organizador para obtener la lista de invitados confirmados. Nuestro personal verifica la identidad de cada persona en el acceso, gestiona los ingresos de proveedores y personal de servicio, y notifica al anfitrion sobre cualquier persona no registrada que solicite acceso."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Protegen los regalos y pertenencias en eventos sociales?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si, asignamos vigilancia especifica a la mesa de regalos, area de sobres y pertenencias personales de los invitados. Controlamos el acceso a estas areas y al finalizar el evento, custodiamos el traslado de los regalos al vehiculo de los anfitriones."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuanto cuesta la seguridad para una boda?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El costo depende del numero de invitados, la ubicacion del venue, la duracion del evento y los servicios especificos requeridos. Ofrecemos paquetes desde seguridad basica con un par de guardias hasta operativos completos con control de acceso, vigilancia de estacionamiento y proteccion de regalos."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description} schema={faqSchema}>
+
+  <!-- Hero -->
+  <section class="pt-24 pb-16 bg-gradient-to-b from-primary/40 to-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <span class="text-secondary text-sm font-semibold uppercase tracking-widest">Eventos sociales</span>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-light mt-3 mb-6">
+          Seguridad para <span class="text-secondary">Eventos Sociales</span>
+        </h1>
+        <p class="text-accent text-lg sm:text-xl leading-relaxed max-w-3xl">
+          Protegemos bodas, quinceañeras, graduaciones, bautizos y todo tipo de eventos sociales con un enfoque en la discrecion y el respeto por la celebracion. Nuestro equipo se integra al evento sin interrumpir la atmosfera festiva, gestionando la lista de invitados, vigilando el estacionamiento, protegiendo regalos y pertenencias, y asegurando que cada momento especial transcurra con tranquilidad. Entendemos que su evento es unico y merece una seguridad que cuide cada detalle sin ser intrusiva ni afectar la experiencia de sus invitados.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- En que consiste -->
+  <section class="py-20 bg-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <h2 class="text-3xl sm:text-4xl font-black text-light mb-8">¿En que consiste la seguridad para eventos sociales?</h2>
+        <div class="prose prose-lg text-accent leading-relaxed space-y-4">
+          <p>
+            La seguridad en eventos sociales como bodas y quinceañeras requiere un equilibrio perfecto entre proteccion efectiva y presencia discreta. Nuestro servicio esta diseñado para que los anfitriones y sus invitados disfruten plenamente de la celebracion, sabiendo que un equipo profesional se encarga de la seguridad sin alterar el ambiente del evento. Cada elemento de nuestro personal entiende la naturaleza intima y emotiva de estos momentos.
+          </p>
+          <p>
+            La gestion de la lista de invitados es el primer pilar de nuestro servicio. Coordinamos con los anfitriones para recibir la lista confirmada y nuestro personal la verifica en el punto de acceso. Esto incluye la gestion de invitados que llegan sin confirmacion, proveedores de servicio como fotografos y DJ, personal de catering y cualquier otra persona que necesite ingresar al venue. Cada ingreso se maneja con cortesia y profesionalismo.
+          </p>
+          <p>
+            La vigilancia del estacionamiento es fundamental en eventos sociales, especialmente en venues ubicados en areas alejadas o con poca iluminacion. Nuestros guardias patrullan el area de estacionamiento durante todo el evento, disuadiendo robos a vehiculos y asistiendo a los invitados con su llegada y salida. Al finalizar el evento, acompañamos a los invitados a sus vehiculos para garantizar su seguridad.
+          </p>
+          <p>
+            La proteccion de regalos, sobres con dinero y pertenencias de valor es una preocupacion comun en eventos familiares. Asignamos vigilancia especifica a estas areas, controlando quien tiene acceso y custodiando el traslado de los obsequios al vehiculo de los anfitriones al terminar la celebracion. Nuestro personal tambien se encarga de resolver cualquier situacion incomoda, como invitados en estado inconveniente, de forma discreta y respetuosa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios -->
+  <section class="py-20 bg-primary/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-black text-light mb-10">Beneficios principales</h2>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl">
+        {[
+          "Presencia discreta que no interfiere con la celebracion ni el ambiente",
+          "Gestion profesional de lista de invitados con verificacion en acceso",
+          "Vigilancia de estacionamiento con patrullaje y acompañamiento a vehiculos",
+          "Proteccion de mesa de regalos, sobres y pertenencias de valor",
+          "Manejo discreto de situaciones incomodas con invitados",
+          "Custodia del traslado de regalos al finalizar el evento"
+        ].map((beneficio) => (
+          <li class="flex items-start gap-3 bg-primary/30 border border-primary-light/30 rounded-lg p-4">
+            <svg class="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span class="text-accent text-sm leading-relaxed">{beneficio}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Tipos de eventos -->
+  <section class="py-20 bg-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-black text-light mb-10">¿Para que tipo de eventos?</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
+        {[
+          { titulo: "Bodas", ejemplo: "Ceremonias religiosas y civiles, recepciones, fiestas de boda en salones y jardines." },
+          { titulo: "Quinceañeras", ejemplo: "Celebraciones de XV años con control de invitados y proteccion de regalos." },
+          { titulo: "Graduaciones", ejemplo: "Fiestas de graduacion con gestion de acceso y vigilancia de estacionamiento." },
+          { titulo: "Bautizos y comuniones", ejemplo: "Eventos religiosos familiares con presencia de seguridad discreta." },
+          { titulo: "Fiestas privadas", ejemplo: "Cumpleaños, aniversarios y reuniones familiares en venues privados." },
+          { titulo: "Baby showers y despedidas", ejemplo: "Celebraciones intimas con control de acceso y ambiente protegido." }
+        ].map((tipo) => (
+          <div class="bg-primary/30 border border-primary-light/30 rounded-lg p-5">
+            <h3 class="text-light font-bold text-base mb-2">{tipo.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{tipo.ejemplo}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso -->
+  <section class="py-20 bg-primary/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-black text-light mb-10">Nuestro proceso</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl">
+        {[
+          { paso: "01", titulo: "Reunion con anfitriones", desc: "Conocemos los detalles del evento, la lista de invitados, el venue y los requerimientos especificos de la familia." },
+          { paso: "02", titulo: "Plan de seguridad discreto", desc: "Diseñamos el operativo con enfasis en la discrecion, definiendo puntos de control, vigilancia y proteccion de regalos." },
+          { paso: "03", titulo: "Cobertura del evento", desc: "Nuestro personal se integra al evento con vestimenta acorde, gestionando accesos y vigilando sin interrumpir." },
+          { paso: "04", titulo: "Cierre seguro", desc: "Acompañamos a los invitados al estacionamiento, custodiamos el traslado de regalos y verificamos que el venue quede vacio." }
+        ].map((item) => (
+          <div class="relative bg-primary/30 border border-primary-light/30 rounded-lg p-6">
+            <span class="text-secondary font-black text-3xl opacity-30">{item.paso}</span>
+            <h3 class="text-light font-bold text-base mt-2 mb-2">{item.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por que elegirnos -->
+  <section class="py-20 bg-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-black text-light mb-10">¿Por que elegir SeguridadEventos?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl">
+        {[
+          { titulo: "Discrecion garantizada", desc: "Nuestro personal se adapta al evento con vestimenta formal o casual, comunicacion discreta y presencia no invasiva." },
+          { titulo: "Trato familiar", desc: "Entendemos la importancia emocional de su evento. Tratamos a cada invitado con cortesia y respeto." },
+          { titulo: "Experiencia en eventos sociales", desc: "Hemos protegido cientos de bodas, quinceañeras y celebraciones familiares con total satisfaccion de los anfitriones." }
+        ].map((dif) => (
+          <div class="bg-primary/30 border border-secondary/20 rounded-lg p-6">
+            <h3 class="text-light font-bold text-base mb-3">{dif.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{dif.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-primary/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-black text-light mb-10">Preguntas frecuentes sobre seguridad en eventos sociales</h2>
+      <div class="max-w-3xl space-y-4">
+        {faqSchema.mainEntity.map((faq) => (
+          <details class="group bg-primary/30 border border-primary-light/30 rounded-lg">
+            <summary class="flex items-center justify-between cursor-pointer p-5 text-light font-semibold text-sm sm:text-base">
+              {faq.name}
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 ml-4 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+              </svg>
+            </summary>
+            <div class="px-5 pb-5 text-accent text-sm leading-relaxed">
+              {faq.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <TrustBadges />
+  <CTABanner titulo="¿Necesitas seguridad para tu evento social?" subtitulo="Cotizacion personalizada en menos de 24 horas. Sin compromiso." />
+</BaseLayout>

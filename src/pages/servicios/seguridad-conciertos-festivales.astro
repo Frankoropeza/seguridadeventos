@@ -1,0 +1,207 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CTABanner from '@components/CTABanner.astro';
+import TrustBadges from '@components/TrustBadges.astro';
+
+const title = "Seguridad para Conciertos y Festivales en Mexico";
+const description = "Servicio profesional de seguridad para conciertos y festivales. Guardias certificados, protocolos anti-estampida, proteccion de artistas y control de multitudes.";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cuantos guardias de seguridad se necesitan para un concierto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La cantidad de guardias depende del aforo del evento. Como regla general, recomendamos un guardia por cada 100 asistentes para conciertos en recintos cerrados y uno por cada 75 para festivales al aire libre. Realizamos un analisis previo del venue para determinar la cantidad exacta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Que protocolos anti-estampida manejan en conciertos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Implementamos protocolos basados en normas internacionales que incluyen monitoreo de densidad de publico en tiempo real, senalizacion de rutas de evacuacion, barreras de contencion certificadas, personal capacitado en manejo de multitudes y comunicacion directa con servicios de emergencia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Ofrecen seguridad para festivales de varios dias?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si, contamos con operativos especificos para festivales de multiples dias que incluyen turnos rotativos de personal, vigilancia nocturna de instalaciones, control de acceso por zonas y campamentos, y coordinacion permanente con organizadores y autoridades locales."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Como protegen a los artistas durante un concierto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Asignamos escoltas de proximidad dedicados a cada artista, controlamos el acceso al backstage y camerinos, coordinamos rutas seguras de ingreso y salida del venue, y mantenemos un perimetro de seguridad en el escenario para evitar intrusiones del publico."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cual es el costo de seguridad para un concierto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El costo varia segun el tamano del evento, la cantidad de asistentes, el tipo de venue y los servicios especificos requeridos. Ofrecemos cotizaciones personalizadas sin compromiso en menos de 24 horas para que pueda planificar su presupuesto con precision."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout title={title} description={description} schema={faqSchema}>
+
+  <!-- Hero -->
+  <section class="pt-24 pb-16 bg-gradient-to-b from-primary/40 to-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <span class="text-secondary text-sm font-semibold uppercase tracking-widest">Seguridad especializada</span>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-light mt-3 mb-6">
+          Seguridad para <span class="text-secondary">Conciertos y Festivales</span>
+        </h1>
+        <p class="text-accent text-lg sm:text-xl leading-relaxed max-w-3xl">
+          Protegemos conciertos, festivales y eventos musicales con guardias de seguridad certificados, protocolos anti-estampida y tecnologia de monitoreo avanzada. Nuestro equipo esta capacitado en control de multitudes, proteccion de artistas, gestion de areas VIP y coordinacion con servicios de emergencia. Cada operativo se disena a la medida del evento, considerando el tipo de publico, la capacidad del recinto y los requerimientos especificos del organizador. Con mas de 500 eventos protegidos, garantizamos que su concierto o festival se desarrolle de forma segura y sin contratiempos para artistas, staff y asistentes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- En que consiste -->
+  <section class="py-20 bg-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl">
+        <h2 class="text-3xl sm:text-4xl font-black text-light mb-8">¿En que consiste nuestro servicio de seguridad para conciertos?</h2>
+        <div class="prose prose-lg text-accent leading-relaxed space-y-4">
+          <p>
+            Nuestro servicio de seguridad para conciertos y festivales abarca todas las fases del evento: planeacion, montaje, ejecucion y desmontaje. Comenzamos con un analisis detallado del venue, identificando puntos criticos, rutas de evacuacion, zonas de mayor concentracion de publico y areas que requieren atencion especial como el escenario, backstage, zonas VIP y accesos principales.
+          </p>
+          <p>
+            Durante el evento, desplegamos un operativo integral que incluye guardias de seguridad para conciertos posicionados estrategicamente en todos los puntos clave. Nuestro personal esta entrenado en protocolos anti-estampida basados en estandares internacionales, tecnicas de manejo de multitudes y primeros auxilios. Utilizamos sistemas de comunicacion de radio cifrada para mantener coordinacion constante entre todos los elementos del operativo.
+          </p>
+          <p>
+            La seguridad en festivales de musica requiere un enfoque particular debido a la duracion extendida, multiples escenarios y el flujo constante de asistentes. Implementamos control de acceso por zonas, vigilancia perimetral las 24 horas, patrullaje en areas de camping cuando aplica, y coordinacion con cuerpos de emergencia locales. Cada guardia cuenta con licencia DGSSP vigente y certificacion STPS.
+          </p>
+          <p>
+            Tambien nos encargamos de la proteccion de artistas con escoltas de proximidad, control de acceso al backstage con credenciales verificables, y rutas seguras de ingreso y salida para el talento. Nuestro objetivo es que organizadores, artistas y publico disfruten del evento con la tranquilidad de contar con un equipo profesional que anticipa y resuelve cualquier contingencia.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios -->
+  <section class="py-20 bg-primary/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-black text-light mb-10">Beneficios principales</h2>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl">
+        {[
+          "Protocolos anti-estampida certificados bajo estandares internacionales",
+          "Control de multitudes con monitoreo de densidad en tiempo real",
+          "Proteccion dedicada para artistas, staff y areas de backstage",
+          "Coordinacion directa con paramedicos, bomberos y proteccion civil",
+          "Gestion integral de zonas VIP con acceso restringido personalizado",
+          "Personal con licencia DGSSP y certificacion STPS vigente"
+        ].map((beneficio) => (
+          <li class="flex items-start gap-3 bg-primary/30 border border-primary-light/30 rounded-lg p-4">
+            <svg class="w-6 h-6 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span class="text-accent text-sm leading-relaxed">{beneficio}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Tipos de eventos -->
+  <section class="py-20 bg-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-black text-light mb-10">¿Para que tipo de eventos?</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl">
+        {[
+          { titulo: "Conciertos en recintos cerrados", ejemplo: "Arenas, auditorios, teatros y foros de mediana y gran capacidad." },
+          { titulo: "Festivales al aire libre", ejemplo: "Festivales de musica de uno o varios dias con multiples escenarios." },
+          { titulo: "Giras y tours musicales", ejemplo: "Seguridad continua para artistas en diferentes ciudades y venues." },
+          { titulo: "Eventos de musica electronica", ejemplo: "Raves, festivales EDM y eventos nocturnos con requerimientos especiales." },
+          { titulo: "Conciertos masivos", ejemplo: "Eventos con mas de 10,000 asistentes en estadios y explanadas." },
+          { titulo: "Festivales culturales", ejemplo: "Eventos con musica en vivo, gastronomia y actividades artisticas." }
+        ].map((tipo) => (
+          <div class="bg-primary/30 border border-primary-light/30 rounded-lg p-5">
+            <h3 class="text-light font-bold text-base mb-2">{tipo.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{tipo.ejemplo}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso -->
+  <section class="py-20 bg-primary/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-black text-light mb-10">Nuestro proceso</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl">
+        {[
+          { paso: "01", titulo: "Evaluacion del venue", desc: "Inspeccionamos el recinto, identificamos riesgos, analizamos capacidad y definimos puntos criticos de seguridad." },
+          { paso: "02", titulo: "Diseno del operativo", desc: "Creamos el plan de seguridad con distribucion de personal, rutas de evacuacion y protocolos de emergencia especificos." },
+          { paso: "03", titulo: "Despliegue y ejecucion", desc: "Posicionamos guardias en puntos estrategicos, activamos comunicaciones y coordinamos con organizadores en tiempo real." },
+          { paso: "04", titulo: "Informe post-evento", desc: "Entregamos un reporte detallado con incidencias, metricas de aforo y recomendaciones para futuros eventos." }
+        ].map((item) => (
+          <div class="relative bg-primary/30 border border-primary-light/30 rounded-lg p-6">
+            <span class="text-secondary font-black text-3xl opacity-30">{item.paso}</span>
+            <h3 class="text-light font-bold text-base mt-2 mb-2">{item.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por que elegirnos -->
+  <section class="py-20 bg-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-black text-light mb-10">¿Por que elegir SeguridadEventos?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl">
+        {[
+          { titulo: "Experiencia en eventos musicales", desc: "Hemos protegido mas de 500 conciertos y festivales de todos los generos y magnitudes en Mexico." },
+          { titulo: "Certificaciones oficiales", desc: "Licencia DGSSP, certificacion STPS y protocolos alineados a ISO 9001 para garantizar calidad y legalidad." },
+          { titulo: "Tecnologia de monitoreo", desc: "Sistemas de comunicacion cifrada, conteo de aforo en tiempo real y coordinacion digital con autoridades." }
+        ].map((dif) => (
+          <div class="bg-primary/30 border border-secondary/20 rounded-lg p-6">
+            <h3 class="text-light font-bold text-base mb-3">{dif.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{dif.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-primary/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-black text-light mb-10">Preguntas frecuentes sobre seguridad para conciertos</h2>
+      <div class="max-w-3xl space-y-4">
+        {faqSchema.mainEntity.map((faq) => (
+          <details class="group bg-primary/30 border border-primary-light/30 rounded-lg">
+            <summary class="flex items-center justify-between cursor-pointer p-5 text-light font-semibold text-sm sm:text-base">
+              {faq.name}
+              <svg class="w-5 h-5 text-secondary flex-shrink-0 ml-4 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+              </svg>
+            </summary>
+            <div class="px-5 pb-5 text-accent text-sm leading-relaxed">
+              {faq.acceptedAnswer.text}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <TrustBadges />
+  <CTABanner titulo="¿Necesitas seguridad para tu concierto o festival?" subtitulo="Cotizacion personalizada en menos de 24 horas. Sin compromiso." />
+</BaseLayout>

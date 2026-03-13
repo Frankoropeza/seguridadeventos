@@ -4,11 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#1E293B',
-        secondary: '#DC2626',
-        accent: '#94A3B8',
-        dark: '#0F172A',
-        light: '#F8FAFC',
+        primary: '#1a2540',
+        secondary: '#dc2626',
+        accent: '#6b7280',
+        dark: '#0a0f1a',
+        light: '#f9fafb',
+        gold: '#f59e0b',
+        'primary-light': '#243154',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
