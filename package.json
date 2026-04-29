@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "npm run validate:mdx && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "validate:mdx": "node scripts/validate-mdx.mjs",
+    "install:hooks": "bash scripts/install-hooks.sh"
   },
   "dependencies": {
     "@astrojs/mdx": "^3.1.9",
