@@ -31,7 +31,12 @@ const {
     </svg>
   </div>
 
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 w-full">
+  <!-- Gradient accent left -->
+  <div class="absolute left-0 top-0 w-[40%] h-full bg-gradient-to-r from-secondary/8 to-transparent pointer-events-none" aria-hidden="true"></div>
+  <!-- Gradient accent bottom -->
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark to-transparent pointer-events-none" aria-hidden="true"></div>
+
+  <div class="relative w-full px-[5%] xl:px-[7%] py-20 lg:py-28">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
       <!-- Columna 1: Título + CTAs + Stats -->
@@ -52,7 +57,7 @@ const {
         <div class="flex flex-col sm:flex-row gap-4 mb-14">
           <a
             href={ctaHref}
-            class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-8 py-4 rounded-lg text-base font-bold uppercase tracking-wide transition-colors shadow-lg shadow-secondary/30"
+            class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-8 py-4 rounded-lg text-base font-bold uppercase tracking-wide transition-all duration-200 shadow-lg shadow-secondary/30 hover:shadow-secondary/50 hover:-translate-y-0.5"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
               <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
@@ -63,7 +68,7 @@ const {
             href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%2C+necesito+información+sobre+seguridad+para+mi+evento`}
             target="_blank"
             rel="noopener"
-            class="inline-flex items-center justify-center gap-2 border-2 border-green-500/40 hover:border-green-400 text-light hover:bg-green-900/20 px-8 py-4 rounded-lg text-base font-semibold transition-colors"
+            class="inline-flex items-center justify-center gap-2 border-2 border-green-500/40 hover:border-green-400 text-light hover:bg-green-900/20 px-8 py-4 rounded-lg text-base font-semibold transition-all duration-200 hover:-translate-y-0.5"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="text-green-400" aria-hidden="true">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -75,32 +80,54 @@ const {
         <!-- Stats -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-10 border-t border-primary">
           {STATS.map(s => (
-            <div>
-              <div class="text-3xl font-black text-secondary">{s.valor}</div>
+            <div class="group">
+              <div class="text-3xl font-black text-secondary group-hover:scale-110 transition-transform inline-block">{s.valor}</div>
               <div class="text-accent text-xs mt-1">{s.etiqueta}</div>
             </div>
           ))}
         </div>
       </div>
 
-      <!-- Columna 2: Dos párrafos de marketing SEO -->
+      <!-- Columna 2: Cards con información de marketing -->
       <div class="flex flex-col gap-6">
-        <div class="bg-primary/60 border border-primary-light rounded-2xl p-7">
-          <h2 class="text-light font-black text-xl mb-3 leading-snug">
-            La empresa de seguridad para eventos más confiable de México
-          </h2>
+        <div class="bg-primary/60 border border-primary-light rounded-2xl p-7 hover:border-secondary/30 transition-colors duration-300">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 rounded-lg bg-secondary/20 flex items-center justify-center flex-shrink-0">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h2 class="text-light font-black text-xl leading-snug">
+              La empresa de seguridad para eventos más confiable de México
+            </h2>
+          </div>
           <p class="text-accent leading-relaxed text-sm">
-            En <strong class="text-light">SeguridadEventos</strong> somos especialistas en <strong class="text-light">seguridad privada para eventos</strong> de cualquier escala: desde una boda exclusiva en una hacienda hasta un festival masivo con más de 50,000 asistentes. Nuestro equipo de más de <strong class="text-light">1,200 guardias certificados DGSSP y STPS</strong> garantiza que cada asistente, artista y organizador esté protegido con los más altos estándares de la industria. Con presencia en <strong class="text-light">CDMX, Guadalajara, Monterrey, Puebla y Cancún</strong>, somos el socio de seguridad que los mejores eventos de México eligen.
+            En <strong class="text-light">SeguridadEventos</strong> somos especialistas en <strong class="text-light">seguridad privada para eventos</strong> de cualquier escala: desde una boda exclusiva en una hacienda hasta un festival masivo con más de 50,000 asistentes. Nuestro equipo de más de <strong class="text-light">1,200 guardias certificados DGSSP y STPS</strong> garantiza que cada asistente, artista y organizador esté protegido. Con presencia en <strong class="text-light">CDMX, Guadalajara, Monterrey, Puebla y Cancún</strong>.
           </p>
         </div>
 
-        <div class="bg-primary/60 border border-primary-light rounded-2xl p-7">
-          <h2 class="text-light font-black text-xl mb-3 leading-snug">
-            Seguridad certificada, respuesta inmediata y cero incidentes graves
-          </h2>
+        <div class="bg-primary/60 border border-primary-light rounded-2xl p-7 hover:border-secondary/30 transition-colors duration-300">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 rounded-lg bg-gold/20 flex items-center justify-center flex-shrink-0">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" aria-hidden="true">
+                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <h2 class="text-light font-black text-xl leading-snug">
+              Seguridad certificada, respuesta inmediata y cero incidentes graves
+            </h2>
+          </div>
           <p class="text-accent leading-relaxed text-sm">
-            Nuestra <strong class="text-light">licencia DGSSP federal vigente</strong> nos autoriza a operar en toda la República Mexicana, cumpliendo con la <strong class="text-light">Ley Federal de Seguridad Privada</strong> y coordinando con Protección Civil, bomberos y autoridades locales en cada evento. Ofrecemos <strong class="text-light">cotización personalizada en menos de 24 horas</strong>, plan operativo específico para tu evento y un record de <strong class="text-light">cero incidentes graves en más de 500 eventos protegidos</strong>. Confía en los profesionales que la industria del entretenimiento y las empresas Fortune 500 ya confían.
+            Nuestra <strong class="text-light">licencia DGSSP federal vigente</strong> nos autoriza a operar en toda la República Mexicana, coordinando con Protección Civil, bomberos y autoridades locales. Ofrecemos <strong class="text-light">cotización personalizada en menos de 24 horas</strong> y un record de <strong class="text-light">cero incidentes graves en más de 500 eventos protegidos</strong>.
           </p>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="flex items-center gap-3 flex-wrap">
+          <span class="text-xs bg-secondary/20 border border-secondary/30 text-secondary px-3 py-1.5 rounded-lg font-semibold">✓ DGSSP Federal</span>
+          <span class="text-xs bg-gold/20 border border-gold/30 text-gold px-3 py-1.5 rounded-lg font-semibold">✓ STPS Certificado</span>
+          <span class="text-xs bg-green-900/30 border border-green-700/30 text-green-400 px-3 py-1.5 rounded-lg font-semibold">✓ ISO 9001</span>
+          <span class="text-xs bg-blue-900/30 border border-blue-700/30 text-blue-400 px-3 py-1.5 rounded-lg font-semibold">✓ Protección Civil</span>
         </div>
       </div>
 

@@ -12,7 +12,11 @@ export interface Props {
 const { icon, title, description, features = [], href, badge, featured = false } = Astro.props;
 ---
 
-<article class={`relative flex flex-col bg-primary border rounded-xl p-6 group transition-all duration-300 hover:border-secondary/50 hover:shadow-xl hover:shadow-secondary/10 ${featured ? 'border-secondary/40 ring-1 ring-secondary/20' : 'border-primary-light'}`}>
+<article class={`relative flex flex-col rounded-xl p-6 group transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
+  featured
+    ? 'bg-gradient-to-b from-secondary/10 to-primary border border-secondary/40 ring-1 ring-secondary/20 hover:shadow-secondary/20'
+    : 'bg-primary border border-primary-light hover:border-secondary/40 hover:shadow-secondary/10'
+}`}>
   {badge && (
     <span class="absolute -top-3 left-5 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
       {badge}
@@ -20,11 +24,13 @@ const { icon, title, description, features = [], href, badge, featured = false }
   )}
 
   <div class="flex items-start gap-4 mb-4">
-    <div class="w-12 h-12 bg-secondary/15 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 group-hover:bg-secondary/25 transition-colors">
+    <div class={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 transition-colors ${
+      featured ? 'bg-secondary/25 group-hover:bg-secondary/35' : 'bg-secondary/15 group-hover:bg-secondary/25'
+    }`}>
       {icon}
     </div>
     <div class="flex-1 min-w-0">
-      <h3 class="text-light font-bold text-lg leading-tight">{title}</h3>
+      <h3 class="text-light font-bold text-lg leading-tight group-hover:text-white transition-colors">{title}</h3>
     </div>
   </div>
 

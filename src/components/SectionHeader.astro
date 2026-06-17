@@ -9,7 +9,11 @@ const { eyebrow, titulo, subtitulo, align = 'center' } = Astro.props;
 ---
 <div class={`mb-12 ${align === 'center' ? 'text-center' : ''}`}>
   {eyebrow && (
-    <span class="text-secondary text-xs font-bold uppercase tracking-widest block mb-2">{eyebrow}</span>
+    <span class="inline-flex items-center gap-2 text-secondary text-xs font-bold uppercase tracking-widest mb-3">
+      <span class="w-6 h-px bg-secondary inline-block"></span>
+      {eyebrow}
+      <span class="w-6 h-px bg-secondary inline-block"></span>
+    </span>
   )}
   <h2 class="text-3xl sm:text-4xl font-black text-light">{titulo}</h2>
   {subtitulo && (

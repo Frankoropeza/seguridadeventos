@@ -29,7 +29,7 @@ const schema = buildArticleSchema(title, description, canonical || new URL(Astro
 
   <!-- Breadcrumb -->
   <nav class="bg-primary/50 border-b border-primary py-3" aria-label="Breadcrumb">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="w-full px-[5%] xl:px-[7%]">
       <ol class="flex items-center gap-2 text-xs text-accent flex-wrap">
         <li><a href="/" class="hover:text-light transition-colors">Inicio</a></li>
         <li aria-hidden="true" class="text-primary-light">›</li>
@@ -48,7 +48,7 @@ const schema = buildArticleSchema(title, description, canonical || new URL(Astro
   )}
 
   <!-- Artículo -->
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+  <div class="w-[90%] mx-auto py-12 lg:py-16">
     <div class="mb-8">
       <span class="bg-secondary/15 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">
         {categoria}

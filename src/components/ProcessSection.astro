@@ -37,7 +37,7 @@ const pasos = [
 ---
 
 <section class="py-20 bg-dark">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="w-full px-[5%] xl:px-[7%]">
     <div class="text-center mb-14">
       <span class="text-secondary text-xs font-bold uppercase tracking-widest">Metodología profesional</span>
       <h2 class="text-3xl sm:text-4xl font-black text-light mt-2">{titulo}</h2>
@@ -46,15 +46,15 @@ const pasos = [
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {pasos.map((paso, i) => (
-        <div class="relative flex flex-col p-6 bg-primary border border-primary-light rounded-xl">
+        <div class="relative flex flex-col p-6 bg-primary border border-primary-light rounded-xl hover:border-secondary/40 transition-all duration-300 group hover:-translate-y-1">
           {i < pasos.length - 1 && (
-            <div class="hidden lg:block absolute top-8 -right-3 z-10 text-accent">
+            <div class="hidden lg:block absolute top-8 -right-3 z-10 text-secondary/40">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </div>
           )}
-          <div class="text-xs font-black text-secondary/50 mb-3 tracking-widest">{paso.num}</div>
+          <div class="text-xs font-black text-secondary/60 mb-3 tracking-widest group-hover:text-secondary transition-colors">{paso.num}</div>
           <div class="text-3xl mb-3">{paso.icon}</div>
           <h3 class="text-light font-bold text-base mb-2">{paso.titulo}</h3>
           <p class="text-accent text-sm leading-relaxed">{paso.desc}</p>

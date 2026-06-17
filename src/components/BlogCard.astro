@@ -11,7 +11,7 @@ export interface Props {
 const { titulo, descripcion, slug, categoria = "Blog", imagen, readTime = 5 } = Astro.props;
 ---
 
-<article class="group flex flex-col bg-primary border border-primary-light rounded-xl overflow-hidden hover:border-secondary/40 transition-all duration-300 hover:shadow-lg hover:shadow-secondary/10">
+<article class="group flex flex-col bg-primary border border-primary-light rounded-xl overflow-hidden hover:border-secondary/40 transition-all duration-300 hover:shadow-xl hover:shadow-secondary/10 hover:-translate-y-1">
   <!-- Imagen o placeholder -->
   <div class="relative h-48 overflow-hidden bg-primary-light">
     {imagen ? (
