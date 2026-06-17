@@ -1,6 +1,8 @@
 ---
 title: "Bienvenido al Blog de SEPRIEV: La Seguridad de tu Evento, Explicada"
 description: "Te damos la bienvenida al blog de SEPRIEV. Aquí explicamos la seguridad para eventos en México sin tecnicismos: por qué escribimos y qué encontrarás en cada categoría."
+metaTitle: "Seguridad para eventos | seguridad privada para eventos | guías de seguridad para eventos"
+metaDescription: "Seguridad para eventos: en el blog de SEPRIEV explicamos sin tecnicismos la seguridad privada para fiestas y eventos en México, con guías prácticas para organizadores."
 imagen: "/img/eventos/equipo-seguridad-eventos"
 categoria: "Guías"
 readTime: 6

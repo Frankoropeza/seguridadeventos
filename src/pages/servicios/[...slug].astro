@@ -4,11 +4,15 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
+  // Páginas con diseño dedicado (homologado a index/servicios) que NO usan este template
+  const STANDALONE = ['seguridad-conciertos-festivales'];
   const servicios = await getCollection('servicios');
-  return servicios.map((servicio: CollectionEntry<'servicios'>) => ({
-    params: { slug: servicio.slug },
-    props: servicio,
-  }));
+  return servicios
+    .filter((servicio: CollectionEntry<'servicios'>) => !STANDALONE.includes(servicio.slug))
+    .map((servicio: CollectionEntry<'servicios'>) => ({
+      params: { slug: servicio.slug },
+      props: servicio,
+    }));
 }
 
 type Props = CollectionEntry<'servicios'>;
@@ -100,6 +104,8 @@ const servicioImagen = serviceImg[servicio.slug];
 <ServiceLayout
   titulo={servicio.data.title}
   descripcion={servicio.data.description}
+  metaTitle={servicio.data.metaTitle}
+  metaDescription={servicio.data.metaDescription}
   slug={servicio.slug}
   emoji={servicio.data.emoji}
   imagen={servicioImagen}

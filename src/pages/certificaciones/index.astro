@@ -30,8 +30,8 @@ const navItems = [
 ---
 
 <BaseLayout
-  title="Certificaciones y Licencias — SEPRIEV México"
-  description="Nuestras certificaciones: Licencia DGSSP federal, Certificación STPS, ISO 9001:2015, registro DGSP. Verificables ante las autoridades correspondientes."
+  title="Seguridad privada certificada DGSSP | seguridad para eventos | guardias certificados"
+  description="Seguridad privada certificada: SEPRIEV cuenta con licencia DGSSP, STPS e ISO 9001 para darte la mejor seguridad privada para eventos y fiestas en México."
 >
   <Breadcrumb items={[{ label: 'Certificaciones' }]} />
 
@@ -98,7 +98,7 @@ const navItems = [
             items: ["Registro municipal vigente en CDMX", "Complementa la licencia federal DGSSP", "Requisito para operar en eventos de gobierno", "Verificable ante autoridades locales"],
           },
         ].map((cert: any) => (
-          <div id={cert.id} class="bg-primary border border-primary-light rounded-xl p-8 hover:border-secondary/30 transition-colors">
+          <div id={cert.id} class="bg-primary border border-primary-light rounded-xl p-8">
             <div class="flex items-center gap-4 mb-5">
               <div class={`w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 ${
                 cert.color === 'secondary' ? 'bg-secondary/20 border-2 border-secondary/40' :

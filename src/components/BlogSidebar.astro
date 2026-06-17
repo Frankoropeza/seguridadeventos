@@ -108,9 +108,9 @@ const totalPosts = allPosts.length;
     </h3>
     <ul class="flex flex-col gap-4">
       {recentPosts.map((post: any) => (
-        <li class="group">
+        <li>
           <a href={`/blog/${post.slug}`} class="flex gap-3 items-start">
-            <div class="w-14 h-14 rounded-lg bg-primary-light flex items-center justify-center flex-shrink-0 group-hover:bg-secondary/20 transition-colors">
+            <div class="w-14 h-14 rounded-lg bg-primary-light flex items-center justify-center flex-shrink-0">
               {post.data.imagen ? (
                 <picture>
                   <source type="image/avif" srcset={`${post.data.imagen}-640.avif`} />
@@ -131,7 +131,7 @@ const totalPosts = allPosts.length;
               )}
             </div>
             <div class="flex-1 min-w-0">
-              <p class="text-light text-xs font-semibold leading-snug line-clamp-2 group-hover:text-secondary transition-colors">
+              <p class="text-light text-xs font-semibold leading-snug line-clamp-2">
                 {post.data.title}
               </p>
               <div class="flex items-center gap-2 mt-1.5">

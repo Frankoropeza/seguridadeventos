@@ -4,6 +4,8 @@ import { WHATSAPP_NUMBER, PHONE_DISPLAY } from '@/lib/config';
 export interface Props {
   titulo?: string;
   subtitulo?: string;
+  faq?: Array<{ q: string; a: string }>;
+  // Compatibilidad con llamadas existentes (ya no se renderizan, evitan romper props)
   ctaLabel?: string;
   ctaHref?: string;
   variant?: 'red' | 'dark';
@@ -11,16 +13,46 @@ export interface Props {
 
 const {
   titulo = "¿Listo para proteger tu evento?",
-  subtitulo = "Cotización personalizada en menos de 24 horas. Sin compromiso.",
-  ctaLabel = "Solicitar Cotización",
-  ctaHref = "/cotizar",
-  variant = 'red',
+  subtitulo = "Resolvemos tus dudas y te enviamos una cotización personalizada en menos de 24 horas. Sin compromiso.",
+  faq = [
+    {
+      q: "¿En cuánto tiempo recibo mi cotización?",
+      a: "Te enviamos una propuesta detallada en menos de 24 horas. Para eventos urgentes, escríbenos por WhatsApp y respondemos en minutos durante horario de oficina.",
+    },
+    {
+      q: "¿Su personal está certificado y cuentan con licencia?",
+      a: "Sí. Operamos con licencia DGSSP federal y todo nuestro personal está capacitado y certificado ante la STPS. Coordinamos con Protección Civil y autoridades locales en cada evento.",
+    },
+    {
+      q: "¿Cuántos guardias necesita mi evento?",
+      a: "Depende del aforo, el tipo de evento, el venue y el horario. En la cotización te recomendamos el número exacto de elementos y el plan operativo, con base en más de 500 eventos protegidos.",
+    },
+    {
+      q: "¿Qué tipos de eventos cubren?",
+      a: "Conciertos y festivales, eventos corporativos, ferias y exposiciones, bodas y eventos sociales, eventos deportivos, eventos masivos (+10,000) y protección VIP / ejecutiva.",
+    },
+    {
+      q: "¿La cotización tiene costo o algún compromiso?",
+      a: "No. La cotización es totalmente gratuita y sin compromiso de contratación. Solo pagas si decides contratar el servicio.",
+    },
+    {
+      q: "¿En qué ciudades operan?",
+      a: "CDMX, Guadalajara, Monterrey, Puebla y Cancún, con cobertura en toda la República Mexicana gracias a nuestra licencia federal.",
+    },
+  ],
 } = Astro.props;
+
+const waDirecto = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola%2C+quiero+cotizar+seguridad+para+mi+evento`;
+const telHref = `tel:${PHONE_DISPLAY.replace(/\s/g, '')}`;
+
+const inputBase =
+  "w-full bg-dark border border-primary-light rounded-lg px-4 py-3 text-light text-sm focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors";
+const chips = ["Respuesta en 24 horas", "Sin compromiso", "Presupuesto gratuito"];
 ---
 
-<section class={`py-16 ${variant === 'red' ? 'bg-secondary' : 'bg-primary'} relative overflow-hidden`}>
+<section class="relative overflow-hidden bg-gradient-to-br from-dark via-primary/40 to-dark py-16 lg:py-24 border-t border-primary">
   <!-- Decoración -->
-  <div class="absolute inset-0 opacity-5 pointer-events-none" aria-hidden="true">
+  <div class="absolute inset-0 opacity-[0.04] pointer-events-none" aria-hidden="true">
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="cta-pattern" width="60" height="60" patternUnits="userSpaceOnUse">
@@ -30,41 +62,196 @@ const {
       <rect width="100%" height="100%" fill="url(#cta-pattern)"/>
     </svg>
   </div>
-  <!-- Glow effect -->
-  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" aria-hidden="true"></div>
-  <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" aria-hidden="true"></div>
+  <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" aria-hidden="true"></div>
 
-  <div class="relative w-[90%] mx-auto text-center">
-    <h2 class="text-3xl sm:text-4xl font-black text-white mb-4">{titulo}</h2>
-    <p class={`text-lg mb-10 ${variant === 'red' ? 'text-red-100' : 'text-accent'}`}>{subtitulo}</p>
+  <div class="relative w-full px-[5%] xl:px-[7%]">
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a
-        href={ctaHref}
-        class={`w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-lg text-base font-bold uppercase tracking-wide transition-all duration-200 hover:-translate-y-0.5 ${
-          variant === 'red'
-            ? 'bg-white text-secondary hover:bg-gray-100 shadow-lg shadow-black/20'
-            : 'bg-secondary hover:bg-red-700 text-white shadow-lg shadow-secondary/30'
-        }`}
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-          <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-        </svg>
-        {ctaLabel}
-      </a>
-      <a
-        href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%2C+quiero+cotizar+seguridad+para+mi+evento`}
-        target="_blank"
-        rel="noopener"
-        class="w-full sm:w-auto flex items-center justify-center gap-2 border-2 border-white/30 hover:border-white text-white px-8 py-4 rounded-lg text-base font-semibold transition-all duration-200 hover:-translate-y-0.5"
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        WhatsApp directo
-      </a>
+    <!-- Encabezado -->
+    <div class="max-w-3xl mx-auto text-center mb-12 lg:mb-16">
+      <span class="text-secondary text-xs font-bold uppercase tracking-widest">Cotización gratuita</span>
+      <h2 class="text-3xl sm:text-4xl font-black text-light mt-3 mb-4">{titulo}</h2>
+      <p class="text-accent text-lg leading-relaxed">{subtitulo}</p>
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-6">
+        {chips.map((c) => (
+          <span class="inline-flex items-center gap-1.5 text-accent text-xs font-medium">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0" aria-hidden="true">
+              <path d="M5 13l4 4L19 7"/>
+            </svg>
+            {c}
+          </span>
+        ))}
+      </div>
     </div>
 
-    <p class="mt-6 text-xs text-white/60">Respuesta en menos de 24 horas · Sin compromiso · Presupuesto gratuito</p>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+
+      <!-- Columna 1: Preguntas frecuentes -->
+      <div>
+        <h3 class="text-light font-black text-xl sm:text-2xl mb-6 flex items-center gap-2.5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          Preguntas frecuentes
+        </h3>
+
+        <div class="space-y-3 sm:space-y-4">
+          {faq.map((item) => (
+            <details class="cta-faq bg-primary border border-primary-light rounded-xl overflow-hidden">
+              <summary class="cta-faq-summary list-none flex justify-between items-center gap-4 px-5 sm:px-6 py-4 text-light font-semibold text-sm sm:text-[15px] cursor-pointer hover:text-secondary transition-colors">
+                <span>{item.q}</span>
+                <svg class="cta-faq-icon w-5 h-5 flex-shrink-0 text-secondary transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </summary>
+              <div class="px-5 sm:px-6 pb-5 -mt-1">
+                <p class="text-accent text-sm leading-relaxed">{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <!-- Contacto directo -->
+        <div class="mt-6 rounded-xl border border-primary-light bg-primary/50 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <p class="text-accent text-sm">¿Prefieres atención inmediata?</p>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a
+              href={waDirecto}
+              target="_blank"
+              rel="noopener"
+              class="inline-flex items-center justify-center gap-2 bg-green-600 hover:bg-green-500 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              </svg>
+              WhatsApp
+            </a>
+            <a
+              href={telHref}
+              class="inline-flex items-center justify-center gap-2 border border-primary-light hover:border-secondary text-light px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+              {PHONE_DISPLAY}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna 2: Formulario -->
+      <div class="bg-primary border border-primary-light rounded-2xl p-6 sm:p-8 shadow-xl shadow-black/30">
+        <h3 class="text-light font-black text-xl sm:text-2xl mb-1.5">Solicita tu cotización</h3>
+        <p class="text-accent text-sm mb-6">Cuéntanos de tu evento y recibe una propuesta a la medida.</p>
+
+        <form data-wa-quote class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="cta-nombre" class="block text-light text-sm font-semibold mb-1.5">Nombre completo *</label>
+              <input type="text" id="cta-nombre" name="nombre" required class={inputBase + " placeholder:text-accent/50"} placeholder="Tu nombre" />
+            </div>
+            <div>
+              <label for="cta-telefono" class="block text-light text-sm font-semibold mb-1.5">Teléfono / WhatsApp *</label>
+              <input type="tel" id="cta-telefono" name="telefono" required class={inputBase + " placeholder:text-accent/50"} placeholder="55 1234 5678" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="cta-email" class="block text-light text-sm font-semibold mb-1.5">Email</label>
+              <input type="email" id="cta-email" name="email" class={inputBase + " placeholder:text-accent/50"} placeholder="tu@email.com" />
+            </div>
+            <div>
+              <label for="cta-tipo" class="block text-light text-sm font-semibold mb-1.5">Tipo de evento *</label>
+              <select id="cta-tipo" name="tipo" required class={inputBase}>
+                <option value="">Selecciona...</option>
+                <option value="Concierto o festival">Concierto o festival</option>
+                <option value="Evento corporativo">Evento corporativo</option>
+                <option value="Feria o exposición">Feria o exposición</option>
+                <option value="Boda o evento social">Boda o evento social</option>
+                <option value="Evento deportivo">Evento deportivo</option>
+                <option value="Evento masivo (+10,000)">Evento masivo (+10,000)</option>
+                <option value="Protección VIP / ejecutiva">Protección VIP / ejecutiva</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="cta-aforo" class="block text-light text-sm font-semibold mb-1.5">Asistentes estimados</label>
+              <select id="cta-aforo" name="aforo" class={inputBase}>
+                <option value="">Selecciona...</option>
+                <option value="Menos de 100">Menos de 100</option>
+                <option value="100 - 500">100 - 500</option>
+                <option value="500 - 2,000">500 - 2,000</option>
+                <option value="2,000 - 5,000">2,000 - 5,000</option>
+                <option value="5,000 - 15,000">5,000 - 15,000</option>
+                <option value="Más de 15,000">Más de 15,000</option>
+              </select>
+            </div>
+            <div>
+              <label for="cta-ciudad" class="block text-light text-sm font-semibold mb-1.5">Ciudad</label>
+              <select id="cta-ciudad" name="ciudad" class={inputBase}>
+                <option value="">Selecciona...</option>
+                <option value="Ciudad de México">Ciudad de México</option>
+                <option value="Guadalajara">Guadalajara</option>
+                <option value="Monterrey">Monterrey</option>
+                <option value="Puebla">Puebla</option>
+                <option value="Cancún">Cancún</option>
+                <option value="Otra">Otra ciudad</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="cta-detalles" class="block text-light text-sm font-semibold mb-1.5">Detalles del evento</label>
+            <textarea id="cta-detalles" name="detalles" rows="3" class={inputBase + " placeholder:text-accent/50 resize-none"} placeholder="Fecha, venue, servicios requeridos..."></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-secondary hover:bg-red-700 text-white px-6 py-4 rounded-lg font-bold uppercase tracking-wide text-sm transition-colors flex items-center justify-center gap-2"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            </svg>
+            Enviar solicitud por WhatsApp
+          </button>
+
+          <p class="text-accent text-xs text-center leading-relaxed">
+            Al enviar se abrirá WhatsApp con tus datos. Aceptas nuestro
+            <a href="/aviso-de-privacidad" class="text-secondary hover:underline">aviso de privacidad</a>. Respuesta en menos de 24 horas.
+          </p>
+        </form>
+      </div>
+
+    </div>
   </div>
 </section>
+
+<style>
+  .cta-faq > summary { list-style: none; }
+  .cta-faq > summary::-webkit-details-marker { display: none; }
+  .cta-faq[open] .cta-faq-icon { transform: rotate(180deg); }
+</style>
+
+<script define:vars={{ WA: WHATSAPP_NUMBER }}>
+  document.querySelectorAll('form[data-wa-quote]').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const v = (k) => String(fd.get(k) || '').trim();
+      const lines = ['Hola, solicito una cotización de seguridad para mi evento:', ''];
+      lines.push('Nombre: ' + v('nombre'));
+      if (v('telefono')) lines.push('Teléfono: ' + v('telefono'));
+      if (v('email')) lines.push('Email: ' + v('email'));
+      if (v('tipo')) lines.push('Tipo de evento: ' + v('tipo'));
+      if (v('aforo')) lines.push('Asistentes: ' + v('aforo'));
+      if (v('ciudad')) lines.push('Ciudad: ' + v('ciudad'));
+      if (v('detalles')) { lines.push(''); lines.push('Detalles: ' + v('detalles')); }
+      const url = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(lines.join('\n'));
+      window.open(url, '_blank', 'noopener');
+    });
+  });
+</script>

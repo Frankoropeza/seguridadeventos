@@ -7,6 +7,8 @@ import { buildServiceSchema, buildFAQSchema } from '@/lib/seo';
 export interface Props {
   titulo: string;
   descripcion: string;
+  metaTitle?: string;
+  metaDescription?: string;
   slug: string;
   emoji?: string;
   imagen?: string;
@@ -17,6 +19,8 @@ export interface Props {
 const {
   titulo,
   descripcion,
+  metaTitle,
+  metaDescription,
   slug,
   emoji = "🛡️",
   imagen,
@@ -42,7 +46,7 @@ const allBreadcrumbs = [
 const relacionados = SERVICIOS_NAV.filter(s => s.slug !== slug).slice(0, 4);
 ---
 
-<BaseLayout title={titulo} description={descripcion} canonical={canonical} ogImage={ogImg} schema={schemas}>
+<BaseLayout title={metaTitle ?? titulo} description={metaDescription ?? descripcion} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
   <!-- Breadcrumb -->
   <nav class="bg-primary/50 border-b border-primary py-3" aria-label="Breadcrumb">

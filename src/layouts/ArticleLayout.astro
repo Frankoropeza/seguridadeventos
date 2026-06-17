@@ -9,6 +9,8 @@ import { buildArticleSchema } from '@/lib/seo';
 interface Props {
   title: string;
   description: string;
+  metaTitle?: string;
+  metaDescription?: string;
   categoria?: string;
   imagen?: string;
   readTime?: number;
@@ -19,6 +21,8 @@ interface Props {
 const {
   title,
   description,
+  metaTitle,
+  metaDescription,
   categoria = 'Blog',
   imagen,
   readTime = 5,
@@ -30,7 +34,7 @@ const ogImg = imagen ? new URL(`${imagen}-1200.jpg`, SITE).toString() : undefine
 const schema = buildArticleSchema(title, description, canonical || new URL(Astro.url.pathname, SITE).toString(), ogImg);
 ---
 
-<BaseLayout title={title} description={description} canonical={canonical} ogImage={ogImg} schema={schema}>
+<BaseLayout title={metaTitle ?? title} description={metaDescription ?? description} canonical={canonical} ogImage={ogImg} schema={schema}>
 
   <!-- Breadcrumb independiente -->
   <Breadcrumb items={[

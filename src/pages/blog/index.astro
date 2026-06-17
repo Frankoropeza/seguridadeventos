@@ -21,8 +21,8 @@ const categories = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1]);
 ---
 
 <BaseLayout
-  title="Blog de Seguridad para Eventos — Guias y Consejos"
-  description="Articulos especializados sobre seguridad en eventos, control de acceso, proteccion VIP y planificacion de seguridad para todo tipo de eventos en Mexico."
+  title="Blog de seguridad para eventos | seguridad privada para fiestas | guardias para eventos"
+  description="Blog de seguridad para eventos: guías de SEPRIEV sobre seguridad privada para eventos, fiestas, conciertos y eventos masivos en México."
 >
 
   <!-- BREADCRUMB -->
@@ -127,7 +127,7 @@ const categories = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1]);
       <!-- Tarjeta visual destacada -->
       <a
         href={`/blog/${featuredPost.slug}`}
-        class="group relative flex flex-col lg:flex-row bg-primary border border-white/8 hover:border-secondary/40 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-secondary/10"
+        class="group relative flex flex-col lg:flex-row bg-primary border border-white/8 rounded-2xl overflow-hidden"
       >
         <div class="relative lg:w-[420px] xl:w-[480px] h-56 lg:h-72 bg-gradient-to-br from-primary-light to-primary overflow-hidden flex-shrink-0">
           {featuredPost.data.imagen ? (
@@ -137,7 +137,7 @@ const categories = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1]);
               <img
                 src={`${featuredPost.data.imagen}-1200.jpg`}
                 alt={featuredPost.data.title}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                class="w-full h-full object-cover"
                 loading="eager" width="1200" height="675"
               />
             </picture>
@@ -154,7 +154,7 @@ const categories = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1]);
           <p class="text-secondary text-xs font-bold uppercase tracking-[0.3em]">
             {featuredPost.data.categoria || 'Blog'} — Destacado
           </p>
-          <h3 class="text-2xl lg:text-3xl font-black text-light leading-tight group-hover:text-secondary transition-colors">
+          <h3 class="text-2xl lg:text-3xl font-black text-light leading-tight">
             {featuredPost.data.title}
           </h3>
           <p class="text-accent leading-relaxed line-clamp-2">

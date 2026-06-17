@@ -22,7 +22,8 @@ const {
 } = Astro.props;
 
 const canonicalURL = canonical || new URL(Astro.url.pathname, SITE).toString();
-const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+// El <title> se usa tal cual (meta title con keywords, sin la marca). La marca va en og:site_name y el schema.
+const fullTitle = title;
 
 const schemas = [
   organizationSchema,
