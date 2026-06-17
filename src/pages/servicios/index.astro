@@ -1,24 +1,191 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
+import ServiceModule from '@/components/ServiceModule.astro';
 import CTABanner from '@/components/CTABanner.astro';
-import SectionHeader from '@/components/SectionHeader.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
 import { getCollection } from 'astro:content';
 
 const servicios = (await getCollection('servicios'))
   .sort((a: any, b: any) => a.data.orden - b.data.orden);
 
 const serviceCards = [
-  { icon: "🎵", title: "Conciertos y Festivales", desc: "Seguridad para eventos musicales, control de multitudes y protección de artistas. Más de 200 conciertos protegidos.", features: ["Control de multitudes", "Protección backstage", "Coordinación con autoridades"], slug: "seguridad-conciertos-festivales", badge: "Popular" },
-  { icon: "🏢", title: "Eventos Corporativos", desc: "Seguridad discreta para convenciones, lanzamientos, juntas de consejo y galas corporativas con estándares internacionales.", features: ["Control de acceso ejecutivo", "Personal bilingüe", "Dress code adaptable"], slug: "seguridad-eventos-corporativos" },
-  { icon: "🚪", title: "Control de Acceso", desc: "Sistemas integrales de verificación, detección de armas, gestión de aforo y credencialización profesional.", features: ["Arcos detectores de metales", "Escaneo digital de boletos", "Conteo de aforo en tiempo real"], slug: "control-acceso-eventos", badge: "Esencial" },
-  { icon: "⭐", title: "Seguridad VIP", desc: "Protección discreta para celebridades, artistas, ejecutivos y personalidades de alto perfil durante eventos.", features: ["Escoltas certificados", "Rutas de seguridad", "Anti-paparazzi"], slug: "seguridad-vip" },
-  { icon: "👔", title: "Protección Ejecutiva", desc: "Servicio especializado para CEOs, directivos y empresarios durante eventos corporativos y viajes de negocios.", features: ["Agentes con 5+ años", "Chofer de seguridad", "NDA obligatorio"], slug: "proteccion-ejecutiva" },
-  { icon: "🎪", title: "Ferias y Exposiciones", desc: "Seguridad integral para ferias comerciales: vigilancia de stands, protección de mercancía y control de proveedores.", features: ["Vigilancia 24/7", "Control de expositores", "Seguridad nocturna"], slug: "seguridad-ferias-exposiciones" },
-  { icon: "🎉", title: "Eventos Sociales", desc: "Seguridad discreta para bodas, XV años, bautizos y fiestas privadas. Tu evento transcurre sin preocupaciones.", features: ["Dress code adaptable", "Valet parking seguro", "Control de invitados"], slug: "seguridad-eventos-sociales" },
-  { icon: "⚽", title: "Eventos Deportivos", desc: "Seguridad especializada: control de barras, separación de aficiones, protección de atletas y gestión de multitudes.", features: ["Control de barras", "Anti-invasión de cancha", "Seguridad de ruta"], slug: "seguridad-eventos-deportivos" },
-  { icon: "🏟️", title: "Eventos Masivos", desc: "Operación de seguridad para más de 10,000 asistentes. Coordinación con Protección Civil y protocolos de evacuación.", features: ["Drones de vigilancia", "Centro de comando", "Plan de contingencia"], slug: "seguridad-masivos", featured: true },
-  { icon: "🔧", title: "Montaje y Desmontaje", desc: "Vigilancia profesional durante montaje/desmontaje: control de proveedores, custodia de equipo e inventario de activos.", features: ["Inventario fotográfico", "Custodia nocturna", "Control de carga"], slug: "seguridad-montaje-desmontaje" },
+  { icon: "🎵", title: "Conciertos y Festivales", desc: "Control de multitudes, protección de artistas y coordinación con autoridades. Más de 200 eventos musicales protegidos.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], slug: "seguridad-conciertos-festivales", badge: "Popular" },
+  { icon: "🏢", title: "Eventos Corporativos", desc: "Seguridad discreta para convenciones, lanzamientos y galas. Personal bilingüe y protocolos de confidencialidad.", features: ["Personal bilingüe", "Dress code adaptable", "NDA incluido"], slug: "seguridad-eventos-corporativos" },
+  { icon: "🚪", title: "Control de Acceso", desc: "Verificación de boletos, detección de armas, gestión de aforo y credencialización para cualquier tipo de evento.", features: ["Detectores de metales", "Escaneo QR", "Aforo en tiempo real"], slug: "control-acceso-eventos", badge: "Esencial" },
+  { icon: "⭐", title: "Seguridad VIP", desc: "Protección de celebridades, artistas y ejecutivos. Escoltas certificados, anti-paparazzi y rutas seguras.", features: ["Close protection", "Vehículo blindado", "Discreción total"], slug: "seguridad-vip" },
+  { icon: "👔", title: "Protección Ejecutiva", desc: "Seguridad personal para directivos, empresarios y figuras públicas. Evaluación de riesgos, contravigilancia y traslados seguros.", features: ["Análisis de riesgo", "Contravigilancia", "Traslados seguros"], slug: "proteccion-ejecutiva" },
+  { icon: "🎪", title: "Ferias y Exposiciones", desc: "Operativos de seguridad para recintos feriales con múltiples expositores, flujos constantes de visitantes y activos de alto valor.", features: ["Seguridad de stands", "Control de accesos", "Resguardo de activos"], slug: "seguridad-ferias-exposiciones" },
+  { icon: "🎉", title: "Eventos Sociales", desc: "Bodas, XV años y fiestas privadas con seguridad invisible pero presente. Valet parking y control de invitados.", features: ["Dress code formal", "Valet parking", "Manejo discreto"], slug: "seguridad-eventos-sociales" },
+  { icon: "⚽", title: "Eventos Deportivos", desc: "Seguridad para estadios, arenas y competencias. Barras, zonas VIP, protección de atletas y coordinación con federaciones.", features: ["Separación de barras", "Zona VIP", "Protocolo federativo"], slug: "seguridad-eventos-deportivos" },
+  { icon: "🏟️", title: "Eventos Masivos", desc: "Operación de seguridad para +10,000 asistentes. Drones, centro de comando y coordinación con Protección Civil.", features: ["Drones de vigilancia", "Puesto de mando", "Plan de contingencia"], slug: "seguridad-masivos", featured: true },
+  { icon: "🔧", title: "Montaje y Desmontaje", desc: "Resguardo de equipo, artistas, materiales y activos durante las fases de instalación y retiro del evento.", features: ["Custodia de equipo", "Control de proveedores", "Accesos restringidos"], slug: "seguridad-montaje-desmontaje" },
+];
+
+const servImg: Record<string,string> = {"seguridad-conciertos-festivales": "/img/eventos/seguridad-conciertos-festivales", "seguridad-eventos-corporativos": "/img/eventos/seguridad-eventos-corporativos", "control-acceso-eventos": "/img/eventos/control-acceso-eventos", "seguridad-vip": "/img/eventos/seguridad-vip-eventos", "proteccion-ejecutiva": "/img/eventos/proteccion-ejecutiva-mexico", "seguridad-ferias-exposiciones": "/img/eventos/seguridad-empresarial-evento", "seguridad-eventos-sociales": "/img/eventos/seguridad-vip-gala", "seguridad-eventos-deportivos": "/img/eventos/seguridad-conciertos-multitud", "seguridad-masivos": "/img/eventos/guardias-seguridad-privada", "seguridad-montaje-desmontaje": "/img/eventos/equipo-seguridad-eventos"};
+
+const navItems = [
+  {
+    label: "Conciertos y Festivales",
+    desc: "Control masivo para eventos musicales de cualquier escala",
+    href: "/servicios/seguridad-conciertos-festivales",
+  },
+  {
+    label: "Eventos Corporativos",
+    desc: "Seguridad ejecutiva discreta y profesional",
+    href: "/servicios/seguridad-eventos-corporativos",
+  },
+  {
+    label: "Seguridad VIP",
+    desc: "Protección personal para celebridades y ejecutivos",
+    href: "/servicios/seguridad-vip",
+  },
+  {
+    label: "Solicitar Cotización",
+    desc: "Propuesta personalizada en menos de 24 horas",
+    href: "/cotizar",
+  },
+];
+
+const IMG = "/img/eventos";
+
+const serviceModules = [
+  {
+    title: "Conciertos y Festivales",
+    href: "/servicios/seguridad-conciertos-festivales",
+    badge: "Popular",
+    hero: `${IMG}/seguridad-conciertos-festivales`,
+    small1: `${IMG}/seguridad-conciertos-multitud`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    intro: "La seguridad de un concierto se define en el escritorio antes que en la valla. SEPRIEV se integra al plan de producción desde la preproducción para dimensionar el operativo con base en el aforo autorizado, la configuración del recinto y el perfil del cartel, y deja todo documentado para la autoridad y la aseguradora. Cuando el operativo está bien calculado, el día del evento solo se ejecuta lo que ya estaba previsto.",
+    features: [
+      { title: "Dimensionamiento por aforo", text: "El número de elementos, su distribución por sector y los turnos de relevo se calculan a partir del aforo autorizado y la curva de afluencia prevista, no de una estimación aproximada. SEPRIEV entrega un memorando de despliegue con posiciones, funciones y horarios que sirve para operar y para sustentar el evento ante la autoridad. Sobredimensionar encarece la producción y subdimensionar la expone: el cálculo correcto es parte del servicio." },
+      { title: "Carpeta de seguridad y permisos", text: "Cada operativo se acompaña de la documentación que Protección Civil y el municipio exigen para autorizar el evento: plan de emergencias, rutas de evacuación, aforos por sector y registro vigente del personal ante la DGSSP. SEPRIEV prepara y sostiene esa carpeta con evidencia de campo, de modo que el organizador llega a las mesas de autorización con un expediente sólido y no con buenas intenciones." },
+      { title: "Operación multi-jornada", text: "Un festival de varios días no se cubre con un solo turno. SEPRIEV diseña relevos escalonados que mantienen el mismo nivel de atención de día y de madrugada, con un traspaso documentado de novedades en cada cambio para que ningún incidente en curso se pierda entre equipos. La fatiga del personal se trata como lo que es: un riesgo operativo que debe administrarse." },
+    ],
+  },
+  {
+    title: "Eventos Corporativos",
+    href: "/servicios/seguridad-eventos-corporativos",
+    hero: `${IMG}/seguridad-eventos-corporativos`,
+    small1: `${IMG}/seguridad-empresarial-evento`,
+    small2: `${IMG}/equipo-seguridad-eventos`,
+    intro: "En un evento corporativo, la seguridad protege dos cosas a la vez: a las personas y a la reputación de la marca. SEPRIEV diseña dispositivos que se integran a la imagen del cliente y a su protocolo interno, con personal capaz de moverse entre directivos y delegaciones sin generar fricción. El mejor operativo corporativo es el que los asistentes recuerdan por el evento, no por la seguridad.",
+    features: [
+      { title: "Reunión de planeación con el cliente", text: "Antes de cada evento, SEPRIEV sostiene una sesión de planeación con el equipo de organización del cliente para entender el formato, los perfiles de los asistentes, las zonas sensibles y los momentos críticos del programa. De esa reunión sale un plan operativo a la medida, no una plantilla genérica, y un único punto de contacto que coordina con el cliente durante todo el evento." },
+      { title: "Confidencialidad como entregable", text: "El manejo de información estratégica, identidades de asistentes y acuerdos comerciales observados durante el operativo se rige por un acuerdo de no divulgación firmado por todo el personal asignado. SEPRIEV trata la confidencialidad como parte central del servicio, con instrucciones explícitas sobre fotografía, redes sociales y trato con medios, no como una cláusula reservada a clientes de alto perfil." },
+      { title: "Imagen y protocolo de hospitalidad", text: "El personal asignado se presenta con la vestimenta y el trato que el entorno exige, y conoce la diferencia entre recibir a un invitado y filtrar a un intruso. Su función combina seguridad con hospitalidad: orientar, acompañar y resolver con discreción, manteniendo la cortesía incluso al gestionar situaciones delicadas frente a clientes, prensa o directivos." },
+    ],
+  },
+  {
+    title: "Control de Acceso",
+    href: "/servicios/control-acceso-eventos",
+    badge: "Esencial",
+    hero: `${IMG}/control-acceso-eventos`,
+    small1: `${IMG}/control-acceso-credenciales`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    intro: "El acceso es el único punto por el que pasa absolutamente todo el que entra a un evento, y por eso es donde más se gana o se pierde. SEPRIEV opera el control de acceso como un problema de flujo y de datos, no solo de revisión: integra el sistema de boletaje, mantiene una cadencia de ingreso alta y deja trazabilidad de cada entrada. Un acceso bien operado evita filas, fraudes y conflictos en un mismo movimiento.",
+    features: [
+      { title: "Integración con el sistema de boletaje", text: "SEPRIEV coordina con la plataforma de ticketing del cliente antes del evento para asegurar compatibilidad de lectores, validación en tiempo real y detección inmediata de duplicados o boletos falsificados. Se realizan pruebas previas en sitio y se define un protocolo de contingencia para validación manual cuando la conectividad falla, de modo que una caída de red no detenga el ingreso." },
+      { title: "Trazabilidad y auditoría de ingresos", text: "Cada acceso queda registrado con hora y punto de entrada, lo que permite reconstruir el flujo del evento y entregar al organizador un reporte de aforo y novedades al cierre. Esta trazabilidad sirve tanto para la operación en vivo —saber cuánta gente hay y dónde— como para la auditoría posterior frente a la autoridad o la aseguradora." },
+      { title: "Revisión proporcional y trato al asistente", text: "Los protocolos de revisión se calibran al perfil de riesgo del evento para ser efectivos sin convertirse en un cuello de botella ni en una molestia para el público. SEPRIEV asigna personal femenino para la revisión de mujeres, mantiene un trato respetuoso en cada filtro y entrena a sus elementos para resolver inconformidades sin escalar el tono: la primera impresión del evento ocurre en la puerta." },
+    ],
+  },
+  {
+    title: "Seguridad VIP",
+    href: "/servicios/seguridad-vip",
+    hero: `${IMG}/seguridad-vip-eventos`,
+    small1: `${IMG}/proteccion-vip-invitados`,
+    small2: `${IMG}/seguridad-vip-gala`,
+    intro: "Proteger a una figura de alto perfil exige tanto criterio como técnica: saber cuándo cerrar el paso y cuándo dejar pasar, cuándo verse y cuándo desaparecer. SEPRIEV despliega escoltas certificados que trabajan en coordinación con la representación del protegido y se adaptan al entorno, desde una alfombra roja hasta un escenario ante miles de personas. La seguridad del protegido no se negocia; su privacidad y su imagen tampoco.",
+    features: [
+      { title: "Avanzada y reconocimiento previo", text: "Antes de cada movimiento, un equipo de avanzada reconoce el lugar: identifica accesos y salidas, define puntos seguros, ubica el hospital más cercano y verifica las rutas primaria y alterna. El dispositivo del día se construye sobre ese reconocimiento, de modo que cuando el protegido llega, el equipo ya sabe por dónde entra, por dónde sale y qué hacer si algo cambia." },
+      { title: "Coordinación con la representación", text: "SEPRIEV alinea el nivel de exposición del operativo con el management o el equipo del cliente: hay protegidos que pueden y quieren saludar al público y hay otros cuya ubicación no puede trascender. Definir esto por adelantado evita improvisaciones en caliente y permite que el dispositivo acompañe la estrategia de imagen del protegido en lugar de estorbarla." },
+      { title: "Dispositivo de bajo perfil", text: "La protección efectiva rara vez es la más visible. Los escoltas de SEPRIEV operan en formaciones discretas, con vestimenta adaptada al entorno y comunicación silenciosa, de modo que la seguridad esté presente sin convertirse en el centro de atención. El objetivo es que el protegido se mueva con normalidad y que el público recuerde a la figura, no a su equipo de seguridad." },
+    ],
+  },
+  {
+    title: "Protección Ejecutiva",
+    href: "/servicios/proteccion-ejecutiva",
+    hero: `${IMG}/proteccion-ejecutiva-mexico`,
+    small1: `${IMG}/guardias-seguridad-privada`,
+    small2: `${IMG}/seguridad-eventos-corporativos`,
+    intro: "La protección ejecutiva no es un servicio de un día: es un programa continuo que se integra a la vida del directivo con el menor impacto posible en su rutina. SEPRIEV diseña esquemas que parten siempre de un análisis de riesgo y cubren desplazamientos, oficina, eventos y domicilio sin que el equipo de trabajo del cliente perciba la operación como una carga. Proteger a un ejecutivo es, sobre todo, anticiparse.",
+    features: [
+      { title: "Inteligencia de fuentes abiertas", text: "Buena parte del riesgo de un directivo nace de su huella pública. SEPRIEV monitorea la exposición digital del cliente —menciones, filtraciones de agenda, información personal accesible en línea— para detectar señales de interés hostil antes de que se materialicen. El resultado alimenta el esquema de protección y, cuando aplica, recomendaciones concretas para reducir la superficie de exposición del ejecutivo y su familia." },
+      { title: "Selección y verificación del personal", text: "El escolta de un ejecutivo accede a su intimidad, su agenda y su entorno familiar, por lo que la confianza es parte del servicio. SEPRIEV selecciona a su personal de protección ejecutiva con verificación de antecedentes, evaluación de perfil y capacitación documentada, y mantiene continuidad en las asignaciones para que el cliente trabaje siempre con caras conocidas y no con relevos improvisados." },
+      { title: "Discreción patrimonial y familiar", text: "El esquema contempla no solo al directivo sino a su núcleo cercano y a la información sensible que lo rodea: domicilios, rutinas, patrimonio y movimientos. Todo el personal opera bajo confidencialidad estricta y protocolos de manejo de información, porque en protección ejecutiva una filtración interna puede ser tan peligrosa como una amenaza externa." },
+    ],
+  },
+  {
+    title: "Ferias y Exposiciones",
+    href: "/servicios/seguridad-ferias-exposiciones",
+    hero: `${IMG}/seguridad-empresarial-evento`,
+    small1: `${IMG}/control-acceso-eventos`,
+    small2: `${IMG}/equipo-seguridad-eventos`,
+    intro: "Una feria es un recinto que vive varios días seguidos, con decenas de expositores, activos de valor heterogéneo y un flujo de visitantes que cambia por hora. SEPRIEV opera este tipo de evento con un modelo de cobertura por zonas y por jornada que reconoce algo básico: el riesgo a mediodía con público no es el mismo que a las tres de la madrugada con el recinto vacío. La continuidad del operativo es lo que sostiene la confianza de los expositores.",
+    features: [
+      { title: "Cobertura 24/7 por turnos", text: "El operativo cubre el ciclo completo de la feria: jornada con público, horas de cierre y vigilancia nocturna del recinto, con relevos diseñados para no dejar ninguna franja descubierta. Cada turno entrega novedades al siguiente y la cobertura nocturna queda documentada, de modo que el expositor encuentra su stand tal como lo dejó al iniciar la jornada siguiente." },
+      { title: "Inventario y conciliación de activos", text: "Para los stands con piezas de alto valor —maquinaria, tecnología, joyería o prototipos— SEPRIEV implementa registro de inventario de entrada y salida y conciliación al cierre de cada jornada. Cualquier faltante se identifica antes de que el expositor abra al público, no días después, y queda documentado con hora y responsable para dar seguimiento inmediato." },
+      { title: "Enlace con la administración del recinto", text: "El operativo no funciona aislado: SEPRIEV coordina con la administración del recinto, los servicios de bomberos y emergencias y los proveedores de seguridad de los propios expositores para evitar duplicidades y zonas grises. Un mando claro y un canal de comunicación unificado evitan que, ante un incidente, nadie sepa a quién corresponde actuar." },
+    ],
+  },
+  {
+    title: "Eventos Sociales",
+    href: "/servicios/seguridad-eventos-sociales",
+    hero: `${IMG}/seguridad-vip-gala`,
+    small1: `${IMG}/proteccion-vip-invitados`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    intro: "Una boda, unos XV años o una fiesta privada no necesitan la misma escala que un festival, pero sí la misma profesionalidad. SEPRIEV ofrece seguridad para eventos sociales con personal que sabe moverse en un salón de gala sin que los invitados lo identifiquen y que resuelve cualquier incidente sin convertirlo en el tema de la noche. En un evento social, el mayor riesgo es que la seguridad arruine la celebración que tardó meses en planearse.",
+    features: [
+      { title: "Discreción y manejo de invitados", text: "El equipo se integra a la celebración con vestimenta y trato acordes al protocolo del evento, de modo que controla accesos y monitorea el ambiente sin romper la atmósfera. Cuando surge una situación entre invitados, interviene con comunicación directa y sin escalar el tono, coordina con el anfitrión en tiempo real y la resuelve antes de que el resto se entere." },
+      { title: "Control de lista de invitados", text: "SEPRIEV valida el ingreso contra la lista que define el anfitrión y gestiona con tacto los casos de personas no contempladas, evitando tanto el acceso indebido como el momento incómodo frente a los demás invitados. El control de quién entra es la base de la tranquilidad del cliente, especialmente en celebraciones donde la privacidad es parte del valor del evento." },
+      { title: "Resguardo de valores y salidas seguras", text: "El servicio contempla la protección de la mesa de regalos y objetos de valor, el control del estacionamiento y la coordinación de salidas al cierre para que cada invitado se retire sin aglomeraciones ni incidentes. Estos son los momentos —llegada y salida— en que un evento social concentra su mayor vulnerabilidad, y se planean con la misma seriedad que el resto del operativo." },
+    ],
+  },
+  {
+    title: "Eventos Deportivos",
+    href: "/servicios/seguridad-eventos-deportivos",
+    hero: `${IMG}/seguridad-conciertos-multitud`,
+    small1: `${IMG}/seguridad-conciertos-festivales`,
+    small2: `${IMG}/guardias-seguridad-privada`,
+    intro: "Un evento deportivo combina tres retos que rara vez coinciden en otro tipo de evento: aficiones con rivalidades, atletas y oficiales que requieren protección, y un marco normativo definido por federaciones y ligas. SEPRIEV integra gestión de público, protección de protagonistas y cumplimiento de protocolos en un solo operativo, porque atender uno solo de esos frentes deja expuestos a los otros dos.",
+    features: [
+      { title: "Accesos diferenciados por afición", text: "La separación de aficiones rivales empieza antes del primer ingreso, con accesos, andenes y sectores diferenciados y zonas de amortiguamiento definidas con el organizador. SEPRIEV establece comunicación preventiva con los grupos de animación y diseña la circulación interna para que las hinchadas no coincidan en puntos de fricción: el trabajo previo al encuentro pesa tanto como el de dentro del estadio." },
+      { title: "Protección de atletas y oficiales", text: "Deportistas, árbitros y cuerpo técnico tienen necesidades específicas de acceso, resguardo y traslado que SEPRIEV cubre con personal asignado a las zonas de competencia, vestidores y accesos restringidos. La protección se extiende a los momentos de mayor exposición —la llegada, la salida y los traslados— donde la cercanía con el público puede pasar de la euforia al riesgo en segundos." },
+      { title: "Cumplimiento de protocolos de liga", text: "Cada federación o liga impone requisitos de seguridad que el organizador está obligado a cumplir para conservar la sede. SEPRIEV conoce estos marcos, coordina con los delegados de seguridad del organismo correspondiente y documenta el operativo según el estándar exigido, de modo que el evento no solo sea seguro, sino también auditable y conforme a la normativa que lo rige." },
+    ],
+  },
+  {
+    title: "Eventos Masivos",
+    href: "/servicios/seguridad-masivos",
+    badge: "Destacado",
+    featured: true,
+    hero: `${IMG}/centro-control-seguridad`,
+    small1: `${IMG}/centro-monitoreo-cctv-eventos`,
+    small2: `${IMG}/monitoreo-camaras-evento`,
+    intro: "Por encima de los 10,000 asistentes, la seguridad deja de ser una cuestión de personal suficiente y se vuelve un problema de inteligencia operativa en tiempo real. SEPRIEV diseña y dirige operativos de eventos masivos con centro de comando propio, vigilancia aérea y coordinación interinstitucional desde antes de que llegue el primer asistente. A esta escala, lo que no se anticipa no se controla, y la diferencia la hace la información que llega a tiempo a quien decide.",
+    features: [
+      { title: "Centro de comando e inteligencia", text: "El puesto de mando concentra el monitoreo de cámaras, la radio en múltiples canales y el enlace con autoridades en un solo punto de decisión. Desde ahí, SEPRIEV procesa lo que ocurre en todo el recinto y activa protocolos sin esperar a que los supervisores en campo escalen cada situación, porque los roles y los umbrales de activación ya están definidos antes del evento." },
+      { title: "Vigilancia aérea y densidad de aforo", text: "Drones con cámara de alta resolución y conteo de aforo dan al centro de comando algo que ningún elemento en tierra puede ofrecer: visión de conjunto en tiempo real. Esto permite detectar puntos de acumulación peligrosa, medir la densidad por sector y redistribuir al personal terrestre antes de que una zona congestionada se convierta en una emergencia." },
+      { title: "Mando unificado con autoridades", text: "Protección Civil, policía, bomberos y servicios médicos no operan como actores externos sino dentro de un mando unificado que SEPRIEV ayuda a articular antes del evento. Un canal común, un protocolo de escalamiento claro y roles ensayados permiten que, ante incidentes simultáneos, la respuesta coordinada ya esté lista y no dependa de decisiones improvisadas." },
+    ],
+  },
+  {
+    title: "Montaje y Desmontaje",
+    href: "/servicios/seguridad-montaje-desmontaje",
+    hero: `${IMG}/equipo-seguridad-eventos`,
+    small1: `${IMG}/seguridad-empresarial-evento`,
+    small2: `${IMG}/guardias-seguridad-privada`,
+    intro: "Mientras el público solo ve la función, el mayor riesgo de una producción ocurre antes y después: las fases de montaje y desmontaje concentran la mayoría de los robos de equipo, los accesos no autorizados y los accidentes evitables. SEPRIEV cubre el ciclo completo del evento, desde el primer camión de producción hasta que sale el último técnico, precisamente porque son las horas en que la atención del organizador está más dividida.",
+    features: [
+      { title: "Custodia continua del recinto", text: "El equipo de sonido, iluminación y escenografía permanece vigilado durante el montaje, los tiempos muertos y el desmontaje, con cobertura nocturna documentada para las producciones que se instalan varios días. Cada mañana, el coordinador de producción recibe un reporte de novedades antes de que arranque la jornada, de modo que sabe en qué estado quedó el recinto durante la noche." },
+      { title: "Acreditación de proveedores y carga", text: "En un montaje pueden circular decenas de personas distintas en un mismo día, cada una con un nivel de acceso y una ventana de tiempo. SEPRIEV verifica identidad y credenciales de cada proveedor, técnico y transportista contra una lista blanca actualizada con el cliente, y controla el andén de carga y descarga para que nada ni nadie entre o salga sin registro." },
+      { title: "Inventario fotográfico de activos", text: "El equipo de alto valor se registra fotográficamente al ingreso y se concilia a la salida, lo que permite detectar cualquier faltante o daño con evidencia y no con suposiciones. Este registro protege por igual al cliente y a los proveedores, porque deja constancia objetiva del estado en que cada activo entró y salió del recinto." },
+    ],
+  },
 ];
 ---
 
@@ -26,14 +193,27 @@ const serviceCards = [
   title="Servicios de Seguridad para Eventos en México"
   description="10 servicios especializados de seguridad privada para eventos: conciertos, corporativos, ferias, VIP, deportivos y masivos. Licencia DGSSP, personal certificado STPS. Cotización en 24 hrs."
 >
-  <div class="w-full px-[5%] xl:px-[7%] py-16 lg:py-20">
-    <SectionHeader
-      eyebrow="Soluciones completas"
-      titulo="Servicios de Seguridad para Eventos"
-      subtitulo="10 servicios especializados para proteger cualquier tipo de evento. Desde una boda íntima hasta un festival con 100,000 asistentes."
-    />
+  <Breadcrumb items={[{ label: 'Servicios' }]} />
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <PageHero
+    eyebrow="SEPRIEV — Nuestros servicios"
+    titulo="Seguridad Especializada para Cada Tipo de Evento"
+    subtitulo="10 servicios de seguridad privada para todo tipo de eventos, desde una boda íntima hasta un festival con 100,000 asistentes."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Cada tipo de evento tiene necesidades de seguridad distintas. Nuestros <strong class="text-light font-semibold">10 servicios especializados</strong> cubren desde el control de acceso básico hasta la coordinación de seguridad masiva con drones, centro de comando y coordinación con Protección Civil. Todo el personal cuenta con <strong class="text-light font-semibold">licencia DGSSP y certificación STPS</strong>.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Operamos con presencia local certificada en <strong class="text-light font-semibold">CDMX, Guadalajara, Monterrey, Puebla y Cancún</strong>, y con capacidad de despliegue en cualquier punto de la República Mexicana gracias a nuestra <strong class="text-light font-semibold">licencia federal vigente</strong>. Cotización gratuita y propuesta en menos de 24 horas.
+      </p>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Navegación de servicios" />
+
+  <div class="w-full px-[5%] xl:px-[7%] py-16 lg:py-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {serviceCards.map((s: any) => (
         <ServiceCard
           icon={s.icon}
@@ -41,11 +221,33 @@ const serviceCards = [
           description={s.desc}
           features={s.features}
           href={`/servicios/${s.slug}`}
+          image={servImg[s.slug]}
           badge={s.badge}
           featured={s.featured}
         />
       ))}
     </div>
+
+    <div class="text-center mt-10">
+      <a href="/cotizar" class="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-white px-8 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        Solicitar Cotización
+      </a>
+    </div>
+
+    <!-- Módulos detallados por servicio -->
+    {serviceModules.map((m: any) => (
+      <ServiceModule
+        title={m.title}
+        intro={m.intro}
+        features={m.features}
+        href={m.href}
+        hero={m.hero}
+        small1={m.small1}
+        small2={m.small2}
+        badge={m.badge}
+        featured={m.featured}
+      />
+    ))}
   </div>
 
   <CTABanner

@@ -8,7 +8,7 @@ export const organizationSchema = {
   "@id": `${SITE}/#organization`,
   "name": SITE_NAME,
   "url": SITE,
-  "logo": `${SITE}/img/logo-seguridadeventos.svg`,
+  "logo": `${SITE}/img/logo-sepriev.png`,
   "telephone": PHONE_PRIMARY,
   "email": EMAIL_CONTACT,
   "description": "Empresa de seguridad privada especializada en eventos. Licencia DGSSP. +500 eventos protegidos en México.",
@@ -71,7 +71,7 @@ export function buildArticleSchema(titulo: string, descripcion: string, url: str
     "headline": titulo,
     "description": descripcion,
     "url": url,
-    "image": imagen || `${SITE}/img/og-seguridadeventos.jpg`,
+    "image": imagen || `${SITE}/img/og-sepriev.jpg`,
     "publisher": { "@id": `${SITE}/#organization` },
     "author": { "@type": "Organization", "name": SITE_NAME }
   };

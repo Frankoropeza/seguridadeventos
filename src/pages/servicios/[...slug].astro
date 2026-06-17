@@ -81,6 +81,20 @@ const faqMap: Record<string, Array<{ q: string; a: string }>> = {
 };
 
 const currentFaq = faqMap[servicio.slug] || [];
+
+const serviceImg: Record<string, string> = {
+  "seguridad-conciertos-festivales": "/img/eventos/seguridad-conciertos-festivales",
+  "seguridad-eventos-corporativos": "/img/eventos/seguridad-eventos-corporativos",
+  "control-acceso-eventos": "/img/eventos/control-acceso-eventos",
+  "seguridad-vip": "/img/eventos/seguridad-vip-eventos",
+  "proteccion-ejecutiva": "/img/eventos/proteccion-ejecutiva-mexico",
+  "seguridad-ferias-exposiciones": "/img/eventos/seguridad-empresarial-evento",
+  "seguridad-eventos-sociales": "/img/eventos/seguridad-vip-gala",
+  "seguridad-eventos-deportivos": "/img/eventos/seguridad-conciertos-multitud",
+  "seguridad-masivos": "/img/eventos/seguridad-conciertos-multitud",
+  "seguridad-montaje-desmontaje": "/img/eventos/equipo-seguridad-eventos",
+};
+const servicioImagen = serviceImg[servicio.slug];
 ---
 
 <ServiceLayout
@@ -88,6 +102,7 @@ const currentFaq = faqMap[servicio.slug] || [];
   descripcion={servicio.data.description}
   slug={servicio.slug}
   emoji={servicio.data.emoji}
+  imagen={servicioImagen}
   faq={currentFaq}
 >
   <Content />

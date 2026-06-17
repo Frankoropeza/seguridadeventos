@@ -1,0 +1,86 @@
+---
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+export interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="breadcrumb-bar w-full bg-dark border-b border-white/6 relative overflow-hidden">
+  <!-- Línea de acento izquierda -->
+  <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-secondary via-secondary/60 to-transparent" aria-hidden="true"></div>
+
+  <div class="w-full px-[5%] xl:px-[7%]">
+    <nav aria-label="Breadcrumb" class="py-2.5">
+      <ol class="flex items-center gap-0 text-xs flex-wrap" itemscope itemtype="https://schema.org/BreadcrumbList">
+
+        <!-- Home -->
+        <li class="flex items-center" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a
+            href="/"
+            class="flex items-center gap-1.5 text-accent/70 hover:text-secondary transition-colors duration-200 group"
+            itemprop="item"
+            aria-label="Inicio"
+          >
+            <svg
+              width="13" height="13" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="group-hover:scale-110 transition-transform"
+              aria-hidden="true"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9,22 9,12 15,12 15,22"/>
+            </svg>
+            <span itemprop="name" class="hidden sm:inline">Inicio</span>
+          </a>
+          <meta itemprop="position" content="1" />
+        </li>
+
+        {items.map((item, i) => (
+          <li class="flex items-center" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <!-- Separador chevron -->
+            <svg
+              width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+              class="mx-1.5 text-white/15 flex-shrink-0"
+              aria-hidden="true"
+            >
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+
+            {item.href && i < items.length - 1 ? (
+              <a
+                href={item.href}
+                class="text-accent/70 hover:text-secondary transition-colors duration-200 whitespace-nowrap"
+                itemprop="item"
+              >
+                <span itemprop="name">{item.label}</span>
+              </a>
+            ) : (
+              <span
+                class="text-light font-semibold whitespace-nowrap truncate max-w-[220px] sm:max-w-xs md:max-w-sm"
+                itemprop="name"
+                aria-current="page"
+              >
+                {item.label}
+              </span>
+            )}
+            <meta itemprop="position" content={String(i + 2)} />
+          </li>
+        ))}
+
+        <!-- Decoración derecha: categoría o etiqueta si el último item tiene tag -->
+        <li class="ml-auto pl-4 hidden md:flex items-center gap-2">
+          <span class="w-1 h-1 bg-secondary/40 rounded-full"></span>
+          <span class="text-accent/40 text-xs">SeguridadEventos.com.mx</span>
+        </li>
+
+      </ol>
+    </nav>
+  </div>
+</div>

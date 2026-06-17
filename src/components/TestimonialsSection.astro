@@ -1,51 +1,57 @@
 ---
 const testimonios = [
   {
-    nombre: "Carlos Mendoza",
+    nombre: "Rodrigo Valenzuela",
     cargo: "Director de Operaciones",
-    empresa: "Grupo Empresarial del Norte",
-    texto: "Contratamos a SeguridadEventos para nuestra convención anual con 1,200 asistentes. El despliegue fue impecable, el personal muy profesional y la coordinación con el venue excelente. Sin incidentes en los 3 días del evento.",
-    evento: "Convención corporativa 1,200 asistentes",
+    empresa: "Turbo Racing México",
+    empresaUrl: "https://turbo-racing.mx",
+    texto: "Nuestros eventos mezclan público general, expositores y equipos técnicos de alto valor en espacios abiertos — un escenario complejo para cualquier empresa de seguridad. SEPRIEV entendió la dinámica desde el diagnóstico previo: diferenciaron zonas de competencia, acceso de pilotos y área de espectadores sin interrumpir la experiencia. El operativo en el Corporate Drone Challenge en Parque La Mexicana fue impecable.",
+    evento: "Corporate Drone Challenge · CDMX",
     rating: 5,
   },
   {
-    nombre: "Ana García",
-    cargo: "Productora de Eventos",
-    empresa: "AG Entertainment",
-    texto: "Trabajamos con ellos en 8 conciertos consecutivos. Siempre puntuales, con el personal correcto y respondiendo rápido a cualquier situación. Los contratamos en cada producción que hacemos.",
-    evento: "Gira de 8 conciertos · Aforo 3,000-8,000",
+    nombre: "Ing. Marco Herrera",
+    cargo: "Director Comercial",
+    empresa: "SeguridadPrivadaMX",
+    empresaUrl: "https://seguridadprivadamx.com",
+    texto: "Nosotros cubrimos la seguridad permanente de condominios, pero cuando nuestros clientes organizan asambleas masivas, inauguraciones o eventos sociales de gran aforo, referimos a SEPRIEV. La coordinación entre ambos equipos ha sido impecable: ellos entienden la dinámica de un recinto residencial, respetan los protocolos que ya tenemos instalados y entregan un reporte de cierre al terminar. Es el complemento perfecto para lo que ofrecemos.",
+    evento: "Referidos B2B · Eventos en condominios CDMX",
     rating: 5,
   },
   {
-    nombre: "Roberto Sánchez",
-    cargo: "Gerente de Logística",
-    empresa: "Expo Manufactura",
-    texto: "Para nuestra feria industrial de 4 días necesitábamos seguridad especializada para expositores internacionales. El servicio superó nuestras expectativas. Muy recomendables.",
-    evento: "Feria industrial · 250 expositores",
+    nombre: "Eduardo Castillo",
+    cargo: "Coordinador de Proyectos de Eventos",
+    empresa: "PantallaLED",
+    empresaUrl: "https://pantalla-led.com",
+    texto: "Cuando desplegamos pantallas LED en eventos masivos, el equipo sobre el escenario puede valer varios millones de pesos. Necesitamos que el acceso a backstage esté controlado desde el primer módulo instalado hasta que el último camión sale del recinto. SEPRIEV ha cubierto montaje, función y desmontaje en más de diez de nuestros proyectos — conciertos, convenciones y activaciones de marca — sin un solo incidente con el equipo.",
+    evento: "Renta de pantallas LED · Eventos en CDMX y GDL",
     rating: 5,
   },
   {
-    nombre: "Sofía Torres",
-    cargo: "Wedding Planner",
-    empresa: "ST Eventos",
-    texto: "Mis clientes siempre quedan satisfechos con el servicio de seguridad discreta que ofrece SeguridadEventos. Se integran al ambiente sin interrumpir, pero están siempre atentos.",
-    evento: "Bodas y eventos sociales premium",
+    nombre: "Lic. Patricia Fuentes",
+    cargo: "Directora de Operaciones",
+    empresa: "GUPRI Seguridad Privada",
+    empresaUrl: "https://guardias-privados.com",
+    texto: "Con más de 30 años en seguridad residencial, sabemos perfectamente cuándo un operativo supera el alcance del servicio de condominio. Para nuestro evento anual de clientes con más de 400 asistentes, contratamos a SEPRIEV. La coordinación entre ambos equipos fue natural: ellos entienden los protocolos de seguridad privada, respetan la jerarquía del operativo y no improvisan. Es la empresa que recomendamos cuando nuestros clientes organizan eventos de gran aforo.",
+    evento: "Gala anual de clientes · 400 asistentes",
     rating: 5,
   },
   {
-    nombre: "Miguel Ángel Reyes",
-    cargo: "Director de Venue",
-    empresa: "Centro de Convenciones Metropolitano",
-    texto: "Son nuestros proveedores de seguridad para todos los eventos que recibimos. Su profesionalismo y capacidad de adaptarse a eventos de distinta escala los hace insustituibles.",
-    evento: "Proveedor oficial del venue",
+    nombre: "Carlos Vega",
+    cargo: "Director de Producción",
+    empresa: "REDEIL",
+    empresaUrl: "https://redeil.com",
+    texto: "En producción de eventos la coordinación entre proveedores lo es todo. Cuando montamos iluminación y audio para conciertos o eventos corporativos de gran formato, necesitamos que el equipo de seguridad entienda los tiempos de producción y respete el acceso técnico sin generar fricciones. SEPRIEV lleva varios proyectos con nosotros y siempre llegan antes que nadie — conocen la diferencia entre un técnico de escenario y un invitado sin credencial.",
+    evento: "Producción AV · Eventos CDMX y Edomex",
     rating: 5,
   },
   {
-    nombre: "Laura Vega",
+    nombre: "Adriana Flores",
     cargo: "Coordinadora de Eventos",
-    empresa: "Gobierno del Estado · Protocolo",
-    texto: "Para eventos gubernamentales los protocolos son muy estrictos. SeguridadEventos cumplió todos los requerimientos de seguridad institucional con absoluta discreción y eficiencia.",
-    evento: "Eventos gubernamentales · Protocolo oficial",
+    empresa: "BRINCOLINS",
+    empresaUrl: "https://brincolins.com",
+    texto: "En kermeses escolares y family days corporativos con 300 o más asistentes, tener inflables activos y niños corriendo por todos lados exige un operativo de seguridad que entienda la dinámica. SEPRIEV gestiona el control de acceso alrededor de los equipos, mantiene zonas despejadas y reacciona rápido si algo se sale del orden — sin alarmar a los papás ni interrumpir la fiesta. Los recomendamos a todos nuestros clientes de eventos grandes.",
+    evento: "Kermeses y family days · CDMX y Edomex",
     rating: 5,
   },
 ];
@@ -53,15 +59,15 @@ const testimonios = [
 
 <section class="py-20 bg-primary/30">
   <div class="w-full px-[5%] xl:px-[7%]">
-    <div class="text-center mb-14">
+    <div class="text-center mb-8">
       <span class="text-secondary text-xs font-bold uppercase tracking-widest">Clientes satisfechos</span>
-      <h2 class="text-3xl sm:text-4xl font-black text-light mt-2">Lo que dicen nuestros clientes</h2>
-      <p class="text-accent mt-3 max-w-xl mx-auto">Más de 500 eventos protegidos. La confianza de nuestros clientes es nuestro mayor activo.</p>
+      <h2 class="text-3xl sm:text-4xl font-black text-light mt-1">Lo que dicen nuestros clientes</h2>
+      <p class="text-accent mt-2 max-w-xl mx-auto">Más de 500 eventos protegidos. La confianza de nuestros clientes es nuestro mayor activo.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {testimonios.map(t => (
-        <blockquote class="flex flex-col bg-dark border border-primary-light rounded-xl p-6 hover:border-secondary/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-secondary/5">
+        <blockquote class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
           <!-- Stars -->
           <div class="flex gap-1 mb-4" aria-label={`${t.rating} de 5 estrellas`}>
             {Array.from({ length: t.rating }).map(() => (
@@ -80,8 +86,18 @@ const testimonios = [
             </div>
           </div>
 
-          <div class="mt-4 pt-4 border-t border-primary-light">
+          <div class="mt-4 pt-4 border-t border-primary-light flex items-center justify-between gap-3">
             <span class="text-xs text-secondary/70 font-semibold">{t.evento}</span>
+            {t.empresaUrl && (
+              <a
+                href={t.empresaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[10px] font-bold uppercase tracking-widest text-white/25 hover:text-secondary/60 transition-colors"
+              >
+                {t.empresaUrl.replace('https://', '')} ↗
+              </a>
+            )}
           </div>
         </blockquote>
       ))}

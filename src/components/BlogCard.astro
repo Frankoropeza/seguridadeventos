@@ -11,19 +11,23 @@ export interface Props {
 const { titulo, descripcion, slug, categoria = "Blog", imagen, readTime = 5 } = Astro.props;
 ---
 
-<article class="group flex flex-col bg-primary border border-primary-light rounded-xl overflow-hidden hover:border-secondary/40 transition-all duration-300 hover:shadow-xl hover:shadow-secondary/10 hover:-translate-y-1">
+<article class="relative group flex flex-col bg-primary border border-primary-light rounded-xl overflow-hidden">
   <!-- Imagen o placeholder -->
   <div class="relative h-48 overflow-hidden bg-primary-light">
     {imagen ? (
-      <img
-        src={imagen}
-        alt={titulo}
-        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        loading="lazy"
-        decoding="async"
-        width="480"
-        height="270"
-      />
+      <picture>
+        <source type="image/avif" srcset={`${imagen}-640.avif 640w, ${imagen}-1200.avif 1200w`} sizes="(max-width: 640px) 100vw, 400px" />
+        <source type="image/jpeg" srcset={`${imagen}-640.jpg 640w, ${imagen}-1200.jpg 1200w`} sizes="(max-width: 640px) 100vw, 400px" />
+        <img
+          src={`${imagen}-640.jpg`}
+          alt={titulo}
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+          decoding="async"
+          width="640"
+          height="360"
+        />
+      </picture>
     ) : (
       <div class="w-full h-full flex items-center justify-center">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="1" opacity="0.3" aria-hidden="true">
@@ -40,7 +44,7 @@ const { titulo, descripcion, slug, categoria = "Blog", imagen, readTime = 5 } = 
 
   <!-- Contenido -->
   <div class="flex flex-col flex-1 p-5">
-    <h3 class="text-light font-bold text-base leading-tight mb-2 group-hover:text-secondary transition-colors line-clamp-2">
+    <h3 class="text-light font-bold text-base leading-tight mb-2 line-clamp-2">
       <a href={`/blog/${slug}`} class="stretched-link after:absolute after:inset-0">
         {titulo}
       </a>

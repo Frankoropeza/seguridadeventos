@@ -1,63 +1,122 @@
 ---
 export interface Props {
-  icon: string;
   title: string;
   description: string;
   features?: string[];
   href?: string;
   badge?: string;
   featured?: boolean;
+  image?: string;
 }
 
-const { icon, title, description, features = [], href, badge, featured = false } = Astro.props;
+const { title, description, features = [], href, badge, featured = false, image } = Astro.props;
 ---
 
-<article class={`relative flex flex-col rounded-xl p-6 group transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
+<article class={`relative flex flex-col overflow-hidden ${
   featured
-    ? 'bg-gradient-to-b from-secondary/10 to-primary border border-secondary/40 ring-1 ring-secondary/20 hover:shadow-secondary/20'
-    : 'bg-primary border border-primary-light hover:border-secondary/40 hover:shadow-secondary/10'
+    ? 'border border-secondary/50'
+    : 'border border-white/8'
 }`}>
-  {badge && (
-    <span class="absolute -top-3 left-5 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-      {badge}
-    </span>
-  )}
 
-  <div class="flex items-start gap-4 mb-4">
-    <div class={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 transition-colors ${
-      featured ? 'bg-secondary/25 group-hover:bg-secondary/35' : 'bg-secondary/15 group-hover:bg-secondary/25'
-    }`}>
-      {icon}
-    </div>
-    <div class="flex-1 min-w-0">
-      <h3 class="text-light font-bold text-lg leading-tight group-hover:text-white transition-colors">{title}</h3>
-    </div>
+  <!-- Imagen / Placeholder -->
+  <div class="relative h-52 overflow-hidden">
+    {image ? (
+      <picture>
+        <source type="image/avif" srcset={`${image}-640.avif 640w, ${image}-1200.avif 1200w`} sizes="(max-width: 768px) 100vw, 400px" />
+        <source type="image/jpeg" srcset={`${image}-640.jpg 640w, ${image}-1200.jpg 1200w`} sizes="(max-width: 768px) 100vw, 400px" />
+        <img
+          src={`${image}-640.jpg`}
+          alt={title}
+          class="w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+          width="640"
+          height="360"
+        />
+      </picture>
+    ) : (
+      <div class="w-full h-full bg-gradient-to-br from-primary via-dark to-[#0d1220] flex items-center justify-center relative">
+        <!-- Grid pattern sutil -->
+        <div
+          class="absolute inset-0 opacity-[0.04]"
+          style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 48px 48px;"
+          aria-hidden="true"
+        ></div>
+        <!-- Rombo decorativo -->
+        <div class="absolute inset-0 overflow-hidden opacity-10" aria-hidden="true">
+          <div class="absolute -top-8 -left-8 w-32 h-32 border border-secondary rotate-12"></div>
+          <div class="absolute bottom-4 right-4 w-20 h-20 border border-secondary/60 rotate-12"></div>
+        </div>
+        <!-- Escudo placeholder -->
+        <svg
+          width="52"
+          height="52"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          class="text-secondary/25"
+          aria-hidden="true"
+        >
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        <span class="absolute bottom-4 left-4 text-[10px] font-bold uppercase tracking-[0.2em] text-white/15">
+          Imagen próximamente
+        </span>
+      </div>
+    )}
+
+    <!-- Gradiente inferior -->
+    <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-dark/70 to-transparent pointer-events-none"></div>
+
+    {badge && (
+      <span class="absolute top-4 left-4 bg-secondary text-white text-[10px] font-black px-2.5 py-1 uppercase tracking-[0.15em]">
+        {badge}
+      </span>
+    )}
+    {featured && !badge && (
+      <span class="absolute top-4 right-4 bg-dark/70 backdrop-blur-sm border border-secondary/40 text-secondary text-[10px] font-black px-2.5 py-1 uppercase tracking-[0.15em]">
+        Destacado
+      </span>
+    )}
   </div>
 
-  <p class="text-accent text-sm leading-relaxed mb-4 flex-1">{description}</p>
+  <!-- Contenido -->
+  <div class={`flex flex-col flex-1 px-6 pt-5 pb-6 ${
+    featured ? 'bg-gradient-to-b from-secondary/5 to-dark' : 'bg-dark'
+  }`}>
 
-  {features.length > 0 && (
-    <ul class="space-y-2 mb-5">
-      {features.map(f => (
-        <li class="flex items-center gap-2 text-xs text-accent">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0" aria-hidden="true">
-            <path d="M5 13l4 4L19 7"/>
-          </svg>
-          {f}
-        </li>
-      ))}
-    </ul>
-  )}
+    <div class="w-8 h-0.5 bg-secondary mb-4"></div>
 
-  {href && (
-    <a
-      href={href}
-      class="inline-flex items-center gap-2 text-secondary hover:text-red-400 text-sm font-semibold mt-auto transition-colors group/link"
-    >
-      Ver servicio completo
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover/link:translate-x-1 transition-transform" aria-hidden="true">
-        <path d="M5 12h14M12 5l7 7-7 7"/>
-      </svg>
-    </a>
-  )}
+    <h3 class="text-white font-bold text-lg leading-snug mb-3">
+      {title}
+    </h3>
+
+    <p class="text-gray-400 text-sm leading-relaxed mb-5 flex-1">
+      {description}
+    </p>
+
+    {features.length > 0 && (
+      <ul class="space-y-2 mb-5 pb-5 border-b border-white/6">
+        {features.map(f => (
+          <li class="flex items-center gap-2.5 text-xs text-gray-500">
+            <span class="w-1.5 h-1.5 rounded-full bg-secondary/70 flex-shrink-0"></span>
+            {f}
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {href && (
+      <a
+        href={href}
+        class="inline-flex items-center gap-2 text-secondary hover:text-red-400 text-xs font-bold uppercase tracking-[0.1em] transition-colors mt-auto"
+      >
+        Ver servicio
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    )}
+  </div>
 </article>

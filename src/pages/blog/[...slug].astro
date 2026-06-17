@@ -22,8 +22,11 @@ const canonical = `${SITE}/blog/${post.slug}`;
 <ArticleLayout
   title={post.data.title}
   description={post.data.description}
-  categoria={post.data.category}
+  categoria={post.data.categoria}
+  imagen={post.data.imagen}
+  readTime={post.data.readTime}
   canonical={canonical}
+  slug={post.slug}
 >
   <Content />
 </ArticleLayout>

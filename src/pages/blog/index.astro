@@ -1,39 +1,294 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import BlogCard from '@/components/BlogCard.astro';
+import BlogSidebar from '@/components/BlogSidebar.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import BlogNav from '@/components/BlogNav.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog', ({ data }: { data: { draft: boolean } }) => !data.draft));
+const allPosts = (await getCollection('blog', ({ data }: { data: { draft: boolean } }) => !data.draft));
+const posts = allPosts;
+
+const featuredPost = posts[0];
+const restPosts = posts.slice(1);
+
+const categoryCounts: Record<string, number> = {};
+posts.forEach((p: any) => {
+  const cat = p.data.categoria || 'Blog';
+  categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+});
+const categories = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1]);
 ---
 
 <BaseLayout
   title="Blog de Seguridad para Eventos — Guias y Consejos"
   description="Articulos especializados sobre seguridad en eventos, control de acceso, proteccion VIP y planificacion de seguridad para todo tipo de eventos en Mexico."
 >
-  <div class="w-full px-[5%] xl:px-[7%] py-16 lg:py-20">
-    <div class="text-center mb-14">
-      <span class="text-secondary text-sm font-semibold uppercase tracking-widest">Recursos y conocimiento</span>
-      <h1 class="text-3xl sm:text-4xl font-black text-light mt-2">Blog de Seguridad para Eventos</h1>
-      <p class="text-accent mt-4 max-w-2xl mx-auto">
-        Guias practicas, consejos de expertos y analisis del sector de seguridad privada para eventos en Mexico.
-      </p>
+
+  <!-- BREADCRUMB -->
+  <Breadcrumb items={[{ label: 'Blog' }]} />
+
+  <!-- ── HERO — mismo lenguaje que HeroSection ── -->
+  <section class="relative bg-dark overflow-hidden">
+
+    <!-- Línea vertical izquierda -->
+    <div class="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-secondary/40 to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Línea vertical derecha -->
+    <div class="absolute right-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-white/5 to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Gradiente de fondo -->
+    <div class="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-transparent pointer-events-none" aria-hidden="true"></div>
+    <!-- Línea horizontal superior -->
+    <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-secondary/30 to-transparent" aria-hidden="true"></div>
+
+    <div class="relative w-full px-[5%] xl:px-[7%] py-20 lg:py-28">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+        <!-- Columna izquierda -->
+        <div>
+          <p class="text-secondary text-xs font-bold uppercase tracking-[0.3em] mb-8">
+            Blog — Recursos y Conocimiento
+          </p>
+          <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] font-black text-light leading-[1.1] mb-6 tracking-tight">
+            Blog de Seguridad<br />para Eventos
+          </h1>
+          <div class="w-16 h-0.5 bg-secondary mb-8"></div>
+          <p class="text-accent text-lg leading-relaxed max-w-lg">
+            Guías prácticas, análisis del sector y consejos de expertos en seguridad privada para todo tipo de eventos en México.
+          </p>
+
+        </div>
+
+        <!-- Columna derecha — border-l igual que HeroSection -->
+        <div class="border-l border-white/10 pl-10 lg:pl-16 flex flex-col gap-8">
+
+          <p class="text-accent text-base leading-relaxed">
+            En <strong class="text-light font-semibold">SEPRIEV</strong> publicamos contenido especializado elaborado por nuestros operativos y asesores con más de <strong class="text-light font-semibold">30 años de experiencia</strong> en seguridad privada para eventos. Cada artículo está respaldado por casos reales, normativa vigente y protocolos operativos que aplicamos en campo.
+          </p>
+
+          <p class="text-accent text-base leading-relaxed">
+            Desde guías para planificar la seguridad de tu evento, hasta análisis de incidentes internacionales y requisitos legales en México. Nuestro blog es el recurso de referencia para <strong class="text-light font-semibold">organizadores de eventos, productoras y empresas</strong> que buscan contratar o mejorar sus esquemas de seguridad.
+          </p>
+
+        </div>
+
+      </div>
     </div>
 
-    {posts.length === 0 ? (
-      <div class="text-center py-20">
-        <p class="text-accent text-lg">Proximamente publicaremos contenido especializado. Vuelve pronto.</p>
+    <!-- Línea horizontal inferior -->
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" aria-hidden="true"></div>
+  </section>
+
+  <!-- ── BLOG NAV ── -->
+  <BlogNav categories={categories} totalPosts={posts.length} />
+
+  <!-- ── ARTÍCULO DESTACADO ── -->
+  {featuredPost && (
+    <section class="w-full px-[5%] xl:px-[7%] py-14 border-b border-white/8">
+
+      <!-- Encabezado sección — mismo estilo que servicios en index -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-10 pb-10 border-b border-white/8">
+        <div>
+          <span class="inline-flex items-center gap-2 text-secondary text-xs font-bold uppercase tracking-[0.3em] mb-5">
+            <span class="w-6 h-px bg-secondary"></span>
+            Artículo destacado
+            <span class="w-6 h-px bg-secondary"></span>
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight tracking-tight">
+            {featuredPost.data.title}
+          </h2>
+        </div>
+        <div class="flex flex-col gap-4 lg:pt-2">
+          <p class="text-accent text-sm leading-relaxed">
+            {featuredPost.data.description}
+          </p>
+          <div class="flex items-center gap-4">
+            <span class="bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+              {featuredPost.data.categoria || 'Blog'}
+            </span>
+            <span class="text-accent text-xs flex items-center gap-1.5">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/>
+              </svg>
+              {featuredPost.data.readTime || 5} min de lectura
+            </span>
+          </div>
+          <a
+            href={`/blog/${featuredPost.slug}`}
+            class="inline-flex items-center gap-2 text-secondary hover:text-red-400 font-bold text-sm uppercase tracking-wide transition-colors group self-start"
+          >
+            Leer artículo completo
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition-transform" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
       </div>
-    ) : (
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts.map((post: any) => (
-          <BlogCard
-            titulo={post.data.title}
-            descripcion={post.data.description}
-            slug={post.slug}
-            categoria={post.data.category}
-          />
-        ))}
+
+      <!-- Tarjeta visual destacada -->
+      <a
+        href={`/blog/${featuredPost.slug}`}
+        class="group relative flex flex-col lg:flex-row bg-primary border border-white/8 hover:border-secondary/40 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-secondary/10"
+      >
+        <div class="relative lg:w-[420px] xl:w-[480px] h-56 lg:h-72 bg-gradient-to-br from-primary-light to-primary overflow-hidden flex-shrink-0">
+          {featuredPost.data.imagen ? (
+            <picture>
+              <source type="image/avif" srcset={`${featuredPost.data.imagen}-640.avif 640w, ${featuredPost.data.imagen}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 480px" />
+              <source type="image/jpeg" srcset={`${featuredPost.data.imagen}-640.jpg 640w, ${featuredPost.data.imagen}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 480px" />
+              <img
+                src={`${featuredPost.data.imagen}-1200.jpg`}
+                alt={featuredPost.data.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                loading="eager" width="1200" height="675"
+              />
+            </picture>
+          ) : (
+            <div class="w-full h-full flex items-center justify-center">
+              <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="0.6" opacity="0.15" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+          )}
+          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-primary/60 hidden lg:block"></div>
+        </div>
+        <div class="flex-1 p-8 lg:p-10 flex flex-col justify-center gap-4">
+          <p class="text-secondary text-xs font-bold uppercase tracking-[0.3em]">
+            {featuredPost.data.categoria || 'Blog'} — Destacado
+          </p>
+          <h3 class="text-2xl lg:text-3xl font-black text-light leading-tight group-hover:text-secondary transition-colors">
+            {featuredPost.data.title}
+          </h3>
+          <p class="text-accent leading-relaxed line-clamp-2">
+            {featuredPost.data.description}
+          </p>
+          <div class="flex items-center gap-2 text-secondary font-bold text-sm uppercase tracking-wide mt-2">
+            Leer artículo
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition-transform" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </a>
+    </section>
+  )}
+
+  <!-- ── FILTROS + GRID + SIDEBAR ── -->
+  <section class="w-full px-[5%] xl:px-[7%] py-14 pb-20">
+
+    <!-- Encabezado de sección — dos columnas igual que index -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-10 pb-10 border-b border-white/8">
+      <div>
+        <span class="inline-flex items-center gap-2 text-secondary text-xs font-bold uppercase tracking-[0.3em] mb-5">
+          <span class="w-6 h-px bg-secondary"></span>
+          Todos los artículos
+          <span class="w-6 h-px bg-secondary"></span>
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight tracking-tight">
+          Guías, análisis y<br />recursos especializados
+        </h2>
       </div>
-    )}
-  </div>
+      <div class="flex flex-col justify-center gap-4 lg:pt-2">
+        <p class="text-accent text-sm leading-relaxed">
+          Filtra por categoría para encontrar exactamente lo que necesitas — desde aspectos legales hasta guías operativas para eventos de cualquier escala.
+        </p>
+        <!-- Filtros por categoría -->
+        <div class="flex flex-wrap gap-2" id="blog-filters">
+          <button
+            data-filter="all"
+            class="filter-btn active px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide transition-all duration-200 bg-secondary text-white border border-secondary"
+          >
+            Todos ({posts.length})
+          </button>
+          {categories.map(([cat, count]) => (
+            <button
+              data-filter={cat}
+              class="filter-btn px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide transition-all duration-200 bg-white/5 text-accent border border-white/10 hover:border-secondary/40 hover:text-light"
+            >
+              {cat} ({count})
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Layout: Grid + Sidebar -->
+    <div class="flex flex-col lg:flex-row gap-10 items-start">
+
+      <!-- Grid de artículos -->
+      <div class="flex-1 min-w-0">
+        {posts.length === 0 ? (
+          <div class="text-center py-20">
+            <p class="text-accent text-lg">Próximamente publicaremos contenido especializado.</p>
+          </div>
+        ) : (
+          <div id="posts-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {restPosts.map((post: any) => (
+              <div data-cat={post.data.categoria || 'Blog'} class="post-card">
+                <BlogCard
+                  titulo={post.data.title}
+                  descripcion={post.data.description}
+                  slug={post.slug}
+                  categoria={post.data.categoria}
+                  imagen={post.data.imagen}
+                  readTime={post.data.readTime}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div id="no-results" class="hidden text-center py-16">
+          <div class="w-14 h-14 bg-primary-light rounded-xl flex items-center justify-center mx-auto mb-4">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="1.5" opacity="0.5" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/>
+            </svg>
+          </div>
+          <p class="text-accent text-sm">No hay artículos en esta categoría todavía.</p>
+          <button data-filter="all" class="filter-btn mt-4 text-secondary text-sm font-semibold hover:text-red-400 transition-colors">
+            Ver todos los artículos →
+          </button>
+        </div>
+      </div>
+
+      <!-- Sidebar sticky -->
+      <div class="w-full lg:w-[300px] xl:w-[320px] flex-shrink-0 lg:sticky lg:top-24">
+        <BlogSidebar />
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const postCards  = document.querySelectorAll<HTMLElement>('.post-card');
+  const noResults  = document.getElementById('no-results');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter ?? 'all';
+
+      filterBtns.forEach(b => {
+        b.classList.remove('bg-secondary', 'text-white', 'border-secondary', 'active');
+        b.classList.add('bg-white/5', 'text-accent', 'border-white/10');
+      });
+      btn.classList.add('bg-secondary', 'text-white', 'border-secondary', 'active');
+      btn.classList.remove('bg-white/5', 'text-accent', 'border-white/10');
+
+      let visible = 0;
+      postCards.forEach(card => {
+        const cardCat = card.dataset.cat ?? '';
+        const show = filter === 'all' || cardCat === filter;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      if (noResults) noResults.classList.toggle('hidden', visible > 0);
+      document.getElementById('blog-filters')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  const catParam = new URLSearchParams(window.location.search).get('cat');
+  if (catParam) {
+    document.querySelector<HTMLButtonElement>(`[data-filter="${catParam}"]`)?.click();
+  }
+</script>

@@ -4,42 +4,57 @@ import TrustSection from '@/components/TrustSection.astro';
 import ProcessSection from '@/components/ProcessSection.astro';
 import CTABanner from '@/components/CTABanner.astro';
 import SectionHeader from '@/components/SectionHeader.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
 import { STATS } from '@/lib/config';
+
+const navItems = [
+  {
+    label: "Nuestra Historia",
+    desc: "Cómo comenzamos y nuestra evolución en el sector",
+    href: "#historia",
+  },
+  {
+    label: "Certificaciones",
+    desc: "Licencia DGSSP, STPS e ISO 9001:2015 vigentes",
+    href: "/certificaciones",
+  },
+  {
+    label: "Nuestro Equipo",
+    desc: "+1,200 guardias certificados listos para tu evento",
+    href: "#equipo",
+  },
+  {
+    label: "Solicitar Cotización",
+    desc: "Propuesta personalizada en menos de 24 horas",
+    href: "/cotizar",
+  },
+];
 ---
 
 <BaseLayout
   title="Nosotros — Empresa de Seguridad para Eventos en México"
-  description="Conoce a SeguridadEventos: más de 15 años protegiendo eventos en México. +500 eventos, +1,200 guardias certificados. Licencia DGSSP, certificación STPS e ISO 9001."
+  description="Conoce a SEPRIEV: más de 30 años protegiendo eventos en México. +500 eventos, +1,200 guardias certificados. Licencia DGSSP, certificación STPS e ISO 9001."
 >
-  <!-- Hero -->
-  <section class="relative bg-gradient-to-br from-dark via-primary to-dark py-16 lg:py-24 border-b border-primary">
-    <div class="w-full px-[5%] xl:px-[7%]">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <!-- Col 1 -->
-        <div>
-          <span class="text-secondary text-xs font-bold uppercase tracking-widest">Nuestra historia</span>
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-light mt-3 leading-tight">
-            Más de 15 años protegiendo eventos en México
-          </h1>
-          <p class="text-accent text-lg leading-relaxed mt-5 mb-8">
-            Empresa mexicana certificada DGSSP y STPS. +500 eventos, +1,200 guardias, 0 incidentes graves.
-          </p>
-          <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3.5 rounded-lg font-bold uppercase text-sm tracking-wide transition-colors">
-            Solicitar cotización
-          </a>
-        </div>
-        <!-- Col 2: párrafos SEO -->
-        <div class="flex flex-col gap-6">
-          <div class="bg-primary/60 border border-primary-light rounded-2xl p-7">
-            <p class="text-accent leading-relaxed text-sm"><strong class="text-light">SeguridadEventos</strong> es una empresa mexicana de <strong class="text-light">seguridad privada especializada en eventos</strong> con más de 15 años de experiencia en la industria del entretenimiento, el sector corporativo y los eventos sociales. Somos el resultado de años de trabajo operativo en seguridad antes de fundar una empresa que elevara los estándares del sector en México. Con presencia en <strong class="text-light">CDMX, Guadalajara, Monterrey, Puebla y Cancún</strong>, y más de <strong class="text-light">1,200 guardias certificados</strong>, somos el socio de seguridad que los mejores eventos del país confían.</p>
-          </div>
-          <div class="bg-primary/60 border border-primary-light rounded-2xl p-7">
-            <p class="text-accent leading-relaxed text-sm">Nuestra <strong class="text-light">licencia DGSSP federal vigente</strong>, certificación <strong class="text-light">STPS</strong> e <strong class="text-light">ISO 9001:2015</strong> respaldan cada operación con los más altos estándares de la industria. En más de <strong class="text-light">500 eventos protegidos</strong> — desde bodas íntimas hasta festivales masivos con 50,000 asistentes — mantenemos un récord de <strong class="text-light">cero incidentes graves</strong>. Creemos que la mejor seguridad es la que no se nota pero siempre está presente. Cotización en <strong class="text-light">menos de 24 horas</strong>.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <Breadcrumb items={[{ label: 'Nosotros' }]} />
+
+  <PageHero
+    eyebrow="SEPRIEV — Nuestra empresa"
+    titulo="Más de 30 Años Protegiendo Eventos en México"
+    subtitulo="Empresa mexicana certificada DGSSP y STPS. Más de 500 eventos protegidos, 1,200 guardias certificados, cero incidentes graves."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        <strong class="text-light font-semibold">SEPRIEV</strong> es una empresa mexicana de seguridad privada especializada en eventos con <strong class="text-light font-semibold">más de 30 años de experiencia</strong> en la industria del entretenimiento, el sector corporativo y los eventos sociales. Con presencia en <strong class="text-light font-semibold">CDMX, Guadalajara, Monterrey, Puebla y Cancún</strong>, y más de <strong class="text-light font-semibold">1,200 guardias certificados</strong>, somos el socio de seguridad que los mejores eventos del país confían.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Nuestra <strong class="text-light font-semibold">licencia DGSSP federal vigente</strong>, certificación <strong class="text-light font-semibold">STPS</strong> e <strong class="text-light font-semibold">ISO 9001:2015</strong> respaldan cada operación con los más altos estándares de la industria. En más de <strong class="text-light font-semibold">500 eventos protegidos</strong> mantenemos un récord de <strong class="text-light font-semibold">cero incidentes graves</strong>. La mejor seguridad es la que no se nota pero siempre está presente.
+      </p>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Navegación de la página Nosotros" />
 
   <!-- Stats -->
   <section class="py-12 bg-primary/40 border-b border-primary">
@@ -56,13 +71,13 @@ import { STATS } from '@/lib/config';
   </section>
 
   <!-- Historia -->
-  <section class="py-20 bg-dark">
+  <section id="historia" class="py-20 bg-dark">
     <div class="w-full px-[5%] xl:px-[7%]">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
           <SectionHeader eyebrow="Quiénes somos" titulo="Profesionales de la seguridad en eventos" align="left" />
           <div class="space-y-4 text-accent leading-relaxed">
-            <p>SeguridadEventos nació de la experiencia directa en la industria del entretenimiento y los eventos corporativos. Nuestros fundadores trabajaron en seguridad operativa durante años antes de crear una empresa que elevara los estándares del sector.</p>
+            <p>SEPRIEV nació de la experiencia directa en la industria del entretenimiento y los eventos corporativos. Nuestros fundadores trabajaron en seguridad operativa durante años antes de crear una empresa que elevara los estándares del sector.</p>
             <p>Hoy somos referencia en <strong class="text-light">seguridad para conciertos, convenciones, ferias, eventos deportivos, bodas y eventos masivos</strong> en las principales ciudades de México: CDMX, Guadalajara, Monterrey, Puebla y Cancún.</p>
             <p>Cada evento es diferente. Por eso diseñamos <strong class="text-light">planes operativos personalizados</strong> para cada cliente, con personal seleccionado específicamente para el tipo de evento y sus requerimientos.</p>
           </div>
@@ -89,7 +104,7 @@ import { STATS } from '@/lib/config';
   </section>
 
   <!-- Equipo -->
-  <section class="py-20 bg-primary/30 border-y border-primary">
+  <section id="equipo" class="py-20 bg-primary/30 border-y border-primary">
     <div class="w-full px-[5%] xl:px-[7%]">
       <SectionHeader eyebrow="Capital humano" titulo="Nuestro equipo" subtitulo="Más de 1,200 profesionales certificados listos para proteger tu evento." />
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

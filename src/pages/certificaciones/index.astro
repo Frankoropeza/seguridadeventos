@@ -1,23 +1,64 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CTABanner from '@/components/CTABanner.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+
+const navItems = [
+  {
+    label: "Licencia DGSSP",
+    desc: "Autorización federal para operar en toda la República",
+    href: "#dgssp",
+  },
+  {
+    label: "Certificación STPS",
+    desc: "Todo el personal con constancias DC-3 vigentes",
+    href: "#stps",
+  },
+  {
+    label: "ISO 9001:2015",
+    desc: "Procesos certificados por organismo acreditado por EMA",
+    href: "#iso",
+  },
+  {
+    label: "Solicitar Cotización",
+    desc: "Propuesta personalizada en menos de 24 horas",
+    href: "/cotizar",
+  },
+];
 ---
 
 <BaseLayout
   title="Certificaciones y Licencias — SeguridadEventos México"
   description="Nuestras certificaciones: Licencia DGSSP federal, Certificación STPS, ISO 9001:2015, registro DGSP. Verificables ante las autoridades correspondientes."
 >
+  <Breadcrumb items={[{ label: 'Certificaciones' }]} />
+
+  <PageHero
+    eyebrow="SEPRIEV — Respaldo oficial"
+    titulo="Certificaciones y Licencias Verificables"
+    subtitulo="Operamos con todas las autorizaciones federales y locales. Cada certificación es verificable ante la autoridad correspondiente."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        La <strong class="text-light font-semibold">Licencia DGSSP federal vigente</strong> nos autoriza a prestar servicios de seguridad privada en todo el territorio nacional. Complementada con la <strong class="text-light font-semibold">certificación STPS</strong> — que acredita que todo nuestro personal cuenta con las competencias laborales requeridas — garantizamos que cada operativo que enviamos a tu evento cumple con la normativa vigente.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Nuestro <strong class="text-light font-semibold">Sistema de Gestión de Calidad ISO 9001:2015</strong>, certificado por organismo acreditado por EMA, asegura que nuestros procesos de planeación, operación y seguimiento están documentados, auditados y en mejora continua. Además, contamos con registro ante la <strong class="text-light font-semibold">DGSP de la Ciudad de México</strong> para eventos de gobierno y espectáculos públicos en la capital.
+      </p>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Navegación de certificaciones" />
+
   <section class="py-16 lg:py-20 bg-dark">
     <div class="w-full px-[5%] xl:px-[7%]">
-      <div class="text-center mb-14">
-        <span class="text-secondary text-xs font-bold uppercase tracking-widest">Respaldo oficial</span>
-        <h1 class="text-3xl sm:text-4xl font-black text-light mt-3">Certificaciones y Licencias</h1>
-        <p class="text-accent mt-3 max-w-2xl mx-auto">Operamos con todas las autorizaciones federales y locales. Cada certificación es verificable ante la autoridad correspondiente.</p>
-      </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-[90%] mx-auto">
         {[
           {
+            id: "dgssp",
             siglas: "DGSSP",
             nombre: "Dirección General de Seguridad Privada",
             autoridad: "Secretaría de Seguridad y Protección Ciudadana",
@@ -27,6 +68,7 @@ import CTABanner from '@/components/CTABanner.astro';
             items: ["Autorización federal para operar en toda la República", "Registro de todo el personal operativo", "Verificable en el portal de la SSPC", "Renovación anual con auditoría"],
           },
           {
+            id: "stps",
             siglas: "STPS",
             nombre: "Secretaría del Trabajo y Previsión Social",
             autoridad: "Gobierno Federal",
@@ -36,6 +78,7 @@ import CTABanner from '@/components/CTABanner.astro';
             items: ["Constancias DC-3 de todo el personal", "Capacitación inicial de 120+ horas", "Actualización anual obligatoria", "Evaluaciones de competencia laboral"],
           },
           {
+            id: "iso",
             siglas: "ISO 9001",
             nombre: "Sistema de Gestión de Calidad",
             autoridad: "Organismo certificador acreditado por EMA",
@@ -45,6 +88,7 @@ import CTABanner from '@/components/CTABanner.astro';
             items: ["Procesos documentados y estandarizados", "Auditorías internas periódicas", "Mejora continua medible", "Satisfacción del cliente monitoreada"],
           },
           {
+            id: "dgsp-cdmx",
             siglas: "DGSP CDMX",
             nombre: "Dirección General de Seguridad Privada CDMX",
             autoridad: "Gobierno de la Ciudad de México",
@@ -54,7 +98,7 @@ import CTABanner from '@/components/CTABanner.astro';
             items: ["Registro municipal vigente en CDMX", "Complementa la licencia federal DGSSP", "Requisito para operar en eventos de gobierno", "Verificable ante autoridades locales"],
           },
         ].map((cert: any) => (
-          <div class="bg-primary border border-primary-light rounded-xl p-8 hover:border-secondary/30 transition-colors">
+          <div id={cert.id} class="bg-primary border border-primary-light rounded-xl p-8 hover:border-secondary/30 transition-colors">
             <div class="flex items-center gap-4 mb-5">
               <div class={`w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 ${
                 cert.color === 'secondary' ? 'bg-secondary/20 border-2 border-secondary/40' :

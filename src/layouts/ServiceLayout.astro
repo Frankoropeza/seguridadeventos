@@ -1,7 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import CTABanner from '@/components/CTABanner.astro';
-import { SERVICIOS_NAV, WHATSAPP_NUMBER } from '@/lib/config';
+import { SERVICIOS_NAV, WHATSAPP_NUMBER, SITE } from '@/lib/config';
 import { buildServiceSchema, buildFAQSchema } from '@/lib/seo';
 
 export interface Props {
@@ -9,6 +9,7 @@ export interface Props {
   descripcion: string;
   slug: string;
   emoji?: string;
+  imagen?: string;
   faq?: Array<{ q: string; a: string }>;
   breadcrumbs?: Array<{ name: string; href?: string }>;
 }
@@ -18,11 +19,13 @@ const {
   descripcion,
   slug,
   emoji = "🛡️",
+  imagen,
   faq = [],
   breadcrumbs = [],
 } = Astro.props;
 
 const canonical = `https://seguridadeventos.com.mx/servicios/${slug}`;
+const ogImg = imagen ? new URL(`${imagen}-1200.jpg`, SITE).toString() : undefined;
 const schemas = [
   buildServiceSchema(titulo, descripcion, canonical),
   ...(faq.length ? [buildFAQSchema(faq)] : []),
@@ -39,7 +42,7 @@ const allBreadcrumbs = [
 const relacionados = SERVICIOS_NAV.filter(s => s.slug !== slug).slice(0, 4);
 ---
 
-<BaseLayout title={titulo} description={descripcion} canonical={canonical} schema={schemas}>
+<BaseLayout title={titulo} description={descripcion} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
   <!-- Breadcrumb -->
   <nav class="bg-primary/50 border-b border-primary py-3" aria-label="Breadcrumb">
@@ -58,6 +61,18 @@ const relacionados = SERVICIOS_NAV.filter(s => s.slug !== slug).slice(0, 4);
       </ol>
     </div>
   </nav>
+
+  <!-- Imagen hero del servicio -->
+  {imagen && (
+    <div class="w-full h-56 md:h-80 overflow-hidden bg-primary relative">
+      <picture>
+        <source type="image/avif" srcset={`${imagen}-640.avif 640w, ${imagen}-1200.avif 1200w`} sizes="100vw" />
+        <source type="image/jpeg" srcset={`${imagen}-640.jpg 640w, ${imagen}-1200.jpg 1200w`} sizes="100vw" />
+        <img src={`${imagen}-1200.jpg`} alt={titulo} class="w-full h-full object-cover" loading="eager" fetchpriority="high" width="1200" height="675" />
+      </picture>
+      <div class="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/20 to-transparent"></div>
+    </div>
+  )}
 
   <!-- Hero del servicio -->
   <section class="relative bg-gradient-to-br from-dark via-primary to-dark py-16 lg:py-24 border-b border-primary">
@@ -91,7 +106,7 @@ const relacionados = SERVICIOS_NAV.filter(s => s.slug !== slug).slice(0, 4);
         <!-- Col 2: párrafos SEO -->
         <div class="flex flex-col gap-6">
           <div class="bg-primary/60 border border-primary-light rounded-2xl p-7">
-            <p class="text-accent leading-relaxed text-sm"><strong class="text-light">SeguridadEventos</strong> es la empresa líder en <strong class="text-light">{titulo.toLowerCase()}</strong> en México. Con más de <strong class="text-light">15 años de experiencia</strong> y más de <strong class="text-light">500 eventos protegidos</strong>, contamos con el equipo, la tecnología y los protocolos para garantizar la seguridad total de tu evento. Personal certificado <strong class="text-light">DGSSP y STPS</strong>, con presencia en CDMX, Guadalajara, Monterrey, Puebla y Cancún.</p>
+            <p class="text-accent leading-relaxed text-sm"><strong class="text-light">SEPRIEV</strong> es la empresa líder en <strong class="text-light">{titulo.toLowerCase()}</strong> en México. Con más de <strong class="text-light">30 años de experiencia</strong> y más de <strong class="text-light">500 eventos protegidos</strong>, contamos con el equipo, la tecnología y los protocolos para garantizar la seguridad total de tu evento. Personal certificado <strong class="text-light">DGSSP y STPS</strong>, con presencia en CDMX, Guadalajara, Monterrey, Puebla y Cancún.</p>
           </div>
           <div class="bg-primary/60 border border-primary-light rounded-2xl p-7">
             <p class="text-accent leading-relaxed text-sm">Nuestra <strong class="text-light">licencia DGSSP federal vigente</strong>, certificaciones <strong class="text-light">STPS e ISO 9001</strong> respaldan cada operación con los más altos estándares de la industria. Elaboramos un <strong class="text-light">plan operativo específico</strong> para tu evento, coordinamos con Protección Civil y servicios de emergencia, y entregamos cotización personalizada en <strong class="text-light">menos de 24 horas</strong> — sin compromiso.</p>

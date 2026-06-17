@@ -8,19 +8,37 @@ import TestimonialsSection from '@/components/TestimonialsSection.astro';
 import CTABanner from '@/components/CTABanner.astro';
 import BlogCard from '@/components/BlogCard.astro';
 import SectionHeader from '@/components/SectionHeader.astro';
+import SectionNav from '@/components/SectionNav.astro';
 import { SITE, ZONAS_NAV, WHATSAPP_NUMBER } from '@/lib/config';
 import { getCollection } from 'astro:content';
 
 const blogPosts = (await getCollection('blog', ({ data }: { data: { draft: boolean } }) => !data.draft)).slice(0, 6);
 
 const serviciosHome = [
-  { icon: "🎵", title: "Conciertos y Festivales", description: "Control de multitudes, protección de artistas y coordinación con autoridades. Más de 200 eventos musicales protegidos.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", badge: "Popular" },
-  { icon: "🏢", title: "Eventos Corporativos", description: "Seguridad discreta para convenciones, lanzamientos y galas. Personal bilingüe y protocolos de confidencialidad.", features: ["Personal bilingüe", "Dress code adaptable", "NDA incluido"], href: "/servicios/seguridad-eventos-corporativos" },
-  { icon: "🚪", title: "Control de Acceso", description: "Verificación de boletos, detección de armas, gestión de aforo y credencialización para cualquier tipo de evento.", features: ["Detectores de metales", "Escaneo QR", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", badge: "Esencial" },
-  { icon: "⭐", title: "Seguridad VIP", description: "Protección de celebridades, artistas y ejecutivos. Escoltas certificados, anti-paparazzi y rutas seguras.", features: ["Close protection", "Vehículo blindado", "Discreción total"], href: "/servicios/seguridad-vip" },
-  { icon: "🎉", title: "Eventos Sociales", description: "Bodas, XV años y fiestas privadas con seguridad invisible pero presente. Valet parking y control de invitados.", features: ["Dress code formal", "Valet parking", "Manejo discreto"], href: "/servicios/seguridad-eventos-sociales" },
-  { icon: "🏟️", title: "Eventos Masivos", description: "Operación de seguridad para +10,000 asistentes. Drones, centro de comando y coordinación con Protección Civil.", features: ["Drones de vigilancia", "Puesto de mando", "Plan de contingencia"], href: "/servicios/seguridad-masivos", featured: true },
+  { title: "Conciertos y Festivales",  description: "Control de multitudes, protección de artistas y coordinación con autoridades. Más de 200 eventos musicales protegidos.",              features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"],    href: "/servicios/seguridad-conciertos-festivales",  badge: "Popular"  },
+  { title: "Eventos Corporativos",     description: "Seguridad discreta para convenciones, lanzamientos y galas. Personal bilingüe y protocolos de confidencialidad.",                   features: ["Personal bilingüe", "Dress code adaptable", "NDA incluido"],                  href: "/servicios/seguridad-eventos-corporativos"                        },
+  { title: "Control de Acceso",        description: "Verificación de boletos, detección de armas, gestión de aforo y credencialización para cualquier tipo de evento.",                  features: ["Detectores de metales", "Escaneo QR", "Aforo en tiempo real"],               href: "/servicios/control-acceso-eventos",            badge: "Esencial" },
+  { title: "Seguridad VIP",            description: "Protección de celebridades, artistas y ejecutivos. Escoltas certificados, anti-paparazzi y rutas seguras.",                         features: ["Close protection", "Vehículo blindado", "Discreción total"],                  href: "/servicios/seguridad-vip"                                         },
+  { title: "Protección Ejecutiva",     description: "Seguridad personal para directivos, empresarios y figuras públicas. Evaluación de riesgos, contravigilancia y traslados seguros.",  features: ["Análisis de riesgo", "Contravigilancia", "Traslados seguros"],                href: "/servicios/proteccion-ejecutiva"                                   },
+  { title: "Ferias y Exposiciones",    description: "Operativos de seguridad para recintos feriales con múltiples expositores, flujos constantes de visitantes y activos de alto valor.", features: ["Seguridad de stands", "Control de accesos", "Resguardo de activos"],          href: "/servicios/seguridad-ferias-exposiciones"                          },
+  { title: "Eventos Sociales",         description: "Bodas, XV años y fiestas privadas con seguridad invisible pero presente. Valet parking y control de invitados.",                    features: ["Dress code formal", "Valet parking", "Manejo discreto"],                      href: "/servicios/seguridad-eventos-sociales"                             },
+  { title: "Eventos Deportivos",       description: "Seguridad para estadios, arenas y competencias. Barras, zonas VIP, protección de atletas y coordinación con federaciones.",         features: ["Separación de barras", "Zona VIP", "Protocolo federativo"],                   href: "/servicios/seguridad-eventos-deportivos"                           },
+  { title: "Eventos Masivos",          description: "Operación de seguridad para +10,000 asistentes. Drones, centro de comando y coordinación con Protección Civil.",                   features: ["Drones de vigilancia", "Puesto de mando", "Plan de contingencia"],            href: "/servicios/seguridad-masivos",                featured: true    },
+  { title: "Montaje y Desmontaje",     description: "Resguardo de equipo, artistas, materiales y activos durante las fases de instalación y retiro del evento.",                         features: ["Custodia de equipo", "Control de proveedores", "Accesos restringidos"],       href: "/servicios/seguridad-montaje-desmontaje"                           },
 ];
+
+const servImg: Record<string,string> = {
+  "/servicios/seguridad-conciertos-festivales": "/img/eventos/seguridad-conciertos-festivales",
+  "/servicios/seguridad-eventos-corporativos":  "/img/eventos/seguridad-eventos-corporativos",
+  "/servicios/control-acceso-eventos":          "/img/eventos/control-acceso-eventos",
+  "/servicios/seguridad-vip":                   "/img/eventos/seguridad-vip-eventos",
+  "/servicios/proteccion-ejecutiva":            "/img/eventos/proteccion-ejecutiva-mexico",
+  "/servicios/seguridad-ferias-exposiciones":   "/img/eventos/seguridad-empresarial-evento",
+  "/servicios/seguridad-eventos-sociales":      "/img/eventos/seguridad-vip-gala",
+  "/servicios/seguridad-eventos-deportivos":    "/img/eventos/seguridad-conciertos-multitud",
+  "/servicios/seguridad-masivos":               "/img/eventos/guardias-seguridad-privada",
+  "/servicios/seguridad-montaje-desmontaje":    "/img/eventos/equipo-seguridad-eventos",
+};
 ---
 
 <BaseLayout
@@ -28,24 +46,46 @@ const serviciosHome = [
   description="Empresa líder en seguridad privada para eventos en México. Conciertos, corporativos, ferias, bodas y masivos. +500 eventos protegidos. Licencia DGSSP. Cotización en 24 hrs."
 >
   <HeroSection />
+  <SectionNav />
 
   <!-- Servicios destacados -->
   <section class="py-20 bg-dark" id="servicios">
     <div class="w-full px-[5%] xl:px-[7%]">
-      <SectionHeader
-        eyebrow="Nuestros servicios"
-        titulo="Seguridad especializada para cada tipo de evento"
-        subtitulo="10 servicios diseñados para cubrir cualquier necesidad de seguridad, desde una boda íntima hasta un festival con 100,000 asistentes."
-      />
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Encabezado de dos columnas -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-stretch">
+
+        <!-- Columna izquierda: título -->
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Nuestros servicios</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Seguridad especializada para cada tipo de evento
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            10 servicios diseñados para cubrir cualquier necesidad de seguridad, desde una boda íntima hasta un festival con 100,000 asistentes.
+          </p>
+        </div>
+
+        <!-- Columna derecha: párrafos SEO -->
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            En <strong class="text-light font-semibold">SEPRIEV</strong> hemos desarrollado a lo largo de 30 años una cartera de servicios de seguridad privada para eventos que cubre desde el control de accesos y la gestión de multitudes hasta la protección ejecutiva VIP y la coordinación con autoridades. Cada servicio está respaldado por <strong class="text-light font-semibold">personal certificado DGSSP y STPS</strong>, protocolos operativos documentados y un historial verificable de más de 500 eventos sin incidentes graves.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Ya sea un evento social íntimo, una convención corporativa de alto perfil, un concierto masivo o una feria de exposición internacional, nuestros equipos se integran de forma discreta y eficiente al operativo de cada cliente. Diseñamos el <strong class="text-light font-semibold">plan de seguridad específico para cada evento</strong>, ajustando el número de elementos, las posiciones, los protocolos de contingencia y la coordinación institucional según las necesidades reales de cada producción.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {serviciosHome.map((s: any) => (
           <ServiceCard
-            icon={s.icon}
             title={s.title}
             description={s.description}
             features={s.features}
             href={s.href}
+            image={servImg[s.href]}
             badge={s.badge}
             featured={s.featured}
           />
@@ -53,36 +93,899 @@ const serviciosHome = [
       </div>
 
       <div class="text-center mt-10">
-        <a href="/servicios" class="inline-flex items-center gap-2 text-secondary hover:text-red-400 font-bold text-sm uppercase tracking-wide transition-colors group">
-          Ver todos los servicios
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition-transform" aria-hidden="true">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
+        <a href="/cotizar" class="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-white px-8 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Solicitar Cotización
         </a>
       </div>
+
+      <!-- Módulo marketing + galería -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t border-white/8">
+
+        <!-- Columna izquierda: servicio destacado -->
+        <div class="flex flex-col h-full">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-secondary text-xs font-bold uppercase tracking-widest">Servicio destacado</span>
+            <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">Popular</span>
+          </div>
+          <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">
+            Conciertos y Festivales
+          </h2>
+
+          <p class="text-light/80 text-base leading-relaxed mb-5">
+            SEPRIEV lleva más de 200 eventos musicales operados en México, desde foros íntimos con 500 personas hasta festivales de aforo superior a 80,000 asistentes. Cada operativo arranca con un análisis de riesgo específico para el recinto, el cartel artístico y el perfil de la afición esperada, porque no existe una sola fórmula válida para todos los conciertos. Lo que sí existe es un equipo entrenado para anticipar lo que puede salir mal antes de que ocurra.
+          </p>
+
+          <ul class="flex flex-col gap-5 mb-6">
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Control de multitudes</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Los flujos de entrada y salida se diseñan antes del día del evento, no se improvisan cuando el público ya está afuera. El equipo de SEPRIEV define puntos de acceso, velocidades de ingreso y zonas de amortiguamiento entre sectores, y entrena al personal para reconocer señales tempranas de compresión de multitudes o tensión entre aficionados. Actuar en los primeros segundos es la diferencia entre una situación controlada y un incidente con consecuencias.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Backstage seguro</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                El acceso a camerinos, plataformas técnicas y zonas de producción se regula mediante credencialización por niveles: cada persona entra solo a donde su función lo justifica. Los proveedores externos son verificados en cada acceso, no solo al inicio de la jornada, porque las fases de montaje y desmontaje concentran el mayor riesgo de extravío de equipo y de presencia no autorizada en áreas sensibles. La vigilancia perimetral no se detiene entre el soundcheck y el encendido del escenario.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Coordinación institucional</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Policía Municipal, Protección Civil, Bomberos y servicios médicos de emergencia no son actores externos al operativo: son parte del mismo. SEPRIEV establece antes del evento un canal de radio exclusivo, un puesto de mando unificado y un protocolo de escalamiento con roles definidos para cada institución. Cuando ocurre un incidente simultáneo en dos sectores del recinto, la respuesta coordinada ya está ensayada y no depende de decisiones improvisadas.
+              </p>
+            </li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+            <a href="/servicios/seguridad-conciertos-festivales" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              Ver servicio
+            </a>
+            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+              Solicitar Cotización
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna derecha: galería 1 grande + 2 pequeñas -->
+        <div class="flex flex-col gap-4">
+
+          <!-- Imagen grande -->
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+            <picture>
+              <source type="image/avif" srcset="/img/eventos/seguridad-conciertos-festivales-640.avif 640w, /img/eventos/seguridad-conciertos-festivales-1200.avif 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <source type="image/jpeg" srcset="/img/eventos/seguridad-conciertos-festivales-640.jpg 640w, /img/eventos/seguridad-conciertos-festivales-1200.jpg 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <img src="/img/eventos/seguridad-conciertos-festivales-1200.jpg" alt="Conciertos y Festivales — seguridad para eventos SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+            </picture>
+          </div>
+
+          <!-- Dos imágenes pequeñas -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/seguridad-conciertos-multitud-640.avif" />
+                <img src="/img/eventos/seguridad-conciertos-multitud-640.jpg" alt="Conciertos y Festivales — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/personal-seguridad-evento-640.avif" />
+                <img src="/img/eventos/personal-seguridad-evento-640.jpg" alt="Conciertos y Festivales — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Módulo Eventos Corporativos -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t border-white/8">
+
+        <!-- Columna izquierda: servicio destacado -->
+        <div class="flex flex-col h-full">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-secondary text-xs font-bold uppercase tracking-widest">Servicio destacado</span>
+          </div>
+          <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">
+            Eventos Corporativos
+          </h2>
+
+          <p class="text-light/80 text-base leading-relaxed mb-5">
+            Las convenciones, los lanzamientos de producto y las cenas de gala corporativas exigen un tipo de seguridad que muchas empresas nunca verán en operación, porque está diseñada para no verse. SEPRIEV despliega en eventos corporativos a través de México personal bilingüe formado en protocolo empresarial, capaz de moverse entre directivos y delegaciones internacionales sin generar fricciones ni llamar la atención. El objetivo es que la seguridad sea parte del ambiente, no un elemento que lo rompe.
+          </p>
+
+          <ul class="flex flex-col gap-5 mb-6">
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Personal bilingüe</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Los elementos asignados a eventos corporativos tienen dominio del inglés suficiente para interactuar con asistentes extranjeros, gestionar accesos con representantes de otras delegaciones y coordinar con equipos de seguridad internacionales cuando el evento lo requiere. Su formación incluye etiqueta corporativa, manejo de situaciones delicadas sin escalar el tono y comunicación con el equipo de producción del cliente sin interrumpir el ritmo del evento.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Dress code adaptable</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Un mismo evento puede requerir traje en el salón principal, uniforme táctico en el área de carga y ropa de civil en los accesos perimetrales. SEPRIEV adapta la vestimenta del equipo a cada zona y momento del operativo, porque presentarse con uniforme de seguridad donde el cliente no lo espera puede comprometer tanto la imagen del evento como la efectividad del personal. La instrucción sobre vestimenta forma parte del briefing previo a cada operativo.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">NDA incluido</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Antes de cada evento corporativo, todo el personal firma un acuerdo de no divulgación que cubre información estratégica, identidades de asistentes, acuerdos comerciales observados durante el operativo y cualquier detalle de la logística interna del cliente. Este estándar no es opcional ni reservado para clientes de alto perfil: aplica en cada asignación corporativa de SEPRIEV, porque la confidencialidad es parte del servicio, no un plus negociable.
+              </p>
+            </li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+            <a href="/servicios/seguridad-eventos-corporativos" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              Ver servicio
+            </a>
+            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+              Solicitar Cotización
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna derecha: galería 1 grande + 2 pequeñas -->
+        <div class="flex flex-col gap-4">
+
+          <!-- Imagen grande -->
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+            <picture>
+              <source type="image/avif" srcset="/img/eventos/seguridad-eventos-corporativos-640.avif 640w, /img/eventos/seguridad-eventos-corporativos-1200.avif 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <source type="image/jpeg" srcset="/img/eventos/seguridad-eventos-corporativos-640.jpg 640w, /img/eventos/seguridad-eventos-corporativos-1200.jpg 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <img src="/img/eventos/seguridad-eventos-corporativos-1200.jpg" alt="Eventos Corporativos — seguridad para eventos SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+            </picture>
+          </div>
+
+          <!-- Dos imágenes pequeñas -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/seguridad-empresarial-evento-640.avif" />
+                <img src="/img/eventos/seguridad-empresarial-evento-640.jpg" alt="Eventos Corporativos — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/equipo-seguridad-eventos-640.avif" />
+                <img src="/img/eventos/equipo-seguridad-eventos-640.jpg" alt="Eventos Corporativos — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Módulo Control de Acceso -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t border-white/8">
+
+        <!-- Columna izquierda: servicio destacado -->
+        <div class="flex flex-col h-full">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-secondary text-xs font-bold uppercase tracking-widest">Servicio destacado</span>
+            <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">Esencial</span>
+          </div>
+          <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">
+            Control de Acceso
+          </h2>
+
+          <p class="text-light/80 text-base leading-relaxed mb-5">
+            El punto de acceso es donde se gana o se pierde la seguridad de un evento antes de que empiece. SEPRIEV opera control de acceso en eventos de todo tipo en México con personal entrenado específicamente para este rol, no con elementos reasignados de otras posiciones. Verificamos boletos, detectamos objetos prohibidos, gestionamos el aforo en tiempo real y credencializamos a cada categoría de participante con criterios distintos, porque el acceso de un técnico de producción no puede tratarse igual que el de un asistente general.
+          </p>
+
+          <ul class="flex flex-col gap-5 mb-6">
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Detectores de metales</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Los arcos detectores de metales fijos se complementan con detectores de mano para revisión secundaria cuando el arco genera señal. El personal que opera estos equipos está entrenado para mantener una cadencia de ingreso alta incluso en picos de demanda, evitando cuellos de botella que generan presión en el exterior del recinto. La configuración de sensibilidad se ajusta según el tipo de evento y el perfil de riesgo definido en el plan de seguridad.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Escaneo QR</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                La validación de boletos digitales y físicos se realiza con lectores conectados en tiempo real a la base de datos del organizador, lo que permite detectar duplicados y boletos falsificados en el momento del ingreso, no horas después. SEPRIEV coordina con el sistema de ticketing del cliente para asegurar compatibilidad operativa antes del día del evento, y dispone de un protocolo de contingencia para validación manual cuando la conectividad falla.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Aforo en tiempo real</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                El número de personas dentro del recinto se monitorea de forma continua con contadores en cada acceso, reportes periódicos al puesto de mando y alertas cuando se alcanzan los umbrales de capacidad definidos por el organizador y las autoridades. Los accesos se abren y cierran de forma coordinada para distribuir el flujo de ingreso entre distintas puertas, cumpliendo los límites de aforo sin detener masivamente el ingreso en un solo punto.
+              </p>
+            </li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+            <a href="/servicios/control-acceso-eventos" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              Ver servicio
+            </a>
+            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+              Solicitar Cotización
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna derecha: galería 1 grande + 2 pequeñas -->
+        <div class="flex flex-col gap-4">
+
+          <!-- Imagen grande -->
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+            <picture>
+              <source type="image/avif" srcset="/img/eventos/control-acceso-eventos-640.avif 640w, /img/eventos/control-acceso-eventos-1200.avif 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <source type="image/jpeg" srcset="/img/eventos/control-acceso-eventos-640.jpg 640w, /img/eventos/control-acceso-eventos-1200.jpg 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <img src="/img/eventos/control-acceso-eventos-1200.jpg" alt="Control de Acceso — seguridad para eventos SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+            </picture>
+          </div>
+
+          <!-- Dos imágenes pequeñas -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/control-acceso-credenciales-640.avif" />
+                <img src="/img/eventos/control-acceso-credenciales-640.jpg" alt="Control de Acceso — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/personal-seguridad-evento-640.avif" />
+                <img src="/img/eventos/personal-seguridad-evento-640.jpg" alt="Control de Acceso — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Módulo Seguridad VIP -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t border-white/8">
+
+        <!-- Columna izquierda: servicio destacado -->
+        <div class="flex flex-col h-full">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-secondary text-xs font-bold uppercase tracking-widest">Servicio destacado</span>
+          </div>
+          <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">
+            Seguridad VIP
+          </h2>
+
+          <p class="text-light/80 text-base leading-relaxed mb-5">
+            Cuando se trata de proteger a una celebridad, un artista internacional o un ejecutivo de alto perfil, la exigencia no es solo técnica: es de criterio, discreción y capacidad de leer el entorno antes de que surja cualquier amenaza. SEPRIEV forma a sus escoltas en protección personal certificada y los despliega en eventos y traslados en México con protocolos probados en entornos de alfombra roja, backstage y espacios públicos de alta exposición. La seguridad del protegido no se negocia; su privacidad tampoco.
+          </p>
+
+          <ul class="flex flex-col gap-5 mb-6">
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Close protection</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Los escoltas de SEPRIEV están certificados en close protection con formación específica en evaluación de amenazas, primeros auxilios tácticos y manejo de crisis en entornos con presencia de medios. Operan en formaciones discretas que se adaptan al entorno: lo que funciona en una conferencia de prensa no funciona en un show ante 40,000 personas. El tamaño del equipo y la posición de cada elemento se definen en el briefing previo, no en el momento en que el protegido ya está en el recinto.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Vehículo blindado</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Los traslados de personas de alto perfil son el momento de mayor exposición y el que más fallas de planificación concentra. SEPRIEV dispone de vehículos blindados con choferes certificados en conducción evasiva, rutas primarias y alternas verificadas con antelación y puntos de encuentro de emergencia establecidos antes de cada desplazamiento. El equipo de seguridad en tierra mantiene comunicación activa con el vehículo durante todo el recorrido.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Discreción total</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                La operación anti-paparazzi comienza en los accesos, no cuando la situación ya se salió de control. SEPRIEV coordina con el management o representación del artista o ejecutivo para alinear el operativo con sus necesidades reales de exposición: hay protegidos que pueden saludar al público y hay otros cuya ubicación no puede trascender. El equipo de SEPRIEV distingue entre ambos casos y actúa en consecuencia, sin improvisar en caliente.
+              </p>
+            </li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+            <a href="/servicios/seguridad-vip" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              Ver servicio
+            </a>
+            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+              Solicitar Cotización
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna derecha: galería 1 grande + 2 pequeñas -->
+        <div class="flex flex-col gap-4">
+
+          <!-- Imagen grande -->
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+            <picture>
+              <source type="image/avif" srcset="/img/eventos/seguridad-vip-eventos-640.avif 640w, /img/eventos/seguridad-vip-eventos-1200.avif 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <source type="image/jpeg" srcset="/img/eventos/seguridad-vip-eventos-640.jpg 640w, /img/eventos/seguridad-vip-eventos-1200.jpg 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <img src="/img/eventos/seguridad-vip-eventos-1200.jpg" alt="Seguridad VIP — seguridad para eventos SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+            </picture>
+          </div>
+
+          <!-- Dos imágenes pequeñas -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/proteccion-vip-invitados-640.avif" />
+                <img src="/img/eventos/proteccion-vip-invitados-640.jpg" alt="Seguridad VIP — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/seguridad-vip-gala-640.avif" />
+                <img src="/img/eventos/seguridad-vip-gala-640.jpg" alt="Seguridad VIP — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Módulo Protección Ejecutiva -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t border-white/8">
+
+        <div class="flex flex-col h-full">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-secondary text-xs font-bold uppercase tracking-widest">Servicio destacado</span>
+          </div>
+          <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">
+            Protección Ejecutiva
+          </h2>
+
+          <p class="text-light/80 text-base leading-relaxed mb-5">
+            En el entorno empresarial de México, la exposición pública de un directivo puede convertirse en un factor de riesgo concreto, no solo percibido. SEPRIEV diseña esquemas de protección ejecutiva que cubren la vida cotidiana del cliente: sus desplazamientos, su oficina, sus eventos y su domicilio, con el menor impacto posible en su rutina y sin que su equipo de trabajo perciba la operación como una carga logística adicional. El análisis de riesgo precede siempre al despliegue del equipo.
+          </p>
+
+          <ul class="flex flex-col gap-5 mb-6">
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Análisis de riesgo</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Antes de asignar un solo elemento, SEPRIEV evalúa el perfil de amenaza del ejecutivo considerando su sector, su exposición en medios, su historial de incidentes previos y el contexto geográfico de sus operaciones. El resultado del análisis determina el nivel de protección necesario, los puntos débiles de su rutina diaria y las medidas preventivas que deben implementarse antes del primer día de cobertura. Sin ese diagnóstico, cualquier esquema de protección opera a ciegas.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Contravigilancia</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Mapear la rutina de un directivo es el paso previo a cualquier acción hostil. Los especialistas de SEPRIEV en contravigilancia detectan seguimientos, reconocen conductas sospechosas en el entorno del cliente y aplican maniobras activas de detección durante sus desplazamientos. Cuando se confirma una vigilancia no autorizada, el equipo activa el protocolo correspondiente antes de que quien vigila pueda completar su reconocimiento.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Traslados seguros</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Cada traslado del ejecutivo se planifica con rutas verificadas, identificación previa de puntos de riesgo y alternativas de evacuación disponibles. Los choferes están certificados en conducción evasiva y mantienen comunicación cifrada con el puesto de mando durante el recorrido. Ante cualquier señal de interceptación o emergencia en ruta, el protocolo de respuesta inmediata ya está activado: no hay tiempo para improvisar cuando un ejecutivo está en movimiento.
+              </p>
+            </li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+            <a href="/servicios/proteccion-ejecutiva" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              Ver servicio
+            </a>
+            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+              Solicitar Cotización
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+            <picture>
+              <source type="image/avif" srcset="/img/eventos/proteccion-ejecutiva-mexico-640.avif 640w, /img/eventos/proteccion-ejecutiva-mexico-1200.avif 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <source type="image/jpeg" srcset="/img/eventos/proteccion-ejecutiva-mexico-640.jpg 640w, /img/eventos/proteccion-ejecutiva-mexico-1200.jpg 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <img src="/img/eventos/proteccion-ejecutiva-mexico-1200.jpg" alt="Protección Ejecutiva — seguridad para eventos SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+            </picture>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/seguridad-eventos-corporativos-640.avif" />
+                <img src="/img/eventos/seguridad-eventos-corporativos-640.jpg" alt="Protección Ejecutiva — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/guardias-seguridad-privada-640.avif" />
+                <img src="/img/eventos/guardias-seguridad-privada-640.jpg" alt="Protección Ejecutiva — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo Ferias y Exposiciones -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t border-white/8">
+
+        <div class="flex flex-col h-full">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-secondary text-xs font-bold uppercase tracking-widest">Servicio destacado</span>
+          </div>
+          <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">
+            Ferias y Exposiciones
+          </h2>
+
+          <p class="text-light/80 text-base leading-relaxed mb-5">
+            Una feria de exposición tiene una complejidad de seguridad que pocas empresas están preparadas para gestionar: decenas de expositores con activos de valor distintos, flujos de visitantes que cambian por hora y un recinto que permanece habilitado varios días seguidos, incluidas las noches. SEPRIEV opera seguridad para ferias y exposiciones en México con un modelo de cobertura por zonas que se adapta al programa de cada jornada, no con un esquema genérico que ignora la dinámica real del recinto.
+          </p>
+
+          <ul class="flex flex-col gap-5 mb-6">
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Seguridad de stands</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Los activos en exhibición —ya sea maquinaria industrial, tecnología de punta, joyería o prototipos— no tienen el mismo nivel de riesgo a las 11 de la mañana con visitantes que a las 2 de la madrugada con el recinto vacío. SEPRIEV cubre ambos momentos con personal asignado por stand o por zona de exposición y con registro de inventario de entrada y salida que permite identificar cualquier faltante antes de que el expositor abra su stand al día siguiente.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Control de accesos</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                En una feria coexisten al menos cinco categorías distintas de personas con distintos niveles de acceso: visitantes generales, compradores acreditados, prensa, proveedores de servicios y personal de montaje. SEPRIEV implementa credencialización diferenciada para cada categoría con verificación en cada punto de ingreso, lo que elimina la posibilidad de que alguien circule por áreas restringidas con una credencial de categoría inferior sin que nadie lo note.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Resguardo de activos</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                El protocolo de protección de activos en ferias incluye rondas periódicas verificadas con registro de hora, identificación de cada pieza de alto valor al inicio de la jornada y comunicación directa con el expositor cuando se detecta cualquier anomalía, por menor que parezca. Ante un intento de sustracción o daño, el equipo de SEPRIEV activa la respuesta sin esperar instrucciones del coordinador del recinto, porque cada segundo cuenta.
+              </p>
+            </li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+            <a href="/servicios/seguridad-ferias-exposiciones" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              Ver servicio
+            </a>
+            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+              Solicitar Cotización
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+            <picture>
+              <source type="image/avif" srcset="/img/eventos/seguridad-empresarial-evento-640.avif 640w, /img/eventos/seguridad-empresarial-evento-1200.avif 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <source type="image/jpeg" srcset="/img/eventos/seguridad-empresarial-evento-640.jpg 640w, /img/eventos/seguridad-empresarial-evento-1200.jpg 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <img src="/img/eventos/seguridad-empresarial-evento-1200.jpg" alt="Ferias y Exposiciones — seguridad para eventos SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+            </picture>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/control-acceso-eventos-640.avif" />
+                <img src="/img/eventos/control-acceso-eventos-640.jpg" alt="Ferias y Exposiciones — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/equipo-seguridad-eventos-640.avif" />
+                <img src="/img/eventos/equipo-seguridad-eventos-640.jpg" alt="Ferias y Exposiciones — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo Eventos Sociales -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t border-white/8">
+
+        <div class="flex flex-col h-full">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-secondary text-xs font-bold uppercase tracking-widest">Servicio destacado</span>
+          </div>
+          <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">
+            Eventos Sociales
+          </h2>
+
+          <p class="text-light/80 text-base leading-relaxed mb-5">
+            Una boda, unos XV años o una fiesta privada no necesitan la misma seguridad que un festival, pero sí necesitan la misma profesionalidad en quien la ejecuta. SEPRIEV ofrece seguridad para eventos sociales en México con personal que sabe moverse en un salón de gala sin que los invitados lo identifiquen como un elemento de seguridad, y que sabe resolver un incidente sin convertirlo en el tema de conversación de la noche. La mayor amenaza en un evento social es que la seguridad arruine el ambiente.
+          </p>
+
+          <ul class="flex flex-col gap-5 mb-6">
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Dress code formal</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                El equipo de SEPRIEV llega a cada evento social con la vestimenta que la celebración requiere: traje y corbata para bodas formales, guayabera en eventos de ambiente más relajado, smoking cuando el protocolo lo exige. Esta integración visual no es un detalle estético: permite que el personal circule entre invitados, controle accesos y monitoree el ambiente sin romper la atmósfera que el organizador construyó con meses de anticipación.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Valet parking</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                El servicio de valet parking de SEPRIEV incluye registro fotográfico de cada vehículo al ingreso, control de llaves con sistema numerado y cobertura del área de estacionamiento durante toda la duración del evento. Todo el personal tiene póliza de responsabilidad civil vigente. Al cierre, la coordinación de salidas se gestiona para evitar aglomeraciones en el acceso y garantizar que cada vehículo sea entregado a su propietario sin incidentes.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Manejo discreto</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Cuando surge una situación entre invitados, la primera prioridad es que los demás no se percaten de que algo ocurre. El equipo de SEPRIEV interviene con comunicación directa y sin escalar el tono, coordina con el organizador del evento en tiempo real y resuelve la incidencia antes de que trascienda al resto de los asistentes. El registro del incidente se entrega al cliente al finalizar el evento, con todos los detalles que el organizador necesita saber.
+              </p>
+            </li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+            <a href="/servicios/seguridad-eventos-sociales" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              Ver servicio
+            </a>
+            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+              Solicitar Cotización
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+            <picture>
+              <source type="image/avif" srcset="/img/eventos/seguridad-vip-gala-640.avif 640w, /img/eventos/seguridad-vip-gala-1200.avif 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <source type="image/jpeg" srcset="/img/eventos/seguridad-vip-gala-640.jpg 640w, /img/eventos/seguridad-vip-gala-1200.jpg 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <img src="/img/eventos/seguridad-vip-gala-1200.jpg" alt="Eventos Sociales — seguridad para eventos SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+            </picture>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/proteccion-vip-invitados-640.avif" />
+                <img src="/img/eventos/proteccion-vip-invitados-640.jpg" alt="Eventos Sociales — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/personal-seguridad-evento-640.avif" />
+                <img src="/img/eventos/personal-seguridad-evento-640.jpg" alt="Eventos Sociales — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo Eventos Deportivos -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t border-white/8">
+
+        <div class="flex flex-col h-full">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-secondary text-xs font-bold uppercase tracking-widest">Servicio destacado</span>
+          </div>
+          <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">
+            Eventos Deportivos
+          </h2>
+
+          <p class="text-light/80 text-base leading-relaxed mb-5">
+            Un partido de fútbol, una pelea de box o una competencia de atletismo generan dinámicas de seguridad que no tienen equivalente en ningún otro tipo de evento: aficiones con rivalidades históricas, atletas que requieren protección personal y recintos con capacidades que hacen del control de acceso un reto logístico por sí solo. SEPRIEV lleva años operando seguridad para eventos deportivos en México con un modelo que integra gestión de barras, protección VIP y alineación con los protocolos de cada federación en un solo operativo sin costuras.
+          </p>
+
+          <ul class="flex flex-col gap-5 mb-6">
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Separación de barras</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                La separación física de aficiones rivales comienza antes de que el primer autobús llegue al estadio. SEPRIEV define con el organizador los accesos diferenciados, las zonas de amortiguamiento entre sectores y los puntos de mayor riesgo de contacto entre grupos, y establece comunicación preventiva con los representantes de las barras para acordar condiciones de convivencia antes del encuentro. El trabajo previo al partido es tan importante como el que ocurre dentro del recinto.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Zona VIP</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Los palcos, las zonas de hospitalidad y los accesos para directivos, patrocinadores y personalidades se gestionan con personal de etiqueta que conoce la diferencia entre un acceso VIP y una zona de libre circulación. Las salidas de emergencia independientes para estas áreas se verifican antes del evento, no cuando ya hay una situación activa. La experiencia premium que ofrece una zona VIP no puede coexistir con los riesgos del graderío general si el operativo no está bien diseñado.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Protocolo federativo</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Cada federación o liga, sea la FMF, la FIBA, la CONADE o cualquier organismo rector del deporte en cuestión, tiene requisitos de seguridad específicos que el organizador está obligado a cumplir. SEPRIEV conoce estos marcos normativos, coordina con los delegados de seguridad de cada organismo antes del evento y documenta el operativo según los estándares exigidos. El incumplimiento de un protocolo federativo puede costar la sede de un evento futuro: no es un riesgo que valga la pena correr.
+              </p>
+            </li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+            <a href="/servicios/seguridad-eventos-deportivos" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              Ver servicio
+            </a>
+            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+              Solicitar Cotización
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+            <picture>
+              <source type="image/avif" srcset="/img/eventos/seguridad-conciertos-multitud-640.avif 640w, /img/eventos/seguridad-conciertos-multitud-1200.avif 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <source type="image/jpeg" srcset="/img/eventos/seguridad-conciertos-multitud-640.jpg 640w, /img/eventos/seguridad-conciertos-multitud-1200.jpg 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <img src="/img/eventos/seguridad-conciertos-multitud-1200.jpg" alt="Eventos Deportivos — seguridad para eventos SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+            </picture>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/seguridad-conciertos-festivales-640.avif" />
+                <img src="/img/eventos/seguridad-conciertos-festivales-640.jpg" alt="Eventos Deportivos — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/guardias-seguridad-privada-640.avif" />
+                <img src="/img/eventos/guardias-seguridad-privada-640.jpg" alt="Eventos Deportivos — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo Eventos Masivos -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t border-secondary/30">
+
+        <div class="flex flex-col h-full">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-secondary text-xs font-bold uppercase tracking-widest">Servicio destacado</span>
+            <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">Destacado</span>
+          </div>
+          <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">
+            Eventos Masivos
+          </h2>
+
+          <p class="text-light/80 text-base leading-relaxed mb-5">
+            Por encima de los 10,000 asistentes, la seguridad privada deja de ser una cuestión de personal suficiente y se convierte en un problema de inteligencia operativa en tiempo real. SEPRIEV diseña y ejecuta operativos de seguridad para eventos masivos en México, incluidos festivales multitudinarios, concentraciones y conciertos estadio, con tecnología de vigilancia aérea, centro de comando propio y coordinación institucional de alto nivel desde antes de que el primer asistente llegue al recinto. A esta escala, lo que no se planea no se controla.
+          </p>
+
+          <ul class="flex flex-col gap-5 mb-6">
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Drones de vigilancia</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                Los drones equipados con cámara de alta resolución y visión nocturna ofrecen algo que ningún elemento en tierra puede dar: visión de conjunto en tiempo real sobre todo el recinto. Los operadores de SEPRIEV transmiten imagen en vivo al centro de comando, permitiendo detectar aglomeraciones peligrosas, identificar puntos de acumulación no previstos y redirigir al personal terrestre antes de que una situación menor se convierta en un incidente de escala. El dron no reemplaza al elemento humano; lo hace más eficiente.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Puesto de mando</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                El centro de comando de SEPRIEV funciona como el sistema nervioso del operativo: concentra el monitoreo de cámaras, la comunicación por radio en múltiples canales y el enlace directo con Protección Civil, Policía y servicios de emergencia médica. Cuando ocurren incidentes simultáneos en distintos puntos del recinto, el puesto de mando activa los protocolos sin necesidad de que los supervisores en campo escalen la decisión: los roles ya están asignados y los umbrales de activación ya están definidos.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Plan de contingencia</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                El plan de contingencia de SEPRIEV para eventos masivos no es un documento de escritorio: es el resultado de un trabajo de campo con el recinto, el organizador y las autoridades locales. Cubre emergencias médicas masivas, cortes de energía, incidentes climáticos y situaciones de seguridad pública, con rutas de evacuación validadas, roles asignados para cada miembro del equipo en cada escenario y un protocolo de comunicación con medios para que la información fluya de forma ordenada y no genere pánico adicional.
+              </p>
+            </li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+            <a href="/servicios/seguridad-masivos" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              Ver servicio
+            </a>
+            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+              Solicitar Cotización
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+            <picture>
+              <source type="image/avif" srcset="/img/eventos/centro-control-seguridad-640.avif 640w, /img/eventos/centro-control-seguridad-1200.avif 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <source type="image/jpeg" srcset="/img/eventos/centro-control-seguridad-640.jpg 640w, /img/eventos/centro-control-seguridad-1200.jpg 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <img src="/img/eventos/centro-control-seguridad-1200.jpg" alt="Eventos Masivos — seguridad para eventos SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+            </picture>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/centro-monitoreo-cctv-eventos-640.avif" />
+                <img src="/img/eventos/centro-monitoreo-cctv-eventos-640.jpg" alt="Eventos Masivos — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/monitoreo-camaras-evento-640.avif" />
+                <img src="/img/eventos/monitoreo-camaras-evento-640.jpg" alt="Eventos Masivos — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo Montaje y Desmontaje -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t border-white/8">
+
+        <div class="flex flex-col h-full">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="text-secondary text-xs font-bold uppercase tracking-widest">Servicio destacado</span>
+          </div>
+          <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">
+            Montaje y Desmontaje
+          </h2>
+
+          <p class="text-light/80 text-base leading-relaxed mb-5">
+            Mientras el público solo ve el evento, SEPRIEV trabaja desde antes del primer camión de producción hasta que el último técnico abandona el recinto. Las fases de montaje y desmontaje en México concentran la mayor parte de los robos de equipo, las filtraciones de personal no autorizado y los accidentes evitables de cualquier producción, precisamente porque son las horas en que la atención del organizador está dividida entre decenas de frentes. Este servicio cubre el ciclo completo del evento, no solo las horas de función.
+          </p>
+
+          <ul class="flex flex-col gap-5 mb-6">
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Custodia de equipo</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                El equipo de sonido, iluminación, escenografía y producción audiovisual tiene un valor que puede superar el presupuesto total de muchos eventos. SEPRIEV registra cada pieza al ingreso al recinto, asigna vigilancia continua durante el montaje, los tiempos muertos entre soundcheck y función, y el desmontaje posterior. Los equipos que permanecen instalados durante varios días tienen cobertura nocturna documentada, con reporte de novedades al coordinador de producción cada mañana antes de que arranque la jornada.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Control de proveedores</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                En un montaje de producción media pueden circular más de 80 personas distintas en el mismo recinto durante el mismo día, cada una con un nivel de acceso distinto y una ventana de tiempo definida. SEPRIEV verifica la identidad y las credenciales de cada proveedor, técnico, transportista y montador contra una lista blanca actualizada en tiempo real con el coordinador de producción del cliente. Cualquier persona no registrada activa un protocolo de verificación antes de permitir su ingreso: sin excepciones, sin importar la presión del momento.
+              </p>
+            </li>
+            <li class="flex flex-col gap-1.5">
+              <div class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                <span class="text-light text-base font-semibold">Accesos restringidos</span>
+              </div>
+              <p class="text-light/70 text-sm leading-relaxed pl-4">
+                La zonificación del recinto durante el montaje divide el espacio en áreas con niveles de acceso distintos: escenario, zona técnica, camerinos, área de carga y descarga y perímetro general. Cada zona tiene personal de SEPRIEV asignado con criterios de acceso específicos para ese punto, lo que impide que un proveedor de catering ingrese al área técnica o que un montador de escenografía circule por los camerinos del artista. La restricción es por zona y por rol, no por turno: quien no tiene función en un área no tiene acceso a ella, sin negociación posible.
+              </p>
+            </li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+            <a href="/servicios/seguridad-montaje-desmontaje" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              Ver servicio
+            </a>
+            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+              Solicitar Cotización
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-4">
+          <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+            <picture>
+              <source type="image/avif" srcset="/img/eventos/equipo-seguridad-eventos-640.avif 640w, /img/eventos/equipo-seguridad-eventos-1200.avif 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <source type="image/jpeg" srcset="/img/eventos/equipo-seguridad-eventos-640.jpg 640w, /img/eventos/equipo-seguridad-eventos-1200.jpg 1200w" sizes="(max-width: 1024px) 100vw, 600px" />
+              <img src="/img/eventos/equipo-seguridad-eventos-1200.jpg" alt="Montaje y Desmontaje — seguridad para eventos SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+            </picture>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/seguridad-empresarial-evento-640.avif" />
+                <img src="/img/eventos/seguridad-empresarial-evento-640.jpg" alt="Montaje y Desmontaje — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+            <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset="/img/eventos/guardias-seguridad-privada-640.avif" />
+                <img src="/img/eventos/guardias-seguridad-privada-640.jpg" alt="Montaje y Desmontaje — SEPRIEV" class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <TrustSection />
+
   <ProcessSection />
 
   <!-- Cobertura -->
-  <section class="py-20 bg-dark">
+  <section class="py-20 bg-dark border-t border-white/8">
     <div class="w-full px-[5%] xl:px-[7%]">
-      <SectionHeader
-        eyebrow="Cobertura nacional"
-        titulo="Operamos en toda la República Mexicana"
-        subtitulo="Personal local certificado en las principales ciudades del país."
-      />
 
+      <!-- Header dos columnas -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cobertura nacional</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">Operamos en toda la República Mexicana</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            SEPRIEV cuenta con personal certificado y equipos propios en las principales ciudades del país. Operamos con elementos locales que conocen cada recinto, cada autoridad y cada protocolo regional — sin subcontratar, sin improvisar.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Si tu evento es en Ciudad de México, Guadalajara, Monterrey, Puebla, Cancún o cualquier otro destino, SEPRIEV puede desplegar el operativo completo con anticipación suficiente para un diagnóstico de seguridad en sitio.
+          </p>
+        </div>
+      </div>
+
+      <!-- Cards de ciudades -->
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {ZONAS_NAV.map((z: {slug: string; nombre: string}) => (
-          <a href={`/zonas/${z.slug}`} class="flex flex-col items-center gap-2 p-5 bg-primary border border-primary-light rounded-xl hover:border-secondary/40 transition-colors text-center group">
-            <span class="text-2xl">📍</span>
-            <span class="text-light font-bold text-sm group-hover:text-secondary transition-colors">{z.nombre}</span>
+          <a
+            href={`/zonas/${z.slug}`}
+            class="group flex flex-col items-center gap-3 px-4 py-6 bg-primary border border-white/8 hover:border-secondary/40 hover:bg-primary/80 transition-all text-center"
+          >
+            <div class="w-10 h-10 flex items-center justify-center border border-white/10 group-hover:border-secondary/40 transition-colors bg-dark">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-secondary/60 group-hover:text-secondary transition-colors" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="flex flex-col gap-0.5">
+              <span class="text-light font-bold text-sm group-hover:text-secondary transition-colors leading-tight">{z.nombre}</span>
+              <span class="text-white/30 text-[10px] font-semibold uppercase tracking-widest">Ver zona</span>
+            </div>
           </a>
         ))}
       </div>
+
     </div>
   </section>
 

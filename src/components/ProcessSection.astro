@@ -1,64 +1,95 @@
 ---
 export interface Props {
   titulo?: string;
-  subtitulo?: string;
 }
 const {
-  titulo = "¿Cómo trabajamos?",
-  subtitulo = "Proceso simple, profesional y transparente",
+  titulo = "Así protegemos tu evento",
 } = Astro.props;
 
 const pasos = [
   {
     num: "01",
-    icon: "📋",
     titulo: "Cotización sin compromiso",
-    desc: "Cuéntanos sobre tu evento: fecha, tipo, aforo estimado y lugar. Te enviamos propuesta detallada en menos de 24 horas.",
+    desc: "Cuéntanos sobre tu evento: fecha, tipo de celebración, aforo estimado y recinto. SEPRIEV te envía una propuesta detallada en menos de 24 horas, sin costo y sin obligación de contratar.",
   },
   {
     num: "02",
-    icon: "🔍",
     titulo: "Diagnóstico de seguridad",
-    desc: "Nuestro equipo visita el venue o analiza los planos para diseñar el plan de seguridad específico para tu evento.",
+    desc: "El equipo de SEPRIEV visita el venue o analiza los planos del recinto para identificar puntos críticos, flujos de acceso y riesgos específicos del evento antes de definir el operativo.",
   },
   {
     num: "03",
-    icon: "🗂️",
     titulo: "Plan operativo",
-    desc: "Elaboramos el plan táctico: número de elementos, posiciones, protocolos de emergencia y coordinación con autoridades.",
+    desc: "Elaboramos el plan táctico completo: número de elementos, posiciones, turnos, protocolos de emergencia, coordinación con autoridades y credencialización. Todo documentado y acordado con el cliente.",
   },
   {
     num: "04",
-    icon: "🛡️",
     titulo: "Operación del evento",
-    desc: "Desplegamos al equipo con anticipación. Supervisión en tiempo real, comunicación por radio y reporte post-evento.",
+    desc: "SEPRIEV despliega al equipo con anticipación al inicio del evento. Supervisión en tiempo real desde puesto de mando, comunicación por radio y reporte de novedades al cierre.",
   },
 ];
 ---
 
 <section class="py-20 bg-dark">
   <div class="w-full px-[5%] xl:px-[7%]">
-    <div class="text-center mb-14">
-      <span class="text-secondary text-xs font-bold uppercase tracking-widest">Metodología profesional</span>
-      <h2 class="text-3xl sm:text-4xl font-black text-light mt-2">{titulo}</h2>
-      <p class="text-accent mt-3 max-w-xl mx-auto">{subtitulo}</p>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+      <div class="flex flex-col">
+        <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Metodología SEPRIEV</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">{titulo}</h2>
+      </div>
+      <div class="flex flex-col gap-3">
+        <p class="text-accent text-sm leading-relaxed">
+          En SEPRIEV no llegamos el día del evento a improvisar. Cada operativo sigue un proceso de cuatro fases que empieza semanas antes con el análisis del recinto y termina con un reporte documentado una vez que el último asistente ha salido. Es la diferencia entre una empresa de seguridad que reacciona y una que previene.
+        </p>
+        <p class="text-accent text-sm leading-relaxed">
+          Este método nos ha permitido operar más de 500 eventos en México sin incidentes graves, independientemente de la escala, el tipo de público o la complejidad logística del recinto. Un proceso claro reduce la incertidumbre para el organizador y para el equipo en campo.
+        </p>
+      </div>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {pasos.map((paso, i) => (
-        <div class="relative flex flex-col p-6 bg-primary border border-primary-light rounded-xl hover:border-secondary/40 transition-all duration-300 group hover:-translate-y-1">
-          {i < pasos.length - 1 && (
-            <div class="hidden lg:block absolute top-8 -right-3 z-10 text-secondary/40">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
+        <article class="relative flex flex-col overflow-hidden border border-white/8">
+
+          {/* Imagen / Placeholder */}
+          <div class="relative h-44 overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-primary via-dark to-[#0d1220] flex items-center justify-center relative">
+              <div
+                class="absolute inset-0 opacity-[0.04]"
+                style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 48px 48px;"
+                aria-hidden="true"
+              ></div>
+              <div class="absolute inset-0 overflow-hidden opacity-10" aria-hidden="true">
+                <div class="absolute -top-8 -left-8 w-32 h-32 border border-secondary rotate-12"></div>
+                <div class="absolute bottom-4 right-4 w-20 h-20 border border-secondary/60 rotate-12"></div>
+              </div>
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-secondary/25" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               </svg>
+              <span class="absolute bottom-3 left-4 text-[10px] font-bold uppercase tracking-[0.2em] text-white/15">
+                Imagen próximamente
+              </span>
             </div>
-          )}
-          <div class="text-xs font-black text-secondary/60 mb-3 tracking-widest group-hover:text-secondary transition-colors">{paso.num}</div>
-          <div class="text-3xl mb-3">{paso.icon}</div>
-          <h3 class="text-light font-bold text-base mb-2">{paso.titulo}</h3>
-          <p class="text-accent text-sm leading-relaxed">{paso.desc}</p>
-        </div>
+            {/* Número de paso */}
+            <span class="absolute top-3 right-4 text-xs font-black text-secondary/70 tracking-widest">{paso.num}</span>
+            {/* Flecha conectora */}
+            {i < pasos.length - 1 && (
+              <div class="hidden lg:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-6 h-6 items-center justify-center bg-dark border border-white/10 text-secondary/50">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+            )}
+          </div>
+
+          {/* Contenido */}
+          <div class="flex flex-col flex-1 px-5 pt-4 pb-5 bg-dark">
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-white font-bold text-base leading-snug mb-2">{paso.titulo}</h3>
+            <p class="text-gray-400 text-sm leading-relaxed">{paso.desc}</p>
+          </div>
+
+        </article>
       ))}
     </div>
   </div>

@@ -1,19 +1,59 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
 import { WHATSAPP_NUMBER, WHATSAPP_DISPLAY, PHONE_DISPLAY, EMAIL_CONTACT, ADDRESS_DISPLAY, ZONAS_NAV } from '@/lib/config';
+
+const navItems = [
+  {
+    label: "WhatsApp",
+    desc: "Respuesta inmediata para tu consulta",
+    href: `https://wa.me/${WHATSAPP_NUMBER}?text=Hola%2C+necesito+información+sobre+seguridad+para+mi+evento`,
+  },
+  {
+    label: "Llamar Ahora",
+    desc: "Lun - Sáb de 8:00 a 20:00 hrs",
+    href: `tel:${PHONE_DISPLAY.replace(/\s/g, '')}`,
+  },
+  {
+    label: "Enviar Email",
+    desc: "Respuesta en menos de 24 horas",
+    href: `mailto:${EMAIL_CONTACT}`,
+  },
+  {
+    label: "Solicitar Cotización",
+    desc: "Formulario con propuesta detallada",
+    href: "/cotizar",
+  },
+];
 ---
 
 <BaseLayout
   title="Contacto — SeguridadEventos México"
   description="Contacta a SeguridadEventos: teléfono, WhatsApp, email. Oficinas en CDMX con cobertura nacional. Respuesta en menos de 24 horas."
 >
+  <Breadcrumb items={[{ label: 'Contacto' }]} />
+
+  <PageHero
+    eyebrow="SEPRIEV — Estamos para ayudarte"
+    titulo="Contacta a Nuestro Equipo de Seguridad"
+    subtitulo="Respuesta en menos de 24 horas. Cotización gratuita y sin compromiso para cualquier tipo de evento."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Contamos con <strong class="text-light font-semibold">múltiples canales de contacto</strong> para atenderte de la forma que más te convenga. Nuestro equipo de asesores está disponible de <strong class="text-light font-semibold">lunes a sábado de 8:00 a 20:00 horas</strong> para responder tus preguntas, orientarte sobre el servicio adecuado para tu evento y preparar una cotización a la medida.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Para eventos urgentes o con fechas próximas, la vía más rápida es <strong class="text-light font-semibold">WhatsApp</strong> — respondemos en minutos. Para solicitudes formales con detalles del evento, el formulario de cotización nos permite prepararte una <strong class="text-light font-semibold">propuesta completa en menos de 24 horas</strong> con plan operativo y desglose de costos sin compromiso.
+      </p>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Canales de contacto" />
+
   <section class="py-16 lg:py-20 bg-dark">
     <div class="w-full px-[5%] xl:px-[7%]">
-      <div class="text-center mb-14">
-        <span class="text-secondary text-xs font-bold uppercase tracking-widest">Estamos para ayudarte</span>
-        <h1 class="text-3xl sm:text-4xl font-black text-light mt-3">Contacto</h1>
-        <p class="text-accent mt-3 max-w-xl mx-auto">Respuesta en menos de 24 horas. Cotización gratuita y sin compromiso.</p>
-      </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
         <!-- WhatsApp -->
@@ -29,7 +69,7 @@ import { WHATSAPP_NUMBER, WHATSAPP_DISPLAY, PHONE_DISPLAY, EMAIL_CONTACT, ADDRES
         </a>
 
         <!-- Teléfono -->
-        <a href={`tel:${PHONE_DISPLAY.replace(/\\s/g,'')}`} class="flex flex-col items-center text-center p-8 bg-primary border border-primary-light rounded-xl hover:border-secondary/40 transition-colors group">
+        <a href={`tel:${PHONE_DISPLAY.replace(/\s/g,'')}`} class="flex flex-col items-center text-center p-8 bg-primary border border-primary-light rounded-xl hover:border-secondary/40 transition-colors group">
           <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-4">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" aria-hidden="true">
               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>

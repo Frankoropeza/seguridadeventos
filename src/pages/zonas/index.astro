@@ -1,7 +1,9 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import CTABanner from '@/components/CTABanner.astro';
-import SectionHeader from '@/components/SectionHeader.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
 import { ZONAS_NAV, WHATSAPP_NUMBER } from '@/lib/config';
 
 const zonaData = [
@@ -11,19 +13,55 @@ const zonaData = [
   { slug: "puebla", nombre: "Puebla", desc: "Centro de Convenciones, Acrópolis y haciendas de Cholula. Eventos corporativos y sociales.", eventos: "40+", icon: "⛪" },
   { slug: "cancun", nombre: "Cancún", desc: "Zona Hotelera, Riviera Maya, resorts y centros de convenciones. Bodas destino y congresos.", eventos: "50+", icon: "🏖️" },
 ];
+
+const navItems = [
+  {
+    label: "Ciudad de México",
+    desc: "Todas las alcaldías y venues principales de la capital",
+    href: "/zonas/cdmx",
+  },
+  {
+    label: "Guadalajara",
+    desc: "Expo Guadalajara, Auditorio Telmex y zona metropolitana",
+    href: "/zonas/guadalajara",
+  },
+  {
+    label: "Monterrey",
+    desc: "CINTERMEX, Arena Monterrey y Estadio BBVA",
+    href: "/zonas/monterrey",
+  },
+  {
+    label: "Cancún y Más",
+    desc: "Riviera Maya, Puebla y más ciudades de la República",
+    href: "/zonas/cancun",
+  },
+];
 ---
 
 <BaseLayout
   title="Cobertura Nacional — Seguridad para Eventos en México"
   description="SeguridadEventos opera en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Más de 500 eventos protegidos en toda la República Mexicana. Licencia DGSSP federal."
 >
-  <div class="w-full px-[5%] xl:px-[7%] py-16 lg:py-20">
-    <SectionHeader
-      eyebrow="Cobertura nacional"
-      titulo="Operamos en las principales ciudades de México"
-      subtitulo="Más de 500 eventos protegidos. Personal local certificado en cada ciudad. Licencia DGSSP federal."
-    />
+  <Breadcrumb items={[{ label: 'Zonas' }]} />
 
+  <PageHero
+    eyebrow="SEPRIEV — Cobertura nacional"
+    titulo="Operamos en Toda la República Mexicana"
+    subtitulo="Más de 500 eventos protegidos. Personal local certificado en 5 ciudades principales. Licencia DGSSP federal para operar en todo el país."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Contamos con <strong class="text-light font-semibold">oficinas y personal permanente</strong> en Ciudad de México, Guadalajara, Monterrey, Puebla y Cancún. En cada ciudad operamos con equipos locales que conocen los venues, las autoridades y los protocolos de Protección Civil de su región, lo que nos permite coordinar con mayor eficiencia y rapidez.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Nuestra <strong class="text-light font-semibold">Licencia DGSSP federal</strong> nos habilita para operar en cualquier punto del territorio nacional. Si tu evento es en una ciudad no listada, coordinamos personal certificado desde la sede más cercana. Cotización gratuita con <strong class="text-light font-semibold">respuesta en menos de 24 horas</strong>, sin importar la ubicación.
+      </p>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Navegación de zonas de cobertura" />
+
+  <div class="w-full px-[5%] xl:px-[7%] py-16 lg:py-20">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {zonaData.map((z: any) => (
         <article class="relative flex flex-col bg-primary border border-primary-light rounded-xl p-6 hover:border-secondary/40 transition-all group">
