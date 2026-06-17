@@ -1,7 +1,7 @@
-// src/lib/config.ts — Configuración global SeguridadEventos
+// src/lib/config.ts — Configuración global SEPRIEV
 
 export const SITE = "https://seguridadeventos.com.mx";
-export const SITE_NAME = "SeguridadEventos";
+export const SITE_NAME = "SEPRIEV";
 export const SITE_DESC = "Empresa líder en seguridad privada para eventos en México. Conciertos, corporativos, ferias, VIP y eventos masivos. +500 eventos protegidos. Licencia DGSSP.";
 
 export const PHONE_PRIMARY   = "+525512345678";
