@@ -3,11 +3,12 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumb from '@/components/Breadcrumb.astro';
 import PageHero from '@/components/PageHero.astro';
 import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import ProcessSection from '@/components/ProcessSection.astro';
 import CTABanner from '@/components/CTABanner.astro';
 import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
-import { buildFAQSchema } from '@/lib/seo';
+import { buildServicePageSchema } from '@/lib/seo';
 
 const slug = 'control-acceso-eventos';
 
@@ -39,28 +40,25 @@ const faq = [
 ];
 
 // Schema Service enriquecido + FAQPage
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": titulo,
-  "serviceType": "Control de acceso para eventos",
-  "description": descripcion,
-  "provider": { "@id": `${SITE}/#organization` },
-  "areaServed": ["Ciudad de México", "Guadalajara", "Monterrey", "Puebla", "Cancún", "México"],
-  "url": canonical,
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Control de acceso para eventos",
-    "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Validación de boletos QR/NFC" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Detección de metales y revisión de objetos" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Credencialización por niveles" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gestión y reporte de aforo en tiempo real" } },
-    ],
-  },
-};
 
-const schemas = [serviceSchema, buildFAQSchema(faq)];
+const schemas = buildServicePageSchema({
+  slug,
+  name: titulo,
+  description: descripcion,
+  metaTitle,
+  metaDescription,
+  serviceType: "Control de acceso para eventos",
+  ogImage: ogImg,
+  breadcrumbName: "Control de Acceso",
+  offers: [
+    "Validación de boletos QR/NFC",
+    "Detección de metales y revisión de objetos",
+    "Credencialización por niveles",
+    "Gestión y reporte de aforo en tiempo real",
+  ],
+  faq,
+  datePublished: "2025-01-25",
+});
 
 const navItems = [
   { label: "Conciertos y Festivales", desc: "Control de multitudes y accesos por sector", href: "/servicios/seguridad-conciertos-festivales" },
@@ -84,6 +82,11 @@ const modules = [
     hero: `${IMG}/control-acceso-eventos`,
     small1: `${IMG}/control-acceso-credenciales`,
     small2: `${IMG}/personal-seguridad-evento`,
+    alt: [
+      "Control de acceso y validación de boletos en un evento",
+      "Credencialización por niveles de acceso en un evento",
+      "Personal de control de acceso en el ingreso de un evento",
+    ],
     featured: false,
   },
   {
@@ -99,6 +102,11 @@ const modules = [
     hero: `${IMG}/centro-monitoreo-cctv-eventos`,
     small1: `${IMG}/monitoreo-camaras-evento`,
     small2: `${IMG}/guardias-seguridad-privada`,
+    alt: [
+      "Centro de monitoreo CCTV para control de aforo en tiempo real",
+      "Operador de cámaras vigilando los accesos de un evento",
+      "Guardias con detectores de metales en un punto de acceso",
+    ],
     featured: true,
   },
 ];
@@ -148,6 +156,7 @@ const relacionados = [
       <p class="text-accent text-base leading-relaxed">
         Integramos tu boletaje (<strong class="text-light font-semibold">Ticketmaster, Boletia, Eventbrite</strong> o sistemas propios), procesamos hasta <strong class="text-light font-semibold">1,200 ingresos por hora</strong> por punto con equipo propio, y operamos con <strong class="text-light font-semibold">licencia DGSSP y certificación STPS</strong> en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Cotización en menos de 24 horas.
       </p>
+      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/seguridad-conciertos-festivales" class="text-secondary hover:underline font-semibold">conciertos y festivales</a> y <a href="/servicios/seguridad-masivos" class="text-secondary hover:underline font-semibold">eventos masivos</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
         <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
@@ -161,15 +170,17 @@ const relacionados = [
 
   <PageNav items={navItems} ariaLabel="Servicios relacionados" />
 
+  <StatsSection />
+
   <!-- Módulos detallados del servicio -->
-  <section class="py-20 bg-dark" id="servicio">
+  <section class="py-20 bg-dark" id="servicio" aria-labelledby="servicio-h">
     <div class="w-full px-[5%] xl:px-[7%]">
 
       <!-- Encabezado de dos columnas -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
         <div class="flex flex-col">
           <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo operamos el acceso</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3" id="servicio-h">
             La primera línea de seguridad de tu evento
           </h2>
           <p class="text-accent text-base leading-relaxed">
@@ -231,20 +242,20 @@ const relacionados = [
               <picture>
                 <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
                 <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
-                <img src={`${m.hero}-1200.jpg`} alt={`${m.title} — control de acceso para eventos SEPRIEV`} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
               </picture>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
                 <picture>
                   <source type="image/avif" srcset={`${m.small1}-640.avif`} />
-                  <img src={`${m.small1}-640.jpg`} alt={`${m.title} — SEPRIEV`} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
                 </picture>
               </div>
               <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
                 <picture>
                   <source type="image/avif" srcset={`${m.small2}-640.avif`} />
-                  <img src={`${m.small2}-640.jpg`} alt={`${m.title} — SEPRIEV`} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
                 </picture>
               </div>
             </div>
@@ -255,12 +266,12 @@ const relacionados = [
   </section>
 
   <!-- Componentes del control de acceso -->
-  <section class="py-20 bg-dark border-t border-white/8">
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
     <div class="w-full px-[5%] xl:px-[7%]">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
         <div class="flex flex-col">
           <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué incluye el servicio</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">Componentes del control de acceso</h2>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="tipos-h">Componentes del control de acceso</h2>
         </div>
         <div class="flex flex-col gap-3">
           <p class="text-accent text-sm leading-relaxed">
@@ -284,12 +295,12 @@ const relacionados = [
   </section>
 
   <!-- Por qué SEPRIEV -->
-  <section class="py-20 bg-primary/30 border-t border-primary">
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
     <div class="w-full px-[5%] xl:px-[7%]">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
         <div class="flex flex-col">
           <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué nuestro control de acceso es diferente?</h2>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="porque-h">¿Por qué nuestro control de acceso es diferente?</h2>
         </div>
         <div class="flex flex-col gap-3">
           <p class="text-accent text-sm leading-relaxed">
@@ -317,12 +328,12 @@ const relacionados = [
   <ProcessSection titulo="Así operamos el control de acceso" />
 
   <!-- Otros servicios -->
-  <section class="py-20 bg-dark border-t border-white/8">
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
     <div class="w-full px-[5%] xl:px-[7%]">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
         <div class="flex flex-col">
           <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Servicios complementarios</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">Otros servicios para tu evento</h2>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="otros-h">Otros servicios para tu evento</h2>
         </div>
         <div class="flex flex-col gap-3">
           <p class="text-accent text-sm leading-relaxed">

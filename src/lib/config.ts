@@ -9,6 +9,7 @@ export const PHONE_DISPLAY   = "55 1234 5678";
 export const WHATSAPP_NUMBER = "5215512345678";
 export const WHATSAPP_DISPLAY = "55 1234 5678";
 export const EMAIL_CONTACT   = "contacto@seguridadeventos.com.mx";
+export const EMAIL_RH         = "reclutamiento@seguridadeventos.com.mx";
 export const ADDRESS_DISPLAY = "Ciudad de México, CDMX";
 
 export const WHATSAPP_URL = (msg = "Hola%2C+necesito+seguridad+para+mi+evento") =>

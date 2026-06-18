@@ -1,0 +1,375 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema } from '@/lib/seo';
+
+const slug = 'backstage-seguro';
+const parent = { slug: 'seguridad-conciertos-festivales', name: 'Conciertos y Festivales' };
+
+const titulo = 'Backstage Seguro para Conciertos y Festivales';
+const descripcion = 'Servicio especializado de seguridad de backstage para conciertos y festivales en México: credencialización por niveles, control de accesos a camerinos, plataformas técnicas y zonas de producción, verificación continua de proveedores y protección de artistas y staff. Parte del operativo de seguridad para conciertos y festivales de SEPRIEV.';
+
+const metaTitle = 'Backstage Seguro en Conciertos y Festivales | SEPRIEV';
+const metaDescription = 'Backstage seguro para conciertos y festivales en México: credencialización por niveles, control de accesos a camerinos y zonas técnicas, y protección de artistas. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${parent.slug}/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/seguridad-conciertos-festivales-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito seguridad de backstage para mi concierto o festival')}`;
+
+// FAQ específica de backstage seguro
+const faq = [
+  { q: "¿Qué incluye el servicio de backstage seguro?", a: "Incluye el diseño del esquema de credencialización por niveles, el control de accesos a camerinos, plataformas técnicas, foso y área de producción, la verificación continua de proveedores y la protección de los movimientos de los artistas y su staff. Es la zona de mayor valor del evento y se gestiona como un recinto dentro del recinto." },
+  { q: "¿Cómo funciona la credencialización por niveles?", a: "Definimos con el organizador y la producción las categorías de acceso —artista, staff, producción, prensa, proveedor— y un sistema de pulseras o gafetes por zona. Cada persona entra únicamente a las áreas que su nivel autoriza, y la credencial se verifica en cada acceso, no solo al ingresar al recinto." },
+  { q: "¿Protegen a los artistas y a su staff?", a: "Sí. Asignamos personal a los movimientos del artista —ingreso, salida y traslado al escenario— con escolta de proximidad cuando se requiere, coordinando con el tour security o el management del talento para alinear el nivel de exposición y las rutas reservadas." },
+  { q: "¿Controlan el acceso de prensa y los meet & greet?", a: "Sí. Gestionamos la prensa acreditada y los meet & greet con listas dinámicas y credenciales temporales, evitando la intrusión a zonas no autorizadas y manteniendo el flujo del programa sin entorpecer la operación del show." },
+  { q: "¿Cómo evitan intrusos o colados en el backstage?", a: "Con filtros por zona, verificación en cada punto de acceso, perímetro técnico vigilado durante soundcheck y show, y un protocolo de acompañamiento para proveedores no regulares. La regla es simple: quien no tiene función en un área, no entra a ella." },
+  { q: "¿Se coordinan con el tour manager y la producción?", a: "Sí. Trabajamos como una extensión del equipo de producción: enlace directo con el stage manager y el tour manager, credenciales acordadas y un punto de contacto único, para que la seguridad proteja sin frenar los tiempos del montaje ni del show." },
+  { q: "¿Qué zonas del backstage cubren?", a: "Camerinos, plataformas técnicas (audio, iluminación y video), foso o pit técnico, área de producción (oficinas, catering y logística), accesos de talento y zona de prensa. Cada una con criterios de acceso propios." },
+  { q: "¿El backstage seguro se integra con el resto del operativo?", a: "Sí. Es una subcategoría del operativo de seguridad para conciertos y festivales y se integra con el control de multitudes en el frente de escenario y con la custodia de montaje y desmontaje en las zonas técnicas, bajo un solo mando." },
+];
+
+const schemas = buildServicePageSchema({
+  slug,
+  parent,
+  name: titulo,
+  description: descripcion,
+  metaTitle,
+  metaDescription,
+  serviceType: "Seguridad de backstage para conciertos y festivales",
+  ogImage: ogImg,
+  breadcrumbName: "Backstage seguro",
+  offers: [
+    "Credencialización por niveles",
+    "Control de accesos a zonas técnicas y camerinos",
+    "Protección de artistas y staff",
+    "Verificación continua de proveedores",
+  ],
+  faq,
+  datePublished: "2025-03-12",
+});
+
+const navItems = [
+  { label: "Conciertos y Festivales", desc: "Volver al servicio principal", href: "/servicios/seguridad-conciertos-festivales" },
+  { label: "Control de Multitudes", desc: "Subcategoría: frente de escenario y flujos", href: "/servicios/seguridad-conciertos-festivales/control-de-multitudes" },
+  { label: "Seguridad VIP", desc: "Protección de artistas y figuras de alto perfil", href: "/servicios/seguridad-vip" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados
+const modules = [
+  {
+    eyebrow: "Subcategoría especializada",
+    badge: "Acceso por niveles",
+    title: "Credencialización por niveles y zonas restringidas",
+    intro: "El backstage es la zona de mayor valor y mayor riesgo de un concierto: ahí conviven el talento, el equipo de producción y los activos más caros de la producción. SEPRIEV lo trata como un recinto dentro del recinto, con su propio control de acceso por niveles, de modo que cada persona entre únicamente a donde su función lo justifica.",
+    features: [
+      { title: "Credencialización por niveles", text: "Diseñamos un esquema de pulseras o gafetes por categoría —artista, staff, producción, prensa y proveedor— acordado con el organizador antes del evento. Cada nivel define a qué zonas puede entrar su portador, y la credencial se verifica en cada punto de acceso, no solo al ingresar al recinto." },
+      { title: "Zonas restringidas y perímetro técnico", text: "Asignamos personal a los filtros de camerinos, plataformas técnicas, foso y área de producción, con criterios de acceso específicos para cada punto. El perímetro técnico permanece vigilado durante el soundcheck, los tiempos muertos y el show, no solo en el momento de la función." },
+      { title: "Verificación continua de proveedores", text: "Los proveedores externos se verifican en cada acceso y no solo al inicio de la jornada, porque las fases de montaje y desmontaje concentran el mayor riesgo de presencia no autorizada en áreas sensibles. A los proveedores no regulares se les asigna acompañamiento dentro de la zona." },
+    ],
+    hero: `${IMG}/seguridad-conciertos-festivales`,
+    small1: `${IMG}/personal-seguridad-evento`,
+    small2: `${IMG}/guardias-seguridad-privada`,
+    alt: [
+      "Control de acceso al backstage de un concierto en México",
+      "Personal de seguridad verificando credenciales en zona técnica",
+      "Guardia en el perímetro de camerinos durante un festival",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Talento y producción",
+    badge: undefined,
+    title: "Protección del talento y enlace con producción",
+    intro: "Detrás del escenario, la seguridad debe proteger sin frenar. SEPRIEV opera el backstage como una extensión del equipo de producción: protege los movimientos del artista, gestiona la prensa y los acompañantes y mantiene el control de accesos sin entorpecer los tiempos del montaje ni del show. La discreción y la coordinación pesan tanto como el control.",
+    features: [
+      { title: "Protección y movimientos del artista", text: "Cubrimos el ingreso, la salida y el traslado del artista al escenario con escolta de proximidad cuando se requiere, sobre rutas reservadas y coordinadas con el tour security o el management, alineando el nivel de exposición con la estrategia del talento." },
+      { title: "Control de prensa y acompañantes", text: "Gestionamos la prensa acreditada, las sesiones de meet & greet y los acompañantes con listas dinámicas y credenciales temporales, evitando que el backstage se llene de personas sin función y manteniendo el acceso restringido a las zonas sensibles." },
+      { title: "Enlace con la producción", text: "Trabajamos con un punto de contacto único hacia el stage manager y el tour manager, con credenciales acordadas y comunicación por radio, de modo que la seguridad sea parte del operativo de producción y no un obstáculo para los tiempos del evento." },
+    ],
+    hero: `${IMG}/seguridad-vip-eventos`,
+    small1: `${IMG}/proteccion-vip-invitados`,
+    small2: `${IMG}/centro-control-seguridad`,
+    alt: [
+      "Escolta de proximidad protegiendo a un artista en el backstage",
+      "Gestión de prensa acreditada en una zona de meet and greet",
+      "Coordinación de seguridad de backstage desde el puesto de mando",
+    ],
+    featured: true,
+  },
+];
+
+// Zonas del backstage que protegemos
+const tipos = [
+  { titulo: "Camerinos", nota: "Acceso solo de artista y staff autorizado" },
+  { titulo: "Plataformas técnicas", nota: "Audio, iluminación y video" },
+  { titulo: "Foso o pit técnico", nota: "Entre el escenario y el público" },
+  { titulo: "Área de producción", nota: "Oficinas, catering y logística" },
+  { titulo: "Accesos de talento", nota: "Ingreso, salida y traslado al escenario" },
+  { titulo: "Zona de prensa", nota: "Acreditados y meet & greet" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Credencialización por niveles", desc: "Pulseras o gafetes por categoría: cada quien entra solo a la zona que su función justifica." },
+  { titulo: "Perímetro técnico vigilado", desc: "Camerinos, técnica y producción protegidos durante soundcheck, tiempos muertos y show." },
+  { titulo: "Verificación continua", desc: "Proveedores verificados en cada acceso, con acompañamiento de los no regulares." },
+  { titulo: "Coordinación con el talento", desc: "Enlace con tour security y management para proteger sin entorpecer la estrategia del artista." },
+  { titulo: "Anti-intrusión", desc: "Gestión de prensa, acompañantes y meet & greet sin colados en zonas sensibles." },
+  { titulo: "Integrado al operativo", desc: "Se enlaza con el control de multitudes y la custodia de montaje bajo un solo mando." },
+];
+
+// Relacionados y subcategorías hermanas (todas existentes)
+const relacionados = [
+  { title: "Conciertos y Festivales", description: "El servicio principal del que forma parte esta subcategoría: operativo integral de seguridad para eventos musicales.", features: ["Control de multitudes", "Coordinación institucional", "Plan de seguridad"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Servicio principal", featured: true },
+  { title: "Control de Multitudes", description: "Subcategoría hermana: diseño de flujos, densidad por sector y prevención de aplastamientos en el frente de escenario.", features: ["Diseño de flujos", "Densidad por sector", "Show-stop"], href: "/servicios/seguridad-conciertos-festivales/control-de-multitudes", image: `${IMG}/seguridad-conciertos-multitud`, badge: "Subcategoría" },
+  { title: "Seguridad VIP", description: "Protección personal de artistas, celebridades y figuras de alto perfil con dispositivo de bajo perfil.", features: ["Close protection", "Avanzada de seguridad", "Bajo perfil"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos` },
+  { title: "Montaje y Desmontaje", description: "Custodia 24/7, acreditación de proveedores e inventario en las zonas técnicas del backstage.", features: ["Custodia 24/7", "Control de proveedores", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje", image: `${IMG}/equipo-seguridad-eventos` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Conciertos y Festivales', href: '/servicios/seguridad-conciertos-festivales' },
+    { label: 'Backstage seguro' },
+  ]} />
+
+  <PageHero
+    eyebrow="Conciertos y Festivales — Backstage Seguro"
+    titulo="Backstage Seguro"
+    subtitulo="El backstage es la zona de mayor valor y mayor riesgo de un concierto. Lo gestionamos como un recinto dentro del recinto: acceso por niveles, perímetro técnico vigilado y protección del talento."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Subcategoría especializada del operativo de <a href="/servicios/seguridad-conciertos-festivales" class="text-secondary hover:underline font-semibold">seguridad para conciertos y festivales</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. El backstage seguro controla quién entra, cuándo y a qué zona: camerinos, plataformas técnicas, foso, producción y accesos de talento, cada uno con su propio nivel de acceso.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Credencialización por niveles, protección de artistas y enlace con el tour security, con personal certificado y licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>. Se integra con el <a href="/servicios/seguridad-conciertos-festivales/control-de-multitudes" class="text-secondary hover:underline font-semibold">control de multitudes</a> y la <a href="/servicios/seguridad-montaje-desmontaje" class="text-secondary hover:underline font-semibold">custodia de montaje</a>.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark border-t border-white/8" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo aseguramos el backstage</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Que solo entre quien debe, cuando debe y a donde debe
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            La seguridad del backstage no se trata de poner un guardia en la puerta del camerino, sino de diseñar un sistema de acceso por niveles que protege al talento, al equipo y a los activos sin frenar la producción.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Trabajamos sobre tres frentes: el <strong class="text-light font-semibold">esquema de credenciales</strong> definido con la producción, el <strong class="text-light font-semibold">control de cada zona técnica</strong> y la <strong class="text-light font-semibold">protección del talento</strong> en sus movimientos.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Todo coordinado con el stage manager y el tour security mediante un punto de contacto único, porque en el backstage la seguridad tiene que ser parte del equipo de producción, no un obstáculo para sus tiempos.
+          </p>
+        </div>
+      </div>
+
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Zonas del backstage -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué protegemos</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Zonas del backstage que protegemos</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El backstage no es un solo espacio, sino un conjunto de zonas con niveles de acceso distintos. Cada una tiene su propio filtro y su propio criterio de quién puede entrar, definido antes del evento con la producción.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M5 17.5a3.5 3.5 0 0 1 7 0M15 9h4M15 13h3"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para tu backstage?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            En el backstage convergen el activo más valioso —el talento— y el más caro —el equipo de producción—. Protegerlo exige un control de acceso disciplinado y, a la vez, la sensibilidad de no convertir la zona en un cuello de botella para la producción.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection
+    eyebrow="Proceso de backstage"
+    titulo="Así aseguramos el backstage"
+    lead="Un proceso de cuatro fases para que solo entre quien debe, cuando debe y a donde debe."
+    parrafos={[
+      "El backstage es la zona de mayor valor y mayor riesgo de un concierto: ahí están el talento, el equipo de producción y los activos más caros. Por eso lo tratamos como un recinto dentro del recinto, con su propio control de acceso y su propia cadena de mando.",
+      "El proceso arranca con el diseño del esquema de credencialización junto al organizador y la producción, y no termina hasta que el último integrante del staff abandona la zona técnica.",
+    ]}
+    pasos={[
+      { num: "01", titulo: "Esquema de credenciales", desc: "Definimos con el organizador y la producción los niveles de acceso (artista, staff, prensa, proveedor) y el diseño de pulseras o gafetes por zona, antes del día del evento." },
+      { num: "02", titulo: "Zonificación y filtros", desc: "Establecemos los filtros de acceso a camerinos, plataformas técnicas, foso y área de producción, con personal asignado a cada punto según el nivel de acceso que controla." },
+      { num: "03", titulo: "Operación y verificación", desc: "Durante soundcheck y show verificamos credenciales en cada acceso —no solo al inicio—, gestionamos prensa y acompañantes y protegemos los movimientos del artista." },
+      { num: "04", titulo: "Cierre y entrega", desc: "Al finalizar controlamos la salida del talento y del staff, coordinamos con la custodia de desmontaje y entregamos un reporte de accesos e incidencias de la zona." },
+    ]}
+  />
+
+  <!-- Relacionados / subcategorías -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Parte de un operativo integral</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Servicios y subcategorías relacionadas</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El backstage seguro es una de las subcategorías del servicio de conciertos y festivales, junto con el control de multitudes y la coordinación institucional. Se combina con la seguridad VIP del talento y con la custodia de montaje de las zonas técnicas.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas asegurar el backstage de tu evento?"
+    subtitulo="Cuéntanos el recinto, el cartel y los niveles de acceso que necesitas, y recibe un esquema de credencialización y una propuesta en menos de 24 horas."
+    faq={faq}
+  />
+
+</BaseLayout>

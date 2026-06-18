@@ -76,3 +76,101 @@ export function buildArticleSchema(titulo: string, descripcion: string, url: str
     "author": { "@type": "Organization", "name": SITE_NAME }
   };
 }
+
+// Grafo de datos estructurados de nivel profesional para páginas de servicio (L3).
+// Devuelve WebPage (enlazada por @id) + Service + BreadcrumbList + FAQPage,
+// con primaryImageOfPage como ImageObject y areaServed como objetos Place.
+export interface ServicePageSchemaOpts {
+  slug: string;
+  name: string;            // nombre del servicio (titulo / H1 base)
+  description: string;     // descripción larga del servicio
+  metaTitle: string;
+  metaDescription: string;
+  serviceType: string;
+  ogImage: string;         // URL absoluta de la imagen principal
+  breadcrumbName: string;  // último nivel del breadcrumb
+  offers?: string[];       // nombres de servicios ofertados (hasOfferCatalog)
+  faq?: Array<{ q: string; a: string }>;
+  datePublished?: string;  // ISO date
+  dateModified?: string;   // ISO date
+  // Para subcategorías (L4): servicio padre. Anida la URL y agrega un nivel al breadcrumb.
+  parent?: { slug: string; name: string };
+}
+
+export function buildServicePageSchema(opts: ServicePageSchemaOpts) {
+  const {
+    slug, name, description, metaTitle, metaDescription, serviceType,
+    ogImage, breadcrumbName, offers = [], faq = [],
+    datePublished = "2025-01-01", dateModified = "2026-06-18", parent,
+  } = opts;
+
+  const canonical = parent
+    ? `${SITE}/servicios/${parent.slug}/${slug}`
+    : `${SITE}/servicios/${slug}`;
+  const areas = ["Ciudad de México", "Guadalajara", "Monterrey", "Puebla", "Cancún"];
+
+  const webPage = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${canonical}#webpage`,
+    "url": canonical,
+    "name": metaTitle,
+    "description": metaDescription,
+    "inLanguage": "es-MX",
+    "isPartOf": { "@id": `${SITE}/#website` },
+    "primaryImageOfPage": { "@type": "ImageObject", "url": ogImage, "width": 1200, "height": 675 },
+    "breadcrumb": { "@id": `${canonical}#breadcrumb` },
+    "about": { "@id": `${SITE}/#organization` },
+    "mainEntity": { "@id": `${canonical}#service` },
+    "datePublished": datePublished,
+    "dateModified": dateModified,
+  };
+
+  const service = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${canonical}#service`,
+    "name": name,
+    "serviceType": serviceType,
+    "description": description,
+    "provider": { "@id": `${SITE}/#organization` },
+    "areaServed": [
+      ...areas.map((a) => ({ "@type": "AdministrativeArea", "name": a })),
+      { "@type": "Country", "name": "México" },
+    ],
+    "url": canonical,
+    ...(parent
+      ? { "isRelatedTo": { "@type": "Service", "name": parent.name, "url": `${SITE}/servicios/${parent.slug}` } }
+      : {}),
+    ...(offers.length
+      ? {
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": serviceType,
+            "itemListElement": offers.map((o) => ({
+              "@type": "Offer",
+              "itemOffered": { "@type": "Service", "name": o },
+            })),
+          },
+        }
+      : {}),
+  };
+
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${canonical}#breadcrumb`,
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": `${SITE}/` },
+      { "@type": "ListItem", "position": 2, "name": "Servicios", "item": `${SITE}/servicios` },
+      ...(parent
+        ? [{ "@type": "ListItem", "position": 3, "name": parent.name, "item": `${SITE}/servicios/${parent.slug}` },
+           { "@type": "ListItem", "position": 4, "name": breadcrumbName, "item": canonical }]
+        : [{ "@type": "ListItem", "position": 3, "name": breadcrumbName, "item": canonical }]),
+    ],
+  };
+
+  const out: object[] = [webPage, service, breadcrumb];
+  if (faq.length) out.push(buildFAQSchema(faq));
+  return out;
+}

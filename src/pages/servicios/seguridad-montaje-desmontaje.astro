@@ -1,0 +1,371 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema } from '@/lib/seo';
+
+const slug = 'seguridad-montaje-desmontaje';
+
+// H1 / nombre del servicio para schema
+const titulo = 'Seguridad de Montaje y Desmontaje en México';
+const descripcion = 'Servicio de seguridad para las fases de montaje y desmontaje de eventos en México: custodia 24/7 del recinto, acreditación de proveedores, control del andén de carga e inventario fotográfico de activos. Cobertura del ciclo completo del evento con personal certificado DGSSP y STPS.';
+
+// SEO meta (limpio, orientado a intención de búsqueda)
+const metaTitle = 'Seguridad de Montaje y Desmontaje en México | SEPRIEV';
+const metaDescription = 'Seguridad de montaje y desmontaje en México: custodia 24/7 del recinto, acreditación de proveedores, control de carga e inventario fotográfico de activos. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/equipo-seguridad-eventos-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito seguridad de montaje y desmontaje')}`;
+
+// FAQ específica de montaje y desmontaje (ampliada para cobertura de búsqueda)
+const faq = [
+  { q: "¿Cuántos días antes del evento inician la seguridad?", a: "Iniciamos desde el primer día de montaje, con una etapa de pre-montaje previa. Lo más común es 2-5 días antes para ferias y 3-7 días para conciertos y festivales grandes. Coordinamos el cronograma con el organizador desde el reconocimiento del recinto vacío." },
+  { q: "¿Hacen inventario de todo lo que entra?", a: "Sí. Realizamos un inventario de ingreso con registro fotográfico y bitácora digital (fotos y timestamps) de cada activo importante. Al desmontaje verificamos que todo lo que entró salga con su dueño legítimo, lo que previene pérdidas y facilita reclamaciones de seguro." },
+  { q: "¿Tienen seguridad nocturna?", a: "Sí. Mantenemos custodia 24/7 del recinto durante todo el periodo de montaje, evento y desmontaje. El equipo nocturno realiza rondines programados, sella las áreas donde ya se instaló equipo y controla accesos con bitácora." },
+  { q: "¿Controlan la salida de equipo?", a: "Sí. En la fase de desmontaje verificamos que cada proveedor retire únicamente su equipo autorizado mediante un sistema de vale de salida autorizado por el organizador o el dueño del equipo, seguido de un inventario de cierre antes de entregar el recinto vacío." },
+  { q: "¿Cómo acreditan a los proveedores y transportistas?", a: "Trabajamos con una lista autorizada por el organizador y registramos nombre, empresa, INE y hora de entrada y salida de cada persona, con credencialización por proveedor y zona de trabajo. A los proveedores no regulares se les asigna acompañamiento dentro del recinto." },
+  { q: "¿Cómo previenen el robo hormiga?", a: "Vigilamos las salidas para detectar la extracción de piezas en paquetes pequeños (robo hormiga), supervisamos las bahías de carga, aplicamos control vehicular —solo vehículos autorizados en la zona de carga— e iluminamos las zonas de carga nocturna." },
+  { q: "¿Restringen el acceso por zonas?", a: "Sí. Zonificamos el recinto —escenario, zona técnica, camerinos, andén de carga y perímetro— con criterios de acceso específicos para cada punto. La restricción es por zona y por rol: quien no tiene función en un área no tiene acceso a ella." },
+  { q: "¿Qué pasa si falta o se daña equipo?", a: "El registro fotográfico de ingreso y la conciliación de salida permiten identificar faltantes o daños con evidencia y no con suposiciones, además de establecer responsabilidades claras. Elaboramos un acta de hechos que protege por igual al cliente y a los proveedores." },
+  { q: "¿Cubren producciones de varios días y equipos de gira?", a: "Sí. Cubrimos montajes de 2 a 7 días y desmontajes de 1 a 3 días con cobertura nocturna documentada y relevos. Trabajamos con productoras de conciertos y empresas de audio e iluminación que necesitan proteger sus equipos de gira." },
+  { q: "¿Se coordinan con la seguridad del evento?", a: "Sí. Al arrancar el evento hacemos una transición documentada hacia el equipo de seguridad de la función, con un briefing al equipo entrante y la custodia de backstage y áreas técnicas, de modo que no haya vacíos de cobertura entre fases." },
+];
+
+// Schema graph enlazado por @id (WebPage + Service + BreadcrumbList + FAQPage)
+
+
+
+const schemas = buildServicePageSchema({
+  slug,
+  name: titulo,
+  description: descripcion,
+  metaTitle,
+  metaDescription,
+  serviceType: "Seguridad de montaje y desmontaje de eventos",
+  ogImage: ogImg,
+  breadcrumbName: "Montaje y Desmontaje",
+  offers: [
+    "Custodia 24/7 del recinto",
+    "Acreditación de proveedores y control de carga",
+    "Inventario fotográfico de activos",
+    "Control de salida con vale",
+  ],
+  faq,
+  datePublished: "2025-03-01",
+});
+
+const navItems = [
+  { label: "Ferias y Exposiciones", desc: "Custodia por zonas y por jornada del recinto", href: "/servicios/seguridad-ferias-exposiciones" },
+  { label: "Conciertos y Festivales", desc: "Backstage seguro y producción protegida", href: "/servicios/seguridad-conciertos-festivales" },
+  { label: "Control de Acceso", desc: "Credencialización y registro de proveedores", href: "/servicios/control-acceso-eventos" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
+const modules = [
+  {
+    eyebrow: "Servicio especializado",
+    badge: "Ciclo completo",
+    title: "Cobertura del primer camión al último técnico",
+    intro: "El mayor riesgo de una producción no ocurre durante la función, sino en las horas de montaje y desmontaje, cuando se concentran los robos de equipo, los accesos no autorizados y los accidentes evitables. SEPRIEV cubre el ciclo completo del evento, del primer camión de producción al último técnico, precisamente porque son las horas en que la atención del organizador está más dividida. La seguridad del evento empieza mucho antes de que entre el público.",
+    features: [
+      { title: "Custodia continua del recinto", text: "El equipo de sonido, iluminación y escenografía permanece vigilado durante el montaje, los tiempos muertos y el desmontaje, con sellado de las áreas donde ya se instaló equipo y cobertura nocturna documentada para producciones de varios días. Cada mañana, el coordinador recibe un reporte de novedades antes de iniciar la jornada." },
+      { title: "Acreditación de proveedores y carga", text: "Verificamos identidad y credenciales de cada proveedor, técnico y transportista contra una lista blanca actualizada con el cliente, registrando nombre, empresa, INE y hora de entrada y salida. Supervisamos las bahías de carga con control vehicular y vigilancia de salidas para prevenir el robo hormiga." },
+      { title: "Inventario fotográfico y conciliación", text: "El equipo de alto valor se registra fotográficamente al ingreso, en una bitácora digital con fotos y timestamps, y se concilia a la salida. Esto permite detectar faltantes o daños con evidencia y no con suposiciones, y deja constancia objetiva del estado en que cada activo entró y salió del recinto." },
+    ],
+    hero: `${IMG}/equipo-seguridad-eventos`,
+    small1: `${IMG}/seguridad-empresarial-evento`,
+    small2: `${IMG}/guardias-seguridad-privada`,
+    alt: [
+      "Custodia de equipo de producción durante el montaje de un evento",
+      "Acreditación de proveedores en el andén de carga de un recinto",
+      "Guardia en rondín nocturno durante el desmontaje de un escenario",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Fases, zonificación y desmontaje",
+    badge: undefined,
+    title: "Operación por fases, zonificación y salida con vale",
+    intro: "El 80% de los robos en eventos ocurre durante el montaje o el desmontaje, no durante la función. Por eso SEPRIEV opera estas fases con la misma estructura que un evento: por etapas definidas, con zonificación por rol y un control de salida que impide que el equipo de un proveedor termine en el camión de otro. La confusión logística no es excusa: cada activo tiene un dueño y un registro.",
+    features: [
+      { title: "Operación por fases", text: "Cubrimos el pre-montaje (cronograma con el organizador, reconocimiento del recinto vacío e identificación de zonas de riesgo), el montaje (2-7 días con control de acceso e inventario desde el día uno), la transición al equipo de seguridad del evento con briefing, y el desmontaje (1-3 días) hasta la entrega del recinto vacío." },
+      { title: "Zonificación y accesos por rol", text: "Dividimos el recinto en áreas con niveles de acceso distintos —escenario, zona técnica, camerinos, andén de carga y perímetro— y asignamos personal con criterios específicos para cada punto. La restricción es por zona y por rol: un proveedor de catering no entra al área técnica ni un montador a los camerinos." },
+      { title: "Control de salida con vale", text: "En el desmontaje, cada proveedor retira únicamente su equipo autorizado mediante un vale de salida validado por el organizador o el dueño del equipo, seguido de un inventario de cierre. Así se evita que, en la prisa del retiro, la mercancía de un proveedor termine en el transporte de otro." },
+    ],
+    hero: `${IMG}/control-acceso-credenciales`,
+    small1: `${IMG}/control-acceso-eventos`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    alt: [
+      "Credencialización y control de accesos por zona en un montaje",
+      "Control de acceso de personal técnico a la zona de escenario",
+      "Personal de seguridad supervisando carga y descarga de producción",
+    ],
+    featured: true,
+  },
+];
+
+// Qué resguardamos
+const tipos = [
+  { titulo: "Equipo de sonido e iluminación", nota: "Activos de alto valor" },
+  { titulo: "Pantallas LED y video", nota: "Equipo audiovisual" },
+  { titulo: "Escenografía y estructuras", nota: "Escenarios y rigging" },
+  { titulo: "Mobiliario y decoración", nota: "Producción del evento" },
+  { titulo: "Mercancía de expositores", nota: "Stands y muestras" },
+  { titulo: "Equipo de gira de artistas", nota: "Backline y producción" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "El 80% de los robos ocurre aquí", desc: "El montaje y el desmontaje son la fase más vulnerable del evento, donde concentramos la vigilancia." },
+  { titulo: "Cobertura del ciclo completo", desc: "Del primer camión de producción al último técnico, no solo durante las horas de función." },
+  { titulo: "Custodia 24/7 documentada", desc: "Vigilancia continua con sellado de áreas instaladas y reporte de novedades cada mañana." },
+  { titulo: "Acreditación con INE y lista blanca", desc: "Registro de cada proveedor y transportista, con credencialización por zona de trabajo." },
+  { titulo: "Inventario fotográfico", desc: "Bitácora digital con fotos y timestamps al ingreso y conciliación a la salida." },
+  { titulo: "Vale de salida y anti-hormiga", desc: "Solo sale lo autorizado por su dueño, con vigilancia de salidas y control vehicular." },
+];
+
+// Otros servicios relacionados (ServiceCards homologadas con servicios/index)
+const relacionados = [
+  { title: "Ferias y Exposiciones", description: "Cobertura por zonas y por jornada para recintos multi-expositor, con inventario conciliado y custodia nocturna.", features: ["Cobertura por turnos", "Inventario conciliado", "Custodia nocturna"], href: "/servicios/seguridad-ferias-exposiciones", image: `${IMG}/seguridad-empresarial-evento`, badge: "Destacado", featured: true },
+  { title: "Conciertos y Festivales", description: "Control de multitudes, backstage seguro y protección de la producción para eventos musicales de cualquier escala.", features: ["Backstage seguro", "Control de multitudes", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular" },
+  { title: "Control de Acceso", description: "Credencialización por niveles, registro de proveedores y control de aforo para el ciclo completo del evento.", features: ["Credencialización", "Registro de proveedores", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Montaje y Desmontaje' }]} />
+
+  <PageHero
+    eyebrow="SEPRIEV — Montaje y Desmontaje"
+    titulo="Seguridad de Montaje y Desmontaje"
+    subtitulo="El mayor riesgo de una producción no ocurre durante la función, sino en las horas de montaje y desmontaje, cuando se concentran los robos de equipo, los accesos no autorizados y los accidentes evitables."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        <strong class="text-light font-semibold">SEPRIEV</strong> cubre el ciclo completo del evento, del primer camión de producción al último técnico, con custodia 24/7, acreditación de proveedores e inventario fotográfico de activos. Es el complemento natural de nuestra <a href="/servicios/seguridad-ferias-exposiciones" class="text-secondary hover:underline font-semibold">seguridad para ferias y exposiciones</a> y de la operación de conciertos.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Un solo equipo de sonido puede valer millones, y el <strong class="text-light font-semibold">80% de los robos ocurre en estas fases</strong>. Lo protegemos con cobertura nocturna documentada y un control de salida con vale, integrado a la <a href="/servicios/seguridad-conciertos-festivales" class="text-secondary hover:underline font-semibold">seguridad de conciertos y festivales</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>. Cotización en menos de 24 horas.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <!-- Encabezado de dos columnas -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo protegemos el montaje</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            La fase más vulnerable del evento, bajo control
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            Equipos de audio, iluminación, pantallas LED y escenografía entran y salen durante días, con decenas de proveedores y muchas veces de madrugada. Sin seguridad profesional, el riesgo de robo, daño y pérdida se multiplica.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Operamos con <strong class="text-light font-semibold">control de acceso de proveedores, custodia de activos y seguridad de carga y descarga</strong>, apoyados en CCTV temporal, bitácora digital con fotos y una app de registro con QR.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Coordinamos el <strong class="text-light font-semibold">cronograma de montaje</strong> con un canal de comunicación directo entre el coordinador de producción y el jefe de seguridad, con reporte diario de incidencias al organizador.
+          </p>
+        </div>
+      </div>
+
+      <!-- Módulos imagen + texto -->
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+
+          <!-- Columna izquierda: texto -->
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha: galería 1 grande + 2 pequeñas -->
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Qué resguardamos -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué resguardamos</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Activos que protegemos en montaje y desmontaje</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Lo que protegemos en estas fases suele ser lo más caro de la producción y lo más difícil de reponer a tiempo. Registramos y custodiamos cada activo según su valor y su dueño, para que la confusión logística no se convierta en una pérdida.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para tu montaje y desmontaje?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Cuando algo desaparece en un montaje, la pregunta es siempre la misma: ¿quién responde? Operar con un proveedor que registra cada activo, acredita a cada persona y documenta cada fase es la única forma de que esa pregunta tenga una respuesta clara.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection titulo="Así protegemos tu montaje y desmontaje" />
+
+  <!-- Otros servicios -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Servicios complementarios</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Otros servicios para tu evento</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El montaje y desmontaje es la primera y la última pieza del operativo. Se integra con la custodia de ferias, la seguridad de conciertos, el control de acceso y la dirección de eventos masivos, bajo un solo mando y un único interlocutor responsable.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas seguridad para tu montaje y desmontaje?"
+    subtitulo="Cuéntanos el recinto, los días de montaje y el tipo de equipo a resguardar, y recibe una propuesta personalizada en menos de 24 horas. Sin compromiso."
+    faq={faq}
+  />
+
+</BaseLayout>

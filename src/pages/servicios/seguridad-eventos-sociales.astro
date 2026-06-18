@@ -1,0 +1,369 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema } from '@/lib/seo';
+
+const slug = 'seguridad-eventos-sociales';
+
+// H1 / nombre del servicio para schema
+const titulo = 'Seguridad para Bodas y Eventos Sociales en México';
+const descripcion = 'Servicio de seguridad privada discreta para eventos sociales en México: bodas, XV años y fiestas privadas. Control de lista de invitados, valet parking seguro, resguardo de regalos y valores, vigilancia perimetral y manejo discreto de incidentes. Personal certificado DGSSP y STPS, integrado al ambiente del evento.';
+
+// SEO meta (limpio, orientado a intención de búsqueda)
+const metaTitle = 'Seguridad para Bodas y Eventos Sociales en México | SEPRIEV';
+const metaDescription = 'Seguridad discreta para bodas, XV años y fiestas privadas en México: control de invitados, valet seguro, resguardo de regalos y manejo de incidentes. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/seguridad-vip-gala-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito seguridad para un evento social')}`;
+
+// FAQ específica de eventos sociales (ampliada para cobertura de búsqueda)
+const faq = [
+  { q: "¿Su personal se adapta al dress code de una boda?", a: "Absolutamente. Nuestro personal puede vestir traje formal, semi-formal o casual elegante según las indicaciones del cliente, o presentarse identificado con polo o camisa de logo discreto. El objetivo es que se integren al ambiente sin que los invitados los perciban como seguridad." },
+  { q: "¿Pueden manejar invitados conflictivos sin causar escena?", a: "Sí. Nuestro personal está capacitado en manejo de conflictos y desescalamiento. Si un invitado tiene un comportamiento inadecuado, lo abordamos con discreción y firmeza, coordinando con el anfitrión en tiempo real para resolverlo sin interrumpir la celebración." },
+  { q: "¿Ofrecen servicio de valet parking?", a: "Sí. Incluimos valet parking profesional con registro fotográfico de vehículos, control de llaves numerado, rondines e iluminación de zonas oscuras. Nuestro personal está asegurado y la coordinación de salidas evita aglomeraciones al cierre." },
+  { q: "¿Cuántos guardias necesito para una boda de 200 personas?", a: "Para una boda de 200 invitados recomendamos 3-4 elementos: 1 en el acceso principal, 1-2 en rondines y 1 en estacionamiento. Si hay valet parking o zonas amplias (jardín, hacienda), ajustamos el número según el venue." },
+  { q: "¿Qué paquetes para eventos sociales manejan?", a: "Esencial: 2 elementos, 6 horas y control de acceso básico, ideal para fiestas de hasta 100 invitados. Premium: 4 elementos más 1 supervisor, 8 horas, control de acceso y estacionamiento, para bodas y XV años de 100 a 300 invitados. Luxury: 6 o más elementos con supervisor y valet, 10 horas o más (ceremonia y fiesta), servicio integral, para eventos de 300+ invitados o de alto perfil." },
+  { q: "¿Protegen la mesa de regalos y los obsequios de valor?", a: "Sí. Contemplamos el resguardo de la mesa de regalos y los objetos de valor, y bajo solicitud ofrecemos escolta para el traslado de la festejada y de los obsequios al cierre del evento." },
+  { q: "¿Tienen ambulancia o primeros auxilios en sitio?", a: "Nuestro personal cuenta con primeros auxilios básicos y coordina con servicios de emergencia cuando es necesario. Bajo solicitud incluimos ambulancia en sitio para eventos grandes o de alto perfil." },
+  { q: "¿Cubren la ceremonia y la fiesta o solo una parte?", a: "Podemos cubrir el evento completo, desde la ceremonia religiosa o civil hasta el cierre de la fiesta. La cobertura se define según el programa: misma sede o traslado entre recintos, con continuidad del dispositivo." },
+  { q: "¿Trabajan en jardines, haciendas y casas particulares?", a: "Sí. Operamos en jardines de eventos, haciendas y residencias privadas, con vigilancia perimetral, control de accesos y coordinación con la vigilancia de la colonia o el fraccionamiento cuando aplica." },
+];
+
+// Schema Service enriquecido + BreadcrumbList + FAQPage
+
+
+const schemas = buildServicePageSchema({
+  slug,
+  name: titulo,
+  description: descripcion,
+  metaTitle,
+  metaDescription,
+  serviceType: "Seguridad para bodas y eventos sociales",
+  ogImage: ogImg,
+  breadcrumbName: "Eventos Sociales",
+  offers: [
+    "Control de lista de invitados",
+    "Valet parking seguro",
+    "Vigilancia perimetral",
+    "Resguardo de regalos y valores",
+  ],
+  faq,
+  datePublished: "2025-02-12",
+});
+
+const navItems = [
+  { label: "Seguridad VIP", desc: "Protección discreta para familias de alto perfil", href: "/servicios/seguridad-vip" },
+  { label: "Control de Acceso", desc: "Lista de invitados y credencialización discreta", href: "/servicios/control-acceso-eventos" },
+  { label: "Eventos Corporativos", desc: "Galas y cenas con seguridad de etiqueta", href: "/servicios/seguridad-eventos-corporativos" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
+const modules = [
+  {
+    eyebrow: "Servicio especializado",
+    badge: "Discreción",
+    title: "Seguridad discreta que no rompe la atmósfera",
+    intro: "Una boda, unos XV años o una celebración privada exigen menos escala que un festival, pero la misma profesionalidad y mayor discreción. SEPRIEV ofrece seguridad para eventos sociales con personal capaz de integrarse a la celebración y de resolver cualquier incidente sin convertirlo en el tema de la noche. Aquí el riesgo principal es que la seguridad rompa la atmósfera que el anfitrión tardó meses en construir.",
+    features: [
+      { title: "Control de lista de invitados", text: "Validamos el ingreso contra la lista que define el anfitrión y gestionamos con tacto los casos no contemplados —acompañantes no confirmados—, evitando tanto el acceso indebido como el momento incómodo frente a los demás. El control de quién entra es la base de la tranquilidad del cliente." },
+      { title: "Manejo discreto de incidentes", text: "Cuando surge una situación entre invitados, intervenimos con comunicación directa y sin escalar el tono, coordinando con el anfitrión en tiempo real para resolverla antes de que trascienda. El detalle de lo ocurrido se entrega al cliente al cierre, sin exponer la celebración." },
+      { title: "Resguardo de valores y salidas", text: "El servicio contempla la protección de la mesa de regalos y los objetos de valor, el control del estacionamiento y la coordinación de salidas al cierre, sin aglomeraciones. La llegada y la salida son los momentos de mayor vulnerabilidad y se planean con la misma seriedad que el resto del operativo." },
+    ],
+    hero: `${IMG}/seguridad-vip-gala`,
+    small1: `${IMG}/proteccion-vip-invitados`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    alt: [
+      "Personal de seguridad discreto en una boda de gala en México",
+      "Resguardo de invitados y mesa de regalos en un evento social privado",
+      "Guardia integrado al ambiente de una celebración en jardín",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Accesos, valet y apoyo",
+    badge: undefined,
+    title: "Control de invitados, valet seguro y personal de apoyo",
+    intro: "En un evento social los momentos de mayor vulnerabilidad son la llegada, la salida y el estacionamiento. SEPRIEV cubre los accesos al jardín o recinto, el valet con control de llaves, la vigilancia perimetral y el personal de apoyo capacitado para asistir a adultos mayores y manejar los imprevistos propios de una celebración, desde un invitado en estado inconveniente hasta una emergencia médica.",
+    features: [
+      { title: "Valet parking seguro", text: "El servicio incluye registro fotográfico de cada vehículo al ingreso, control de llaves con sistema numerado, rondines constantes e iluminación de zonas oscuras del estacionamiento. Todo el personal tiene póliza de responsabilidad civil vigente y, al cierre, la coordinación de salidas evita aglomeraciones en el acceso." },
+      { title: "Vigilancia perimetral", text: "Controlamos los accesos al recinto o jardín, monitoreamos el perímetro durante toda la celebración, atendemos a personas sospechosas en los alrededores y coordinamos con la vigilancia de la colonia o el fraccionamiento cuando el evento es en una residencia privada." },
+      { title: "Personal de apoyo y primeros auxilios", text: "Manejamos con discreción a los invitados en estado inconveniente, asistimos a adultos mayores y personas con discapacidad, ofrecemos primeros auxilios básicos y coordinamos con servicios de emergencia. Para eventos grandes incluimos ambulancia en sitio bajo solicitud." },
+    ],
+    hero: `${IMG}/proteccion-vip-invitados`,
+    small1: `${IMG}/guardias-seguridad-privada`,
+    small2: `${IMG}/equipo-seguridad-eventos`,
+    alt: [
+      "Valet parking y control de acceso vehicular en una fiesta privada",
+      "Rondín de seguridad perimetral en un jardín de eventos",
+      "Equipo de seguridad coordinando la salida de invitados al cierre",
+    ],
+    featured: true,
+  },
+];
+
+// Eventos sociales que protegemos
+const tipos = [
+  { titulo: "Bodas", nota: "De la ceremonia a la fiesta" },
+  { titulo: "XV años", nota: "Vals, chambelanes y fiesta" },
+  { titulo: "Bautizos y primeras comuniones", nota: "Celebraciones familiares" },
+  { titulo: "Aniversarios y cumpleaños", nota: "Eventos privados especiales" },
+  { titulo: "Baby showers y gender reveals", nota: "Reuniones de alto perfil" },
+  { titulo: "Reuniones en haciendas y jardines", nota: "Recintos abiertos y privados" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Discreción ante todo", desc: "Personal que se integra al ambiente: invisible para los invitados, presente para el anfitrión." },
+  { titulo: "Dress code adaptable", desc: "Formal, semi-formal, casual elegante o identificado, según el tono de la celebración." },
+  { titulo: "Manejo sin escena", desc: "Desescalamiento de incidentes con tacto, sin interrumpir ni exponer la celebración." },
+  { titulo: "Valet y estacionamiento seguros", desc: "Control de llaves numerado, rondines, iluminación y registro de vehículos, con responsabilidad civil." },
+  { titulo: "Resguardo de regalos y valores", desc: "Protección de la mesa de regalos y coordinación de salidas, con escolta de traslado bajo solicitud." },
+  { titulo: "Apoyo y primeros auxilios", desc: "Asistencia a adultos mayores, primeros auxilios y enlace con servicios de emergencia." },
+];
+
+// Otros servicios relacionados (ServiceCards homologadas con servicios/index)
+const relacionados = [
+  { title: "Seguridad VIP", description: "Protección personal y de bajo perfil para familias y figuras de alto perfil durante eventos privados.", features: ["Close protection", "Bajo perfil", "Confidencialidad"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos`, badge: "Destacado", featured: true },
+  { title: "Control de Acceso", description: "Lista de invitados, credencialización discreta y control de reingreso para celebraciones privadas.", features: ["Lista de invitados", "Credencialización", "Control de reingreso"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Eventos Corporativos", description: "Seguridad de etiqueta para galas, cenas y premiaciones, con personal bilingüe y confidencialidad.", features: ["Personal de etiqueta", "Confidencialidad", "Imagen institucional"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos` },
+  { title: "Conciertos y Festivales", description: "Control de multitudes y protección de artistas para eventos musicales privados o de gran aforo.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Eventos Sociales' }]} />
+
+  <PageHero
+    eyebrow="SEPRIEV — Eventos Sociales"
+    titulo="Seguridad para Eventos Sociales"
+    subtitulo="Una boda, unos XV años o una celebración privada exigen menos escala que un festival, pero la misma profesionalidad y mayor discreción. La mayor amenaza es que la seguridad rompa la atmósfera."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        <strong class="text-light font-semibold">SEPRIEV</strong> ofrece seguridad para eventos sociales con personal capaz de integrarse a la celebración y de resolver cualquier incidente sin convertirlo en el tema de la noche: control de la lista de invitados, manejo discreto y resguardo de valores. Para familias de alto perfil lo combinamos con <a href="/servicios/seguridad-vip" class="text-secondary hover:underline font-semibold">seguridad VIP</a>.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Personal con <strong class="text-light font-semibold">dress code adaptable</strong>, valet parking seguro, primeros auxilios y <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso</a> discreto. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>, presencia en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Cotización en menos de 24 horas.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <!-- Encabezado de dos columnas -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo protegemos un evento social</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Seguridad invisible para tus momentos más importantes
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            Tus invitados no deberían notar que hay seguridad, pero tú deberías sentir la tranquilidad de saber que está ahí. Esa es la línea fina que cuida cada operativo social.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Combinamos <strong class="text-light font-semibold">control de invitados, vigilancia perimetral y valet seguro</strong> con un personal que sabe moverse en un salón de gala o en un jardín sin desentonar. La discreción no está peleada con la efectividad.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Cubrimos desde la ceremonia hasta el cierre, con <strong class="text-light font-semibold">resguardo de la mesa de regalos</strong>, manejo discreto de imprevistos y coordinación de salidas, en bodas, XV años, haciendas y residencias privadas.
+          </p>
+        </div>
+      </div>
+
+      <!-- Módulos imagen + texto -->
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+
+          <!-- Columna izquierda: texto -->
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha: galería 1 grande + 2 pequeñas -->
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Eventos sociales que protegemos -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué celebramos contigo</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Eventos sociales que protegemos</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Cada celebración tiene su propio ritmo y sus propios momentos sensibles: la llegada de la novia, el vals, la apertura de regalos o la salida de madrugada. Ajustamos el dispositivo al tipo de evento, al recinto y al número de invitados.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M8 22h8M12 11v11M5 3h14l-1 7a6 6 0 0 1-12 0L5 3z"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para tu celebración?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El anfitrión invirtió meses en planear una noche perfecta; nuestra responsabilidad es protegerla sin alterarla. Discreción, tacto y profesionalismo en cada elemento, para que la seguridad se sienta y no se note.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection titulo="Así protegemos tu celebración" />
+
+  <!-- Otros servicios -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Servicios complementarios</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Otros servicios para tu evento</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Una celebración de alto perfil puede necesitar más de un servicio. Sumamos seguridad VIP para la familia anfitriona, control de acceso para la lista de invitados y operativos corporativos cuando el evento es mixto, bajo un solo plan.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas seguridad para tu boda o evento social?"
+    subtitulo="Cuéntanos el tipo de celebración, el recinto y el número de invitados, y recibe una propuesta personalizada en menos de 24 horas. Sin compromiso."
+    faq={faq}
+  />
+
+</BaseLayout>

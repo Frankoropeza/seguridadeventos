@@ -1,0 +1,486 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import { WHATSAPP_NUMBER, PHONE_DISPLAY, EMAIL_RH } from '@/lib/config';
+import { buildFAQSchema } from '@/lib/seo';
+import { VACANTES as vacantes } from '@/lib/vacantes';
+
+const navItems = [
+  {
+    label: "Vacantes Disponibles",
+    desc: "Puestos abiertos en seguridad para eventos",
+    href: "#vacantes",
+  },
+  {
+    label: "Requisitos",
+    desc: "Documentos y perfil que necesitas para aplicar",
+    href: "#requisitos",
+  },
+  {
+    label: "Beneficios",
+    desc: "Sueldo competitivo, prestaciones y crecimiento",
+    href: "#beneficios",
+  },
+  {
+    label: "Postúlate Ahora",
+    desc: "Envía tus datos y tu CV en minutos",
+    href: "#postular",
+  },
+];
+
+const stats = [
+  { valor: "1,200+", etiqueta: "Colaboradores en activo" },
+  { valor: "120h+",  etiqueta: "Capacitación inicial" },
+  { valor: "5",      etiqueta: "Ciudades con operación" },
+  { valor: "100%",   etiqueta: "Personal certificado" },
+];
+
+// Vacantes: fuente única de datos en src/lib/vacantes.ts
+
+const beneficios = [
+  { icon: "💰", titulo: "Sueldo competitivo", desc: "Pago puntual y tabulador por encima del promedio del sector, con bonos por evento." },
+  { icon: "📋", titulo: "Prestaciones de ley", desc: "IMSS, aguinaldo, vacaciones y prima vacacional desde tu alta." },
+  { icon: "🎓", titulo: "Capacitación certificada", desc: "Formación STPS con constancias DC-3 sin costo para ti." },
+  { icon: "🦺", titulo: "Uniforme y equipo", desc: "Proporcionamos uniforme, identificación y equipo operativo." },
+  { icon: "📈", titulo: "Plan de crecimiento", desc: "Ruta clara: guardia → supervisor → coordinador, por desempeño." },
+  { icon: "🛡️", titulo: "Empresa con respaldo", desc: "Licencia DGSSP federal vigente y operación formal y segura." },
+];
+
+const proceso = [
+  { paso: "01", titulo: "Postulación", desc: "Envías tus datos y CV por el formulario, WhatsApp o correo." },
+  { paso: "02", titulo: "Entrevista", desc: "Entrevista inicial telefónica o presencial con reclutamiento." },
+  { paso: "03", titulo: "Verificación", desc: "Revisión de documentos, referencias y no antecedentes penales." },
+  { paso: "04", titulo: "Capacitación", desc: "Inducción y capacitación certificada STPS antes de tu primer evento." },
+  { paso: "05", titulo: "Alta y asignación", desc: "Te damos de alta y asignamos a tu primer operativo." },
+];
+
+const faq = [
+  { q: "¿Necesito experiencia previa para aplicar?", a: "No para todos los puestos. Para guardia de seguridad capacitamos desde cero. Puestos como supervisor, escolta VIP o coordinador sí requieren experiencia comprobable." },
+  { q: "¿Qué documentos necesito para postularme?", a: "Identificación oficial (INE), CURP, comprobante de domicilio y carta de no antecedentes penales (o disposición a tramitarla). Te guiamos en el proceso." },
+  { q: "¿El trabajo es por evento o de planta?", a: "Ofrecemos ambos esquemas según el puesto y tu disponibilidad: plazas de tiempo completo y colaboración por evento o proyecto." },
+  { q: "¿Tienen vacantes en mi ciudad?", a: "Operamos en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Indica tu ciudad al postularte y te contactamos según las plazas disponibles." },
+  { q: "¿La capacitación tiene algún costo?", a: "No. Toda la capacitación es sin costo y está certificada ante la STPS, con constancias DC-3 a tu nombre." },
+  { q: "¿Cómo envío mi CV?", a: "Por el formulario de esta página (botón de WhatsApp), o adjúntalo directamente a un correo dirigido a nuestra área de reclutamiento." },
+];
+
+const faqSchema = buildFAQSchema(faq);
+
+const inputBase =
+  "w-full bg-dark border border-primary-light rounded-lg px-4 py-3 text-light text-sm focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors";
+---
+
+<BaseLayout
+  title="Bolsa de trabajo seguridad privada | vacantes guardias de seguridad para eventos | empleo SEPRIEV"
+  description="Bolsa de trabajo en SEPRIEV: vacantes de guardia de seguridad, supervisor, escolta VIP y monitorista CCTV para eventos en México. Capacitación certificada STPS y prestaciones de ley."
+  schema={faqSchema}
+>
+  <Breadcrumb items={[{ label: 'Bolsa de Trabajo' }]} />
+
+  <PageHero
+    eyebrow="SEPRIEV — Únete al equipo"
+    titulo="Bolsa de Trabajo en Seguridad para Eventos"
+    subtitulo="Súmate a la empresa de seguridad privada para eventos con más experiencia en México. Capacitación certificada, prestaciones de ley y crecimiento real."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        En <strong class="text-light font-semibold">SEPRIEV</strong> buscamos personas comprometidas que quieran desarrollarse en la <strong class="text-light font-semibold">industria de la seguridad privada para eventos</strong>. Operamos en <strong class="text-light font-semibold">CDMX, Guadalajara, Monterrey, Puebla y Cancún</strong> y sumamos más de <strong class="text-light font-semibold">1,200 colaboradores certificados</strong> que protegen los mejores conciertos, ferias y eventos corporativos del país.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Ofrecemos <strong class="text-light font-semibold">capacitación certificada STPS sin costo</strong>, prestaciones de ley desde el primer día y un <strong class="text-light font-semibold">plan de crecimiento</strong> claro. No importa si inicias como guardia o tienes experiencia como supervisor o escolta: aquí encuentras un lugar formal, seguro y con respaldo de una empresa con <strong class="text-light font-semibold">licencia DGSSP federal vigente</strong>.
+      </p>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Navegación de la bolsa de trabajo" />
+
+  <!-- Stats -->
+  <section class="py-12 bg-primary/40 border-b border-primary">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 text-center">
+        {stats.map((s: {valor: string; etiqueta: string}) => (
+          <div>
+            <div class="text-4xl font-black text-secondary">{s.valor}</div>
+            <div class="text-accent text-sm mt-1">{s.etiqueta}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Vacantes -->
+  <section id="vacantes" class="py-20 bg-dark">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <SectionHeader
+        eyebrow="Vacantes disponibles"
+        titulo="Puestos abiertos en seguridad para eventos"
+        lead="Encuentra el puesto que mejor va contigo y postúlate en minutos."
+        parrafos={[
+          "Contratamos de forma permanente para cubrir la demanda de conciertos, ferias, eventos corporativos y deportivos en las principales ciudades del país. Cada puesto cuenta con capacitación, supervisión y un plan de crecimiento definido.",
+          "Si no encuentras la vacante exacta que buscas, igual puedes postularte a nuestro banco de talento: te contactamos en cuanto se abra una plaza acorde a tu perfil y tu ciudad.",
+        ]}
+      />
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {vacantes.map((v) => (
+          <article class="relative flex flex-col overflow-hidden border border-white/8">
+            <!-- Imagen -->
+            <div class="relative h-52 overflow-hidden">
+              <picture>
+                <source type="image/avif" srcset={`${v.imagen}-640.avif 640w, ${v.imagen}-1200.avif 1200w`} sizes="(max-width: 768px) 100vw, 400px" />
+                <source type="image/jpeg" srcset={`${v.imagen}-640.jpg 640w, ${v.imagen}-1200.jpg 1200w`} sizes="(max-width: 768px) 100vw, 400px" />
+                <img
+                  src={`${v.imagen}-640.jpg`}
+                  alt={v.puesto}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width="640"
+                  height="360"
+                />
+              </picture>
+
+              <!-- Gradiente inferior -->
+              <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-dark/70 to-transparent pointer-events-none"></div>
+
+              <!-- Badge tipo de contrato -->
+              <span class="absolute top-4 left-4 bg-secondary text-white text-[10px] font-black px-2.5 py-1 uppercase tracking-[0.15em]">
+                {v.tipo}
+              </span>
+            </div>
+
+            <!-- Contenido -->
+            <div class="flex flex-col flex-1 px-6 pt-5 pb-6 bg-dark">
+              <div class="w-8 h-0.5 bg-secondary mb-4"></div>
+
+              <h3 class="text-white font-bold text-lg leading-snug mb-2">{v.puesto}</h3>
+
+              <p class="text-accent text-xs mb-3 flex items-center gap-1.5">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="flex-shrink-0 text-secondary" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+                {v.ubicacion}
+              </p>
+
+              <p class="text-gray-400 text-sm leading-relaxed mb-5 flex-1">{v.desc}</p>
+
+              <ul class="space-y-2 mb-5 pb-5 border-b border-white/6">
+                {v.perfil.map((p: string) => (
+                  <li class="flex items-center gap-2.5 text-xs text-gray-500">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary/70 flex-shrink-0"></span>
+                    {p}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={`/bolsa-de-trabajo/${v.slug}`}
+                class="mt-auto w-full bg-secondary hover:bg-red-700 text-white px-5 py-3 rounded-lg font-bold uppercase tracking-wide text-sm transition-colors flex items-center justify-center gap-2"
+              >
+                Ver vacante y postular
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Requisitos -->
+  <section id="requisitos" class="py-20 bg-primary/30 border-y border-primary">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <SectionHeader
+        eyebrow="¿Qué necesitas?"
+        titulo="Requisitos y documentación"
+        lead="Un perfil sencillo y los documentos básicos para integrarte de forma formal."
+        parrafos={[
+          "Buscamos personas responsables, con buena presentación y vocación de servicio. La mayoría de los puestos no exige experiencia previa: nosotros te capacitamos y certificamos ante la STPS.",
+          "Para tu alta necesitamos tu documentación en regla. Si te falta algún documento, como la carta de no antecedentes penales, te orientamos sobre cómo tramitarlo.",
+        ]}
+      />
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="bg-dark border border-primary-light rounded-xl p-6">
+          <h3 class="text-light font-bold text-base mb-4 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-secondary"></span> Indispensables
+          </h3>
+          <ul class="space-y-2.5">
+            {["Mayor de 18 años", "Identificación oficial vigente (INE)", "CURP y comprobante de domicilio", "Disponibilidad de horario", "Sin antecedentes penales"].map((r: string) => (
+              <li class="flex items-start gap-2.5 text-accent text-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                {r}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-dark border border-primary-light rounded-xl p-6">
+          <h3 class="text-light font-bold text-base mb-4 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-gold"></span> Deseables
+          </h3>
+          <ul class="space-y-2.5">
+            {["Experiencia en seguridad o eventos", "Cartilla militar liberada (hombres)", "Licencia de conducir vigente", "Constancias DC-3 previas", "Buena condición física"].map((r: string) => (
+              <li class="flex items-start gap-2.5 text-accent text-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" class="flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                {r}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-dark border border-primary-light rounded-xl p-6">
+          <h3 class="text-light font-bold text-base mb-4 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-green-400"></span> Para tu alta
+          </h3>
+          <ul class="space-y-2.5">
+            {["Acta de nacimiento", "RFC con homoclave", "Carta de no antecedentes penales", "Comprobante de estudios", "Referencias laborales"].map((r: string) => (
+              <li class="flex items-start gap-2.5 text-accent text-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" class="flex-shrink-0 mt-0.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                {r}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios -->
+  <section id="beneficios" class="py-20 bg-dark">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <SectionHeader
+        eyebrow="Por qué SEPRIEV"
+        titulo="Beneficios de trabajar con nosotros"
+        lead="Un empleo formal, seguro y con futuro en el sector de seguridad para eventos."
+        parrafos={[
+          "Sabemos que la mejor seguridad la hacen las mejores personas. Por eso invertimos en nuestro equipo con capacitación, prestaciones superiores y un ambiente de respeto y profesionalismo.",
+          "Trabajar en SEPRIEV significa estar respaldado por una empresa con licencia federal, operación formal y presencia en los eventos más importantes del país.",
+        ]}
+      />
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {beneficios.map((b) => (
+          <div class="bg-primary border border-primary-light rounded-xl p-6 flex items-start gap-4">
+            <span class="text-3xl flex-shrink-0" aria-hidden="true">{b.icon}</span>
+            <div>
+              <h3 class="text-light font-bold text-base mb-1.5">{b.titulo}</h3>
+              <p class="text-accent text-sm leading-relaxed">{b.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso de selección -->
+  <section class="py-20 bg-primary/30 border-y border-primary">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <SectionHeader
+        eyebrow="Cómo es el proceso"
+        titulo="Proceso de selección"
+        lead="Cinco pasos claros, desde tu postulación hasta tu primer evento."
+        variant="simple"
+      />
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        {proceso.map((p) => (
+          <div class="relative bg-dark border border-primary-light rounded-xl p-6">
+            <div class="text-3xl font-black text-secondary/30 mb-3">{p.paso}</div>
+            <h3 class="text-light font-bold text-sm mb-2">{p.titulo}</h3>
+            <p class="text-accent text-xs leading-relaxed">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Postúlate -->
+  <section id="postular" class="relative overflow-hidden bg-gradient-to-br from-dark via-primary/40 to-dark py-16 lg:py-24 border-t border-primary">
+    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" aria-hidden="true"></div>
+
+    <div class="relative w-full px-[5%] xl:px-[7%]">
+      <SectionHeader
+        eyebrow="Postúlate ahora"
+        titulo="Envía tu solicitud y tu CV"
+        lead="Completa el formulario y envíanos tus datos por WhatsApp, o adjunta tu CV por correo. Te contactamos lo antes posible."
+      />
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+
+        <!-- Columna 1: FAQ -->
+        <div>
+          <h3 class="text-light font-black text-xl sm:text-2xl mb-6 flex items-center gap-2.5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            Preguntas frecuentes
+          </h3>
+
+          <div class="space-y-3 sm:space-y-4">
+            {faq.map((item) => (
+              <details class="cta-faq bg-primary border border-primary-light rounded-xl overflow-hidden">
+                <summary class="cta-faq-summary list-none flex justify-between items-center gap-4 px-5 sm:px-6 py-4 text-light font-semibold text-sm sm:text-[15px] cursor-pointer hover:text-secondary transition-colors">
+                  <span>{item.q}</span>
+                  <svg class="cta-faq-icon w-5 h-5 flex-shrink-0 text-secondary transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6"/>
+                  </svg>
+                </summary>
+                <div class="px-5 sm:px-6 pb-5 -mt-1">
+                  <p class="text-accent text-sm leading-relaxed">{item.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+
+          <!-- Contacto directo RH -->
+          <div class="mt-6 rounded-xl border border-primary-light bg-primary/50 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <p class="text-accent text-sm">¿Prefieres enviar tu CV por correo?</p>
+            <a
+              href={`mailto:${EMAIL_RH}?subject=Postulación%20-%20Bolsa%20de%20Trabajo%20SEPRIEV`}
+              class="inline-flex items-center justify-center gap-2 border border-primary-light hover:border-secondary text-light px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              {EMAIL_RH}
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna 2: Formulario -->
+        <div class="bg-primary border border-primary-light rounded-2xl p-6 sm:p-8 shadow-xl shadow-black/30">
+          <h3 class="text-light font-black text-xl sm:text-2xl mb-1.5">Formulario de postulación</h3>
+          <p class="text-accent text-sm mb-6">Cuéntanos de ti y a qué puesto te interesa aplicar.</p>
+
+          <form data-wa-apply class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="ap-nombre" class="block text-light text-sm font-semibold mb-1.5">Nombre completo *</label>
+                <input type="text" id="ap-nombre" name="nombre" required class={inputBase + " placeholder:text-accent/50"} placeholder="Tu nombre" />
+              </div>
+              <div>
+                <label for="ap-telefono" class="block text-light text-sm font-semibold mb-1.5">Teléfono / WhatsApp *</label>
+                <input type="tel" id="ap-telefono" name="telefono" required class={inputBase + " placeholder:text-accent/50"} placeholder="55 1234 5678" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="ap-email" class="block text-light text-sm font-semibold mb-1.5">Email</label>
+                <input type="email" id="ap-email" name="email" class={inputBase + " placeholder:text-accent/50"} placeholder="tu@email.com" />
+              </div>
+              <div>
+                <label for="ap-puesto" class="block text-light text-sm font-semibold mb-1.5">Puesto de interés *</label>
+                <select id="ap-puesto" name="puesto" required class={inputBase}>
+                  <option value="">Selecciona...</option>
+                  {vacantes.map((v) => (<option value={v.puesto}>{v.puesto}</option>))}
+                  <option value="Banco de talento (cualquier puesto)">Banco de talento (cualquier puesto)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="ap-ciudad" class="block text-light text-sm font-semibold mb-1.5">Ciudad</label>
+                <select id="ap-ciudad" name="ciudad" class={inputBase}>
+                  <option value="">Selecciona...</option>
+                  <option value="Ciudad de México">Ciudad de México</option>
+                  <option value="Guadalajara">Guadalajara</option>
+                  <option value="Monterrey">Monterrey</option>
+                  <option value="Puebla">Puebla</option>
+                  <option value="Cancún">Cancún</option>
+                  <option value="Otra">Otra ciudad</option>
+                </select>
+              </div>
+              <div>
+                <label for="ap-experiencia" class="block text-light text-sm font-semibold mb-1.5">Experiencia</label>
+                <select id="ap-experiencia" name="experiencia" class={inputBase}>
+                  <option value="">Selecciona...</option>
+                  <option value="Sin experiencia">Sin experiencia</option>
+                  <option value="Menos de 1 año">Menos de 1 año</option>
+                  <option value="1 - 3 años">1 - 3 años</option>
+                  <option value="3 - 5 años">3 - 5 años</option>
+                  <option value="Más de 5 años">Más de 5 años</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="ap-mensaje" class="block text-light text-sm font-semibold mb-1.5">Mensaje (opcional)</label>
+              <textarea id="ap-mensaje" name="mensaje" rows="3" class={inputBase + " placeholder:text-accent/50 resize-none"} placeholder="Cuéntanos brevemente sobre ti y tu disponibilidad..."></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-secondary hover:bg-red-700 text-white px-6 py-4 rounded-lg font-bold uppercase tracking-wide text-sm transition-colors flex items-center justify-center gap-2"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              </svg>
+              Postularme por WhatsApp
+            </button>
+
+            <button
+              type="button"
+              data-email-apply
+              class="w-full border border-primary-light hover:border-secondary text-light px-6 py-3.5 rounded-lg font-semibold text-sm transition-colors flex items-center justify-center gap-2"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              Enviar por correo (adjunta tu CV)
+            </button>
+
+            <p class="text-accent text-xs text-center leading-relaxed">
+              Al enviar se abrirá WhatsApp o tu correo con tus datos. Aceptas nuestro
+              <a href="/aviso-de-privacidad" class="text-secondary hover:underline">aviso de privacidad</a>. Adjunta tu CV para agilizar tu proceso.
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .cta-faq > summary { list-style: none; }
+  .cta-faq > summary::-webkit-details-marker { display: none; }
+  .cta-faq[open] .cta-faq-icon { transform: rotate(180deg); }
+</style>
+
+<script define:vars={{ WA: WHATSAPP_NUMBER, MAIL: EMAIL_RH }}>
+  const form = document.querySelector('form[data-wa-apply]');
+
+  function buildLines() {
+    const fd = new FormData(form);
+    const v = (k) => String(fd.get(k) || '').trim();
+    const lines = ['Hola, quiero postularme a la bolsa de trabajo de SEPRIEV:', ''];
+    lines.push('Nombre: ' + v('nombre'));
+    if (v('telefono')) lines.push('Teléfono: ' + v('telefono'));
+    if (v('email')) lines.push('Email: ' + v('email'));
+    if (v('puesto')) lines.push('Puesto: ' + v('puesto'));
+    if (v('ciudad')) lines.push('Ciudad: ' + v('ciudad'));
+    if (v('experiencia')) lines.push('Experiencia: ' + v('experiencia'));
+    if (v('mensaje')) { lines.push(''); lines.push('Mensaje: ' + v('mensaje')); }
+    return lines;
+  }
+
+  // Envío por WhatsApp
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const url = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(buildLines().join('\n'));
+    window.open(url, '_blank', 'noopener');
+  });
+
+  // Envío por correo
+  document.querySelector('[data-email-apply]')?.addEventListener('click', () => {
+    if (!form.reportValidity()) return;
+    const body = buildLines().join('\n') + '\n\n(No olvides adjuntar tu CV a este correo.)';
+    window.location.href = 'mailto:' + MAIL
+      + '?subject=' + encodeURIComponent('Postulación - Bolsa de Trabajo SEPRIEV')
+      + '&body=' + encodeURIComponent(body);
+  });
+</script>

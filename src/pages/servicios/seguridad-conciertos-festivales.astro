@@ -3,17 +3,18 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumb from '@/components/Breadcrumb.astro';
 import PageHero from '@/components/PageHero.astro';
 import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import ProcessSection from '@/components/ProcessSection.astro';
 import CTABanner from '@/components/CTABanner.astro';
 import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
-import { buildServiceSchema, buildFAQSchema } from '@/lib/seo';
+import { buildServicePageSchema } from '@/lib/seo';
 
 const slug = 'seguridad-conciertos-festivales';
 const titulo = 'Seguridad para Conciertos y Festivales en México';
 const descripcion = 'Servicio especializado de seguridad privada para conciertos, festivales de música y eventos masivos en México. Personal certificado DGSSP, control de multitudes y protocolos de emergencia.';
-const metaTitle = "Seguridad para conciertos | seguridad para festivales | seguridad para eventos masivos";
-const metaDescription = "Seguridad para conciertos y festivales: SEPRIEV ofrece seguridad privada para conciertos, festivales y eventos masivos en México con guardias certificados.";
+const metaTitle = "Seguridad para Conciertos y Festivales en México | SEPRIEV";
+const metaDescription = "Seguridad privada para conciertos y festivales en México: control de multitudes, backstage, plan de seguridad y coordinación con Protección Civil. Licencia DGSSP.";
 const canonical = `${SITE}/servicios/${slug}`;
 
 const IMG = '/img/eventos';
@@ -27,12 +28,31 @@ const faq = [
   { q: "¿Trabajan con artistas internacionales?", a: "Sí, tenemos experiencia coordinando seguridad con riders técnicos de artistas internacionales. Nuestro personal clave es bilingüe y conoce los protocolos de seguridad estándar de la industria musical." },
   { q: "¿Incluyen coordinación con Protección Civil?", a: "Absolutamente. Para cualquier concierto tramitamos y coordinamos con Protección Civil, bomberos y servicios de emergencia. El plan de contingencia está incluido en nuestro servicio." },
   { q: "¿Qué pasa si hay un incidente grave durante el concierto?", a: "Contamos con protocolos de emergencia probados que incluyen evacuación parcial/total, comunicación de crisis, coordinación con servicios de emergencia y cadena de mando clara. Nuestro equipo está entrenado para actuar en segundos." },
+  { q: "¿Manejan también el control de acceso y la detección de objetos?", a: "Sí. Integramos el control de acceso con el boletaje del evento (validación QR/NFC), arcos detectores de metales y revisión de objetos prohibidos, con una revisión proporcional al riesgo y personal femenino para la revisión de mujeres. El acceso por sector es la base del control de aforo dentro del recinto." },
+  { q: "¿Tienen experiencia con festivales de varios días?", a: "Sí. Los festivales multi-jornada se cubren con relevos escalonados y traspasos de turno documentados que sostienen el estándar de día y de madrugada, además de la custodia nocturna del equipo de producción entre jornadas. Al cierre entregamos un informe posterior con incidencias, aforos y recomendaciones." },
+  { q: "¿Coordinan la seguridad del backstage y de los artistas?", a: "Sí. El acceso a camerinos, plataformas técnicas y zonas de producción se regula con credencialización por niveles, y protegemos a los artistas y su staff en ingreso, salida y traslados. Coordinamos con el management o el tour security cuando el rider lo requiere." },
+  { q: "¿Incluyen drones y CCTV para conciertos al aire libre?", a: "Sí, cuando el evento lo amerita. Sumamos drones con cámara HD y conteo de aforo, CCTV móvil y un puesto de mando que centraliza el monitoreo, lo que permite medir la densidad por sector y redistribuir al personal antes de que una zona se congestione." },
+  { q: "¿Cuánto cuesta la seguridad para un concierto o festival?", a: "El costo depende del aforo esperado, la duración (montaje, evento y desmontaje), el tipo de artista y el nivel de riesgo, la ubicación y accesibilidad del venue y los servicios adicionales (drones, CCTV móvil, ambulancia). Te enviamos una propuesta detallada en menos de 24 horas." },
 ];
 
-const schemas = [
-  buildServiceSchema(titulo, descripcion, canonical),
-  buildFAQSchema(faq),
-];
+const schemas = buildServicePageSchema({
+  slug,
+  name: titulo,
+  description: descripcion,
+  metaTitle,
+  metaDescription,
+  serviceType: "Seguridad para conciertos y festivales",
+  ogImage: ogImg,
+  breadcrumbName: "Conciertos y Festivales",
+  offers: [
+    "Plan de seguridad y carpeta ante autoridad",
+    "Control de multitudes",
+    "Backstage y credencialización",
+    "Coordinación institucional",
+  ],
+  faq,
+  datePublished: "2025-01-10",
+});
 
 const navItems = [
   { label: "Eventos Masivos", desc: "Operativos de +10,000 asistentes con centro de comando", href: "/servicios/seguridad-masivos" },
@@ -56,6 +76,11 @@ const modules = [
     hero: `${IMG}/seguridad-conciertos-festivales`,
     small1: `${IMG}/seguridad-conciertos-multitud`,
     small2: `${IMG}/personal-seguridad-evento`,
+    alt: [
+      "Operativo de seguridad privada en un concierto masivo en México",
+      "Control de multitudes frente al escenario de un festival",
+      "Personal de seguridad de SEPRIEV en un evento musical",
+    ],
     featured: false,
   },
   {
@@ -71,6 +96,11 @@ const modules = [
     hero: `${IMG}/centro-control-seguridad`,
     small1: `${IMG}/guardias-seguridad-privada`,
     small2: `${IMG}/control-acceso-eventos`,
+    alt: [
+      "Puesto de mando y monitoreo durante un concierto",
+      "Guardias certificados desplegados en un festival",
+      "Filtro de acceso y revisión en el ingreso a un concierto",
+    ],
     featured: true,
   },
 ];
@@ -119,6 +149,7 @@ const relacionados = [
       <p class="text-accent text-base leading-relaxed">
         Todo el personal cuenta con <strong class="text-light font-semibold">licencia DGSSP y certificación STPS</strong>, y operamos en CDMX, Guadalajara, Monterrey, Puebla y Cancún con cobertura en todo el país. Cotización gratuita y propuesta en menos de 24 horas.
       </p>
+      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/seguridad-masivos" class="text-secondary hover:underline font-semibold">eventos masivos</a> y <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
         <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
@@ -132,15 +163,17 @@ const relacionados = [
 
   <PageNav items={navItems} ariaLabel="Servicios relacionados" />
 
+  <StatsSection />
+
   <!-- Módulos detallados del servicio -->
-  <section class="py-20 bg-dark" id="servicio">
+  <section class="py-20 bg-dark" id="servicio" aria-labelledby="servicio-h">
     <div class="w-full px-[5%] xl:px-[7%]">
 
       <!-- Encabezado de dos columnas -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
         <div class="flex flex-col">
           <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo operamos un concierto</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3" id="servicio-h">
             Seguridad especializada para la industria musical
           </h2>
           <p class="text-accent text-base leading-relaxed">
@@ -202,20 +235,20 @@ const relacionados = [
               <picture>
                 <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
                 <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
-                <img src={`${m.hero}-1200.jpg`} alt={`${m.title} — seguridad para conciertos y festivales SEPRIEV`} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
               </picture>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
                 <picture>
                   <source type="image/avif" srcset={`${m.small1}-640.avif`} />
-                  <img src={`${m.small1}-640.jpg`} alt={`${m.title} — SEPRIEV`} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
                 </picture>
               </div>
               <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
                 <picture>
                   <source type="image/avif" srcset={`${m.small2}-640.avif`} />
-                  <img src={`${m.small2}-640.jpg`} alt={`${m.title} — SEPRIEV`} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
                 </picture>
               </div>
             </div>
@@ -226,12 +259,12 @@ const relacionados = [
   </section>
 
   <!-- Tipos de eventos que cubrimos -->
-  <section class="py-20 bg-dark border-t border-white/8">
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
     <div class="w-full px-[5%] xl:px-[7%]">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
         <div class="flex flex-col">
           <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cobertura por formato</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">Tipos de eventos que cubrimos</h2>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="tipos-h">Tipos de eventos que cubrimos</h2>
         </div>
         <div class="flex flex-col gap-3">
           <p class="text-accent text-sm leading-relaxed">
@@ -255,12 +288,12 @@ const relacionados = [
   </section>
 
   <!-- Por qué SEPRIEV -->
-  <section class="py-20 bg-primary/30 border-t border-primary">
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
     <div class="w-full px-[5%] xl:px-[7%]">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
         <div class="flex flex-col">
           <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para tu concierto?</h2>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="porque-h">¿Por qué SEPRIEV para tu concierto?</h2>
         </div>
         <div class="flex flex-col gap-3">
           <p class="text-accent text-sm leading-relaxed">
@@ -288,12 +321,12 @@ const relacionados = [
   <ProcessSection titulo="Así protegemos tu concierto" />
 
   <!-- Otros servicios -->
-  <section class="py-20 bg-dark border-t border-white/8">
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
     <div class="w-full px-[5%] xl:px-[7%]">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
         <div class="flex flex-col">
           <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Servicios complementarios</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">Otros servicios para tu evento</h2>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="otros-h">Otros servicios para tu evento</h2>
         </div>
         <div class="flex flex-col gap-3">
           <p class="text-accent text-sm leading-relaxed">

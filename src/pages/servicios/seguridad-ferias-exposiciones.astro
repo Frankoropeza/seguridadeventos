@@ -1,0 +1,368 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema } from '@/lib/seo';
+
+const slug = 'seguridad-ferias-exposiciones';
+
+// H1 / nombre del servicio para schema
+const titulo = 'Seguridad para Ferias y Exposiciones en México';
+const descripcion = 'Servicio integral de seguridad para ferias comerciales y exposiciones en México: control de acceso y credencialización diferenciada, vigilancia de piso, custodia nocturna 24/7, inventario conciliado de stands y enlace operativo con el recinto. Personal certificado DGSSP y STPS.';
+
+// SEO meta (limpio, orientado a intención de búsqueda)
+const metaTitle = 'Seguridad para Ferias y Exposiciones en México | SEPRIEV';
+const metaDescription = 'Seguridad para ferias y exposiciones en México: control de acceso, vigilancia de piso, custodia 24/7 e inventario conciliado de stands. Cobertura por zonas y turnos. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/seguridad-empresarial-evento-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito seguridad para una feria o exposición')}`;
+
+// FAQ específica de ferias y exposiciones (ampliada para cobertura de búsqueda)
+const faq = [
+  { q: "¿Ofrecen seguridad nocturna entre días de feria?", a: "Sí. Uno de nuestros servicios más solicitados es la custodia nocturna del recinto ferial. Mantenemos vigilancia 24/7 con rondines programados, reporte fotográfico, control de acceso nocturno solo para personal autorizado y monitoreo de alarmas para proteger la mercancía de los expositores entre jornadas." },
+  { q: "¿Cuántos elementos de seguridad necesita una feria?", a: "Como referencia, para una feria de 3 días con 200 expositores y 15,000 visitantes estimados desplegamos alrededor de 35-40 elementos en rotación: 8 puntos de acceso con 2 elementos cada uno, 12 guardias de piso, 4 supervisores de zona, 6 elementos de seguridad nocturna, 1 coordinador de operaciones y 1 puesto de mando centralizado. El número final depende del recinto, el aforo y el valor de la mercancía." },
+  { q: "¿Pueden controlar el acceso de los proveedores de montaje?", a: "Sí. Implementamos un sistema de registro y credencialización para proveedores: cada expositor autoriza a los suyos y nosotros verificamos identidad, empresa y zona de trabajo autorizada, además de supervisar la carga y descarga y los estacionamientos de carga." },
+  { q: "¿Qué pasa si un expositor reporta un robo?", a: "Activamos el protocolo de incidencia: aseguramos la escena, revisamos los registros de CCTV y la bitácora de accesos, identificamos posibles sospechosos y coordinamos con el organizador. Elaboramos un acta de hechos para efectos de seguro." },
+  { q: "¿Manejan la seguridad de todo el recinto o solo de áreas específicas?", a: "Podemos cubrir el recinto completo o zonas específicas según las necesidades del organizador. Lo más común es la seguridad integral: accesos, piso de exposición, estacionamientos y custodia nocturna, bajo un solo plan operativo." },
+  { q: "¿En qué recintos feriales operan?", a: "Operamos regularmente en los principales recintos del país: Centro Citibanamex y Expo Santa Fe y World Trade Center en CDMX, Expo Guadalajara en Jalisco, CINTERMEX en Monterrey y el Centro de Convenciones de Puebla, entre otros." },
+  { q: "¿Hacen inventario de la mercancía de los stands?", a: "Sí. Para los stands con piezas de alto valor implementamos un registro de inventario de entrada y salida y la conciliación al cierre de cada jornada, con hora y responsable. Cualquier faltante se identifica antes de la apertura al público y no días después." },
+  { q: "¿La seguridad incluye seguro de responsabilidad civil?", a: "Sí. Operamos como un solo proveedor para todo el evento, con un punto de contacto y un plan operativo, seguro de responsabilidad civil incluido y coordinación con Protección Civil y los permisos de operación al día." },
+];
+
+// Schema Service enriquecido + BreadcrumbList + FAQPage
+
+
+const schemas = buildServicePageSchema({
+  slug,
+  name: titulo,
+  description: descripcion,
+  metaTitle,
+  metaDescription,
+  serviceType: "Seguridad para ferias y exposiciones",
+  ogImage: ogImg,
+  breadcrumbName: "Ferias y Exposiciones",
+  offers: [
+    "Control de acceso y credencialización diferenciada",
+    "Vigilancia de piso de exposición",
+    "Custodia nocturna 24/7",
+    "Inventario conciliado de stands",
+  ],
+  faq,
+  datePublished: "2025-02-10",
+});
+
+const navItems = [
+  { label: "Control de Acceso", desc: "Credencialización diferenciada y aforo en tiempo real", href: "/servicios/control-acceso-eventos" },
+  { label: "Montaje y Desmontaje", desc: "Custodia 24/7 y acreditación de proveedores", href: "/servicios/seguridad-montaje-desmontaje" },
+  { label: "Eventos Corporativos", desc: "Seguridad discreta para convenciones y congresos", href: "/servicios/seguridad-eventos-corporativos" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
+const modules = [
+  {
+    eyebrow: "Servicio especializado",
+    badge: "Por zonas y turnos",
+    title: "Cobertura por zonas y por jornada",
+    intro: "Una feria es un recinto vivo durante varios días, con decenas de expositores, activos de valor heterogéneo y un flujo que cambia por hora. SEPRIEV opera este tipo de evento con un modelo de cobertura por zonas y por jornada que distingue el riesgo del recinto con público del recinto vacío de madrugada. La continuidad y la trazabilidad del operativo son lo que sostiene la confianza de cada expositor.",
+    features: [
+      { title: "Cobertura por zonas y por turnos", text: "El operativo cubre el ciclo completo de la feria —jornada con público, cierre y vigilancia nocturna— con relevos diseñados para no dejar ninguna franja descubierta y traspasos documentados entre turnos. La cobertura nocturna queda registrada, de modo que cada expositor encuentra su stand tal como lo dejó." },
+      { title: "Inventario conciliado de activos", text: "Para los stands con piezas de alto valor implementamos registro de inventario de entrada y salida y conciliación al cierre de cada jornada, con hora y responsable. Cualquier faltante se identifica antes de la apertura al público y no días después, lo que permite actuar de inmediato y con evidencia." },
+      { title: "Enlace operativo con el recinto", text: "El dispositivo se coordina con la administración del recinto, los servicios de emergencia y los proveedores de seguridad de los propios expositores para evitar duplicidades y zonas grises de responsabilidad. Un mando claro y un canal unificado garantizan que, ante un incidente, exista siempre un responsable definido." },
+    ],
+    hero: `${IMG}/seguridad-empresarial-evento`,
+    small1: `${IMG}/control-acceso-eventos`,
+    small2: `${IMG}/equipo-seguridad-eventos`,
+    alt: [
+      "Guardias de SEPRIEV en el piso de una feria comercial en México",
+      "Control de acceso y credencialización de visitantes en una exposición",
+      "Equipo de seguridad coordinando la custodia de un recinto ferial",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Custodia y montaje",
+    badge: undefined,
+    title: "Custodia nocturna, montaje y prevención de pérdidas",
+    intro: "El riesgo de una feria no termina cuando cierra al público: el montaje, la madrugada y el desmontaje concentran la mayor parte de los robos de mercancía y los accesos no autorizados. SEPRIEV cubre el ciclo completo del evento con custodia documentada, control de proveedores e inventario de salida, porque proteger lo que ocurre fuera del horario de visitantes es tan importante como vigilar el piso lleno.",
+    features: [
+      { title: "Custodia nocturna 24/7", text: "Mantenemos vigilancia 24 horas del recinto durante todo el evento, con rondines nocturnos y reporte fotográfico, control de acceso nocturno restringido al personal autorizado y monitoreo de alarmas y sensores. Cada mañana el organizador recibe la constancia del estado del recinto durante la noche." },
+      { title: "Control de proveedores en montaje y desmontaje", text: "Verificamos identidad, empresa y zona autorizada de cada proveedor contra una lista validada por el expositor, supervisamos la carga y descarga de mercancía y aseguramos los estacionamientos de carga. Este control se integra con nuestro servicio de seguridad de montaje y desmontaje cuando la producción lo requiere." },
+      { title: "Inventario y prevención de pérdidas", text: "Llevamos el inventario de salida de la mercancía para prevenir pérdidas y, ante cualquier incidencia, aseguramos la escena, revisamos CCTV y bitácora de accesos y elaboramos un acta de hechos para efectos de seguro. La trazabilidad protege por igual al expositor y al organizador." },
+    ],
+    hero: `${IMG}/centro-monitoreo-cctv-eventos`,
+    small1: `${IMG}/guardias-seguridad-privada`,
+    small2: `${IMG}/control-acceso-credenciales`,
+    alt: [
+      "Monitoreo por CCTV de un recinto ferial durante la custodia nocturna",
+      "Guardia de seguridad privada en rondín nocturno por un pabellón de expo",
+      "Credencialización diferenciada de expositores y proveedores en una feria",
+    ],
+    featured: true,
+  },
+];
+
+// Ferias y exposiciones que protegemos
+const tipos = [
+  { titulo: "Ferias industriales y de manufactura", nota: "Maquinaria y equipo de alto valor" },
+  { titulo: "Exposiciones de tecnología", nota: "Prototipos y electrónica" },
+  { titulo: "Ferias automotrices", nota: "Vehículos y showrooms" },
+  { titulo: "Expos de alimentos y bebidas", nota: "Muestras y degustaciones" },
+  { titulo: "Ferias inmobiliarias y de franquicias", nota: "Stands de negocio y networking" },
+  { titulo: "Arte, salud y bienestar", nota: "Piezas y exhibiciones especializadas" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Cobertura por zonas y turnos", desc: "Relevos que no dejan ninguna franja descubierta, de la jornada con público a la madrugada." },
+  { titulo: "Inventario conciliado", desc: "Registro de entrada y salida con hora y responsable; los faltantes se detectan antes de abrir." },
+  { titulo: "Custodia nocturna documentada", desc: "Rondines con reporte fotográfico, control de acceso nocturno y monitoreo de alarmas." },
+  { titulo: "Enlace con el recinto", desc: "Coordinación con administración, emergencias y seguridad de expositores bajo un mando único." },
+  { titulo: "Un solo proveedor", desc: "Un punto de contacto y un plan operativo para todo el evento, con responsabilidad civil incluida." },
+  { titulo: "Cumplimiento al día", desc: "Coordinación con Protección Civil y permisos de operación vigentes durante toda la feria." },
+];
+
+// Otros servicios relacionados (ServiceCards homologadas con servicios/index)
+const relacionados = [
+  { title: "Montaje y Desmontaje", description: "Custodia 24/7 del recinto, acreditación de proveedores e inventario fotográfico durante todo el ciclo del evento.", features: ["Custodia 24/7", "Control de proveedores", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje", image: `${IMG}/equipo-seguridad-eventos`, badge: "Destacado", featured: true },
+  { title: "Control de Acceso", description: "Credencialización diferenciada, detección de objetos y gestión de aforo en tiempo real para recintos feriales.", features: ["Credencialización", "Registro de visitantes", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Eventos Corporativos", description: "Seguridad discreta para convenciones, congresos y lanzamientos, con personal bilingüe y confidencialidad.", features: ["Personal bilingüe", "Confidencialidad", "Imagen institucional"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos` },
+  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Ferias y Exposiciones' }]} />
+
+  <PageHero
+    eyebrow="SEPRIEV — Ferias y Exposiciones"
+    titulo="Seguridad para Ferias y Exposiciones"
+    subtitulo="Una feria es un recinto vivo durante varios días, con decenas de expositores, activos de valor heterogéneo y un flujo que cambia por hora. La operamos con cobertura por zonas y por jornada."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        <strong class="text-light font-semibold">SEPRIEV</strong> opera ferias con un modelo de cobertura por zonas y por jornada que distingue el recinto con público del recinto vacío de madrugada, con custodia nocturna documentada e inventario conciliado. Integramos el <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso</a> y la credencialización diferenciada de expositores, visitantes, prensa y staff.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Experiencia en Centro Citibanamex, Expo Guadalajara, CINTERMEX y World Trade Center, con <a href="/servicios/seguridad-montaje-desmontaje" class="text-secondary hover:underline font-semibold">seguridad de montaje y desmontaje</a> incluida. Un solo proveedor, responsabilidad civil incluida, <strong class="text-light font-semibold">licencia DGSSP y STPS</strong>. Cotización en menos de 24 horas.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <!-- Encabezado de dos columnas -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo operamos una feria</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3" id="servicio-h">
+            Continuidad y trazabilidad para recintos multi-expositor
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            Mercancía de alto valor en stands abiertos, proveedores externos en montaje y miles de visitantes durante días consecutivos: una feria exige un operativo que distinga cada momento del recinto.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Desplegamos <strong class="text-light font-semibold">control de acceso inteligente</strong> con credencialización diferenciada, vigilancia de piso con rondines programados y <strong class="text-light font-semibold">custodia nocturna 24/7</strong> con reporte fotográfico. Todo bajo un solo plan operativo y un único punto de contacto.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            En montaje y desmontaje controlamos a cada proveedor contra una lista autorizada por el expositor y llevamos el <strong class="text-light font-semibold">inventario de salida</strong> de la mercancía, porque la mayor parte de las pérdidas ocurre cuando el recinto no tiene público.
+          </p>
+        </div>
+      </div>
+
+      <!-- Módulos imagen + texto -->
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+
+          <!-- Columna izquierda: texto -->
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4" set:html={f.text}></p>
+                </li>
+              ))}
+            </ul>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha: galería 1 grande + 2 pequeñas -->
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Ferias y exposiciones que protegemos -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué protegemos</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="tipos-h">Ferias y exposiciones que protegemos</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Cada tipo de exposición tiene activos y riesgos distintos: no es lo mismo custodiar maquinaria industrial que prototipos tecnológicos, vehículos o piezas de arte. Ajustamos el dispositivo y el inventario al valor y la naturaleza de la mercancía en exhibición.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M3 9l1-5h16l1 5M4 9v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9M3 9h18M9 21v-6h6v6"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="porque-h">¿Por qué SEPRIEV para tu feria o expo?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            La reputación de una feria depende de que los expositores se sientan seguros y regresen. Un operativo continuo, trazable y bien coordinado con el recinto es la diferencia entre un evento que crece edición tras edición y uno que pierde expositores.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection titulo="Así protegemos tu feria o exposición" />
+
+  <!-- Otros servicios -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Servicios complementarios</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="otros-h">Otros servicios para tu evento</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Una feria combina varios frentes de seguridad. Integramos la custodia de montaje y desmontaje, el control de acceso, los operativos corporativos y la dirección de eventos masivos en un solo plan, con un único interlocutor responsable.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas seguridad para tu feria o exposición?"
+    subtitulo="Cuéntanos el recinto, los días de operación y el número de expositores, y recibe una propuesta personalizada en menos de 24 horas. Sin compromiso."
+    faq={faq}
+  />
+
+</BaseLayout>

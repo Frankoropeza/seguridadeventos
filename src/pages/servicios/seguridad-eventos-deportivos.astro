@@ -1,0 +1,371 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema } from '@/lib/seo';
+
+const slug = 'seguridad-eventos-deportivos';
+
+// H1 / nombre del servicio para schema
+const titulo = 'Seguridad para Eventos Deportivos en México';
+const descripcion = 'Servicio de seguridad privada para eventos deportivos en México: estadios, partidos, box y MMA, maratones y competencias. Gestión y separación de aficiones, protección del terreno de juego, control de acceso por sección, seguridad de ruta y cumplimiento de protocolos de federaciones y ligas. Personal certificado DGSSP y STPS en manejo de multitudes.';
+
+// SEO meta (limpio, orientado a intención de búsqueda)
+const metaTitle = 'Seguridad para Eventos Deportivos en México | SEPRIEV';
+const metaDescription = 'Seguridad para eventos deportivos en México: control de barras, anti-invasión de cancha, protección de atletas y seguridad de ruta en maratones. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/seguridad-conciertos-multitud-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito seguridad para un evento deportivo')}`;
+
+// FAQ específica de eventos deportivos (ampliada para cobertura de búsqueda)
+const faq = [
+  { q: "¿Tienen experiencia con barras de fútbol?", a: "Sí. Hemos trabajado en partidos con barras organizadas: conocemos los protocolos de separación de aficiones, control de pirotecnia, detección de alcohol y coordinación con la policía para la llegada y salida de las barras." },
+  { q: "¿Pueden cubrir la seguridad de un maratón?", a: "Sí. Ofrecemos seguridad de ruta para maratones y carreras: control vehicular en cruces, vigilancia en puntos de hidratación, asistencia a corredores y seguridad en la zona de meta y premiación." },
+  { q: "¿Cómo previenen las invasiones de cancha?", a: "Desplegamos elementos de seguridad en primera fila del terreno de juego, con comunicación por radio para anticipar movimientos. Nuestro récord: 0 invasiones de cancha en los eventos bajo nuestra operación." },
+  { q: "¿Trabajan con ligas profesionales?", a: "Trabajamos con organizadores de eventos deportivos de todos los niveles. Para ligas profesionales coordinamos con la seguridad propia del equipo o la liga y cumplimos con los protocolos específicos de cada competición." },
+  { q: "¿Cómo controlan la reventa y los boletos falsos?", a: "Verificamos los boletos por zona y localidad, controlamos el aforo por sección y aplicamos un protocolo de prevención de reventa y boletos falsificados, además de la gestión de abonados y socios cuando aplica." },
+  { q: "¿Coordinan con la policía y los servicios médicos?", a: "Sí. El operativo se articula con la policía estatal o municipal y con los servicios médicos de emergencia bajo un esquema de mando coordinado, con despliegue anticipado de 2 a 3 horas antes del evento." },
+  { q: "¿Su personal está certificado en manejo de multitudes?", a: "Sí. Nuestro personal cuenta con certificación en manejo de multitudes y capacitación en desescalamiento, además de la licencia DGSSP y la certificación STPS que respaldan toda nuestra operación." },
+  { q: "¿Cuántos elementos necesita un partido o estadio?", a: "Depende del aforo, el número de secciones, el nivel de rivalidad entre aficiones y los requisitos de la liga. Tras el análisis del venue te entregamos el dimensionamiento exacto: filtros, guardias por sección, anti-invasión, supervisores y puesto de mando." },
+  { q: "¿Protegen a atletas, árbitros y cuerpo técnico?", a: "Sí. Asignamos personal a zonas de competencia, vestidores y accesos restringidos, con protección de deportistas, árbitros y cuerpo técnico en los momentos de mayor exposición: ingreso, salida y traslados." },
+  { q: "¿Cubren box, MMA, lucha libre y esports?", a: "Sí. Operamos funciones de box y MMA, espectáculos de lucha libre, torneos de tenis, golf y ecuestres, competencias de natación y triatlón, y eventos de esports y gaming presencial, ajustando el dispositivo a cada disciplina." },
+];
+
+// Schema graph enlazado por @id (WebPage + Service + BreadcrumbList + FAQPage)
+
+
+
+const schemas = buildServicePageSchema({
+  slug,
+  name: titulo,
+  description: descripcion,
+  metaTitle,
+  metaDescription,
+  serviceType: "Seguridad para eventos deportivos",
+  ogImage: ogImg,
+  breadcrumbName: "Eventos Deportivos",
+  offers: [
+    "Gestión y separación de aficiones",
+    "Protección del terreno de juego (anti-invasión)",
+    "Control de acceso por sección y anti-reventa",
+    "Seguridad de ruta para maratones y carreras",
+  ],
+  faq,
+  datePublished: "2025-02-14",
+});
+
+const navItems = [
+  { label: "Eventos Masivos", desc: "Centro de comando y mando unificado para +10,000", href: "/servicios/seguridad-masivos" },
+  { label: "Control de Acceso", desc: "Verificación por localidad y aforo por sección", href: "/servicios/control-acceso-eventos" },
+  { label: "Conciertos y Festivales", desc: "Control de multitudes para grandes aforos", href: "/servicios/seguridad-conciertos-festivales" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
+const modules = [
+  {
+    eyebrow: "Servicio especializado",
+    badge: "Manejo de multitudes",
+    title: "Aficiones, terreno de juego y cumplimiento federativo",
+    intro: "Un evento deportivo concentra tres retos que rara vez coinciden: aficiones con rivalidades, protagonistas que requieren protección y un marco normativo impuesto por federaciones y ligas. SEPRIEV integra los tres frentes en un solo operativo, porque atender uno solo deja expuestos a los demás. El cumplimiento no es accesorio: de él depende que el organizador conserve la sede.",
+    features: [
+      { title: "Gestión y separación de aficiones", text: "La separación de hinchadas rivales empieza antes del primer ingreso, con accesos, andenes y sectores diferenciados y zonas de amortiguamiento definidas con el organizador. Establecemos comunicación preventiva con los grupos de animación, controlamos el ingreso de pirotecnia y alcohol y coordinamos con la policía la llegada y salida de las barras." },
+      { title: "Protección del terreno de juego", text: "Cubrimos la seguridad perimetral del campo, cancha o pista con elementos en primera fila para evitar invasiones y protegemos a deportistas, árbitros y cuerpo técnico en sus zonas de competencia, vestidores y accesos restringidos, especialmente en los momentos de ingreso, salida y traslados." },
+      { title: "Cumplimiento de protocolos de liga", text: "Cada federación o liga impone requisitos de seguridad que el organizador está obligado a cumplir. Conocemos esos marcos, coordinamos con los delegados de seguridad del organismo correspondiente y documentamos el operativo según el estándar exigido, de modo que el evento sea seguro, auditable y conforme a la normativa que lo rige." },
+    ],
+    hero: `${IMG}/seguridad-conciertos-multitud`,
+    small1: `${IMG}/seguridad-conciertos-festivales`,
+    small2: `${IMG}/guardias-seguridad-privada`,
+    alt: [
+      "Operativo de seguridad y control de multitudes en un estadio en México",
+      "Separación de aficiones y filtros de acceso en un evento deportivo",
+      "Guardias en seguridad perimetral del terreno de juego",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Accesos, ruta y mando",
+    badge: undefined,
+    title: "Control por sección, seguridad de ruta y centro de mando",
+    intro: "Del estadio al maratón cambia la naturaleza del operativo, pero no su rigor. SEPRIEV opera el control de acceso por localidad con prevención de reventa y, para carreras al aire libre, la seguridad de ruta completa. Todo se dirige desde un puesto de mando con despliegue anticipado y coordinación con servicios médicos, porque en un evento deportivo las decisiones se toman en segundos.",
+    features: [
+      { title: "Control de acceso por sección y anti-reventa", text: "Verificamos los boletos por zona y localidad, controlamos el aforo por sección y aplicamos prevención de reventa y boletos falsificados, además de la gestión de abonados y socios. El acceso diferenciado por afición es la base de la separación dentro del recinto." },
+      { title: "Seguridad de ruta en maratones y carreras", text: "Para maratones y carreras de calle desplegamos seguridad de ruta con control vehicular en cruces, vigilancia en puntos de hidratación, asistencia a corredores con problemas y protección de la zona de meta y premiación, coordinando el cierre y la reapertura de vialidades con las autoridades." },
+      { title: "Centro de mando y servicios médicos", text: "El operativo se despliega de 2 a 3 horas antes del evento, con supervisión continua por radio, toma de decisiones en tiempo real y coordinación con los servicios médicos de emergencia. Para grandes aforos lo articulamos con nuestra dirección de eventos masivos y su centro de comando." },
+    ],
+    hero: `${IMG}/centro-control-seguridad`,
+    small1: `${IMG}/control-acceso-eventos`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    alt: [
+      "Centro de mando de seguridad coordinando un evento deportivo",
+      "Control de acceso por localidad en un estadio deportivo",
+      "Personal de seguridad asistiendo en una carrera de calle",
+    ],
+    featured: true,
+  },
+];
+
+// Eventos deportivos que protegemos
+const tipos = [
+  { titulo: "Fútbol (Liga MX, amateur, torneos)", nota: "Estadios y aficiones rivales" },
+  { titulo: "Box y MMA", nota: "Funciones y veladas" },
+  { titulo: "Maratones y carreras de calle", nota: "Seguridad de ruta" },
+  { titulo: "Tenis, golf y ecuestres", nota: "Competencias de campo" },
+  { titulo: "Natación y triatlón", nota: "Eventos multidisciplina" },
+  { titulo: "Esports y lucha libre", nota: "Espectáculos en arena" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Cero invasiones de cancha", desc: "Récord de 0 invasiones de cancha en los eventos operados por SEPRIEV, con elementos en primera fila." },
+  { titulo: "Separación de aficiones", desc: "Accesos y sectores diferenciados, zonas de amortiguamiento y comunicación preventiva con las barras." },
+  { titulo: "Cumplimiento federativo", desc: "Coordinación con delegados de seguridad y documentación del operativo según el estándar de cada liga." },
+  { titulo: "Certificación en multitudes", desc: "Personal certificado en manejo de multitudes y desescalamiento, con licencia DGSSP y STPS." },
+  { titulo: "Seguridad de ruta", desc: "Operativos completos para maratones y carreras: hidratación, cruces, asistencia y meta." },
+  { titulo: "+80 eventos deportivos", desc: "Experiencia verificable en partidos, funciones y competencias con cobertura en 5 estados." },
+];
+
+// Otros servicios relacionados (ServiceCards homologadas con servicios/index)
+const relacionados = [
+  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada`, badge: "Destacado", featured: true },
+  { title: "Control de Acceso", description: "Verificación por localidad, control de aforo por sección y prevención de reventa para recintos deportivos.", features: ["Verificación por zona", "Aforo por sección", "Anti-reventa"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Conciertos y Festivales", description: "Control de multitudes, coordinación institucional y protocolos de emergencia para grandes aforos.", features: ["Control de multitudes", "Coordinación institucional", "Plan de contingencia"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales` },
+  { title: "Montaje y Desmontaje", description: "Custodia 24/7, acreditación de proveedores e inventario durante el montaje de gradas, escenarios y producción.", features: ["Custodia 24/7", "Control de proveedores", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje", image: `${IMG}/equipo-seguridad-eventos` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Eventos Deportivos' }]} />
+
+  <PageHero
+    eyebrow="SEPRIEV — Eventos Deportivos"
+    titulo="Seguridad para Eventos Deportivos"
+    subtitulo="Un evento deportivo concentra tres retos que rara vez coinciden: aficiones con rivalidades, protagonistas que requieren protección y un marco normativo de federaciones y ligas. Los integramos en un solo operativo."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        <strong class="text-light font-semibold">SEPRIEV</strong> integra gestión de barras, protección de atletas y cumplimiento federativo en un solo operativo, con <strong class="text-light font-semibold">más de 80 eventos deportivos protegidos</strong> y un récord de <strong class="text-light font-semibold">0 invasiones de cancha</strong>. El <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso</a> por localidad es la base de la separación de aficiones dentro del recinto.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Para estadios y grandes aforos lo articulamos con la <a href="/servicios/seguridad-masivos" class="text-secondary hover:underline font-semibold">dirección de eventos masivos</a>. Personal certificado en manejo de multitudes, con <strong class="text-light font-semibold">licencia DGSSP y STPS</strong>, presencia en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Cotización en menos de 24 horas.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <!-- Encabezado de dos columnas -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo operamos un evento deportivo</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Pasión y rivalidad bajo control profesional
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            De un maratón con 30,000 corredores a un clásico con aficiones rivales, cada evento deportivo tiene sus propios retos. La clave está en anticiparlos y operarlos como un solo dispositivo coordinado.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Atendemos los desafíos del sector: <strong class="text-light font-semibold">rivalidad entre aficiones, consumo de alcohol, invasión de cancha, lanzamiento de objetos y reventa</strong>. Cada frente tiene un protocolo y un responsable, no se improvisa el día del partido.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Operamos bajo una metodología de cuatro fases —evaluación, planificación, operación y cierre— con <strong class="text-light font-semibold">despliegue anticipado, supervisión por radio</strong> y coordinación con policía y servicios médicos.
+          </p>
+        </div>
+      </div>
+
+      <!-- Módulos imagen + texto -->
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+
+          <!-- Columna izquierda: texto -->
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha: galería 1 grande + 2 pequeñas -->
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Eventos deportivos que protegemos -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué cubrimos</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Eventos deportivos que protegemos</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Cada disciplina impone su propia dinámica de riesgo: no se opera igual un clásico de fútbol que una velada de box, un maratón urbano o un torneo de golf. Ajustamos el dispositivo, los filtros y la protección de protagonistas a cada deporte y recinto.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM5 4H3v2a3 3 0 0 0 3 3M19 4h2v2a3 3 0 0 1-3 3"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para tu evento deportivo?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            En el deporte, un incidente puede costar la sede de las próximas temporadas. Operar con un proveedor que conoce los marcos federativos, gestiona aficiones y protege el terreno de juego no es un lujo: es la condición para seguir organizando.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection titulo="Así protegemos tu evento deportivo" />
+
+  <!-- Otros servicios -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Servicios complementarios</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Otros servicios para tu evento</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Un evento deportivo de gran aforo combina varios servicios. Lo integramos con la dirección de eventos masivos, el control de acceso por sección y la custodia de montaje de gradas y escenarios, bajo un solo mando.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas seguridad para tu evento deportivo?"
+    subtitulo="Cuéntanos el deporte, el recinto o la ruta y el aforo esperado, y recibe una propuesta personalizada en menos de 24 horas. Sin compromiso."
+    faq={faq}
+  />
+
+</BaseLayout>

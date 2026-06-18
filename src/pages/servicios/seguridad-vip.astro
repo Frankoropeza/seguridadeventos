@@ -1,0 +1,368 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema } from '@/lib/seo';
+
+const slug = 'seguridad-vip';
+
+// H1 / nombre del servicio para schema
+const titulo = 'Seguridad VIP para Eventos en México';
+const descripcion = 'Servicio de seguridad VIP y protección personal (close protection) para artistas, celebridades, ejecutivos y figuras de alto perfil en México. Escoltas certificados, avanzada de seguridad, vehículos blindados, inteligencia y dispositivo de bajo perfil. Personal con licencia DGSSP y certificación STPS.';
+
+// SEO meta (limpio, orientado a intención de búsqueda)
+const metaTitle = 'Seguridad VIP y Escoltas para Eventos en México | SEPRIEV';
+const metaDescription = 'Seguridad VIP para artistas, celebridades y ejecutivos en México: escoltas certificados en close protection, avanzada de seguridad, vehículo blindado y bajo perfil. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/seguridad-vip-eventos-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito seguridad VIP para un evento')}`;
+
+// FAQ específica de seguridad VIP (ampliada para cobertura de búsqueda)
+const faq = [
+  { q: "¿Cuál es la diferencia entre seguridad VIP y protección ejecutiva?", a: "La seguridad VIP se enfoca en proteger a personas de alto perfil durante eventos específicos (artistas, celebridades, invitados de honor). La protección ejecutiva es un servicio continuo para directivos empresariales. Ambos requieren personal altamente calificado, pero los protocolos, la duración y el contexto son diferentes." },
+  { q: "¿Qué niveles de protección VIP manejan?", a: "Trabajamos con tres niveles. Estándar: 1-2 escoltas, ruta segura y comunicación por radio, ideal para ejecutivos, influencers y eventos sociales. Premium: 3-5 escoltas con supervisor, advance team, vehículo de seguridad y monitoreo de perímetro, para artistas nacionales y CEOs. Máxima seguridad: 6 o más escoltas, equipo de inteligencia, vehículo blindado, contravigilancia activa y coordinación con autoridades, para artistas internacionales, políticos o amenazas confirmadas." },
+  { q: "¿Ofrecen vehículos blindados?", a: "Sí. Bajo solicitud coordinamos vehículos blindados con choferes certificados en conducción evasiva para el traslado de VIPs, con rutas primaria y alterna verificadas con antelación. Contamos con proveedores certificados de transporte blindado en CDMX, Guadalajara y Monterrey." },
+  { q: "¿Su personal tiene entrenamiento en primeros auxilios?", a: "Sí. Todo nuestro personal VIP está certificado en primeros auxilios, RCP y uso de DEA. Para eventos de alto riesgo podemos incluir un paramédico dedicado al equipo de protección, además del enlace con el servicio médico del recinto." },
+  { q: "¿Qué es la avanzada de seguridad (advance team)?", a: "Es el equipo que inspecciona el recinto antes de la llegada del protegido: identifica accesos y salidas, puntos seguros, el hospital más cercano y las rutas primaria y alterna. El dispositivo del día parte de esa avanzada, de modo que cada movimiento se ejecute sobre decisiones tomadas con antelación y no sobre improvisaciones." },
+  { q: "¿Trabajan con artistas y management internacional?", a: "Sí. Tenemos experiencia coordinando con riders técnicos y equipos de tour security de artistas internacionales. Nuestro personal clave es bilingüe y alinea el nivel de exposición del operativo con el management o la representación del cliente." },
+  { q: "¿Cómo manejan a los paparazzi y la prensa?", a: "La operación anti-paparazzi comienza en los accesos, no cuando la situación ya se salió de control. Coordinamos con la representación para definir el nivel de exposición —hay protegidos que pueden saludar al público y otros cuya ubicación no puede trascender— y actuamos en consecuencia, con formaciones discretas y rutas reservadas." },
+  { q: "¿Firman acuerdos de confidencialidad (NDA)?", a: "Sí. La discreción es parte del servicio: todo el personal VIP firma un NDA obligatorio y opera bajo confidencialidad absoluta sobre identidad, movimientos y cualquier información del protegido. Lo que pasa con el VIP, se queda con el VIP." },
+];
+
+// Schema Service enriquecido + FAQPage
+
+const schemas = buildServicePageSchema({
+  slug,
+  name: titulo,
+  description: descripcion,
+  metaTitle,
+  metaDescription,
+  serviceType: "Seguridad VIP y protección personal para eventos",
+  ogImage: ogImg,
+  breadcrumbName: "Seguridad VIP",
+  offers: [
+    "Protección personal (close protection)",
+    "Avanzada de seguridad y planeación de movimientos",
+    "Traslado en vehículo blindado",
+    "Inteligencia y contravigilancia",
+  ],
+  faq,
+  datePublished: "2025-02-01",
+});
+
+const navItems = [
+  { label: "Protección Ejecutiva", desc: "Programa continuo de protección para directivos", href: "/servicios/proteccion-ejecutiva" },
+  { label: "Eventos Corporativos", desc: "Seguridad discreta para convenciones y galas", href: "/servicios/seguridad-eventos-corporativos" },
+  { label: "Conciertos y Festivales", desc: "Protección de artistas y backstage seguro", href: "/servicios/seguridad-conciertos-festivales" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
+const modules = [
+  {
+    eyebrow: "Servicio especializado",
+    badge: "Close protection",
+    title: "Protección personal con criterio, no solo presencia",
+    intro: "La protección de figuras de alto perfil exige criterio antes que fuerza: anticipar el entorno, coordinar con la representación y desaparecer cuando la situación lo permite. SEPRIEV despliega escoltas certificados en protección personal —con perfiles de ex fuerzas de seguridad y certificaciones internacionales— que trabajan sobre una avanzada de seguridad y un dispositivo de bajo perfil ajustado a cada escenario, desde una alfombra roja hasta un escenario ante miles de personas.",
+    features: [
+      { title: "Avanzada y planeación de movimientos", text: "Cada desplazamiento se construye sobre un reconocimiento previo que identifica accesos y salidas, puntos seguros, el hospital más cercano y las rutas primaria y alterna. El advance team inspecciona el recinto antes de la llegada del protegido, de modo que la operación se ejecute sobre decisiones tomadas con antelación y no sobre improvisaciones." },
+      { title: "Coordinación con la representación", text: "Alineamos el nivel de exposición del operativo con el management o el equipo del cliente, porque proteger a quien quiere saludar al público es distinto a proteger a quien no puede ser ubicado. Definir esto por adelantado permite que el dispositivo acompañe la estrategia de imagen del protegido en lugar de entorpecerla." },
+      { title: "Dispositivo de bajo perfil", text: "La protección más eficaz rara vez es la más visible. Los escoltas operan en formaciones discretas, con vestimenta acorde al entorno y comunicación silenciosa, de manera que la seguridad esté presente sin acaparar la atención. El protegido se mueve con normalidad y el público recuerda a la figura, no a su equipo." },
+    ],
+    hero: `${IMG}/seguridad-vip-eventos`,
+    small1: `${IMG}/proteccion-vip-invitados`,
+    small2: `${IMG}/seguridad-vip-gala`,
+    alt: [
+      "Escoltas de seguridad VIP protegiendo a una figura de alto perfil",
+      "Protección de invitados VIP en una alfombra roja",
+      "Dispositivo de seguridad de bajo perfil en una gala",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Inteligencia, traslados y emergencias",
+    badge: undefined,
+    title: "Inteligencia, traslados blindados y respuesta médica",
+    intro: "Los traslados son el momento de mayor exposición de una figura de alto perfil y el que más fallas de planificación concentra. SEPRIEV combina inteligencia preventiva, transporte blindado y respuesta médica inmediata en un mismo dispositivo, de modo que el riesgo se gestione antes de que se materialice y se resuelva en segundos si llega a ocurrir.",
+    features: [
+      { title: "Vehículo blindado y conducción evasiva", text: "Disponemos de vehículos blindados con choferes certificados en conducción evasiva, rutas primaria y alterna verificadas con antelación y puntos de encuentro de emergencia establecidos antes de cada desplazamiento. El equipo en tierra mantiene comunicación cifrada y activa con el vehículo durante todo el recorrido." },
+      { title: "Inteligencia y contravigilancia", text: "Antes del evento realizamos un análisis de amenazas y monitoreo de redes sociales para detectar señales de interés hostil. Durante la operación aplicamos contravigilancia activa para identificar seguimientos y, en niveles de máxima seguridad, diseñamos un plan de evacuación VIP independiente del plan general del evento." },
+      { title: "Respuesta médica y anti-paparazzi", text: "Todo el personal está certificado en primeros auxilios, RCP y uso de DEA, con la opción de un paramédico dedicado en eventos de alto riesgo. La operación anti-paparazzi comienza en los accesos y se coordina con la representación del cliente, siempre bajo confidencialidad contractual (NDA)." },
+    ],
+    hero: `${IMG}/proteccion-ejecutiva-mexico`,
+    small1: `${IMG}/guardias-seguridad-privada`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    alt: [
+      "Traslado protegido de un VIP con escolta certificada",
+      "Equipo de close protection en un evento de alto perfil",
+      "Escolta VIP coordinando un movimiento de bajo perfil",
+    ],
+    featured: true,
+  },
+];
+
+// Perfiles que protegemos
+const tipos = [
+  { titulo: "Artistas y músicos", nota: "Conciertos, giras y backstage" },
+  { titulo: "Celebridades e influencers", nota: "Alfombras rojas y apariciones" },
+  { titulo: "Altos ejecutivos y C-level", nota: "Eventos de empresa y traslados" },
+  { titulo: "Políticos y diplomáticos", nota: "Eventos oficiales y protocolo" },
+  { titulo: "Deportistas de élite", nota: "Competencias y convivencias" },
+  { titulo: "Familias de alto perfil", nota: "Eventos sociales y privados" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Escoltas certificados", desc: "Perfiles de ex fuerzas de seguridad con certificaciones internacionales y entrenamiento avanzado en close protection." },
+  { titulo: "Avanzada de seguridad", desc: "Reconocimiento previo del recinto: accesos, puntos seguros, hospital más cercano y rutas primaria y alterna." },
+  { titulo: "Dispositivo de bajo perfil", desc: "Invisible para el público y omnipresente para el protegido: formaciones discretas y comunicación silenciosa." },
+  { titulo: "Vehículos blindados", desc: "Traslados con conducción evasiva, rutas alternas verificadas y comunicación cifrada con el equipo en tierra." },
+  { titulo: "Inteligencia y prevención", desc: "Análisis de amenazas previo, monitoreo de redes y contravigilancia activa para anticipar el riesgo." },
+  { titulo: "Confidencialidad absoluta", desc: "NDA obligatorio y gobernanza estricta de la identidad, los movimientos y la información del protegido." },
+];
+
+// Otros servicios relacionados (ServiceCards homologadas con servicios/index)
+const relacionados = [
+  { title: "Protección Ejecutiva", description: "Programa continuo de protección para directivos basado en análisis de riesgo, con personal verificado y traslados seguros.", features: ["Análisis de riesgo", "Contravigilancia", "Traslados seguros"], href: "/servicios/proteccion-ejecutiva", image: `${IMG}/proteccion-ejecutiva-mexico`, badge: "Destacado", featured: true },
+  { title: "Conciertos y Festivales", description: "Protección de artistas, control de backstage y dispositivos de bajo perfil para eventos musicales de cualquier escala.", features: ["Protección de artistas", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular" },
+  { title: "Eventos Corporativos", description: "Seguridad discreta para directivos e invitados de alto perfil en convenciones, lanzamientos y galas.", features: ["Personal bilingüe", "Confidencialidad", "Bajo perfil"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos` },
+  { title: "Eventos Sociales", description: "Protección discreta para bodas, XV años y celebraciones privadas de familias de alto perfil.", features: ["Control de invitados", "Manejo discreto", "Resguardo de valores"], href: "/servicios/seguridad-eventos-sociales", image: `${IMG}/seguridad-vip-gala` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Seguridad VIP' }]} />
+
+  <PageHero
+    eyebrow="SEPRIEV — Seguridad VIP"
+    titulo="Seguridad VIP"
+    subtitulo="La protección de figuras de alto perfil exige criterio antes que fuerza: anticipar el entorno, coordinar con la representación y desaparecer cuando la situación lo permite."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        <strong class="text-light font-semibold">SEPRIEV</strong> despliega escoltas certificados en <strong class="text-light font-semibold">close protection</strong> —con perfiles de ex fuerzas de seguridad— que trabajan sobre una <strong class="text-light font-semibold">avanzada de seguridad</strong> y un dispositivo de bajo perfil ajustado a cada escenario, de una alfombra roja a un escenario ante miles de personas. La seguridad del protegido es innegociable; su imagen y su privacidad, también.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Personal certificado en <strong class="text-light font-semibold">primeros auxilios, RCP y DEA</strong>, vehículos blindados con conducción evasiva, inteligencia preventiva y <strong class="text-light font-semibold">confidencialidad contractual (NDA)</strong>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>, presencia en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Cotización en menos de 24 horas.
+      </p>
+      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/proteccion-ejecutiva" class="text-secondary hover:underline font-semibold">protección ejecutiva</a> y <a href="/servicios/seguridad-eventos-corporativos" class="text-secondary hover:underline font-semibold">eventos corporativos</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <!-- Encabezado de dos columnas -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo opera un dispositivo VIP</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3" id="servicio-h">
+            Protección discreta para personas de alto perfil
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            Un buen equipo de seguridad VIP es invisible para el público pero omnipresente para el protegido. La planeación pesa más que la fuerza: anticipamos, no solo reaccionamos.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El dispositivo se arma con <strong class="text-light font-semibold">escoltas certificados, advance team e inteligencia preventiva</strong>: análisis de amenazas, monitoreo de redes y coordinación con la seguridad del recinto y las autoridades. Cada movimiento se planea sobre rutas verificadas y puntos seguros.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Trabajamos en <strong class="text-light font-semibold">tres niveles de protección</strong> —estándar, premium y máxima seguridad— y ajustamos el tamaño del equipo, el blindaje y la contravigilancia al perfil de riesgo del protegido, siempre bajo <strong class="text-light font-semibold">confidencialidad contractual</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Módulos imagen + texto -->
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+
+          <!-- Columna izquierda: texto -->
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha: galería 1 grande + 2 pequeñas -->
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Perfiles que protegemos -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">A quién protegemos</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="tipos-h">Perfiles que protegemos</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Cada perfil tiene un patrón de exposición y un nivel de riesgo distinto. No se protege igual a un artista en gira que a un directivo en una gala o a un dignatario en un evento oficial: ajustamos el dispositivo, la avanzada y la inteligencia a quién es el protegido y dónde se mueve.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="porque-h">¿Por qué SEPRIEV para tu seguridad VIP?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            En protección de personas, la calidad se mide por la anticipación: lo que no se previene, ya es tarde para gestionarlo. Cada dispositivo combina escoltas certificados, inteligencia preventiva y discreción absoluta, con la seguridad del protegido como prioridad innegociable.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection titulo="Así operamos tu dispositivo VIP" />
+
+  <!-- Otros servicios -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Servicios complementarios</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="otros-h">Otros servicios para tu evento</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            La seguridad VIP suele ser una pieza de un operativo mayor. La integramos con protección ejecutiva continua, seguridad de conciertos, dispositivos corporativos y eventos sociales, bajo un solo mando y un solo interlocutor responsable.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas seguridad VIP para tu evento?"
+    subtitulo="Cuéntanos el perfil del protegido, el tipo de evento y la ciudad, y recibe una propuesta personalizada en menos de 24 horas. Confidencialidad garantizada."
+    faq={faq}
+  />
+
+</BaseLayout>

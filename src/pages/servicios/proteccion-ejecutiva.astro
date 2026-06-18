@@ -1,0 +1,368 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema } from '@/lib/seo';
+
+const slug = 'proteccion-ejecutiva';
+
+// H1 / nombre del servicio para schema
+const titulo = 'Protección Ejecutiva para Directivos en México';
+const descripcion = 'Servicio de protección ejecutiva para CEOs, directivos y empresarios en México: análisis de riesgo, escoltas certificados en close protection, contravigilancia, traslados con conducción evasiva y confidencialidad contractual. Programa continuo con personal verificado y licencia DGSSP individual.';
+
+// SEO meta (limpio, orientado a intención de búsqueda)
+const metaTitle = 'Protección Ejecutiva para Directivos en México | SEPRIEV';
+const metaDescription = 'Protección ejecutiva para directivos y empresarios en México: análisis de riesgo, escoltas certificados (close protection), contravigilancia y traslados seguros. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/proteccion-ejecutiva-mexico-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito protección ejecutiva')}`;
+
+// FAQ específica de protección ejecutiva (ampliada para cobertura de búsqueda)
+const faq = [
+  { q: "¿Cuál es el perfil de sus agentes de protección ejecutiva?", a: "Cada agente cuenta con licencia DGSSP individual vigente, mínimo 5 años de experiencia en seguridad, certificación STPS en protección a personas, capacitación en primeros auxilios y RCP, evaluación psicométrica semestral, antecedentes penales verificados, dominio de inglés (intermedio-avanzado) y presentación ejecutiva impecable." },
+  { q: "¿Qué paquetes de protección ejecutiva manejan?", a: "Individual: 1 agente de protección, cobertura de 8 a 12 horas, ideal para directores y gerentes senior. Ejecutivo Plus: 2 agentes más chofer de seguridad, cobertura de 12 a 16 horas con transporte seguro incluido, para C-level y dirección general. Corporate Shield: equipo completo según necesidad, cobertura 24/7, vehículos blindados, inteligencia y contravigilancia, para CEOs internacionales o empresarios con amenazas confirmadas." },
+  { q: "¿Pueden proteger a un ejecutivo durante todo un viaje de negocios?", a: "Sí. Ofrecemos protección ejecutiva puerta a puerta: desde la llegada al aeropuerto, traslados, reuniones, cenas y hasta la salida. Coordinamos con la seguridad del hotel y de las empresas que visita, manteniendo continuidad de cobertura durante toda la estancia." },
+  { q: "¿Cómo manejan la coordinación con mi equipo de seguridad corporativa?", a: "Antes del evento realizamos una reunión de coordinación con su equipo de seguridad para alinear protocolos, definir roles y establecer canales de comunicación. Trabajamos como extensión de su equipo, no como reemplazo, respetando la cadena de mando existente." },
+  { q: "¿Ofrecen servicio de contravigilancia?", a: "Sí. En el paquete Corporate Shield incluimos agentes de contravigilancia que detectan seguimientos, fotografía no autorizada y posibles amenazas antes de que se materialicen, además del monitoreo de huella digital del directivo." },
+  { q: "¿Cuál es la diferencia entre protección ejecutiva y seguridad VIP?", a: "La protección ejecutiva es un programa continuo para directivos empresariales que cubre su vida cotidiana —desplazamientos, oficina, eventos y domicilio—. La seguridad VIP se enfoca en proteger a figuras de alto perfil durante eventos puntuales. Ambas requieren personal altamente calificado, pero difieren en duración, contexto y protocolos." },
+  { q: "¿Ofrecen vehículos blindados y chofer de conducción evasiva?", a: "Sí. En los paquetes Ejecutivo Plus y Corporate Shield incluimos chofer de seguridad capacitado en conducción evasiva y, bajo solicitud, vehículos blindados con rutas primaria y alterna verificadas y comunicación cifrada con el equipo de protección." },
+  { q: "¿Cómo garantizan la confidencialidad?", a: "Todos nuestros agentes firman un Acuerdo de Confidencialidad (NDA) que cubre la identidad del protegido, sus ubicaciones y rutinas, sus conversaciones y reuniones, y la información empresarial. La violación de confidencialidad es causa inmediata de baja y acción legal." },
+];
+
+// Schema Service enriquecido + FAQPage
+
+const schemas = buildServicePageSchema({
+  slug,
+  name: titulo,
+  description: descripcion,
+  metaTitle,
+  metaDescription,
+  serviceType: "Protección ejecutiva y escoltas para directivos",
+  ogImage: ogImg,
+  breadcrumbName: "Protección Ejecutiva",
+  offers: [
+    "Análisis de riesgo e inteligencia de exposición",
+    "Escolta de proximidad (close protection)",
+    "Traslados con conducción evasiva",
+    "Contravigilancia y monitoreo de exposición",
+  ],
+  faq,
+  datePublished: "2025-02-05",
+});
+
+const navItems = [
+  { label: "Seguridad VIP", desc: "Protección de figuras de alto perfil en eventos", href: "/servicios/seguridad-vip" },
+  { label: "Eventos Corporativos", desc: "Seguridad discreta para convenciones y galas", href: "/servicios/seguridad-eventos-corporativos" },
+  { label: "Control de Acceso", desc: "Registro ejecutivo y credencialización por niveles", href: "/servicios/control-acceso-eventos" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
+const modules = [
+  {
+    eyebrow: "Servicio especializado",
+    badge: "Close protection",
+    title: "Protección centrada en la persona, no en el perímetro",
+    intro: "La protección de un directivo no es un servicio de un día, sino un programa continuo que se integra a su vida con el menor impacto posible en su operación. SEPRIEV diseña esquemas que parten de un análisis de riesgo formal y cubren desplazamientos, oficina, eventos y domicilio, con personal verificado y bajo confidencialidad estricta. En este servicio, la calidad se mide por la anticipación: lo que no se previene, ya es tarde para gestionarlo.",
+    features: [
+      { title: "Análisis de riesgo e inteligencia de exposición", text: "Antes de asignar personal, evaluamos el perfil de amenaza del ejecutivo —sector, exposición pública, historial y contexto geográfico— y monitoreamos su huella digital en busca de señales de interés hostil. El resultado define el nivel de protección y un conjunto de recomendaciones para reducir la superficie de exposición del directivo y de su núcleo familiar." },
+      { title: "Personal seleccionado y verificado", text: "El escolta de un ejecutivo accede a su intimidad, su agenda y su entorno, por lo que la confianza es parte del servicio. Seleccionamos al personal con verificación de antecedentes, evaluación psicométrica semestral, licencia DGSSP individual y un mínimo de cinco años de experiencia, y mantenemos continuidad en las asignaciones para que el cliente trabaje siempre con personal conocido." },
+      { title: "Gobernanza de la información", text: "El esquema cubre al directivo y a su núcleo cercano, así como la información sensible que los rodea: domicilios, rutinas, patrimonio y movimientos. Todo el personal opera bajo protocolos de manejo de información y confidencialidad estricta, porque en protección ejecutiva una filtración interna puede ser tan peligrosa como una amenaza externa." },
+    ],
+    hero: `${IMG}/proteccion-ejecutiva-mexico`,
+    small1: `${IMG}/guardias-seguridad-privada`,
+    small2: `${IMG}/seguridad-eventos-corporativos`,
+    alt: [
+      "Agente de protección ejecutiva acompañando a un directivo",
+      "Escolta personal certificado en un evento empresarial",
+      "Dispositivo de protección ejecutiva en un evento corporativo",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Operación y traslados",
+    badge: undefined,
+    title: "Del análisis a la operación: antes, durante y después",
+    intro: "Un operativo de protección ejecutiva se construye en tres tiempos. Antes, se evalúa el riesgo y se hace la avanzada; durante, opera la escolta de proximidad y el traslado seguro; después, se cierra con una salida controlada, un informe y, si hace falta, seguimiento. Cada fase está definida con antelación, de modo que la operación se ejecute sobre decisiones tomadas en frío y no sobre la urgencia del momento.",
+    features: [
+      { title: "Antes: evaluación de riesgo y avanzada", text: "Realizamos una evaluación de riesgo personalizada para el ejecutivo, un análisis del venue (rutas, accesos y zonas de riesgo), la coordinación con el equipo de seguridad corporativa del cliente y un brief de inteligencia con las amenazas conocidas y el contexto político o social relevante para la operación." },
+      { title: "Durante: escolta de proximidad y traslados seguros", text: "Operan la escolta personal de proximidad (close protection), el chofer de seguridad capacitado en conducción evasiva, el control de acceso al área del ejecutivo y el monitoreo continuo del entorno, con comunicación por auricular discreto. La protección se concentra en los momentos de mayor exposición: llegada, salida y traslados." },
+      { title: "Después: cierre, informe y seguimiento", text: "Garantizamos una salida segura del recinto, entregamos un informe de seguridad posterior al evento y mantenemos seguimiento cuando existen amenazas pendientes. El cierre documentado convierte cada operativo en información útil para ajustar el nivel de protección del directivo en adelante." },
+    ],
+    hero: `${IMG}/seguridad-eventos-corporativos`,
+    small1: `${IMG}/centro-control-seguridad`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    alt: [
+      "Protección ejecutiva durante un evento de empresa",
+      "Coordinación de seguridad ejecutiva desde el puesto de mando",
+      "Escolta de proximidad en el traslado de un directivo",
+    ],
+    featured: true,
+  },
+];
+
+// Dónde ofrecemos protección ejecutiva
+const tipos = [
+  { titulo: "Convenciones empresariales", nota: "Networking, paneles y cenas" },
+  { titulo: "Juntas de consejo", nota: "Reuniones con información sensible" },
+  { titulo: "Ferias y cumbres sectoriales", nota: "Eventos de industria y exposiciones" },
+  { titulo: "Inauguraciones y cortes de listón", nota: "Presencia de directivos y medios" },
+  { titulo: "Viajes de negocios", nota: "Protección puerta a puerta" },
+  { titulo: "Día a día del directivo", nota: "Desplazamientos, oficina y domicilio" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Programa, no servicio de un día", desc: "Esquema continuo basado en un análisis de riesgo formal que cubre desplazamientos, oficina, eventos y domicilio." },
+  { titulo: "Agentes verificados", desc: "Licencia DGSSP individual, 5 años de experiencia, certificación STPS, antecedentes verificados y evaluación psicométrica semestral." },
+  { titulo: "Inteligencia de exposición", desc: "Monitoreo de huella digital y contexto para reducir la superficie de exposición del directivo y su familia." },
+  { titulo: "Conducción evasiva", desc: "Choferes de seguridad y traslados con rutas primaria y alterna verificadas y comunicación cifrada." },
+  { titulo: "Coordinación con tu equipo", desc: "Operamos como extensión de tu seguridad corporativa, no como reemplazo, respetando la cadena de mando." },
+  { titulo: "Confidencialidad estricta", desc: "NDA obligatorio sobre identidad, rutinas e información empresarial; su violación es causa de baja y acción legal." },
+];
+
+// Otros servicios relacionados (ServiceCards homologadas con servicios/index)
+const relacionados = [
+  { title: "Seguridad VIP", description: "Protección personal para artistas, celebridades e invitados de alto perfil durante eventos, con dispositivo de bajo perfil.", features: ["Close protection", "Avanzada de seguridad", "Bajo perfil"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos`, badge: "Destacado", featured: true },
+  { title: "Eventos Corporativos", description: "Seguridad discreta para convenciones, lanzamientos y galas, con personal bilingüe y confidencialidad contractual.", features: ["Personal bilingüe", "Confidencialidad", "Imagen institucional"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos` },
+  { title: "Ferias y Exposiciones", description: "Cobertura por zonas y por jornada para recintos multi-expositor, con inventario conciliado y enlace con el recinto.", features: ["Cobertura por turnos", "Inventario conciliado", "Enlace con el recinto"], href: "/servicios/seguridad-ferias-exposiciones", image: `${IMG}/seguridad-empresarial-evento` },
+  { title: "Control de Acceso", description: "Registro ejecutivo, credencialización por niveles y gestión de aforo para eventos de empresa.", features: ["Registro ejecutivo", "Credencialización", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Protección Ejecutiva' }]} />
+
+  <PageHero
+    eyebrow="SEPRIEV — Protección Ejecutiva"
+    titulo="Protección Ejecutiva"
+    subtitulo="La protección de un directivo no es un servicio de un día, sino un programa continuo que se integra a su vida con el menor impacto posible en su operación."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        <strong class="text-light font-semibold">SEPRIEV</strong> diseña esquemas de protección ejecutiva que parten de un <strong class="text-light font-semibold">análisis de riesgo formal</strong> y cubren desplazamientos, oficina, eventos y domicilio, con personal verificado y bajo confidencialidad estricta. Aquí la calidad se mide por la anticipación: lo que no se previene, ya es tarde para gestionarlo.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Agentes con <strong class="text-light font-semibold">licencia DGSSP individual</strong>, 5 años de experiencia, certificación STPS, evaluación psicométrica e inglés. Contravigilancia, conducción evasiva y <strong class="text-light font-semibold">confidencialidad contractual (NDA)</strong>. Presencia en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Cotización en menos de 24 horas.
+      </p>
+      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/seguridad-vip" class="text-secondary hover:underline font-semibold">seguridad VIP</a> y <a href="/servicios/seguridad-eventos-corporativos" class="text-secondary hover:underline font-semibold">eventos corporativos</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <!-- Encabezado de dos columnas -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo opera la protección ejecutiva</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3" id="servicio-h">
+            La persona, la prevención y la inteligencia antes que la fuerza
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            A diferencia de la seguridad convencional, la protección ejecutiva se centra en la persona y no solo en el perímetro; en prevenir, no solo en reaccionar; en la inteligencia y la discreción, no solo en la presencia.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Cada esquema parte de un <strong class="text-light font-semibold">análisis de riesgo</strong> y se ejecuta con agentes verificados, escolta de proximidad y traslados con conducción evasiva. Coordinamos con la seguridad corporativa del cliente como <strong class="text-light font-semibold">extensión de su equipo</strong>, no como reemplazo.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Trabajamos en <strong class="text-light font-semibold">tres paquetes</strong> —Individual, Ejecutivo Plus y Corporate Shield— que escalan del acompañamiento puntual a la cobertura 24/7 con vehículos blindados, inteligencia y contravigilancia, siempre bajo <strong class="text-light font-semibold">confidencialidad contractual</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Módulos imagen + texto -->
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+
+          <!-- Columna izquierda: texto -->
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha: galería 1 grande + 2 pequeñas -->
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Dónde ofrecemos protección ejecutiva -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Dónde operamos</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="tipos-h">Dónde ofrecemos protección ejecutiva</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            La protección ejecutiva acompaña al directivo donde el riesgo lo requiere: del evento de alta exposición al traslado cotidiano. Ajustamos el dispositivo y el nivel del paquete a la agenda, el perfil de amenaza y el contexto de cada compromiso.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="porque-h">¿Por qué SEPRIEV para tu protección ejecutiva?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            En protección de personas, la confianza es parte del servicio: el escolta accede a la intimidad, la agenda y el entorno del directivo. Por eso combinamos personal verificado, inteligencia preventiva y confidencialidad estricta, con la anticipación como estándar de calidad.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection titulo="Así operamos tu programa de protección ejecutiva" />
+
+  <!-- Otros servicios -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Servicios complementarios</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="otros-h">Otros servicios para tu evento</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            La protección ejecutiva suele integrarse con otros servicios cuando el directivo participa en un evento. La combinamos con seguridad VIP, dispositivos corporativos, cobertura de ferias y control de acceso, bajo un solo mando y un solo interlocutor responsable.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas protección ejecutiva?"
+    subtitulo="Cuéntanos el perfil del directivo, la agenda y el nivel de riesgo, y recibe una propuesta personalizada en menos de 24 horas. Confidencialidad garantizada."
+    faq={faq}
+  />
+
+</BaseLayout>

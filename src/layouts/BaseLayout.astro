@@ -1,6 +1,7 @@
 ---
 import { organizationSchema, websiteSchema } from '@/lib/seo';
 import { SITE, SITE_NAME, SITE_DESC, PHONE_DISPLAY, WHATSAPP_NUMBER, SERVICIOS_NAV, ZONAS_NAV } from '@/lib/config';
+import { VACANTES } from '@/lib/vacantes';
 import type { CollectionEntry } from 'astro:content';
 
 export interface Props {
@@ -33,11 +34,22 @@ const schemas = [
 
 const currentPath = Astro.url.pathname;
 
+const VAC_CORTO: Record<string, string> = {
+  'guardia-de-seguridad-para-eventos': 'Guardia de Seguridad',
+  'supervisor-operativo': 'Supervisor Operativo',
+  'escolta-proteccion-vip': 'Escolta / Protección VIP',
+  'monitorista-cctv': 'Monitorista CCTV',
+  'coordinador-de-eventos-logistica': 'Coordinador de Eventos',
+  'personal-control-acceso-acreditacion': 'Control de Acceso',
+};
+const vacantesNav = VACANTES.map(v => ({ href: `/bolsa-de-trabajo/${v.slug}`, label: VAC_CORTO[v.slug] ?? v.puesto }));
+
 const navMain = [
   { href: "/",                label: "Inicio",          dropdown: null },
   { href: "/servicios",       label: "Servicios",       dropdown: SERVICIOS_NAV.map(s => ({ href: `/servicios/${s.slug}`, label: s.nombre })) },
   { href: "/nosotros",        label: "Nosotros",        dropdown: null },
   { href: "/certificaciones", label: "Certificaciones", dropdown: null },
+  { href: "/bolsa-de-trabajo", label: "Bolsa de Trabajo", dropdown: vacantesNav },
   { href: "/blog",            label: "Blog",            dropdown: null },
   { href: "/contacto",        label: "Contacto",        dropdown: null },
 ];
@@ -342,7 +354,7 @@ const navMain = [
   <!-- FOOTER -->
   <footer class="bg-primary border-t border-primary-light mt-20">
     <div class="w-full px-[5%] xl:px-[7%] py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
 
         <!-- Marca -->
         <div>
@@ -402,8 +414,24 @@ const navMain = [
           <ul class="space-y-2">
             <li><a href="/nosotros" class="text-accent hover:text-light text-sm transition-colors">Nosotros</a></li>
             <li><a href="/certificaciones" class="text-accent hover:text-light text-sm transition-colors">Certificaciones</a></li>
+            <li><a href="/bolsa-de-trabajo" class="text-accent hover:text-light text-sm transition-colors">Bolsa de Trabajo</a></li>
             <li><a href="/blog" class="text-accent hover:text-light text-sm transition-colors">Blog</a></li>
             <li><a href="/contacto" class="text-accent hover:text-light text-sm transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Bolsa de Trabajo -->
+        <div>
+          <h3 class="text-light font-bold text-sm uppercase tracking-widest mb-4">Bolsa de Trabajo</h3>
+          <ul class="space-y-2">
+            {vacantesNav.map(v => (
+              <li>
+                <a href={v.href} class="text-accent hover:text-light text-sm transition-colors">{v.label}</a>
+              </li>
+            ))}
+            <li>
+              <a href="/bolsa-de-trabajo" class="text-secondary hover:text-red-400 text-sm font-semibold transition-colors">Ver todas las vacantes →</a>
+            </li>
           </ul>
         </div>
 

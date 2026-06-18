@@ -1,0 +1,371 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema } from '@/lib/seo';
+
+const slug = 'control-de-multitudes';
+const parent = { slug: 'seguridad-conciertos-festivales', name: 'Conciertos y Festivales' };
+
+// H1 / nombre del servicio para schema
+const titulo = 'Control de Multitudes para Conciertos y Festivales';
+const descripcion = 'Servicio especializado de control de multitudes para conciertos y festivales en México: diseño de flujos de ingreso y salida, gestión de densidad por sector, zonas de amortiguamiento, prevención de compresión y avalanchas humanas, monitoreo en tiempo real y protocolo de show-stop. Personal certificado en manejo de multitudes con licencia DGSSP y STPS.';
+
+// SEO meta (limpio, orientado a intención de búsqueda)
+const metaTitle = 'Control de Multitudes en Conciertos y Festivales | SEPRIEV';
+const metaDescription = 'Control de multitudes para conciertos y festivales en México: diseño de flujos, gestión de densidad, prevención de aplastamientos y monitoreo en tiempo real. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${parent.slug}/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/seguridad-conciertos-multitud-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito control de multitudes para mi concierto o festival')}`;
+
+// FAQ específica de control de multitudes
+const faq = [
+  { q: "¿Qué es el control de multitudes en un concierto?", a: "Es la disciplina de seguridad que diseña y gestiona el movimiento del público para evitar la compresión, el aplastamiento y el pánico en eventos de gran aforo. Combina el diseño previo de flujos de ingreso y salida, la medición de la densidad por sector, la infraestructura de barreras y un protocolo de respuesta que puede llegar a pausar el espectáculo." },
+  { q: "¿Cómo previenen una avalancha o aplastamiento (crowd crush)?", a: "Medimos la densidad por sector, diseñamos zonas de amortiguamiento frente al escenario, instalamos barreras que rompen la presión y monitoreamos en tiempo real con CCTV, drones y observadores. Cuando un sector se acerca al umbral crítico, redistribuimos al público o activamos el protocolo de show-stop antes de que la presión sea peligrosa." },
+  { q: "¿Qué densidad de personas por metro cuadrado es segura?", a: "Como referencia de la industria, a partir de aproximadamente 4 a 5 personas de pie por metro cuadrado el riesgo de compresión aumenta de forma significativa y el movimiento individual se pierde. Por eso medimos la densidad por sector y actuamos antes de llegar a esos niveles, no después." },
+  { q: "¿Pueden detener el concierto si hay riesgo?", a: "Sí. Acordamos con el organizador y la producción un protocolo de show-stop con criterios y cadena de mando claros: ante un riesgo de compresión, se pausa o detiene el espectáculo y se emiten mensajes coordinados desde el escenario para descomprimir la zona. La seguridad del público está por encima del show." },
+  { q: "¿Usan drones y CCTV para vigilar la multitud?", a: "Sí. Combinamos CCTV, conteo de aforo por sector y vigilancia aérea con drones para construir un mapa de densidad en tiempo real desde el puesto de mando, lo que permite anticipar acumulaciones y redistribuir al personal antes de que una zona se vuelva crítica." },
+  { q: "¿Cuántos elementos se necesitan para el control de multitudes?", a: "Depende del aforo, el número de sectores, el tipo de público y la configuración del recinto. Tras el análisis del venue te entregamos el dimensionamiento exacto: personal de pit y barreras, observadores de densidad, equipos de circulación y respuesta rápida, además del puesto de mando." },
+  { q: "¿Cómo diseñan los accesos y las salidas?", a: "Dimensionamos los puntos de acceso según el aforo, establecemos circulación unidireccional para evitar contraflujos, mantenemos las salidas de emergencia despejadas y señalizadas, y planeamos la desconcentración al cierre para evitar la presión de salida, uno de los momentos de mayor riesgo." },
+  { q: "¿El control de multitudes reemplaza al control de acceso?", a: "No, son complementarios. El control de acceso gestiona quién entra y a qué sector; el control de multitudes gestiona cómo se mueve y se distribuye el público una vez dentro. Ambos forman parte del mismo operativo de seguridad para conciertos y festivales." },
+];
+
+const schemas = buildServicePageSchema({
+  slug,
+  parent,
+  name: titulo,
+  description: descripcion,
+  metaTitle,
+  metaDescription,
+  serviceType: "Control de multitudes para conciertos y festivales",
+  ogImage: ogImg,
+  breadcrumbName: "Control de multitudes",
+  offers: [
+    "Diseño de flujos de ingreso y salida",
+    "Gestión de densidad por sector",
+    "Detección temprana de compresión",
+    "Protocolo de show-stop y evacuación",
+  ],
+  faq,
+  datePublished: "2025-03-10",
+});
+
+const navItems = [
+  { label: "Conciertos y Festivales", desc: "Volver al servicio principal", href: "/servicios/seguridad-conciertos-festivales" },
+  { label: "Eventos Masivos", desc: "Dirección de seguridad para +10,000 asistentes", href: "/servicios/seguridad-masivos" },
+  { label: "Control de Acceso", desc: "Filtros, aforo por sector y detección de objetos", href: "/servicios/control-acceso-eventos" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
+const modules = [
+  {
+    eyebrow: "Subcategoría especializada",
+    badge: "Prevención",
+    title: "Diseño de flujos y gestión de densidad",
+    intro: "El control de multitudes empieza mucho antes de que se abran las puertas. Los flujos de entrada y salida, la capacidad por sector y los puntos de mayor presión se diseñan sobre el plano del recinto, porque cuando el público ya está dentro no hay margen para improvisar. Esta es la disciplina que previene la compresión y el aplastamiento, los dos riesgos que han causado las mayores tragedias en conciertos.",
+    features: [
+      { title: "Diseño de flujos de ingreso y salida", text: "Dimensionamos los puntos de acceso según el aforo, definimos velocidades de ingreso realistas y establecemos circulación unidireccional para evitar contraflujos entre quienes entran y quienes salen. Las salidas de emergencia se mantienen despejadas y señalizadas durante todo el evento, no solo al inicio." },
+      { title: "Gestión de densidad por sector", text: "Medimos la densidad en personas por metro cuadrado y diseñamos zonas de amortiguamiento entre sectores y frente al escenario. Cada sector tiene un umbral de densidad que, al alcanzarse, dispara el cierre temporal del ingreso a esa zona y la redistribución del público hacia áreas con holgura." },
+      { title: "Detección temprana de compresión", text: "El personal y los operadores están entrenados para reconocer las señales tempranas de un crowd surge o una compresión —olas de movimiento, presión sostenida, caídas—, con monitoreo desde CCTV, drones y observadores en altura, y comunicación inmediata al puesto de mando para actuar en segundos." },
+    ],
+    hero: `${IMG}/seguridad-conciertos-multitud`,
+    small1: `${IMG}/seguridad-conciertos-festivales`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    alt: [
+      "Control de multitudes frente al escenario de un concierto masivo en México",
+      "Diseño de flujos de público en un festival de gran aforo",
+      "Personal de SEPRIEV gestionando la densidad de la multitud",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Infraestructura y respuesta",
+    badge: undefined,
+    title: "Barreras, monitoreo en tiempo real y show-stop",
+    intro: "Controlar una multitud no es contenerla, es canalizarla. Para lograrlo combinamos infraestructura física —barreras, vallas y pasillos— con monitoreo en tiempo real y un protocolo de respuesta que llega hasta detener el espectáculo si la seguridad del público lo exige. A esta escala, la decisión correcta tomada a tiempo evita la tragedia.",
+    features: [
+      { title: "Barreras, vallas y pasillos de emergencia", text: "Configuramos barreras frontales y de tipo bike-rack que fragmentan la presión del público en sectores manejables, además de pasillos de circulación y de extracción médica del pit. La geometría de las barreras se diseña para romper las olas de empuje antes de que se acumulen frente al escenario." },
+      { title: "Monitoreo de densidad en tiempo real", text: "Combinamos CCTV, conteo de aforo por sector y vigilancia aérea con drones para construir un mapa de densidad en tiempo real. El puesto de mando observa la evolución por zona y redistribuye al personal o restringe el ingreso a un sector antes de que alcance niveles críticos." },
+      { title: "Protocolo de show-stop y evacuación", text: "Acordamos con el organizador y la producción los criterios y la cadena de mando para pausar o detener el espectáculo, con mensajes coordinados desde el escenario para descomprimir la zona, evacuación parcial por sector y enlace directo con Protección Civil y los servicios médicos." },
+    ],
+    hero: `${IMG}/centro-control-seguridad`,
+    small1: `${IMG}/centro-monitoreo-cctv-eventos`,
+    small2: `${IMG}/guardias-seguridad-privada`,
+    alt: [
+      "Puesto de mando monitoreando la densidad de la multitud en tiempo real",
+      "Monitoreo por CCTV del público de un concierto por sector",
+      "Personal de seguridad en las barreras frontales del escenario",
+    ],
+    featured: true,
+  },
+];
+
+// Riesgos que prevenimos
+const tipos = [
+  { titulo: "Compresión de multitudes", nota: "Crowd crush frente al escenario" },
+  { titulo: "Avalanchas humanas", nota: "Caídas en cadena por empuje" },
+  { titulo: "Contraflujos en accesos", nota: "Choque de ingreso y salida" },
+  { titulo: "Sobreaforo por sector", nota: "Densidad por encima del límite" },
+  { titulo: "Pánico colectivo", nota: "Estampidas por desinformación" },
+  { titulo: "Cuellos de botella", nota: "Presión acumulada en los filtros" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Personal certificado en multitudes", desc: "Capacitación específica en manejo de multitudes (crowd management) y desescalamiento." },
+  { titulo: "Diseño previo de flujos", desc: "El operativo se planea sobre el plano del recinto y el aforo, no se improvisa el día del evento." },
+  { titulo: "Medición de densidad", desc: "Umbrales de densidad por sector y redistribución del público antes del punto crítico." },
+  { titulo: "Tecnología de monitoreo", desc: "CCTV, drones y conteo de aforo para un mapa de densidad en tiempo real." },
+  { titulo: "Protocolo de show-stop", desc: "Capacidad y cadena de mando para pausar el espectáculo cuando la seguridad lo exige." },
+  { titulo: "0 incidentes graves", desc: "Historial respaldado por más de 200 eventos musicales operados sin incidentes graves." },
+];
+
+// Parte de un operativo integral (relacionados existentes)
+const relacionados = [
+  { title: "Conciertos y Festivales", description: "El servicio principal del que forma parte esta subcategoría: operativo integral de seguridad para eventos musicales.", features: ["Backstage seguro", "Coordinación institucional", "Plan de seguridad"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Servicio principal", featured: true },
+  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada`, badge: "Destacado" },
+  { title: "Control de Acceso", description: "Validación de boletos, control de aforo por sección y detección de objetos: la puerta de entrada al control de multitudes.", features: ["Aforo por sección", "Detección de metales", "Anti-reventa"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Eventos Deportivos", description: "Gestión de aficiones, anti-invasión y manejo de multitudes en estadios y arenas con marco federativo.", features: ["Separación de barras", "Anti-invasión", "Protocolo de liga"], href: "/servicios/seguridad-eventos-deportivos", image: `${IMG}/seguridad-conciertos-multitud` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Conciertos y Festivales', href: '/servicios/seguridad-conciertos-festivales' },
+    { label: 'Control de multitudes' },
+  ]} />
+
+  <PageHero
+    eyebrow="Conciertos y Festivales — Control de Multitudes"
+    titulo="Control de Multitudes"
+    subtitulo="Los flujos de entrada y salida se diseñan antes del evento, no se improvisan cuando el público ya está afuera. El control de multitudes es la disciplina que previene la compresión y el aplastamiento en eventos de gran aforo."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Esta es una subcategoría especializada del operativo de <a href="/servicios/seguridad-conciertos-festivales" class="text-secondary hover:underline font-semibold">seguridad para conciertos y festivales</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. El control de multitudes se ocupa de cómo se mueve y se distribuye el público dentro del recinto: el factor que decide la diferencia entre un evento seguro y una tragedia.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Diseñamos flujos, medimos densidad por sector y monitoreamos en tiempo real con CCTV y drones, con personal <strong class="text-light font-semibold">certificado en manejo de multitudes</strong>, licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>. Se integra con el <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso</a> y la <a href="/servicios/seguridad-masivos" class="text-secondary hover:underline font-semibold">dirección de eventos masivos</a>.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark border-t border-white/8" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <!-- Encabezado de dos columnas -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo controlamos la multitud</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Canalizar al público, no solo contenerlo
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            La mayoría de los incidentes graves en conciertos no los causa la violencia, sino la física de una multitud comprimida. Por eso el control de multitudes se trata como una disciplina técnica, con diseño previo y decisiones tomadas en frío.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Trabajamos sobre tres frentes: el <strong class="text-light font-semibold">diseño de flujos</strong> antes del evento, la <strong class="text-light font-semibold">gestión de densidad</strong> durante el show y la <strong class="text-light font-semibold">respuesta inmediata</strong> ante señales de compresión, hasta el protocolo de show-stop.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Todo se dirige desde un puesto de mando con <strong class="text-light font-semibold">mapa de densidad en tiempo real</strong> y comunicación con la producción, el escenario y las autoridades, porque a esta escala la información que llega a tiempo es lo que evita la tragedia.
+          </p>
+        </div>
+      </div>
+
+      <!-- Módulos imagen + texto -->
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+
+          <!-- Columna izquierda: texto -->
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha: galería 1 grande + 2 pequeñas -->
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Riesgos que prevenimos -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué prevenimos</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Riesgos que prevenimos</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El control de multitudes existe para evitar un conjunto concreto de fallas que, en un evento de gran aforo, escalan en segundos. Cada una tiene señales tempranas y un protocolo de intervención definido antes del evento.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <circle cx="9" cy="7" r="3"/><path d="M2 21v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1"/><path d="M16 3.5a3 3 0 0 1 0 6M22 21v-1a5 5 0 0 0-3-4.58"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para el control de multitudes?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El control de multitudes no se improvisa ni se aprende el día del evento. Requiere personal certificado, diseño previo y la disciplina de actuar sobre los datos de densidad antes de que la física de la multitud tome el control.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection titulo="Así controlamos la multitud en tu evento" />
+
+  <!-- Parte de un operativo integral -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Parte de un operativo integral</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Servicios relacionados</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El control de multitudes es una de las subcategorías del servicio de conciertos y festivales, junto con el backstage seguro y la coordinación institucional. Rara vez opera solo: lo combinamos con el control de acceso y, en grandes aforos, con la dirección de eventos masivos.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas control de multitudes para tu concierto o festival?"
+    subtitulo="Cuéntanos el aforo, el recinto y la configuración del evento, y recibe un plan de control de multitudes y una propuesta en menos de 24 horas."
+    faq={faq}
+  />
+
+</BaseLayout>

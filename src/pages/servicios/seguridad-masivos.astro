@@ -1,0 +1,372 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema } from '@/lib/seo';
+
+const slug = 'seguridad-masivos';
+
+// H1 / nombre del servicio para schema
+const titulo = 'Seguridad para Eventos Masivos en México';
+const descripcion = 'Dirección de seguridad para eventos masivos en México de 10,000 a 100,000+ asistentes: centro de comando y control, vigilancia aérea con drones, mando unificado con Protección Civil, bomberos, Cruz Roja y policía, plan de contingencia certificado y conteo de aforo en tiempo real. Empresa con licencia DGSSP y personal certificado STPS.';
+
+// SEO meta (limpio, orientado a intención de búsqueda)
+const metaTitle = 'Seguridad para Eventos Masivos en México (+10,000) | SEPRIEV';
+const metaDescription = 'Seguridad para eventos masivos en México de +10,000 asistentes: centro de comando, drones, mando unificado con Protección Civil y plan de contingencia. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/centro-control-seguridad-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito seguridad para un evento masivo')}`;
+
+// FAQ específica de eventos masivos (ampliada para cobertura de búsqueda)
+const faq = [
+  { q: "¿Cuántos elementos necesito para un festival de 50,000 personas?", a: "Para un evento de 50,000 personas desplegamos una estructura de 120-150 guardias en rotación, además de 1 director de seguridad, 4 coordinadores de zona, 16 supervisores de sector, 8 elementos de respuesta rápida, 1 puesto de mando con 3 operadores, 4 operadores de CCTV y coordinación con 2-3 ambulancias. El número exacto depende del venue y la duración." },
+  { q: "¿Incluyen coordinación con Protección Civil?", a: "Sí, es obligatorio y está incluido. Tramitamos el Programa Interno de Protección Civil y coordinamos con bomberos, Cruz Roja/ERUM, policía municipal/estatal y tránsito. Presentamos el plan de contingencia ante las autoridades." },
+  { q: "¿Tienen drones de vigilancia?", a: "Sí. Contamos con drones con cámara HD y conteo de aforo para vigilancia aérea en eventos masivos al aire libre. Complementan la seguridad en piso permitiendo una visión panorámica en tiempo real desde el puesto de mando, incluso con visión nocturna." },
+  { q: "¿Qué seguros incluyen?", a: "Contamos con seguro de responsabilidad civil que cubre daños a terceros durante la operación de seguridad. El monto de cobertura se ajusta según el aforo del evento y proporcionamos copia de la póliza al organizador." },
+  { q: "¿Qué incluye el centro de comando?", a: "El puesto de mando concentra el monitoreo de cámaras (CCTV en tiempo real con operadores), la radio en múltiples canales con frecuencias dedicadas y encriptación, el enlace directo con autoridades y un software de gestión de incidentes en tiempo real. Es el único punto de decisión del operativo." },
+  { q: "¿Cómo manejan la densidad de multitudes y previenen aplastamientos?", a: "Medimos la densidad por sector con conteo de aforo y vigilancia aérea con drones, lo que permite detectar acumulaciones peligrosas y redistribuir al personal antes de que una zona congestionada se convierta en una emergencia. Los umbrales de activación se definen antes del evento." },
+  { q: "¿Asignan un director de seguridad al evento?", a: "Sí. Cada evento masivo cuenta con un director de seguridad asignado, apoyado por coordinadores de zona y supervisores de sector, dentro de una estructura de mando documentada con roles y umbrales de escalamiento definidos con antelación." },
+  { q: "¿Qué incluye el plan de contingencia?", a: "Protocolo de evacuación parcial y total, rutas de emergencia señalizadas, puntos de reunión identificados, plan de comunicación de crisis y cadena de mando documentada. Cubre emergencias médicas masivas, incidentes climáticos, cortes de energía y situaciones de seguridad pública." },
+  { q: "¿Ofrecen unidades K-9 antiexplosivos y personal médico?", a: "Sí. Bajo solicitud incorporamos unidades caninas (K-9) antiexplosivos para revisión previa del recinto, y desplegamos personal médico de apoyo (paramédicos) con coordinación directa con ambulancias y servicios de emergencia." },
+  { q: "¿Qué permisos y requisitos regulatorios se necesitan?", a: "Un evento masivo requiere Programa Interno de Protección Civil aprobado, póliza de seguro de responsabilidad civil, plan de contingencia presentado ante autoridades, permisos de Protección Civil, bomberos y uso de suelo, una empresa de seguridad con licencia DGSSP vigente (SEPRIEV) e informe de aforo certificado por un Director Responsable de Obra." },
+  { q: "¿Hasta qué aforo pueden operar?", a: "Operamos eventos desde 10,000 hasta más de 100,000 asistentes, escalando la estructura de mando, la tecnología de vigilancia y la coordinación interinstitucional según el aforo y la complejidad del recinto." },
+];
+
+// Schema graph enlazado por @id (WebPage + Service + BreadcrumbList + FAQPage)
+
+
+
+const schemas = buildServicePageSchema({
+  slug,
+  name: titulo,
+  description: descripcion,
+  metaTitle,
+  metaDescription,
+  serviceType: "Dirección de seguridad para eventos masivos",
+  ogImage: ogImg,
+  breadcrumbName: "Eventos Masivos",
+  offers: [
+    "Centro de comando y control",
+    "Vigilancia aérea con drones y conteo de aforo",
+    "Mando unificado con autoridades",
+    "Plan de contingencia y evacuación certificado",
+  ],
+  faq,
+  datePublished: "2025-02-15",
+});
+
+const navItems = [
+  { label: "Conciertos y Festivales", desc: "Control de multitudes para grandes aforos", href: "/servicios/seguridad-conciertos-festivales" },
+  { label: "Control de Acceso", desc: "Aforo en tiempo real y filtros por sector", href: "/servicios/control-acceso-eventos" },
+  { label: "Eventos Deportivos", desc: "Estadios, aficiones y manejo de multitudes", href: "/servicios/seguridad-eventos-deportivos" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
+const modules = [
+  {
+    eyebrow: "Servicio especializado",
+    badge: "Destacado",
+    title: "Inteligencia operativa en tiempo real, no solo más elementos",
+    intro: "A partir de los 10,000 asistentes, la seguridad ya no se resuelve sumando elementos: se vuelve un problema de inteligencia operativa en tiempo real. SEPRIEV dirige operativos masivos con centro de comando propio, vigilancia aérea y mando unificado con las autoridades, articulado desde antes de que llegue el primer asistente. A esta escala, la diferencia la marca la información que llega a tiempo a quien decide y la capacidad de actuar sobre ella en segundos.",
+    features: [
+      { title: "Centro de comando e inteligencia", text: "El puesto de mando concentra el monitoreo de cámaras, la radio en múltiples canales y el enlace con autoridades en un solo punto de decisión. Desde ahí procesamos lo que ocurre en todo el recinto y activamos protocolos sin esperar a que cada situación escale, porque los roles y los umbrales de activación están definidos antes del evento." },
+      { title: "Vigilancia aérea y densidad de aforo", text: "Drones con cámara de alta resolución y conteo de aforo ofrecen al centro de comando una visión de conjunto en tiempo real imposible de lograr desde tierra. Esto permite detectar acumulaciones peligrosas, medir la densidad por sector y redistribuir al personal antes de que una zona congestionada se convierta en una emergencia." },
+      { title: "Mando unificado con autoridades", text: "Protección Civil, policía, bomberos y servicios médicos operan dentro de un mando unificado que ayudamos a articular antes del evento, con canal común, protocolo de escalamiento y roles ensayados. Ante incidentes simultáneos, la respuesta coordinada ya está lista y no depende de decisiones improvisadas." },
+    ],
+    hero: `${IMG}/centro-control-seguridad`,
+    small1: `${IMG}/centro-monitoreo-cctv-eventos`,
+    small2: `${IMG}/monitoreo-camaras-evento`,
+    alt: [
+      "Centro de comando y monitoreo CCTV de un evento masivo en México",
+      "Operadores de CCTV vigilando un evento de gran aforo en tiempo real",
+      "Monitoreo de cámaras y conteo de aforo en un festival masivo",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Estructura, contingencia y cumplimiento",
+    badge: undefined,
+    title: "Estructura de mando, plan de contingencia y cumplimiento",
+    intro: "A esta escala la seguridad es infraestructura crítica: exige planificación rigurosa, una estructura de mando clara y el cumplimiento de un marco regulatorio estricto. SEPRIEV asigna un director de seguridad, despliega una estructura por zonas y sectores, y opera sobre un plan de contingencia certificado con los permisos en regla, porque en un evento masivo un buen plan es invisible cuando todo sale bien e invaluable cuando algo sale mal.",
+    features: [
+      { title: "Estructura de mando por zonas", text: "Cada operativo cuenta con un director de seguridad, coordinadores de zona, supervisores de sector, equipo de respuesta rápida y operadores de CCTV. Como referencia, para 50,000 asistentes desplegamos entre 120 y 150 guardias en rotación, además del mando, la respuesta rápida y el personal médico de apoyo." },
+      { title: "Plan de contingencia certificado", text: "El plan no es un documento de escritorio: cubre protocolo de evacuación parcial y total, rutas de emergencia señalizadas, puntos de reunión, plan de comunicación de crisis y cadena de mando documentada, ante emergencias médicas masivas, incidentes climáticos, cortes de energía y situaciones de seguridad pública." },
+      { title: "Cumplimiento regulatorio", text: "Integramos el Programa Interno de Protección Civil, la póliza de responsabilidad civil ajustada al aforo, los permisos de Protección Civil, bomberos y uso de suelo, y el informe de aforo, operando como la empresa de seguridad con licencia DGSSP vigente que la autoridad exige para autorizar el evento." },
+    ],
+    hero: `${IMG}/guardias-seguridad-privada`,
+    small1: `${IMG}/seguridad-conciertos-multitud`,
+    small2: `${IMG}/seguridad-conciertos-festivales`,
+    alt: [
+      "Despliegue de guardias certificados en un evento masivo",
+      "Multitud en un concierto masivo bajo operativo de seguridad",
+      "Operativo de seguridad en un festival de gran aforo",
+    ],
+    featured: true,
+  },
+];
+
+// Tipos de eventos masivos que protegemos
+const tipos = [
+  { titulo: "Festivales de música de gran formato", nota: "10,000 – 100,000+ asistentes" },
+  { titulo: "Eventos deportivos en estadios", nota: "Aforos llenos y aficiones" },
+  { titulo: "Celebraciones cívicas y fiestas patrias", nota: "Plazas y espacios públicos" },
+  { titulo: "Eventos religiosos masivos", nota: "Peregrinaciones y misas" },
+  { titulo: "Marchas y manifestaciones autorizadas", nota: "Vía pública y movilidad" },
+  { titulo: "Año Nuevo, desfiles y procesiones", nota: "Eventos en plazas y calles" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Centro de comando propio", desc: "Monitoreo de CCTV, radio multicanal y enlace con autoridades en un solo punto de decisión." },
+  { titulo: "Vigilancia aérea con drones", desc: "Cámara HD y conteo de aforo para medir la densidad y redistribuir al personal antes de la emergencia." },
+  { titulo: "Mando unificado", desc: "Protección Civil, bomberos, Cruz Roja/ERUM, policía y tránsito articulados desde antes del evento." },
+  { titulo: "Plan de contingencia certificado", desc: "Evacuación, rutas señalizadas, puntos de reunión y comunicación de crisis documentados." },
+  { titulo: "Cumplimiento regulatorio", desc: "Programa Interno de Protección Civil, permisos e informe de aforo, con licencia DGSSP vigente." },
+  { titulo: "Estructura escalable", desc: "De 10,000 a 100,000+ asistentes con dirección de seguridad, sectores y respuesta rápida." },
+];
+
+// Otros servicios relacionados (ServiceCards homologadas con servicios/index)
+const relacionados = [
+  { title: "Conciertos y Festivales", description: "Control de multitudes, coordinación institucional y protocolos de emergencia para eventos musicales de cualquier escala.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular", featured: true },
+  { title: "Eventos Deportivos", description: "Gestión de aficiones, protección del terreno de juego y cumplimiento federativo en estadios y arenas.", features: ["Separación de barras", "Anti-invasión", "Protocolo de liga"], href: "/servicios/seguridad-eventos-deportivos", image: `${IMG}/seguridad-conciertos-multitud` },
+  { title: "Control de Acceso", description: "Validación de boletos, control de aforo por sección y detección de objetos para grandes aforos.", features: ["Aforo en tiempo real", "Detección de metales", "Anti-reventa"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Montaje y Desmontaje", description: "Custodia 24/7, acreditación de proveedores e inventario durante el montaje de escenarios y producción.", features: ["Custodia 24/7", "Control de proveedores", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje", image: `${IMG}/equipo-seguridad-eventos` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Eventos Masivos' }]} />
+
+  <PageHero
+    eyebrow="SEPRIEV — Eventos Masivos"
+    titulo="Seguridad para Eventos Masivos"
+    subtitulo="A partir de los 10,000 asistentes, la seguridad ya no se resuelve sumando elementos: se vuelve un problema de inteligencia operativa en tiempo real. La dirigimos con centro de comando, vigilancia aérea y mando unificado."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        <strong class="text-light font-semibold">SEPRIEV</strong> dirige operativos de <strong class="text-light font-semibold">seguridad para eventos masivos</strong> de 10,000 a 100,000+ asistentes con centro de comando propio, vigilancia aérea con drones y mando unificado, articulado desde antes de que llegue el primer asistente. La diferencia la marca la información que llega a tiempo a quien decide. Es el mismo músculo que opera nuestra <a href="/servicios/seguridad-conciertos-festivales" class="text-secondary hover:underline font-semibold">seguridad de conciertos y festivales</a>.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Coordinamos con Protección Civil, bomberos, Cruz Roja/ERUM, policía y tránsito, con Programa Interno de Protección Civil y póliza de responsabilidad civil por aforo. Operamos también <a href="/servicios/seguridad-eventos-deportivos" class="text-secondary hover:underline font-semibold">eventos deportivos en estadios</a>, con <strong class="text-light font-semibold">licencia DGSSP y STPS</strong> y cobertura nacional. Cotización en menos de 24 horas.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark border-t border-white/8" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <!-- Encabezado de dos columnas -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo dirigimos un evento masivo</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Cuando la seguridad se vuelve infraestructura crítica
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            Por encima de los 10,000 asistentes, un evento exige planificación rigurosa, coordinación interinstitucional y capacidad para manejar escenarios complejos en tiempo real.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Atendemos lo que hace único a un masivo: <strong class="text-light font-semibold">complejidad logística exponencial, regulación estricta, múltiples zonas simultáneas y riesgos amplificados</strong> como aplastamientos o pánico colectivo, todo bajo el escrutinio de los medios.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            La respuesta es una <strong class="text-light font-semibold">dirección de seguridad integral</strong>: un director asignado, centro de comando, drones, mando unificado con autoridades y un plan de contingencia certificado, ejecutado por personal certificado en manejo de multitudes.
+          </p>
+        </div>
+      </div>
+
+      <!-- Módulos imagen + texto -->
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+
+          <!-- Columna izquierda: texto -->
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha: galería 1 grande + 2 pequeñas -->
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Tipos de eventos masivos que protegemos -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué dirigimos</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Tipos de eventos masivos que protegemos</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Un festival, una concentración cívica o una manifestación comparten escala, pero no dinámica de riesgo. Diseñamos la estructura de mando, la vigilancia aérea y la coordinación interinstitucional según el tipo de evento, el recinto y el aforo esperado.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <circle cx="9" cy="7" r="3"/><path d="M2 21v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1"/><path d="M16 3.5a3 3 0 0 1 0 6M22 21v-1a5 5 0 0 0-3-4.58"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para tu evento masivo?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            A esta escala, el margen de error es mínimo y el escrutinio es máximo. Operar con un proveedor que combina centro de comando, tecnología de vigilancia y coordinación interinstitucional es lo que separa un evento bajo control de una crisis en vivo.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection titulo="Así dirigimos tu evento masivo" />
+
+  <!-- Otros servicios -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Servicios complementarios</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Otros servicios para tu evento</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Un evento masivo es la suma coordinada de varios operativos. Integramos la seguridad de conciertos, la gestión deportiva, el control de acceso por sección y la custodia de montaje en un solo mando, con un único interlocutor responsable de toda la operación.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas seguridad para tu evento masivo?"
+    subtitulo="Cuéntanos el aforo esperado, el recinto y la fecha, y recibe una propuesta personalizada con estructura de mando y plan operativo en menos de 24 horas."
+    faq={faq}
+  />
+
+</BaseLayout>

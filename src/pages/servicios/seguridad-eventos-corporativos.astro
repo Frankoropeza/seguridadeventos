@@ -3,11 +3,12 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumb from '@/components/Breadcrumb.astro';
 import PageHero from '@/components/PageHero.astro';
 import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
 import ServiceCard from '@/components/ServiceCard.astro';
 import ProcessSection from '@/components/ProcessSection.astro';
 import CTABanner from '@/components/CTABanner.astro';
 import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
-import { buildServiceSchema, buildFAQSchema } from '@/lib/seo';
+import { buildServicePageSchema } from '@/lib/seo';
 
 const slug = 'seguridad-eventos-corporativos';
 
@@ -36,10 +37,24 @@ const faq = [
   { q: "¿Cuánto cuesta la seguridad para un evento corporativo?", a: "El costo depende del número de asistentes y el perfil de riesgo, la duración del evento, el nivel de protección (estándar, premium o VIP) y los servicios adicionales (CCTV, arcos detectores de metales, unidades K-9). Te enviamos una propuesta con costos transparentes en menos de 24 horas." },
 ];
 
-const schemas = [
-  buildServiceSchema(titulo, descripcion, canonical),
-  buildFAQSchema(faq),
-];
+const schemas = buildServicePageSchema({
+  slug,
+  name: titulo,
+  description: descripcion,
+  metaTitle,
+  metaDescription,
+  serviceType: "Seguridad para eventos corporativos",
+  ogImage: ogImg,
+  breadcrumbName: "Eventos Corporativos",
+  offers: [
+    "Planeación y punto único de contacto",
+    "Confidencialidad contractual (NDA)",
+    "Personal bilingüe y de etiqueta",
+    "Reporte ejecutivo post-evento",
+  ],
+  faq,
+  datePublished: "2025-01-20",
+});
 
 const navItems = [
   { label: "Protección Ejecutiva", desc: "Programa continuo de protección para directivos", href: "/servicios/proteccion-ejecutiva" },
@@ -63,6 +78,11 @@ const modules = [
     hero: `${IMG}/seguridad-eventos-corporativos`,
     small1: `${IMG}/seguridad-empresarial-evento`,
     small2: `${IMG}/equipo-seguridad-eventos`,
+    alt: [
+      "Seguridad discreta en un evento corporativo en México",
+      "Personal de seguridad en una convención empresarial",
+      "Equipo de seguridad coordinando una gala corporativa",
+    ],
     featured: false,
   },
   {
@@ -78,6 +98,11 @@ const modules = [
     hero: `${IMG}/proteccion-ejecutiva-mexico`,
     small1: `${IMG}/control-acceso-eventos`,
     small2: `${IMG}/guardias-seguridad-privada`,
+    alt: [
+      "Escolta de protección ejecutiva en un evento de empresa",
+      "Registro y credencialización de asistentes a un congreso",
+      "Personal bilingüe de seguridad en un evento corporativo",
+    ],
     featured: true,
   },
 ];
@@ -127,6 +152,7 @@ const relacionados = [
       <p class="text-accent text-base leading-relaxed">
         Más de <strong class="text-light font-semibold">500 eventos protegidos</strong>, personal <strong class="text-light font-semibold">bilingüe</strong> con <strong class="text-light font-semibold">licencia DGSSP y certificación STPS</strong>, y presencia en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Cotización gratuita y propuesta en menos de 24 horas, con un solo interlocutor responsable de toda la operación.
       </p>
+      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/proteccion-ejecutiva" class="text-secondary hover:underline font-semibold">protección ejecutiva</a> y <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
         <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
@@ -140,15 +166,17 @@ const relacionados = [
 
   <PageNav items={navItems} ariaLabel="Servicios relacionados" />
 
+  <StatsSection />
+
   <!-- Módulos detallados del servicio -->
-  <section class="py-20 bg-dark" id="servicio">
+  <section class="py-20 bg-dark" id="servicio" aria-labelledby="servicio-h">
     <div class="w-full px-[5%] xl:px-[7%]">
 
       <!-- Encabezado de dos columnas -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
         <div class="flex flex-col">
           <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo operamos un evento corporativo</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3" id="servicio-h">
             Seguridad corporativa de alto nivel, sin interrumpir la experiencia
           </h2>
           <p class="text-accent text-base leading-relaxed">
@@ -210,20 +238,20 @@ const relacionados = [
               <picture>
                 <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
                 <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
-                <img src={`${m.hero}-1200.jpg`} alt={`${m.title} — seguridad para eventos corporativos SEPRIEV`} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
               </picture>
             </div>
             <div class="grid grid-cols-2 gap-4">
               <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
                 <picture>
                   <source type="image/avif" srcset={`${m.small1}-640.avif`} />
-                  <img src={`${m.small1}-640.jpg`} alt={`${m.title} — SEPRIEV`} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
                 </picture>
               </div>
               <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
                 <picture>
                   <source type="image/avif" srcset={`${m.small2}-640.avif`} />
-                  <img src={`${m.small2}-640.jpg`} alt={`${m.title} — SEPRIEV`} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
                 </picture>
               </div>
             </div>
@@ -234,12 +262,12 @@ const relacionados = [
   </section>
 
   <!-- Tipos de eventos corporativos que cubrimos -->
-  <section class="py-20 bg-dark border-t border-white/8">
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
     <div class="w-full px-[5%] xl:px-[7%]">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
         <div class="flex flex-col">
           <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cobertura por formato</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">Tipos de eventos corporativos que cubrimos</h2>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="tipos-h">Tipos de eventos corporativos que cubrimos</h2>
         </div>
         <div class="flex flex-col gap-3">
           <p class="text-accent text-sm leading-relaxed">
@@ -263,12 +291,12 @@ const relacionados = [
   </section>
 
   <!-- Por qué SEPRIEV -->
-  <section class="py-20 bg-primary/30 border-t border-primary">
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
     <div class="w-full px-[5%] xl:px-[7%]">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
         <div class="flex flex-col">
           <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para tu evento corporativo?</h2>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="porque-h">¿Por qué SEPRIEV para tu evento corporativo?</h2>
         </div>
         <div class="flex flex-col gap-3">
           <p class="text-accent text-sm leading-relaxed">
@@ -296,12 +324,12 @@ const relacionados = [
   <ProcessSection titulo="Así protegemos tu evento corporativo" />
 
   <!-- Otros servicios -->
-  <section class="py-20 bg-dark border-t border-white/8">
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
     <div class="w-full px-[5%] xl:px-[7%]">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
         <div class="flex flex-col">
           <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Servicios complementarios</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">Otros servicios para tu evento</h2>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="otros-h">Otros servicios para tu evento</h2>
         </div>
         <div class="flex flex-col gap-3">
           <p class="text-accent text-sm leading-relaxed">
