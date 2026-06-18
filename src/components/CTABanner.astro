@@ -1,9 +1,12 @@
 ---
 import { WHATSAPP_NUMBER, PHONE_DISPLAY } from '@/lib/config';
+import SectionHeader from '@/components/SectionHeader.astro';
 
 export interface Props {
   titulo?: string;
   subtitulo?: string;
+  eyebrow?: string;
+  parrafos?: string[];
   faq?: Array<{ q: string; a: string }>;
   // Compatibilidad con llamadas existentes (ya no se renderizan, evitan romper props)
   ctaLabel?: string;
@@ -14,6 +17,11 @@ export interface Props {
 const {
   titulo = "¿Listo para proteger tu evento?",
   subtitulo = "Resolvemos tus dudas y te enviamos una cotización personalizada en menos de 24 horas. Sin compromiso.",
+  eyebrow = "Cotización gratuita",
+  parrafos = [
+    "Cada evento tiene riesgos distintos y una cotización seria empieza por entenderlos. Cuéntanos el tipo de evento, el aforo y el recinto, y te enviamos una propuesta con el número de elementos recomendado, el plan operativo y el desglose de costos en menos de 24 horas.",
+    "Trabajar con SEPRIEV significa personal certificado DGSSP y STPS, protocolos documentados y coordinación con Protección Civil y autoridades locales. Más de 500 eventos protegidos sin incidentes graves respaldan cada propuesta, sin compromiso de contratación.",
+  ],
   faq = [
     {
       q: "¿En cuánto tiempo recibo mi cotización?",
@@ -47,7 +55,6 @@ const telHref = `tel:${PHONE_DISPLAY.replace(/\s/g, '')}`;
 
 const inputBase =
   "w-full bg-dark border border-primary-light rounded-lg px-4 py-3 text-light text-sm focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors";
-const chips = ["Respuesta en 24 horas", "Sin compromiso", "Presupuesto gratuito"];
 ---
 
 <section class="relative overflow-hidden bg-gradient-to-br from-dark via-primary/40 to-dark py-16 lg:py-24 border-t border-primary">
@@ -67,22 +74,13 @@ const chips = ["Respuesta en 24 horas", "Sin compromiso", "Presupuesto gratuito"
 
   <div class="relative w-full px-[5%] xl:px-[7%]">
 
-    <!-- Encabezado -->
-    <div class="max-w-3xl mx-auto text-center mb-12 lg:mb-16">
-      <span class="text-secondary text-xs font-bold uppercase tracking-widest">Cotización gratuita</span>
-      <h2 class="text-3xl sm:text-4xl font-black text-light mt-3 mb-4">{titulo}</h2>
-      <p class="text-accent text-lg leading-relaxed">{subtitulo}</p>
-      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-6">
-        {chips.map((c) => (
-          <span class="inline-flex items-center gap-1.5 text-accent text-xs font-medium">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0" aria-hidden="true">
-              <path d="M5 13l4 4L19 7"/>
-            </svg>
-            {c}
-          </span>
-        ))}
-      </div>
-    </div>
+    <!-- Encabezado homologado (título + 2 párrafos SEO) -->
+    <SectionHeader
+      eyebrow={eyebrow}
+      titulo={titulo}
+      lead={subtitulo}
+      parrafos={parrafos}
+    />
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
 

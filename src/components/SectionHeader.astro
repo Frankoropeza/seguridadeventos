@@ -2,17 +2,52 @@
 export interface Props {
   eyebrow?: string;
   titulo: string;
+  /** Párrafo introductorio de la columna izquierda (debajo del título). */
+  lead?: string;
+  /** Alias de `lead` para compatibilidad con llamadas existentes. */
   subtitulo?: string;
+  /** Párrafos SEO/marketing de la columna derecha (idealmente 2). */
+  parrafos?: string[];
   align?: 'left' | 'center';
+  /** 'auto' = dos columnas cuando hay párrafos · 'split' fuerza dos columnas · 'simple' una columna. */
+  variant?: 'auto' | 'split' | 'simple';
 }
-const { eyebrow, titulo, subtitulo, align = 'center' } = Astro.props;
+const {
+  eyebrow,
+  titulo,
+  lead,
+  subtitulo,
+  parrafos = [],
+  align = 'center',
+  variant = 'auto',
+} = Astro.props;
+
+const intro = lead ?? subtitulo;
+const useSplit = variant === 'split' || (variant === 'auto' && parrafos.length > 0);
 ---
-<div class={`mb-8 ${align === 'center' ? 'text-center' : ''}`}>
-  {eyebrow && (
-    <span class="text-secondary text-xs font-bold uppercase tracking-widest">{eyebrow}</span>
-  )}
-  <h2 class="text-3xl sm:text-4xl font-black text-light mt-1">{titulo}</h2>
-  {subtitulo && (
-    <p class="text-accent mt-2 max-w-2xl leading-relaxed mx-auto">{subtitulo}</p>
-  )}
-</div>
+{useSplit ? (
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-stretch">
+    <!-- Columna 1: eyebrow + título + intro -->
+    <div class="flex flex-col">
+      {eyebrow && (
+        <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">{eyebrow}</span>
+      )}
+      <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">{titulo}</h2>
+      {intro && <p class="text-accent text-base leading-relaxed">{intro}</p>}
+    </div>
+    <!-- Columna 2: párrafos SEO/marketing -->
+    <div class="flex flex-col gap-3">
+      {parrafos.map((p) => (
+        <p class="text-accent text-sm leading-relaxed">{p}</p>
+      ))}
+    </div>
+  </div>
+) : (
+  <div class="flex flex-col mb-10 pb-6 border-b border-white/8">
+    {eyebrow && (
+      <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">{eyebrow}</span>
+    )}
+    <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">{titulo}</h2>
+    {intro && <p class="text-accent text-base leading-relaxed mt-3 max-w-2xl">{intro}</p>}
+  </div>
+)}

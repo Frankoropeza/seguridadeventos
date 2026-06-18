@@ -1,0 +1,336 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServiceSchema, buildFAQSchema } from '@/lib/seo';
+
+const slug = 'seguridad-eventos-corporativos';
+
+// H1 / nombre del servicio para schema
+const titulo = 'Seguridad para Eventos Corporativos en México';
+const descripcion = 'Seguridad privada discreta y profesional para eventos corporativos en México: convenciones, lanzamientos de producto, juntas de consejo y galas. Personal bilingüe, confidencialidad contractual (NDA), control de acceso ejecutivo y licencia DGSSP.';
+
+// SEO meta (limpio, orientado a intención de búsqueda)
+const metaTitle = 'Seguridad para Eventos Corporativos en México | SEPRIEV';
+const metaDescription = 'Seguridad privada para eventos corporativos en México: convenciones, lanzamientos, juntas de consejo y galas. Personal bilingüe, NDA, discreción y licencia DGSSP. Cotiza en 24 h.';
+
+const canonical = `${SITE}/servicios/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/seguridad-eventos-corporativos-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito seguridad para un evento corporativo')}`;
+
+// FAQ específica de eventos corporativos (ampliada para mejor cobertura de búsqueda)
+const faq = [
+  { q: "¿Su personal puede vestir de traje para un evento formal?", a: "Sí. Nuestro personal se adapta al dress code del evento: traje oscuro, camisa y corbata para eventos formales, y vestimenta business casual o uniforme táctico según la zona y el momento del operativo. La instrucción de vestimenta forma parte del briefing previo." },
+  { q: "¿Ofrecen personal bilingüe para eventos internacionales?", a: "Sí. Contamos con personal con dominio del inglés para convenciones y eventos con delegaciones internacionales. Podemos asignar agentes bilingües en puntos clave como registro, áreas VIP, recepción y enlace con equipos de seguridad extranjeros." },
+  { q: "¿Pueden firmar un acuerdo de confidencialidad (NDA)?", a: "Sí. Todo el personal asignado a eventos corporativos firma un Acuerdo de Confidencialidad (NDA) que cubre identidad de asistentes, contenido de presentaciones, acuerdos comerciales y cualquier información sensible, con instrucciones explícitas sobre fotografía, redes y trato con medios." },
+  { q: "¿Qué incluye el reporte post-evento?", a: "El informe ejecutivo incluye estadísticas de acceso, incidencias registradas, observaciones de seguridad, recomendaciones para futuros eventos y registro fotográfico de los puntos clave de la operación. Cada evento se convierte en información útil para la siguiente edición." },
+  { q: "¿En qué ciudades y recintos operan?", a: "Operamos en CDMX, Guadalajara, Monterrey, Puebla y Cancún, con cobertura nacional. Tenemos experiencia en los principales centros de convenciones y hoteles del país —Centro Citibanamex, Expo Guadalajara, CINTERMEX y cadenas como Marriott, Hilton, Hyatt y St. Regis—, además de recintos privados y haciendas." },
+  { q: "¿Cuánto cuesta la seguridad para un evento corporativo?", a: "El costo depende del número de asistentes y el perfil de riesgo, la duración del evento, el nivel de protección (estándar, premium o VIP) y los servicios adicionales (CCTV, arcos detectores de metales, unidades K-9). Te enviamos una propuesta con costos transparentes en menos de 24 horas." },
+];
+
+const schemas = [
+  buildServiceSchema(titulo, descripcion, canonical),
+  buildFAQSchema(faq),
+];
+
+const navItems = [
+  { label: "Protección Ejecutiva", desc: "Programa continuo de protección para directivos", href: "/servicios/proteccion-ejecutiva" },
+  { label: "Control de Acceso", desc: "Registro, credencialización y aforo en tiempo real", href: "/servicios/control-acceso-eventos" },
+  { label: "Seguridad VIP", desc: "Escoltas de bajo perfil para directivos e invitados", href: "/servicios/seguridad-vip" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
+const modules = [
+  {
+    eyebrow: "Servicio especializado",
+    badge: "Discreción",
+    title: "Dispositivos discretos, integrados a tu marca",
+    intro: "En el entorno corporativo, la seguridad es también un asunto de reputación: un incidente mal gestionado frente a clientes, prensa o consejo puede costar más que el evento mismo. SEPRIEV diseña dispositivos que se integran a la imagen y al protocolo interno del cliente, operados por personal capacitado en etiqueta empresarial y sujeto a confidencialidad contractual. El objetivo es un operativo que la organización perciba como parte de sí misma y no como un cuerpo ajeno.",
+    features: [
+      { title: "Planeación conjunta y punto único de contacto", text: "Antes de cada evento sostenemos una sesión de planeación con el área responsable del cliente para alinear formato, perfiles de asistentes, zonas sensibles y momentos críticos del programa. De ahí surge un plan a la medida y un punto único de contacto que coordina toda la operación, de modo que el cliente trate con un solo interlocutor responsable y no con una cuadrilla sin coordinación." },
+      { title: "Confidencialidad contractual (NDA)", text: "El personal asignado firma acuerdos de no divulgación que cubren información estratégica, identidades de asistentes y cualquier dato observado durante el operativo, con instrucciones explícitas sobre fotografía, redes y trato con medios. La confidencialidad se gestiona como una obligación contractual estándar, aplicada por igual a toda asignación corporativa y no reservada a clientes de alto perfil." },
+      { title: "Imagen institucional y hospitalidad", text: "El dispositivo se presenta con la vestimenta y el trato que el entorno exige, combinando la función de seguridad con hospitalidad ejecutiva: recibir, orientar y resolver con cortesía. Esa integración protege a la vez la experiencia del invitado y la imagen de la marca, incluso al gestionar accesos, filtrar intrusos o atender situaciones delicadas frente a directivos." },
+    ],
+    hero: `${IMG}/seguridad-eventos-corporativos`,
+    small1: `${IMG}/seguridad-empresarial-evento`,
+    small2: `${IMG}/equipo-seguridad-eventos`,
+    featured: false,
+  },
+  {
+    eyebrow: "Personal y protocolo",
+    badge: undefined,
+    title: "Personal bilingüe, de etiqueta y a nivel internacional",
+    intro: "Las convenciones, los lanzamientos de producto y las cenas de gala corporativas exigen un tipo de seguridad que muchas empresas nunca verán en operación, porque está diseñada para no verse. SEPRIEV despliega personal bilingüe formado en protocolo empresarial, capaz de moverse entre directivos y delegaciones internacionales sin generar fricciones ni llamar la atención. La seguridad es parte del ambiente, no un elemento que lo rompe.",
+    features: [
+      { title: "Personal bilingüe", text: "Los elementos asignados a eventos corporativos tienen dominio del inglés suficiente para interactuar con asistentes extranjeros, gestionar accesos con representantes de otras delegaciones y coordinar con equipos de seguridad internacionales cuando el evento lo requiere. Su formación incluye etiqueta corporativa y manejo de situaciones delicadas sin escalar el tono ni interrumpir el ritmo del evento." },
+      { title: "Dress code adaptable", text: "Un mismo evento puede requerir traje en el salón principal, uniforme táctico en el área de carga y ropa de civil en los accesos perimetrales. Adaptamos la vestimenta del equipo a cada zona y momento del operativo, porque presentarse con uniforme donde el cliente no lo espera puede comprometer tanto la imagen del evento como la efectividad del personal." },
+      { title: "Reporte ejecutivo post-evento", text: "Al cierre entregamos un informe con estadísticas de acceso, incidencias registradas, observaciones de seguridad, recomendaciones para futuros eventos y registro fotográfico de los puntos clave de la operación. Es un entregable que convierte cada evento en información útil para la siguiente edición y sustenta la rendición de cuentas ante el cliente." },
+    ],
+    hero: `${IMG}/proteccion-ejecutiva-mexico`,
+    small1: `${IMG}/control-acceso-eventos`,
+    small2: `${IMG}/guardias-seguridad-privada`,
+    featured: true,
+  },
+];
+
+// Tipos de eventos corporativos que cubrimos
+const tipos = [
+  { titulo: "Convenciones y congresos", nota: "100 – 10,000 asistentes" },
+  { titulo: "Lanzamientos de producto", nota: "Activaciones de marca y prensa" },
+  { titulo: "Juntas de consejo y asambleas", nota: "Confidencialidad máxima" },
+  { titulo: "Cenas de gala y premiaciones", nota: "Protocolo y etiqueta formal" },
+  { titulo: "Conferencias de prensa", nota: "Control de medios y accesos" },
+  { titulo: "Inauguraciones y team building", nota: "Imagen institucional" },
+];
+
+// Diferenciadores corporativos
+const razones = [
+  { titulo: "Confidencialidad contractual", desc: "NDA estándar para todo el personal: información estratégica, identidades y logística interna quedan protegidas por contrato." },
+  { titulo: "Personal bilingüe y de etiqueta", desc: "Dominio del inglés y formación en protocolo empresarial para eventos nacionales e internacionales de alto perfil." },
+  { titulo: "Punto único de contacto", desc: "Un solo interlocutor coordina toda la operación, alineado al área responsable del cliente, sin cuadrillas sin mando." },
+  { titulo: "Discreción y bajo perfil", desc: "El dispositivo se integra al ambiente corporativo sin llamar la atención ni interrumpir la experiencia del invitado." },
+  { titulo: "Cumplimiento y seguros", desc: "Licencia DGSSP federal, personal certificado STPS y seguro de responsabilidad civil para el organizador." },
+  { titulo: "Reporte ejecutivo", desc: "Informe post-evento con accesos, incidencias y recomendaciones accionables para la siguiente edición." },
+];
+
+// Otros servicios relacionados (ServiceCards homologadas con servicios/index)
+const relacionados = [
+  { title: "Protección Ejecutiva", description: "Programa continuo de protección para directivos basado en análisis de riesgo, con personal verificado y gobernanza estricta de la información.", features: ["Análisis de riesgo", "Personal verificado", "Traslados seguros"], href: "/servicios/proteccion-ejecutiva", image: `${IMG}/proteccion-ejecutiva-mexico`, badge: "Destacado", featured: true },
+  { title: "Control de Acceso", description: "Registro, credencialización por niveles, detección de objetos y gestión de aforo en tiempo real para eventos de empresa.", features: ["Credencialización", "Registro y gafetes", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Seguridad VIP", description: "Escoltas certificados en protección personal para directivos e invitados de alto perfil, con dispositivo de bajo perfil.", features: ["Close protection", "Coordinación con management", "Discreción total"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos` },
+  { title: "Ferias y Exposiciones", description: "Cobertura por zonas y por jornada para recintos multi-expositor, con inventario conciliado y enlace con la administración del recinto.", features: ["Cobertura por turnos", "Inventario conciliado", "Enlace con el recinto"], href: "/servicios/seguridad-ferias-exposiciones", image: `${IMG}/seguridad-empresarial-evento` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Eventos Corporativos' }]} />
+
+  <PageHero
+    eyebrow="SEPRIEV — Eventos Corporativos"
+    titulo="Seguridad para Eventos Corporativos"
+    subtitulo="Dispositivos de seguridad discretos para convenciones, lanzamientos, juntas de consejo y galas: protegen a las personas, la información y la reputación de la marca sin interrumpir la experiencia."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        En el entorno corporativo, un incidente mal gestionado frente a clientes, prensa o consejo puede costar más que el evento mismo. <strong class="text-light font-semibold">SEPRIEV</strong> diseña operativos de <strong class="text-light font-semibold">seguridad para eventos corporativos</strong> que se integran a la imagen y al protocolo interno de cada empresa, operados por personal capacitado en etiqueta empresarial y sujeto a <strong class="text-light font-semibold">confidencialidad contractual</strong>.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Más de <strong class="text-light font-semibold">500 eventos protegidos</strong>, personal <strong class="text-light font-semibold">bilingüe</strong> con <strong class="text-light font-semibold">licencia DGSSP y certificación STPS</strong>, y presencia en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Cotización gratuita y propuesta en menos de 24 horas, con un solo interlocutor responsable de toda la operación.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark" id="servicio">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <!-- Encabezado de dos columnas -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo operamos un evento corporativo</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Seguridad corporativa de alto nivel, sin interrumpir la experiencia
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            La mejor seguridad corporativa es la que protege a las personas, la información y la marca sin que los invitados la perciban como un cuerpo ajeno al evento.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Convenciones, lanzamientos, juntas de consejo y galas manejan <strong class="text-light font-semibold">información sensible, ejecutivos de alto perfil y activos valiosos</strong>. SEPRIEV diseña un dispositivo a la medida del protocolo interno del cliente, con planeación conjunta, confidencialidad contractual y un punto único de contacto.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Personal <strong class="text-light font-semibold">bilingüe y de etiqueta</strong>, control de acceso ejecutivo, protección de directivos y vigilancia integral de salas, estacionamientos y áreas de networking, con un <strong class="text-light font-semibold">informe ejecutivo</strong> al cierre de cada evento.
+          </p>
+        </div>
+      </div>
+
+      <!-- Módulos imagen + texto -->
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+
+          <!-- Columna izquierda: texto -->
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna derecha: galería 1 grande + 2 pequeñas -->
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={`${m.title} — seguridad para eventos corporativos SEPRIEV`} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={`${m.title} — SEPRIEV`} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={`${m.title} — SEPRIEV`} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Tipos de eventos corporativos que cubrimos -->
+  <section class="py-20 bg-dark border-t border-white/8">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cobertura por formato</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">Tipos de eventos corporativos que cubrimos</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Cada formato corporativo tiene riesgos y protocolos distintos. No es lo mismo una junta de consejo con información confidencial que una gala de premiación o una conferencia de prensa: dimensionamos el dispositivo, los perfiles y el nivel de discreción según el evento.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para tu evento corporativo?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Trabajamos para empresas nacionales, corporativos globales y organizadores de convenciones con estándares internacionales. La seguridad corporativa se mide por lo que no ocurre y por la confianza con que el cliente delega su evento en un equipo discreto, certificado y confidencial.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection titulo="Así protegemos tu evento corporativo" />
+
+  <!-- Otros servicios -->
+  <section class="py-20 bg-dark border-t border-white/8">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Servicios complementarios</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">Otros servicios para tu evento</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Un evento corporativo rara vez necesita un solo servicio. Combinamos protección ejecutiva, control de acceso, seguridad VIP y cobertura de ferias en un operativo único, con un solo interlocutor responsable de toda la operación.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas seguridad para tu evento corporativo?"
+    subtitulo="Cuéntanos sobre tu convención, lanzamiento o gala y recibe una propuesta personalizada en menos de 24 horas. Sin compromiso."
+    faq={faq}
+  />
+
+</BaseLayout>

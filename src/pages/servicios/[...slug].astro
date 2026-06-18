@@ -5,7 +5,7 @@ import type { CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   // Páginas con diseño dedicado (homologado a index/servicios) que NO usan este template
-  const STANDALONE = ['seguridad-conciertos-festivales'];
+  const STANDALONE = ['seguridad-conciertos-festivales', 'seguridad-eventos-corporativos', 'control-acceso-eventos'];
   const servicios = await getCollection('servicios');
   return servicios
     .filter((servicio: CollectionEntry<'servicios'>) => !STANDALONE.includes(servicio.slug))

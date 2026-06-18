@@ -5,6 +5,7 @@ import BlogSidebar from '@/components/BlogSidebar.astro';
 import Breadcrumb from '@/components/Breadcrumb.astro';
 import { SITE } from '@/lib/config';
 import { buildArticleSchema } from '@/lib/seo';
+import { catSlug } from '@/lib/blog';
 
 interface Props {
   title: string;
@@ -100,7 +101,7 @@ const schema = buildArticleSchema(title, description, canonical || new URL(Astro
           <div class="flex items-center gap-2 mb-6">
             <span class="text-accent text-xs">Categoría:</span>
             <a
-              href={`/blog?cat=${encodeURIComponent(categoria)}`}
+              href={`/blog/categoria/${catSlug(categoria)}`}
               class="bg-secondary/15 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest hover:bg-secondary/25 transition-colors"
             >
               {categoria}

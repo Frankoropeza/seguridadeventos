@@ -1,4 +1,6 @@
 ---
+import SectionHeader from '@/components/SectionHeader.astro';
+
 export interface Props {
   titulo?: string;
 }
@@ -32,20 +34,15 @@ const pasos = [
 
 <section class="py-20 bg-dark">
   <div class="w-full px-[5%] xl:px-[7%]">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
-      <div class="flex flex-col">
-        <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Metodología SEPRIEV</span>
-        <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">{titulo}</h2>
-      </div>
-      <div class="flex flex-col gap-3">
-        <p class="text-accent text-sm leading-relaxed">
-          En SEPRIEV no llegamos el día del evento a improvisar. Cada operativo sigue un proceso de cuatro fases que empieza semanas antes con el análisis del recinto y termina con un reporte documentado una vez que el último asistente ha salido. Es la diferencia entre una empresa de seguridad que reacciona y una que previene.
-        </p>
-        <p class="text-accent text-sm leading-relaxed">
-          Este método nos ha permitido operar más de 500 eventos en México sin incidentes graves, independientemente de la escala, el tipo de público o la complejidad logística del recinto. Un proceso claro reduce la incertidumbre para el organizador y para el equipo en campo.
-        </p>
-      </div>
-    </div>
+    <SectionHeader
+      eyebrow="Metodología SEPRIEV"
+      titulo={titulo}
+      lead="Un proceso de cuatro fases que empieza semanas antes del evento y termina con un reporte documentado al cierre."
+      parrafos={[
+        "En SEPRIEV no llegamos el día del evento a improvisar. Cada operativo sigue un proceso de cuatro fases que empieza semanas antes con el análisis del recinto y termina con un reporte documentado una vez que el último asistente ha salido. Es la diferencia entre una empresa de seguridad que reacciona y una que previene.",
+        "Este método nos ha permitido operar más de 500 eventos en México sin incidentes graves, independientemente de la escala, el tipo de público o la complejidad logística del recinto. Un proceso claro reduce la incertidumbre para el organizador y para el equipo en campo.",
+      ]}
+    />
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {pasos.map((paso, i) => (

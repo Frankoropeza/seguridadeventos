@@ -1,4 +1,5 @@
 ---
+import SectionHeader from '@/components/SectionHeader.astro';
 
 const stats = [
   { number: '500+', label: 'Eventos Protegidos' },
@@ -11,14 +12,15 @@ const stats = [
 <section class="bg-dark py-20 sm:py-28">
   <div class="w-full px-[5%] xl:px-[7%]">
     <!-- Heading -->
-    <div class="text-center mb-14">
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-light mb-4">
-        Los Números <span class="text-secondary">Hablan</span>
-      </h2>
-      <p class="text-accent text-lg sm:text-xl max-w-xl mx-auto">
-        Trayectoria comprobada en seguridad para eventos a nivel nacional
-      </p>
-    </div>
+    <SectionHeader
+      eyebrow="En números"
+      titulo="Los números hablan"
+      lead="Trayectoria comprobada en seguridad para eventos a nivel nacional."
+      parrafos={[
+        "Más de 500 eventos protegidos, 1,000 guardias certificados y 15 años de operación respaldan cada cifra. No son números de marketing: corresponden a operativos reales ejecutados en conciertos, ferias, eventos corporativos y masivos en todo México.",
+        "El dato que más nos enorgullece es el cero: cero incidentes graves a lo largo de nuestra trayectoria. Es el resultado de la planeación anticipada, el personal certificado y los protocolos documentados que aplicamos en cada evento, sin importar su escala.",
+      ]}
+    />
 
     <!-- Stats Grid -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12">

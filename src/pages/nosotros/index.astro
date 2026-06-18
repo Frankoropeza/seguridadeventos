@@ -73,14 +73,18 @@ const navItems = [
   <!-- Historia -->
   <section id="historia" class="py-20 bg-dark">
     <div class="w-full px-[5%] xl:px-[7%]">
+      <SectionHeader
+        eyebrow="Quiénes somos"
+        titulo="Profesionales de la seguridad en eventos"
+        lead="Una empresa de seguridad privada especializada exclusivamente en eventos."
+        parrafos={[
+          "SEPRIEV nació de la experiencia directa en la industria del entretenimiento y los eventos corporativos. Nuestros fundadores trabajaron en seguridad operativa durante años antes de crear una empresa que elevara los estándares del sector.",
+          "Hoy somos referencia en seguridad para conciertos, convenciones, ferias, eventos deportivos, bodas y eventos masivos en las principales ciudades de México: CDMX, Guadalajara, Monterrey, Puebla y Cancún.",
+        ]}
+      />
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <SectionHeader eyebrow="Quiénes somos" titulo="Profesionales de la seguridad en eventos" align="left" />
-          <div class="space-y-4 text-accent leading-relaxed">
-            <p>SEPRIEV nació de la experiencia directa en la industria del entretenimiento y los eventos corporativos. Nuestros fundadores trabajaron en seguridad operativa durante años antes de crear una empresa que elevara los estándares del sector.</p>
-            <p>Hoy somos referencia en <strong class="text-light">seguridad para conciertos, convenciones, ferias, eventos deportivos, bodas y eventos masivos</strong> en las principales ciudades de México: CDMX, Guadalajara, Monterrey, Puebla y Cancún.</p>
-            <p>Cada evento es diferente. Por eso diseñamos <strong class="text-light">planes operativos personalizados</strong> para cada cliente, con personal seleccionado específicamente para el tipo de evento y sus requerimientos.</p>
-          </div>
+        <div class="space-y-4 text-accent leading-relaxed">
+          <p>Cada evento es diferente. Por eso diseñamos <strong class="text-light">planes operativos personalizados</strong> para cada cliente, con personal seleccionado específicamente para el tipo de evento y sus requerimientos.</p>
         </div>
         <div class="bg-primary border border-primary-light rounded-xl p-8 space-y-6">
           <h3 class="text-light font-bold text-lg">Nuestros valores</h3>
@@ -106,7 +110,15 @@ const navItems = [
   <!-- Equipo -->
   <section id="equipo" class="py-20 bg-primary/30 border-y border-primary">
     <div class="w-full px-[5%] xl:px-[7%]">
-      <SectionHeader eyebrow="Capital humano" titulo="Nuestro equipo" subtitulo="Más de 1,200 profesionales certificados listos para proteger tu evento." />
+      <SectionHeader
+        eyebrow="Capital humano"
+        titulo="Nuestro equipo"
+        lead="Más de 1,200 profesionales certificados listos para proteger tu evento."
+        parrafos={[
+          "Nuestro equipo combina guardias certificados DGSSP, supervisores con años de experiencia en campo, agentes de protección VIP y un staff operativo de coordinación, logística y tecnología. Cada perfil se selecciona según el tipo de evento y sus requerimientos específicos.",
+          "Todo el personal pasa por evaluación, capacitación continua y supervisión permanente. No subcontratamos: el equipo que cotizas es el equipo que opera tu evento, con la misma cadena de mando y los mismos protocolos en cada despliegue.",
+        ]}
+      />
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
           { titulo: "Guardias de seguridad", cantidad: "1,000+", desc: "Licencia DGSSP individual, certificación STPS y evaluación periódica." },

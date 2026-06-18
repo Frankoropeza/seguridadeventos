@@ -59,7 +59,15 @@ const schema = buildFAQSchema(faq);
   <!-- Venues -->
   <section class="py-16 bg-dark">
     <div class="w-full px-[5%] xl:px-[7%]">
-      <SectionHeader eyebrow="Venues y recintos" titulo={"Principales venues en Ciudad de México"} subtitulo="Operamos en los recintos más importantes de la zona. Conocemos cada venue y sus requerimientos." />
+      <SectionHeader
+        eyebrow="Venues y recintos"
+        titulo={"Principales venues en Ciudad de México"}
+        lead="Operamos en los recintos más importantes de la zona. Conocemos cada venue y sus requerimientos."
+        parrafos={[
+          "En la Ciudad de México cubrimos los principales recintos para eventos: Foro Sol, Palacio de los Deportes, Arena CDMX, Auditorio Nacional, Centro Citibanamex, Expo Santa Fe y el WTC, entre muchos otros. Conocer cada venue significa anticipar sus accesos, aforos y protocolos antes del día del evento.",
+          "Nuestro personal local domina la logística de la capital: coordinación con Protección Civil CDMX, rutas de evacuación por alcaldía y los requerimientos específicos de cada inmueble. Esa familiaridad reduce riesgos y agiliza la operación en una de las ciudades con mayor actividad de eventos del país.",
+        ]}
+      />
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <ul class="space-y-3 col-span-1 sm:col-span-2 lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             <li class="flex items-center gap-2 text-accent text-sm"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>Foro Sol</li>
@@ -80,7 +88,15 @@ const schema = buildFAQSchema(faq);
   <!-- Zonas -->
   <section class="py-16 bg-primary/30 border-y border-primary">
     <div class="w-full px-[5%] xl:px-[7%]">
-      <SectionHeader eyebrow="Cobertura" titulo={"Zonas que cubrimos en Ciudad de México"} />
+      <SectionHeader
+        eyebrow="Cobertura"
+        titulo={"Zonas que cubrimos en Ciudad de México"}
+        lead="Desplegamos operativos en toda la ciudad y su zona metropolitana, con personal local."
+        parrafos={[
+          "Contamos con elementos que conocen Ciudad de México y su área metropolitana —vialidades, tiempos de traslado y las autoridades de cada demarcación—, lo que agiliza la coordinación previa a cada evento.",
+          "Así respondemos con rapidez y cumplimos los protocolos locales en cualquier punto de la ciudad, sin subcontratar ni improvisar la operación.",
+        ]}
+      />
       <div class="flex flex-wrap gap-3 justify-center">
             <span class="bg-primary border border-primary-light px-3 py-1.5 rounded-full text-accent text-xs">Cuauhtémoc</span>
             <span class="bg-primary border border-primary-light px-3 py-1.5 rounded-full text-accent text-xs">Miguel Hidalgo</span>
@@ -98,7 +114,15 @@ const schema = buildFAQSchema(faq);
   <!-- Servicios -->
   <section class="py-16 bg-dark">
     <div class="w-full px-[5%] xl:px-[7%]">
-      <SectionHeader eyebrow="Lo que hacemos" titulo={"Servicios destacados en Ciudad de México"} />
+      <SectionHeader
+        eyebrow="Lo que hacemos"
+        titulo={"Servicios destacados en Ciudad de México"}
+        lead="Los servicios de seguridad para eventos más solicitados por organizadores en Ciudad de México."
+        parrafos={[
+          "Cubrimos conciertos y festivales, eventos corporativos, ferias y exposiciones, eventos sociales, deportivos y protección VIP, con el mismo estándar documentado en cada operativo.",
+          "Cada servicio se dimensiona según el aforo, el recinto y el perfil del evento, con plan de seguridad específico, personal certificado DGSSP y STPS y coordinación con Protección Civil.",
+        ]}
+      />
       <ul class="space-y-4 max-w-2xl mx-auto">
           <li class="flex items-start gap-3 text-accent"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0 mt-0.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Conciertos en Foro Sol y arenas</span></li>
           <li class="flex items-start gap-3 text-accent"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" class="flex-shrink-0 mt-0.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Convenciones en Centro Citibanamex</span></li>

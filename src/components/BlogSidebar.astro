@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { SERVICIOS_NAV, ZONAS_NAV, WHATSAPP_NUMBER } from '@/lib/config';
+import { catSlug } from '@/lib/blog';
 
 const allPosts = await getCollection('blog', ({ data }: { data: { draft: boolean } }) => !data.draft);
 
@@ -83,9 +84,8 @@ const totalPosts = allPosts.length;
       {categories.map(([cat, count]) => (
         <li>
           <a
-            href={`/blog?cat=${encodeURIComponent(cat)}`}
+            href={`/blog/categoria/${catSlug(cat)}`}
             class="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-accent hover:text-light hover:bg-white/5 transition-colors group"
-            data-cat-link={cat}
           >
             <span class="flex items-center gap-2">
               <span class="w-1.5 h-1.5 rounded-full bg-secondary/50 group-hover:bg-secondary transition-colors"></span>

@@ -1,14 +1,20 @@
 ---
+import SectionHeader from '@/components/SectionHeader.astro';
 // Sección de confianza: certificaciones + números + logos de clientes
 ---
 
 <!-- Certificaciones -->
 <section class="py-16 bg-primary/40 border-y border-primary">
   <div class="w-full px-[5%] xl:px-[7%]">
-    <div class="text-center mb-6">
-      <span class="text-secondary text-xs font-bold uppercase tracking-widest">Respaldo oficial</span>
-      <h2 class="text-3xl sm:text-4xl font-black text-light mt-1">Certificaciones y Licencias</h2>
-    </div>
+    <SectionHeader
+      eyebrow="Respaldo oficial"
+      titulo="Certificaciones y Licencias"
+      lead="Licencia federal vigente y personal certificado: el respaldo legal que distingue a una empresa de seguridad seria."
+      parrafos={[
+        "SEPRIEV opera con licencia DGSSP federal y todo su personal está certificado ante la STPS. Estos registros no son un trámite opcional: son el requisito legal mínimo para prestar servicios de seguridad privada en México, y operar sin ellos expone al organizador a sanciones.",
+        "Cada credencial es verificable y se mantiene vigente mediante capacitación y auditorías continuas. Trabajar con una empresa certificada garantiza protocolos homologados con Protección Civil y autoridades locales, y protege legalmente a quien contrata el servicio.",
+      ]}
+    />
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
       {[

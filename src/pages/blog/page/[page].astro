@@ -1,0 +1,97 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogCard from '@/components/BlogCard.astro';
+import BlogSidebar from '@/components/BlogSidebar.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import Pagination from '@/components/Pagination.astro';
+import { getCollection } from 'astro:content';
+import { totalBlogPages, postsForPage, catSlug } from '@/lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }: { data: { draft: boolean } }) => !data.draft);
+  const totalPages = totalBlogPages(posts.length);
+  const paths = [];
+  for (let n = 2; n <= totalPages; n++) paths.push({ params: { page: String(n) } });
+  return paths;
+}
+
+const currentPage = Number(Astro.params.page);
+const posts = await getCollection('blog', ({ data }: { data: { draft: boolean } }) => !data.draft);
+const totalPages = totalBlogPages(posts.length);
+const pagePosts = postsForPage(posts, currentPage);
+
+const categoryCounts: Record<string, number> = {};
+posts.forEach((p: any) => {
+  const cat = p.data.categoria || 'Blog';
+  categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+});
+const categories = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1]);
+---
+
+<BaseLayout
+  title={`Blog de seguridad para eventos — Página ${currentPage} de ${totalPages}`}
+  description={`Más artículos del blog de SEPRIEV sobre seguridad privada para eventos. Página ${currentPage} de ${totalPages}.`}
+>
+
+  <Breadcrumb items={[{ label: 'Blog', href: '/blog' }, { label: `Página ${currentPage}` }]} />
+
+  <!-- ── ENCABEZADO ── -->
+  <section class="w-full px-[5%] xl:px-[7%] pt-14 pb-10 border-b border-white/8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+      <div>
+        <span class="inline-flex items-center gap-2 text-secondary text-xs font-bold uppercase tracking-[0.3em] mb-5">
+          <span class="w-6 h-px bg-secondary"></span>
+          Todos los artículos
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-black text-light leading-tight tracking-tight">
+          Blog de Seguridad para Eventos
+        </h1>
+        <p class="text-accent text-sm mt-4">
+          Página <span class="text-light font-semibold">{currentPage}</span> de {totalPages} · {posts.length} artículos en total
+        </p>
+      </div>
+      <div class="flex flex-col justify-center gap-4 lg:pt-2">
+        <p class="text-accent text-sm leading-relaxed">
+          Explora por categoría para encontrar exactamente lo que necesitas — desde aspectos legales hasta guías operativas para eventos de cualquier escala.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <a href="/blog" class="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-secondary text-white border border-secondary transition-colors">
+            Todos ({posts.length})
+          </a>
+          {categories.map(([cat, count]) => (
+            <a href={`/blog/categoria/${catSlug(cat)}`} class="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-white/5 text-accent border border-white/10 hover:border-secondary/40 hover:text-light transition-colors">
+              {cat} ({count})
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GRID + SIDEBAR ── -->
+  <section class="w-full px-[5%] xl:px-[7%] py-14 pb-20">
+    <div class="flex flex-col lg:flex-row gap-10 items-start">
+      <div class="flex-1 min-w-0">
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+          {pagePosts.map((post: any) => (
+            <BlogCard
+              titulo={post.data.title}
+              descripcion={post.data.description}
+              slug={post.slug}
+              categoria={post.data.categoria}
+              imagen={post.data.imagen}
+              readTime={post.data.readTime}
+            />
+          ))}
+        </div>
+
+        <Pagination currentPage={currentPage} totalPages={totalPages} />
+      </div>
+
+      <div class="w-full lg:w-[300px] xl:w-[320px] flex-shrink-0 lg:sticky lg:top-24">
+        <BlogSidebar />
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

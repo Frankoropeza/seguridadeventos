@@ -1,4 +1,5 @@
 ---
+import SectionHeader from '@/components/SectionHeader.astro';
 
 const clients = [
   'Productora Musical',
@@ -15,14 +16,15 @@ const clients = [
 <section class="bg-dark py-20 sm:py-28">
   <div class="w-full px-[5%] xl:px-[7%]">
     <!-- Heading -->
-    <div class="text-center mb-14">
-      <h2 class="text-3xl sm:text-4xl md:text-5xl font-black text-light mb-4">
-        Confían en <span class="text-secondary">Nosotros</span>
-      </h2>
-      <p class="text-accent text-lg sm:text-xl max-w-xl mx-auto">
-        Empresas y organizaciones que eligen nuestra seguridad
-      </p>
-    </div>
+    <SectionHeader
+      eyebrow="Clientes"
+      titulo="Confían en nosotros"
+      lead="Empresas y organizaciones que eligen nuestra seguridad para sus eventos más importantes."
+      parrafos={[
+        "Productoras, corporativos, agencias de eventos, hoteles y centros de convenciones confían en SEPRIEV para proteger sus producciones. La mayoría son clientes recurrentes que vuelven a contratarnos evento tras evento.",
+        "Desde activaciones de marca y convenciones corporativas hasta festivales y galas, cada cliente recibe un plan de seguridad a la medida. La confianza de quienes ya trabajan con nosotros es nuestra mejor carta de presentación.",
+      ]}
+    />
 
     <!-- Clients Grid -->
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6">

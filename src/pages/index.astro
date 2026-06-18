@@ -950,20 +950,15 @@ const servImg: Record<string,string> = {
     <div class="w-full px-[5%] xl:px-[7%]">
 
       <!-- Header dos columnas -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
-        <div class="flex flex-col">
-          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cobertura nacional</span>
-          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight">Operamos en toda la República Mexicana</h2>
-        </div>
-        <div class="flex flex-col gap-3">
-          <p class="text-accent text-sm leading-relaxed">
-            SEPRIEV cuenta con personal certificado y equipos propios en las principales ciudades del país. Operamos con elementos locales que conocen cada recinto, cada autoridad y cada protocolo regional — sin subcontratar, sin improvisar.
-          </p>
-          <p class="text-accent text-sm leading-relaxed">
-            Si tu evento es en Ciudad de México, Guadalajara, Monterrey, Puebla, Cancún o cualquier otro destino, SEPRIEV puede desplegar el operativo completo con anticipación suficiente para un diagnóstico de seguridad en sitio.
-          </p>
-        </div>
-      </div>
+      <SectionHeader
+        eyebrow="Cobertura nacional"
+        titulo="Operamos en toda la República Mexicana"
+        lead="Personal certificado y equipos propios en las principales ciudades del país, sin subcontratar."
+        parrafos={[
+          "SEPRIEV cuenta con personal certificado y equipos propios en las principales ciudades del país. Operamos con elementos locales que conocen cada recinto, cada autoridad y cada protocolo regional — sin subcontratar, sin improvisar.",
+          "Si tu evento es en Ciudad de México, Guadalajara, Monterrey, Puebla, Cancún o cualquier otro destino, SEPRIEV puede desplegar el operativo completo con anticipación suficiente para un diagnóstico de seguridad en sitio.",
+        ]}
+      />
 
       <!-- Cards de ciudades -->
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -998,7 +993,11 @@ const servImg: Record<string,string> = {
         <SectionHeader
           eyebrow="Conocimiento"
           titulo="Blog de Seguridad para Eventos"
-          subtitulo="Guías prácticas, consejos de expertos y análisis del sector."
+          lead="Conocimiento práctico destilado de más de 500 eventos protegidos."
+          parrafos={[
+            "Guías prácticas, consejos de expertos y análisis del sector para organizadores que buscan tomar mejores decisiones de seguridad en cada tipo de evento.",
+            "Casos reales, checklists operativos y novedades normativas sobre seguridad privada para eventos en México.",
+          ]}
         />
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
