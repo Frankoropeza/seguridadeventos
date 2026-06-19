@@ -95,13 +95,17 @@ export interface ServicePageSchemaOpts {
   dateModified?: string;   // ISO date
   // Para subcategorías (L4): servicio padre. Anida la URL y agrega un nivel al breadcrumb.
   parent?: { slug: string; name: string };
+  // Propiedades extra que se fusionan en el nodo Service (p. ej. availableLanguage).
+  serviceExtra?: Record<string, unknown>;
+  // Propiedades extra que se fusionan en el nodo WebPage (p. ej. speakable).
+  webPageExtra?: Record<string, unknown>;
 }
 
 export function buildServicePageSchema(opts: ServicePageSchemaOpts) {
   const {
     slug, name, description, metaTitle, metaDescription, serviceType,
     ogImage, breadcrumbName, offers = [], faq = [],
-    datePublished = "2025-01-01", dateModified = "2026-06-18", parent,
+    datePublished = "2025-01-01", dateModified = "2026-06-18", parent, serviceExtra = {}, webPageExtra = {},
   } = opts;
 
   const canonical = parent
@@ -124,6 +128,7 @@ export function buildServicePageSchema(opts: ServicePageSchemaOpts) {
     "mainEntity": { "@id": `${canonical}#service` },
     "datePublished": datePublished,
     "dateModified": dateModified,
+    ...webPageExtra,
   };
 
   const service = {
@@ -154,6 +159,7 @@ export function buildServicePageSchema(opts: ServicePageSchemaOpts) {
           },
         }
       : {}),
+    ...serviceExtra,
   };
 
   const breadcrumb = {
@@ -173,4 +179,28 @@ export function buildServicePageSchema(opts: ServicePageSchemaOpts) {
   const out: object[] = [webPage, service, breadcrumb];
   if (faq.length) out.push(buildFAQSchema(faq));
   return out;
+}
+
+// HowTo: hace legible por máquina un proceso de pasos (p. ej. el ProcessSection de una página).
+export function buildHowToSchema(
+  name: string,
+  description: string,
+  steps: Array<{ titulo: string; desc: string }>,
+  tools: string[] = [],
+  supplies: string[] = [],
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": name,
+    "description": description,
+    ...(tools.length ? { "tool": tools.map((t) => ({ "@type": "HowToTool", "name": t })) } : {}),
+    ...(supplies.length ? { "supply": supplies.map((s) => ({ "@type": "HowToSupply", "name": s })) } : {}),
+    "step": steps.map((s, i) => ({
+      "@type": "HowToStep",
+      "position": i + 1,
+      "name": s.titulo,
+      "text": s.desc,
+    })),
+  };
 }

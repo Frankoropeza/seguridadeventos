@@ -1,0 +1,388 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema, buildHowToSchema } from '@/lib/seo';
+
+const slug = 'confidencialidad-nda';
+const parent = { slug: 'seguridad-eventos-corporativos', name: 'Eventos Corporativos' };
+
+const titulo = 'Confidencialidad y NDA en Seguridad para Eventos Corporativos';
+const descripcion = 'Seguridad para eventos corporativos con confidencialidad contractual (NDA) en México: todo el personal firma un acuerdo de no divulgación que protege información estratégica, identidades de asistentes, contenido de presentaciones y datos sensibles, con gobernanza de la información y consecuencias contractuales ante su incumplimiento. Subcategoría del servicio de seguridad para eventos corporativos de SEPRIEV.';
+
+const metaTitle = 'Confidencialidad y NDA | Seguridad Corporativa | SEPRIEV';
+const metaDescription = 'Seguridad para eventos corporativos con confidencialidad contractual (NDA) en México: protección de información estratégica, identidades y datos sensibles. Personal certificado. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${parent.slug}/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/seguridad-eventos-corporativos-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito seguridad con confidencialidad (NDA) para un evento corporativo')}`;
+
+// FAQ específica de confidencialidad / NDA (10)
+const faq = [
+  { q: "¿Qué cubre el acuerdo de confidencialidad (NDA)?", a: "El NDA cubre la información estratégica del cliente, las identidades de los asistentes, el contenido de las presentaciones, los acuerdos comerciales observados y la logística interna del evento, además de instrucciones explícitas sobre fotografía, redes sociales y trato con medios." },
+  { q: "¿Todo el personal firma el NDA?", a: "Sí. El Acuerdo de Confidencialidad es un estándar obligatorio para todo el personal asignado a un evento corporativo —guardias, supervisores y coordinadores—, no una opción reservada para clientes de alto perfil. La confidencialidad es parte del servicio, no un plus negociable." },
+  { q: "¿Pueden firmar el NDA de mi empresa en lugar del suyo?", a: "Sí. Trabajamos con el formato de NDA del cliente o con el nuestro, según prefiera su área legal. Lo importante es que el alcance y las consecuencias queden claros antes del evento; nos alineamos al documento que su empresa requiera." },
+  { q: "¿Qué pasa si un elemento viola la confidencialidad?", a: "La violación de confidencialidad es causa inmediata de baja del personal involucrado y de acción legal conforme al acuerdo firmado. Lo tratamos como una falta grave, porque en el entorno corporativo una filtración puede costar más que el evento mismo." },
+  { q: "¿Cómo manejan la fotografía y las redes sociales del personal?", a: "El personal opera bajo una instrucción explícita de no fotografiar, grabar ni publicar nada relacionado con el evento, los asistentes o el contenido. Esta regla forma parte del NDA y del briefing previo, y se supervisa durante el operativo." },
+  { q: "¿Cómo seleccionan al personal para eventos confidenciales?", a: "El personal asignado pasa por verificación de antecedentes y evaluación de perfil, y mantenemos continuidad en las asignaciones para que el cliente trabaje con elementos conocidos. La confianza es parte del servicio cuando se accede a información sensible." },
+  { q: "¿Aplican el principio de necesidad de conocer (need-to-know)?", a: "Sí. La información sensible se comparte solo con el personal que la necesita para su función. No todo el equipo conoce todos los detalles del evento; cada quien recibe lo necesario para operar, lo que reduce la superficie de exposición de la información." },
+  { q: "¿La confidencialidad cubre el manejo de datos personales?", a: "Sí. El tratamiento de cualquier dato personal observado durante el operativo (listas de invitados, registros de acceso) se realiza conforme a la normativa de protección de datos aplicable y se limita a los fines del evento, sin conservarse ni compartirse fuera de ese alcance." },
+  { q: "¿Coordinan con el área legal o de cumplimiento del cliente?", a: "Sí. Antes del evento alineamos el NDA, el manejo de información y los protocolos con el área legal o de compliance del cliente, de modo que la seguridad opere dentro del marco de confidencialidad y cumplimiento que la empresa exige." },
+  { q: "¿Esto cómo se integra con el resto del operativo corporativo?", a: "La confidencialidad es transversal: aplica al personal bilingüe, al de dress code adaptable y a la protección de directivos, de modo que toda persona que toca el evento —en cualquier zona o función— opere bajo el mismo acuerdo y la misma gobernanza de la información." },
+];
+
+const pasosNda = [
+  { titulo: "Firma del NDA y selección", desc: "Antes del evento, el personal asignado —verificado y de confianza— firma el Acuerdo de Confidencialidad, en el formato del cliente o el nuestro, según su área legal." },
+  { titulo: "Briefing de manejo de información", desc: "Instruimos al equipo sobre el alcance del NDA: qué es confidencial, las reglas de fotografía y redes, el trato con medios y el principio de necesidad de conocer." },
+  { titulo: "Operación bajo need-to-know", desc: "Durante el evento, la información sensible se comparte solo con quien la necesita para su función, reduciendo la superficie de exposición de los datos del cliente." },
+  { titulo: "Cierre y resguardo", desc: "Al finalizar, los registros (listas, accesos) se manejan conforme al alcance acordado y no se conservan ni comparten fuera de los fines del evento." },
+];
+
+const schemas = [
+  ...buildServicePageSchema({
+    slug,
+    parent,
+    name: titulo,
+    description: descripcion,
+    metaTitle,
+    metaDescription,
+    serviceType: "Confidencialidad contractual (NDA) en seguridad para eventos corporativos",
+    ogImage: ogImg,
+    breadcrumbName: "Confidencialidad (NDA)",
+    offers: [
+      "Acuerdo de no divulgación (NDA) estándar",
+      "Gobernanza de la información (need-to-know)",
+      "Control de fotografía, redes y medios",
+      "Personal verificado y de confianza",
+    ],
+    faq,
+    datePublished: "2025-03-20",
+    serviceExtra: { audience: { "@type": "BusinessAudience", "name": "Empresas y organizadores con información sensible" } },
+    webPageExtra: { speakable: { "@type": "SpeakableSpecification", "cssSelector": ["h1", "h2"] } },
+  }),
+  buildHowToSchema(
+    "Cómo garantizamos la confidencialidad en tu evento corporativo",
+    "Proceso de SEPRIEV para garantizar la confidencialidad en eventos corporativos: de la firma del NDA y la selección del personal al resguardo de la información al cierre.",
+    pasosNda,
+  ),
+];
+
+const navItems = [
+  { label: "Eventos Corporativos", desc: "Volver al servicio principal", href: "/servicios/seguridad-eventos-corporativos" },
+  { label: "Personal Bilingüe", desc: "Subcategoría: agentes con dominio del inglés", href: "/servicios/seguridad-eventos-corporativos/personal-bilingue" },
+  { label: "Dress Code Adaptable", desc: "Subcategoría: imagen e integración al evento", href: "/servicios/seguridad-eventos-corporativos/dress-code-adaptable" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados
+const modules = [
+  {
+    eyebrow: "Subcategoría especializada",
+    badge: "NDA estándar",
+    title: "Confidencialidad como obligación contractual",
+    intro: "En un evento corporativo, lo que el personal de seguridad ve y escucha puede valer más que cualquier activo físico: estrategias, cifras, identidades y acuerdos. SEPRIEV gestiona la confidencialidad como una obligación contractual estándar, no como un plus negociable: todo el personal firma un Acuerdo de Confidencialidad antes del evento, con un alcance claro y consecuencias definidas. La discreción deja de ser una promesa verbal y se vuelve un compromiso por escrito.",
+    features: [
+      { title: "NDA obligatorio para todo el personal", text: "El Acuerdo de Confidencialidad lo firma cada elemento asignado —guardias, supervisores y coordinadores—, no solo el personal de contacto con directivos. Es un estándar aplicado por igual a toda asignación corporativa, porque la información sensible puede pasar por cualquier punto del operativo." },
+      { title: "Alcance definido del acuerdo", text: "El NDA cubre la información estratégica, las identidades de los asistentes, el contenido de las presentaciones, los acuerdos comerciales observados y la logística interna del cliente. El alcance se acuerda antes del evento para que no haya ambigüedad sobre qué se considera confidencial." },
+      { title: "Reglas de fotografía, redes y medios", text: "El acuerdo incluye instrucciones explícitas sobre la prohibición de fotografiar, grabar o publicar contenido del evento, y sobre el trato con medios. Estas reglas se refuerzan en el briefing previo y se supervisan durante toda la operación." },
+    ],
+    hero: `${IMG}/seguridad-eventos-corporativos`,
+    small1: `${IMG}/equipo-seguridad-eventos`,
+    small2: `${IMG}/seguridad-empresarial-evento`,
+    alt: [
+      "Personal de seguridad corporativa bajo acuerdo de confidencialidad en México",
+      "Equipo de seguridad firmando NDA antes de un evento de empresa",
+      "Operativo de seguridad discreto en una junta de consejo confidencial",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Gobernanza de la información",
+    badge: undefined,
+    title: "Manejo de la información y consecuencias del incumplimiento",
+    intro: "Un acuerdo firmado no sirve de nada sin una gobernanza que lo respalde. SEPRIEV controla quién accede a qué información, selecciona al personal con verificación de antecedentes y aplica consecuencias reales ante cualquier filtración. En protección de información, una fuga interna puede ser tan dañina como una amenaza externa, y se trata con la misma seriedad.",
+    features: [
+      { title: "Personal seleccionado y verificado", text: "El personal asignado a eventos confidenciales pasa por verificación de antecedentes y evaluación de perfil, con continuidad en las asignaciones para que el cliente trabaje siempre con elementos conocidos. La confianza es parte del servicio cuando se accede a información sensible." },
+      { title: "Principio de necesidad de conocer", text: "La información sensible se comparte solo con el personal que la necesita para su función. No todo el equipo conoce todos los detalles del evento: cada quien recibe lo necesario para operar, lo que reduce la superficie de exposición de los datos del cliente." },
+      { title: "Consecuencias contractuales", text: "La violación de confidencialidad es causa inmediata de baja del elemento involucrado y de acción legal conforme al acuerdo firmado. No es una formalidad: es el mecanismo que respalda el compromiso y que el cliente puede hacer valer." },
+    ],
+    hero: `${IMG}/centro-control-seguridad`,
+    small1: `${IMG}/proteccion-ejecutiva-mexico`,
+    small2: `${IMG}/guardias-seguridad-privada`,
+    alt: [
+      "Gobernanza de la información en un operativo de seguridad corporativa",
+      "Coordinación confidencial de seguridad para directivos",
+      "Personal de seguridad verificado para eventos con información sensible",
+    ],
+    featured: true,
+  },
+];
+
+// Qué protege el NDA
+const tipos = [
+  { titulo: "Información estratégica", nota: "Planes, cifras y proyectos" },
+  { titulo: "Identidades de asistentes", nota: "Quién asiste y quién participa" },
+  { titulo: "Contenido de presentaciones", nota: "Anuncios y material no público" },
+  { titulo: "Acuerdos comerciales", nota: "Negociaciones observadas" },
+  { titulo: "Logística interna", nota: "Agenda, rutas y operación" },
+  { titulo: "Datos personales", nota: "Listas y registros de acceso" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "NDA estándar, no negociable", desc: "Acuerdo de no divulgación obligatorio para todo el personal de cada evento corporativo." },
+  { titulo: "Personal verificado", desc: "Verificación de antecedentes y continuidad en las asignaciones para acceder a información sensible." },
+  { titulo: "Need-to-know", desc: "La información sensible se comparte solo con quien la necesita para su función." },
+  { titulo: "Control de fotografía y redes", desc: "Prohibición explícita de capturar o publicar contenido del evento, supervisada en sitio." },
+  { titulo: "Consecuencias reales", desc: "La violación es causa de baja inmediata y acción legal conforme al acuerdo firmado." },
+  { titulo: "Alineación con tu área legal", desc: "Trabajamos con el formato de NDA del cliente y coordinamos con su equipo de compliance." },
+];
+
+// Relacionados (cluster corporativo completo)
+const relacionados = [
+  { title: "Eventos Corporativos", description: "El servicio principal del que forma parte esta subcategoría: seguridad discreta para convenciones, lanzamientos y galas.", features: ["Personal bilingüe", "Dress code adaptable", "Reporte ejecutivo"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos`, badge: "Servicio principal", featured: true },
+  { title: "Personal Bilingüe", description: "Subcategoría hermana: agentes con dominio del inglés y etiqueta corporativa para eventos internacionales.", features: ["Español / Inglés", "Etiqueta corporativa", "Enlace internacional"], href: "/servicios/seguridad-eventos-corporativos/personal-bilingue", image: `${IMG}/seguridad-empresarial-evento`, badge: "Subcategoría" },
+  { title: "Dress Code Adaptable", description: "Subcategoría hermana: vestimenta del personal a la medida de la imagen del evento, de la etiqueta al bajo perfil.", features: ["Imagen institucional", "Niveles de vestimenta", "Integración discreta"], href: "/servicios/seguridad-eventos-corporativos/dress-code-adaptable", image: `${IMG}/equipo-seguridad-eventos`, badge: "Subcategoría" },
+  { title: "Protección Ejecutiva", description: "Protección de directivos con gobernanza estricta de la información y confidencialidad contractual.", features: ["Análisis de riesgo", "Personal verificado", "Gobernanza de la información"], href: "/servicios/proteccion-ejecutiva", image: `${IMG}/proteccion-ejecutiva-mexico` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Eventos Corporativos', href: '/servicios/seguridad-eventos-corporativos' },
+    { label: 'Confidencialidad (NDA)' },
+  ]} />
+
+  <PageHero
+    eyebrow="Eventos Corporativos — Confidencialidad (NDA)"
+    titulo="Confidencialidad y NDA"
+    subtitulo="En un evento corporativo, lo que el personal ve y escucha puede valer más que cualquier activo físico. Por eso la confidencialidad no es una promesa verbal: es un acuerdo por escrito que firma todo el personal."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Subcategoría del servicio de <a href="/servicios/seguridad-eventos-corporativos" class="text-secondary hover:underline font-semibold">seguridad para eventos corporativos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Todo el personal firma un <strong class="text-light font-semibold">Acuerdo de Confidencialidad (NDA)</strong> que protege información estratégica, identidades, presentaciones y datos sensibles, con instrucciones explícitas sobre fotografía, redes y medios.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Personal verificado, gobernanza de la información bajo need-to-know y consecuencias reales ante cualquier filtración. Es una capa transversal que cubre al <a href="/servicios/seguridad-eventos-corporativos/personal-bilingue" class="text-secondary hover:underline font-semibold">personal bilingüe</a>, al <a href="/servicios/seguridad-eventos-corporativos/dress-code-adaptable" class="text-secondary hover:underline font-semibold">dress code adaptable</a> y a la protección de directivos. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark border-t border-white/8" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo opera la confidencialidad</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            La discreción, por escrito y con gobernanza
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            La mayor amenaza a la información de un evento corporativo no suele venir de fuera, sino de quién tiene acceso a ella. Por eso tratamos la confidencialidad como un sistema: contrato, selección de personal y manejo controlado de los datos.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Trabajamos en dos planos: el <strong class="text-light font-semibold">contractual</strong> —el NDA que firma todo el personal y su alcance— y el <strong class="text-light font-semibold">operativo</strong> —la gobernanza de la información bajo el principio de necesidad de conocer—.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Nos alineamos con el área legal o de compliance del cliente y, ante cualquier incumplimiento, aplicamos <strong class="text-light font-semibold">consecuencias reales</strong>: baja inmediata y acción legal conforme al acuerdo.
+          </p>
+        </div>
+      </div>
+
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Qué protege el NDA -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué protege</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Qué cubre el acuerdo de confidencialidad</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            La confidencialidad no se limita a "no hablar del evento": tiene un alcance concreto que se acuerda antes y que cada elemento conoce. Esto es lo que el NDA protege en un evento corporativo.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4M12 15v2"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para un evento confidencial?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Cualquier empresa puede prometer discreción; pocas la respaldan con un contrato, una selección rigurosa del personal y consecuencias reales. Esa diferencia es la que protege la información de tu evento cuando más importa.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection
+    eyebrow="Proceso de confidencialidad"
+    titulo="Así garantizamos la confidencialidad"
+    lead="Un proceso de cuatro fases que va de la firma del NDA al resguardo de la información al cierre."
+    parrafos={[
+      "La confidencialidad no se garantiza con buenas intenciones: se construye con un acuerdo firmado, una selección rigurosa del personal y una gobernanza de la información que define quién accede a qué.",
+      "Antes del evento alineamos el NDA con tu área legal; durante el evento operamos bajo el principio de necesidad de conocer; y al cierre resguardamos los datos conforme al alcance acordado.",
+    ]}
+    pasos={pasosNda}
+  />
+
+  <!-- Relacionados -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Parte de un operativo integral</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Las 3 subcategorías de Eventos Corporativos</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Con la confidencialidad se completa el operativo corporativo: el personal bilingüe, el dress code adaptable y el NDA son tres capas del mismo dispositivo, y se combinan con la protección ejecutiva de los directivos.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas seguridad con confidencialidad garantizada?"
+    subtitulo="Cuéntanos el tipo de evento y el nivel de confidencialidad que requieres, y alineamos el NDA con tu área legal. Propuesta en menos de 24 horas."
+    faq={faq}
+  />
+
+</BaseLayout>

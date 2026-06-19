@@ -1,0 +1,396 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema, buildHowToSchema } from '@/lib/seo';
+
+const slug = 'discrecion-total';
+const parent = { slug: 'seguridad-vip', name: 'Seguridad VIP' };
+
+const titulo = 'Discreción Total y Servicio Anti-Paparazzi';
+const descripcion = 'Servicio de discreción total y anti-paparazzi para figuras públicas, celebridades, artistas y ejecutivos de alto perfil en eventos en México: dispositivo de seguridad de bajo perfil, control de prensa y fotógrafos no autorizados, rutas reservadas y accesos privados, burbuja de privacidad, zonas sin cámaras, coordinación con la representación y el equipo de relaciones públicas, y confidencialidad contractual (NDA) con control de filtraciones. Subcategoría del servicio de seguridad VIP de SEPRIEV, bajo licencia DGSSP y certificación STPS.';
+
+const metaTitle = 'Discreción Total y Seguridad Anti-Paparazzi para VIP | SEPRIEV';
+const metaDescription = 'Discreción total y anti-paparazzi para figuras públicas en eventos en México: bajo perfil, control de prensa, rutas reservadas, zonas sin fotos y NDA. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${parent.slug}/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/seguridad-vip-gala-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito discreción total y servicio anti-paparazzi para mi evento')}`;
+
+// FAQ específica de discreción total / anti-paparazzi (10)
+const faq = [
+  { q: "¿Qué es la discreción total o el servicio anti-paparazzi?", a: "Es un dispositivo orientado a proteger la privacidad y la imagen del protegido, no solo su integridad física: controla el acceso de prensa y fotógrafos no autorizados, opera en bajo perfil, reserva rutas y accesos, y gobierna qué información del evento puede trascender. La meta no es solo que el protegido esté seguro, sino que decida cómo y cuándo es visto." },
+  { q: "¿Cómo manejan a los paparazzi y la prensa?", a: "La operación anti-paparazzi empieza en los accesos, no cuando la situación ya se salió de control. Reservamos accesos y salidas, definimos un pool de prensa autorizado cuando aplica y formamos una burbuja que bloquea ángulos de cámara en los tramos expuestos. Coordinamos con la representación qué prensa entra y qué momentos pueden fotografiarse." },
+  { q: "¿Coordinan con mi equipo de relaciones públicas o management?", a: "Sí, es la base del servicio. Antes del evento acordamos con la representación o el equipo de PR el nivel de exposición deseado: hay figuras que quieren saludar al público y otras cuya sola ubicación no puede trascender. El dispositivo acompaña la estrategia de imagen del protegido en lugar de contradecirla." },
+  { q: "¿Qué es el bajo perfil?", a: "Es operar de modo que la seguridad esté presente sin acaparar la atención: escoltas con vestimenta acorde al entorno, formaciones discretas, comunicación silenciosa y vehículos sin distintivos. El público recuerda a la figura, no a su equipo de seguridad. La protección más eficaz, en estos casos, es la que no se nota." },
+  { q: "¿Pueden controlar que no me tomen fotos en zonas privadas?", a: "En las áreas bajo nuestro control —camerinos, suites, zonas privadas— establecemos zonas sin cámaras ni teléfonos, con personal en los accesos y revisión de las áreas antes del uso. En espacios públicos no podemos impedir toda fotografía, pero sí gestionar ángulos, distancias y rutas para minimizar la exposición no deseada." },
+  { q: "¿Firman acuerdo de confidencialidad (NDA)? ¿Y los proveedores?", a: "Sí. Todo el personal asignado firma un NDA y opera bajo confidencialidad absoluta. Cuando es posible, extendemos el requisito de confidencialidad a los proveedores con acceso a las áreas del protegido. La discreción del equipo es parte del servicio: lo que pasa con el protegido se queda con el protegido." },
+  { q: "¿Usan llegadas o salidas señuelo?", a: "Para perfiles de muy alta exposición empleamos técnicas de manejo de rutas y, cuando el caso lo justifica, llegadas o salidas alternas escalonadas para dispersar la atención. La decisión se toma con la representación y el equipo de protección según el riesgo mediático real, no como recurso por defecto." },
+  { q: "¿Cómo evitan filtraciones de mi ubicación?", a: "Controlamos el acceso a la información: la agenda, las rutas y los puntos de origen y destino se comparten solo con quien necesita conocerlos (need to know), bajo una lista cerrada. La mayoría de las filtraciones no vienen de los paparazzi sino del entorno, y por eso se gestionan como un asunto de confidencialidad, no solo de perímetro." },
+  { q: "¿Esto sirve para bodas o eventos privados de figuras públicas?", a: "Sí. La discreción total es especialmente solicitada en bodas, celebraciones y eventos privados de figuras públicas, donde el objetivo es que el evento sea íntimo y no trascienda. Se integra con la seguridad de eventos sociales y con el control de invitados para proteger la privacidad de extremo a extremo." },
+  { q: "¿Se combina con close protection y traslado blindado?", a: "Sí. La discreción total es una capa que se monta sobre el close protection y el traslado blindado: los mismos escoltas y el mismo vehículo, operados en bajo perfil y con control de imagen. Un dispositivo VIP completo protege a la vez la integridad, la privacidad y la imagen del protegido." },
+];
+
+const pasosDT = [
+  { titulo: "Acuerdo de nivel de exposición", desc: "Definimos con la representación y el equipo de PR qué puede trascender y qué no: prensa autorizada, momentos fotografiables y nivel de visibilidad deseado del dispositivo." },
+  { titulo: "Diseño del dispositivo discreto", desc: "Planeamos accesos privados, rutas reservadas y salidas alternas, con escoltas de bajo perfil y vehículos sin distintivos, sobre la avanzada del recinto." },
+  { titulo: "Control de información y accesos", desc: "Restringimos la información sensible a una lista cerrada (need to know), aplicamos NDA al personal y, cuando es posible, a los proveedores con acceso a las áreas del protegido." },
+  { titulo: "Operación anti-paparazzi y cierre", desc: "Gestionamos la prensa y los fotógrafos desde el acceso, formamos la burbuja de privacidad en los tramos expuestos y ejecutamos una salida controlada al cierre." },
+];
+
+const schemas = [
+  ...buildServicePageSchema({
+    slug,
+    parent,
+    name: titulo,
+    description: descripcion,
+    metaTitle,
+    metaDescription,
+    serviceType: "Discreción total y servicio anti-paparazzi para eventos",
+    ogImage: ogImg,
+    breadcrumbName: "Discreción total",
+    offers: [
+      "Dispositivo de seguridad de bajo perfil",
+      "Operación anti-paparazzi y control de prensa",
+      "Rutas reservadas y accesos privados",
+      "Confidencialidad contractual (NDA) y control de filtraciones",
+    ],
+    faq,
+    datePublished: "2025-04-01",
+    serviceExtra: {
+      audience: {
+        "@type": "PeopleAudience",
+        "name": "Personas de alto perfil mediático",
+        "audienceType": "Figuras públicas, celebridades, artistas y ejecutivos de alto perfil",
+      },
+      serviceOutput: { "@type": "Thing", "name": "Evento protegido con privacidad e imagen preservadas" },
+    },
+  }),
+  buildHowToSchema(
+    "Cómo garantizamos la discreción total",
+    "Proceso de SEPRIEV para la discreción total y la operación anti-paparazzi en eventos: del acuerdo de nivel de exposición a la salida controlada.",
+    pasosDT,
+    ["Comunicación discreta", "Vehículo con accesos reservados", "Personal de avanzada"],
+    ["Acuerdo de nivel de exposición con la representación", "Plano de accesos y salidas alternas"],
+  ),
+];
+
+const navItems = [
+  { label: "Seguridad VIP", desc: "Volver al servicio principal", href: "/servicios/seguridad-vip" },
+  { label: "Close Protection", desc: "Subcategoría: escolta personal de cercanía", href: "/servicios/seguridad-vip/close-protection" },
+  { label: "Vehículo Blindado", desc: "Subcategoría: traslado blindado con bajo perfil", href: "/servicios/seguridad-vip/vehiculo-blindado" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados
+const modules = [
+  {
+    eyebrow: "Subcategoría especializada",
+    badge: "Bajo perfil",
+    title: "La discreción es un dispositivo, no una actitud",
+    intro: "Para una figura pública, una mala foto o una filtración pueden hacer más daño que un incidente físico. La discreción no se improvisa pidiéndole al equipo que sea sutil: se diseña. SEPRIEV monta un dispositivo de bajo perfil que controla accesos, rutas y prensa desde antes de que llegue el protegido, porque la imagen y la privacidad, igual que la integridad, se protegen anticipando y no reaccionando.",
+    features: [
+      { title: "Dispositivo de bajo perfil", text: "Operamos con escoltas de vestimenta acorde al entorno, formaciones discretas, comunicación silenciosa y vehículos sin distintivos. La seguridad está presente sin acaparar la atención: el público recuerda a la figura, no a su equipo. En estos casos, la protección más eficaz es la que no se nota." },
+      { title: "Accesos privados, rutas reservadas y salidas alternas", text: "Reservamos accesos y salidas, definimos rutas que evitan los puntos de mayor exposición y preparamos salidas alternas para el cierre. Para perfiles de muy alta exposición empleamos manejo escalonado de llegadas y salidas, decidido con la representación según el riesgo mediático real." },
+      { title: "Gestión de prensa y paparazzi desde el acceso", text: "La operación anti-paparazzi empieza en los filtros, no cuando ya hay una multitud de cámaras. Definimos un pool de prensa autorizado cuando aplica, controlamos los ángulos en los tramos expuestos y formamos una burbuja de privacidad que protege al protegido sin generar la escena que los fotógrafos buscan." },
+    ],
+    hero: `${IMG}/seguridad-vip-gala`,
+    small1: `${IMG}/proteccion-vip-invitados`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    alt: [
+      "Dispositivo de seguridad de bajo perfil protegiendo a una figura pública en una gala",
+      "Control discreto de acceso e invitados en un evento privado VIP",
+      "Escolta de bajo perfil gestionando el acceso de una figura pública",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Confidencialidad y control de imagen",
+    badge: undefined,
+    title: "Lo que no trasciende: confidencialidad y control de imagen",
+    intro: "La mayoría de las filtraciones no vienen de los paparazzi: vienen del entorno. Por eso la discreción total se juega tanto en la gestión de la información como en el perímetro. SEPRIEV gobierna quién sabe la ubicación, qué puede fotografiarse y qué se queda dentro, con confidencialidad contractual y en coordinación permanente con la representación del protegido.",
+    features: [
+      { title: "Coordinación con la representación", text: "Acordamos con el management o el equipo de relaciones públicas el nivel de exposición deseado antes del evento: qué prensa entra, qué momentos pueden fotografiarse y qué información no puede trascender. El dispositivo acompaña la estrategia de imagen del protegido en lugar de contradecirla." },
+      { title: "NDA y control de filtraciones", text: "Todo el personal firma un NDA y la información sensible —agenda, rutas, puntos de origen y destino— se restringe a una lista cerrada bajo el principio de need to know. Cuando es posible, extendemos la confidencialidad a los proveedores con acceso a las áreas del protegido, porque la filtración se previene gobernando la información, no solo el perímetro." },
+      { title: "Burbuja de privacidad y zonas sin cámaras", text: "En las áreas bajo nuestro control establecemos zonas sin cámaras ni teléfonos —camerinos, suites, zonas privadas— con personal en los accesos y revisión previa de las áreas. En los tramos públicos formamos una burbuja que gestiona ángulos y distancias para minimizar la exposición no deseada del protegido." },
+    ],
+    hero: `${IMG}/seguridad-vip-eventos`,
+    small1: `${IMG}/guardias-seguridad-privada`,
+    small2: `${IMG}/seguridad-vip-gala`,
+    alt: [
+      "Coordinación de seguridad y relaciones públicas para el control de imagen de un VIP",
+      "Personal de seguridad resguardando una zona privada sin cámaras",
+      "Burbuja de privacidad de escoltas alrededor de una figura pública",
+    ],
+    featured: true,
+  },
+];
+
+// Qué incluye
+const tipos = [
+  { titulo: "Dispositivo de bajo perfil", nota: "Seguridad presente, no visible" },
+  { titulo: "Rutas y accesos reservados", nota: "Evitan los puntos expuestos" },
+  { titulo: "Salidas alternas", nota: "Manejo escalonado de llegadas/salidas" },
+  { titulo: "Control de prensa", nota: "Pool autorizado y ángulos" },
+  { titulo: "Zonas sin cámaras", nota: "Privacidad en áreas controladas" },
+  { titulo: "NDA y confidencialidad", nota: "Control de filtraciones (need to know)" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Discreción operativa", desc: "Un dispositivo de bajo perfil diseñado, no improvisado: la seguridad no acapara la atención." },
+  { titulo: "Anti-paparazzi desde el acceso", desc: "La prensa se gestiona en los filtros, antes de que se forme la escena que buscan las cámaras." },
+  { titulo: "Coordinación con PR", desc: "Alineamos el dispositivo con la estrategia de imagen del protegido y su representación." },
+  { titulo: "Control de filtraciones", desc: "Información restringida a una lista cerrada bajo el principio de need to know." },
+  { titulo: "Burbuja de privacidad", desc: "Gestión de ángulos y distancias, y zonas sin cámaras en las áreas controladas." },
+  { titulo: "Confidencialidad (NDA)", desc: "Personal y, cuando es posible, proveedores bajo acuerdo de confidencialidad." },
+];
+
+// Relacionados
+const relacionados = [
+  { title: "Seguridad VIP", description: "El servicio principal del que forma parte esta subcategoría: escoltas, avanzada, inteligencia y traslados para figuras de alto perfil.", features: ["Close protection", "Inteligencia preventiva", "Bajo perfil"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos`, badge: "Servicio principal", featured: true },
+  { title: "Close Protection", description: "Subcategoría hermana: la escolta personal de cercanía sobre la que se monta el bajo perfil y el control de imagen.", features: ["Anillos de protección", "Embarque y desembarque", "Plan de extracción"], href: "/servicios/seguridad-vip/close-protection", image: `${IMG}/proteccion-vip-invitados`, badge: "Subcategoría" },
+  { title: "Vehículo Blindado", description: "Subcategoría hermana: el traslado blindado operado también en bajo perfil, con rutas reservadas y vehículos sin distintivos.", features: ["Blindaje III–V", "Conducción evasiva", "Estudio de ruta"], href: "/servicios/seguridad-vip/vehiculo-blindado", image: `${IMG}/proteccion-ejecutiva-mexico`, badge: "Subcategoría" },
+  { title: "Eventos Sociales", description: "Discreción y control de invitados para bodas, XV años y celebraciones privadas de familias y figuras públicas.", features: ["Control de invitados", "Manejo discreto", "Privacidad"], href: "/servicios/seguridad-eventos-sociales", image: `${IMG}/seguridad-vip-gala` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Seguridad VIP', href: '/servicios/seguridad-vip' },
+    { label: 'Discreción total' },
+  ]} />
+
+  <PageHero
+    eyebrow="Seguridad VIP — Discreción Total"
+    titulo="Discreción Total y Anti-Paparazzi"
+    subtitulo="Para una figura pública, una mala foto o una filtración pueden hacer más daño que un incidente físico. La discreción no se improvisa: se diseña."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Subcategoría del servicio de <a href="/servicios/seguridad-vip" class="text-secondary hover:underline font-semibold">seguridad VIP</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Montamos un <strong class="text-light font-semibold">dispositivo de bajo perfil</strong> que controla accesos, rutas y prensa, con burbuja de privacidad y zonas sin cámaras, coordinado con la representación del protegido.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Confidencialidad contractual (NDA) y control de filtraciones bajo <em class="text-light not-italic font-semibold">need to know</em>. Se monta sobre el <a href="/servicios/seguridad-vip/close-protection" class="text-secondary hover:underline font-semibold">close protection</a> y el <a href="/servicios/seguridad-vip/vehiculo-blindado" class="text-secondary hover:underline font-semibold">traslado blindado</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark border-t border-white/8" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo opera un dispositivo discreto</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Proteger la imagen y la privacidad, no solo la integridad
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            La discreción total se decide antes del evento: el nivel de exposición, los accesos, la prensa y la información se planean con la representación. La seguridad acompaña la imagen del protegido, no la contradice.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Operamos en <strong class="text-light font-semibold">bajo perfil</strong>, con accesos privados, rutas reservadas y una <strong class="text-light font-semibold">burbuja de privacidad</strong> que gestiona ángulos de cámara en los tramos expuestos.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            La información sensible se restringe a una lista cerrada bajo <strong class="text-light font-semibold">need to know</strong>, con NDA del personal, porque la mayoría de las filtraciones vienen del entorno, no de la prensa.
+          </p>
+        </div>
+      </div>
+
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Qué incluye -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué incluye</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Qué incluye la discreción total</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            La discreción total no es pedirle al equipo que sea sutil: es un conjunto de medidas —bajo perfil, control de accesos, gestión de prensa y gobierno de la información— diseñadas para proteger la privacidad y la imagen del protegido tanto como su integridad.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M3 12s3.5-7 9-7 9 7 9 7-3.5 7-9 7-9-7-9-7zM12 12m-2.5 0a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0M4 4l16 16"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para tu discreción total?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Proteger a una figura pública es también proteger su imagen y su privacidad. Combinamos un dispositivo de bajo perfil, la coordinación con la representación y el gobierno estricto de la información, con la discreción como parte del servicio y no como un extra.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection
+    eyebrow="Proceso de discreción"
+    titulo="Así garantizamos la discreción total"
+    lead="Un proceso de cuatro fases que va del acuerdo de nivel de exposición a la salida controlada."
+    parrafos={[
+      "La discreción se decide antes del evento: con la representación acordamos el nivel de exposición —qué prensa entra, qué momentos pueden fotografiarse y qué no puede trascender— y diseñamos un dispositivo de bajo perfil con accesos y rutas reservados.",
+      "Durante el evento gobernamos la información bajo need to know y operamos la burbuja de privacidad y la gestión de prensa, porque la imagen y la privacidad del protegido se protegen anticipando, igual que su integridad.",
+    ]}
+    pasos={pasosDT}
+  />
+
+  <!-- Relacionados -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Parte de un operativo integral</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Las 3 subcategorías de Seguridad VIP</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            La discreción total cierra el dispositivo VIP: se monta sobre el close protection y el traslado blindado para proteger, en un mismo operativo, la integridad, la privacidad y la imagen del protegido de extremo a extremo.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas discreción total para tu evento?"
+    subtitulo="Cuéntanos el perfil del protegido, el tipo de evento y el nivel de exposición deseado, y diseñamos el dispositivo —bajo perfil, control de prensa y confidencialidad— a tu medida. Propuesta en menos de 24 horas."
+    faq={faq}
+  />
+
+</BaseLayout>

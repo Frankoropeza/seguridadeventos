@@ -1,0 +1,387 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema, buildHowToSchema } from '@/lib/seo';
+
+const slug = 'detectores-de-metales';
+const parent = { slug: 'control-acceso-eventos', name: 'Control de Acceso' };
+
+const titulo = 'Detección de Metales y Revisión de Objetos en Eventos';
+const descripcion = 'Servicio de detección de metales y revisión de objetos para el control de acceso a eventos en México: arcos detectores de paso, detectores de mano (wand), inspección de bolsos y mochilas, sensibilidad configurable por perfil de riesgo, revisión secundaria, personal femenino para la revisión de mujeres y punto de resguardo de objetos retenidos. Subcategoría del servicio de control de acceso para eventos de SEPRIEV.';
+
+const metaTitle = 'Detectores de Metales para Eventos en México | SEPRIEV';
+const metaDescription = 'Detección de metales para eventos en México: arcos de paso y detectores de mano (wand), revisión de bolsos, sensibilidad configurable y protocolo de trato respetuoso. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${parent.slug}/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/control-acceso-eventos-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito detección de metales para el control de acceso de mi evento')}`;
+
+// FAQ específica de detección de metales (10)
+const faq = [
+  { q: "¿Qué tipo de equipo de detección usan?", a: "Equipo propio: arcos detectores de metales de paso (walk-through), detectores de metales de mano (wand) para la revisión secundaria y equipo para la inspección de bolsos y mochilas. No rentamos el equipo, lo que garantiza que siempre esté calibrado y en óptimas condiciones." },
+  { q: "¿El equipo es propio o rentado?", a: "Es propio. Operar con equipo propio nos permite mantenerlo siempre en óptimas condiciones, calibrarlo según el perfil de riesgo de cada evento y no depender de la disponibilidad ni del estado de un proveedor externo." },
+  { q: "¿Cuántas personas pueden revisar por hora?", a: "Hasta 1,200 personas por hora por punto de acceso, con una revisión de menos de 30 segundos por persona. El personal mantiene una cadencia alta incluso en los picos de demanda, evitando los cuellos de botella que generan presión en el exterior del recinto." },
+  { q: "¿Cómo funciona la revisión secundaria?", a: "Cuando el arco de paso genera una señal, el asistente pasa a una revisión secundaria con detector de mano (wand) que localiza el objeto con precisión, sin necesidad de una revisión invasiva. El protocolo está diseñado para ser efectivo y respetuoso a la vez." },
+  { q: "¿Cuentan con personal femenino para la revisión de mujeres?", a: "Sí. Asignamos personal femenino para la revisión de asistentes mujeres en cada punto de acceso, con un protocolo de trato respetuoso y una revisión proporcional al perfil de riesgo del evento." },
+  { q: "¿Qué hacen con los objetos prohibidos que decomisan?", a: "Los objetos retenidos se almacenan en un punto de resguardo identificado, con registro. Al finalizar el evento, las personas pueden reclamar los objetos no peligrosos; los objetos ilegales se entregan a la autoridad correspondiente." },
+  { q: "¿Ofrecen detección K-9 antiexplosivos?", a: "Sí, bajo solicitud. Para eventos de alto perfil incorporamos unidades caninas (K-9) antiexplosivos para la revisión previa del recinto, complementando la detección de metales en los accesos." },
+  { q: "¿Los arcos detectores son seguros para personas con marcapasos o embarazadas?", a: "Los arcos detectores de metales operan con campos electromagnéticos de baja intensidad. Aun así, para personas con marcapasos, embarazadas o quien lo solicite, ofrecemos una revisión alternativa con detector de mano o inspección manual, sin obligar el paso por el arco." },
+  { q: "¿La detección de metales es accesible para personas con discapacidad?", a: "Sí. Habilitamos un carril de revisión accesible con inspección manual y detector de mano para personas con discapacidad, sillas de ruedas o quien no pueda pasar por el arco, coordinado con el organizador." },
+  { q: "¿Cómo se integra con el resto del control de acceso?", a: "La detección de metales es una capa del control de acceso: opera junto con la validación de boletos y el conteo de aforo en el mismo punto de ingreso, de modo que verificación, revisión y registro ocurran en un solo movimiento." },
+];
+
+const pasosMetal = [
+  { titulo: "Configuración de sensibilidad", desc: "Calibramos los arcos detectores según el perfil de riesgo del evento y el plan de seguridad, para detectar lo relevante sin disparar falsas alarmas que frenen el ingreso." },
+  { titulo: "Revisión primaria por arco", desc: "Cada asistente pasa por el arco detector de paso; el flujo se mantiene ágil con varios carriles y una cadencia alta para evitar cuellos de botella." },
+  { titulo: "Revisión secundaria con wand", desc: "Ante una señal del arco, el detector de mano localiza el objeto con precisión, junto con la inspección del bolso o mochila cuando corresponde, siempre con trato respetuoso." },
+  { titulo: "Resguardo de objetos", desc: "Los objetos prohibidos se retienen en un punto de resguardo con registro, para su devolución al cierre o su entrega a la autoridad si son ilegales." },
+];
+
+const schemas = [
+  ...buildServicePageSchema({
+    slug,
+    parent,
+    name: titulo,
+    description: descripcion,
+    metaTitle,
+    metaDescription,
+    serviceType: "Detección de metales y revisión de objetos para eventos",
+    ogImage: ogImg,
+    breadcrumbName: "Detectores de metales",
+    offers: [
+      "Arcos detectores de metales de paso",
+      "Detectores de mano (wand) y revisión secundaria",
+      "Inspección de bolsos y mochilas",
+      "Punto de resguardo de objetos retenidos",
+    ],
+    faq,
+    datePublished: "2025-03-22",
+  }),
+  buildHowToSchema(
+    "Cómo operamos la detección de metales en el acceso",
+    "Proceso de SEPRIEV para la detección de metales en el control de acceso a eventos: de la configuración de sensibilidad al resguardo de objetos retenidos.",
+    pasosMetal,
+    ["Arco detector de metales de paso", "Detector de metales de mano (wand)", "Equipo de inspección de bolsos"],
+  ),
+];
+
+const navItems = [
+  { label: "Control de Acceso", desc: "Volver al servicio principal", href: "/servicios/control-acceso-eventos" },
+  { label: "Conciertos y Festivales", desc: "Control de multitudes y accesos por sector", href: "/servicios/seguridad-conciertos-festivales" },
+  { label: "Eventos Masivos", desc: "Filtros y aforo para +10,000 asistentes", href: "/servicios/seguridad-masivos" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados
+const modules = [
+  {
+    eyebrow: "Subcategoría especializada",
+    badge: "Equipo propio",
+    title: "Arcos de paso, detectores de mano y revisión de bolsos",
+    intro: "La detección de metales es la barrera física que impide que un arma o un objeto prohibido entre al recinto. SEPRIEV la opera con equipo propio —no rentado— y personal entrenado específicamente para el rol, combinando arcos detectores de paso, detectores de mano para la revisión secundaria y la inspección de bolsos. El objetivo es filtrar lo peligroso sin convertir la puerta en un cuello de botella.",
+    features: [
+      { title: "Arcos detectores de paso", text: "Los arcos detectores de metales fijos se calibran según el tipo de evento y el perfil de riesgo definido en el plan de seguridad. Operar con equipo propio garantiza que esté siempre en óptimas condiciones y que la sensibilidad se ajuste para detectar lo relevante sin disparar falsas alarmas que frenen el ingreso." },
+      { title: "Detectores de mano (wand)", text: "Cuando el arco genera una señal, el detector de mano localiza el objeto con precisión en la revisión secundaria, sin necesidad de una revisión invasiva. El personal que opera estos equipos mantiene una cadencia de ingreso alta incluso en los picos de demanda." },
+      { title: "Inspección de bolsos y política de objetos", text: "La revisión incluye la inspección de bolsos y mochilas conforme a una política de objetos prohibidos definida con el organizador y comunicada al público con antelación, para que el filtro sea ágil y predecible y no genere discusiones en la puerta." },
+    ],
+    hero: `${IMG}/control-acceso-eventos`,
+    small1: `${IMG}/control-acceso-credenciales`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    alt: [
+      "Arco detector de metales en el acceso de un evento en México",
+      "Revisión con detector de metales de mano en el ingreso",
+      "Personal de seguridad inspeccionando bolsos en un punto de acceso",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Cadencia, trato y resguardo",
+    badge: undefined,
+    title: "Filtrar lo peligroso sin frenar el ingreso",
+    intro: "Un buen filtro de detección es invisible cuando funciona: el público entra ágilmente y solo se detiene a quien hay que revisar. SEPRIEV equilibra velocidad, trato y control —con personal femenino para la revisión de mujeres y un punto de resguardo para los objetos retenidos— porque la primera impresión del evento ocurre, literalmente, en la puerta.",
+    features: [
+      { title: "Alta cadencia sin cuello de botella", text: "Procesamos hasta 1,200 personas por hora por punto de acceso, con varios carriles y personal entrenado para mantener el flujo en los picos de demanda. Un filtro lento no solo molesta: genera aglomeraciones peligrosas en el exterior del recinto." },
+      { title: "Revisión proporcional y con perspectiva de género", text: "Calibramos la revisión al perfil de riesgo del evento, con personal femenino para la revisión de mujeres y un protocolo de trato respetuoso en cada punto. El personal está capacitado para resolver inconformidades sin escalar el tono." },
+      { title: "Punto de resguardo de objetos", text: "Los objetos prohibidos se retienen en un punto de resguardo identificado y con registro. Al cierre, las personas reclaman los objetos no peligrosos; los objetos ilegales se entregan a la autoridad. Todo queda documentado para evitar disputas." },
+    ],
+    hero: `${IMG}/centro-monitoreo-cctv-eventos`,
+    small1: `${IMG}/guardias-seguridad-privada`,
+    small2: `${IMG}/control-acceso-eventos`,
+    alt: [
+      "Filtro de acceso con varios carriles de detección de metales",
+      "Guardias operando la revisión de seguridad en el ingreso",
+      "Punto de control de acceso con detección de metales en un evento",
+    ],
+    featured: true,
+  },
+];
+
+// Qué detectamos y revisamos
+const tipos = [
+  { titulo: "Armas de fuego", nota: "Detección prioritaria en el arco" },
+  { titulo: "Armas blancas", nota: "Cuchillos y objetos cortantes" },
+  { titulo: "Objetos punzocortantes", nota: "Revisión secundaria y de bolsos" },
+  { titulo: "Sustancias prohibidas", nota: "Conforme a la política del evento" },
+  { titulo: "Líquidos no permitidos", nota: "Según el reglamento del recinto" },
+  { titulo: "Pirotecnia", nota: "Prohibida en recintos cerrados" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Equipo propio, no rentado", desc: "Arcos y detectores propios, siempre calibrados y en óptimas condiciones." },
+  { titulo: "Sensibilidad configurable", desc: "Ajustada al perfil de riesgo del evento para detectar lo relevante sin falsas alarmas." },
+  { titulo: "Alta cadencia", desc: "Hasta 1,200 personas por hora por punto, sin convertir la puerta en un cuello de botella." },
+  { titulo: "Perspectiva de género", desc: "Personal femenino para la revisión de mujeres y trato respetuoso en cada punto." },
+  { titulo: "Revisión secundaria precisa", desc: "Detector de mano e inspección de bolsos para localizar el objeto sin revisión invasiva." },
+  { titulo: "Resguardo con registro", desc: "Punto de resguardo de objetos retenidos, con devolución al cierre o entrega a la autoridad." },
+];
+
+// Relacionados
+const relacionados = [
+  { title: "Control de Acceso", description: "El servicio principal del que forma parte esta subcategoría: validación de boletos, credencialización y aforo en tiempo real.", features: ["Validación de boletos", "Credencialización", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Servicio principal", featured: true },
+  { title: "Conciertos y Festivales", description: "Control de multitudes y accesos por sector para eventos musicales, donde la detección de metales es clave.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular" },
+  { title: "Eventos Masivos", description: "Filtros de acceso y detección a escala de +10,000 asistentes, con centro de comando y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada`, badge: "Destacado" },
+  { title: "Eventos Deportivos", description: "Filtros y revisión por sección en estadios, con control de pirotecnia y objetos prohibidos.", features: ["Filtros por sección", "Anti-pirotecnia", "Separación de barras"], href: "/servicios/seguridad-eventos-deportivos", image: `${IMG}/seguridad-conciertos-multitud` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Control de Acceso', href: '/servicios/control-acceso-eventos' },
+    { label: 'Detectores de metales' },
+  ]} />
+
+  <PageHero
+    eyebrow="Control de Acceso — Detección de Metales"
+    titulo="Detección de Metales y Revisión"
+    subtitulo="La barrera física que impide que un arma o un objeto prohibido entre al recinto. Filtramos lo peligroso con equipo propio y personal entrenado, sin convertir la puerta en un cuello de botella."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Subcategoría del servicio de <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso para eventos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Operamos con <strong class="text-light font-semibold">equipo propio</strong>: arcos detectores de paso, detectores de mano (wand) e inspección de bolsos, con sensibilidad configurable por perfil de riesgo.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Hasta <strong class="text-light font-semibold">1,200 ingresos por hora</strong> por punto, con personal femenino para la revisión de mujeres y punto de resguardo de objetos. Se integra con la <a href="/servicios/seguridad-conciertos-festivales/control-de-multitudes" class="text-secondary hover:underline font-semibold">gestión de multitudes</a> en el acceso. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark border-t border-white/8" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo opera la detección</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Filtrar lo peligroso sin frenar la fila
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            La detección de metales es eficaz cuando equilibra dos objetivos en tensión: detectar todo lo relevante y mover la fila rápido. Se logra con equipo calibrado, varios carriles y un protocolo de revisión bien definido.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Combinamos <strong class="text-light font-semibold">arcos de paso, detectores de mano e inspección de bolsos</strong>, con la sensibilidad ajustada al perfil de riesgo del evento y una política de objetos prohibidos comunicada al público con antelación.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            El protocolo cuida el <strong class="text-light font-semibold">trato</strong>: revisión proporcional, personal femenino para la revisión de mujeres y un punto de resguardo con registro para los objetos retenidos.
+          </p>
+        </div>
+      </div>
+
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Qué detectamos -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué filtramos</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Qué detectamos y revisamos</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            La política de objetos prohibidos se define con el organizador y se comunica al público antes del evento. Estos son los objetos que el filtro de detección busca interceptar en el acceso.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M12 2a10 10 0 0 0-10 10c0 5 4 9 10 10 6-1 10-5 10-10A10 10 0 0 0 12 2zM8 12l3 3 5-6"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para la detección de metales?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            La diferencia entre un filtro que protege y uno que solo estorba está en el equipo, la calibración y el trato. Hacerlo bien evita tanto el arma que se cuela como la fila que colapsa el ingreso.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection
+    eyebrow="Proceso de detección"
+    titulo="Así operamos la detección de metales"
+    lead="Un proceso de cuatro fases para detectar lo relevante con el mejor trato y la mayor cadencia."
+    parrafos={[
+      "La detección de metales no es solo poner un arco en la puerta: requiere calibrar la sensibilidad al evento, organizar los carriles para sostener la cadencia y definir un protocolo de revisión secundaria y resguardo respetuoso.",
+      "Con equipo propio y personal entrenado específicamente para el rol, el filtro intercepta lo peligroso sin generar las aglomeraciones que un acceso lento provoca en el exterior del recinto.",
+    ]}
+    pasos={pasosMetal}
+  />
+
+  <!-- Relacionados -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Parte de un operativo integral</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Servicios relacionados</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            La detección de metales es una de las capas del control de acceso, junto con la validación de boletos y el conteo de aforo. Es especialmente crítica en conciertos, eventos masivos y deportivos, donde el filtro de objetos define la seguridad del recinto.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas detección de metales para tu evento?"
+    subtitulo="Cuéntanos el aforo, el número de accesos y la política de objetos de tu evento, y dimensionamos los arcos, los carriles y el personal. Propuesta en menos de 24 horas."
+    faq={faq}
+  />
+
+</BaseLayout>

@@ -1,0 +1,388 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema, buildHowToSchema } from '@/lib/seo';
+
+const slug = 'escaneo-qr-boletos';
+const parent = { slug: 'control-acceso-eventos', name: 'Control de Acceso' };
+
+const titulo = 'Escaneo de Boletos QR y NFC para Eventos';
+const descripcion = 'Servicio de escaneo y validación de boletos (QR, código de barras y NFC) para el control de acceso a eventos en México: integración en tiempo real con la plataforma de boletaje del cliente, detección de duplicados y falsificaciones, lectores de alta velocidad y protocolo de contingencia para validación manual ante fallas de conectividad. Subcategoría del servicio de control de acceso para eventos de SEPRIEV.';
+
+const metaTitle = 'Escaneo de Boletos QR/NFC para Eventos | SEPRIEV';
+const metaDescription = 'Validación y escaneo de boletos QR, código de barras y NFC para eventos en México: integración con tu boletaje en tiempo real, antifraude y contingencia. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${parent.slug}/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/control-acceso-credenciales-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito escaneo y validación de boletos (QR/NFC) para mi evento')}`;
+
+// FAQ específica de escaneo de boletos (10)
+const faq = [
+  { q: "¿Qué formatos de boleto pueden leer?", a: "Leemos códigos QR, códigos de barras y boletos NFC o de wallet (Apple Wallet, Google Wallet), además de boletos impresos en PDF y, cuando aplica, pulseras RFID. Nuestros lectores son compatibles con la mayoría de los formatos estándar del mercado." },
+  { q: "¿Se integran con mi plataforma de boletaje?", a: "Sí. Coordinamos con la plataforma de ticketing del cliente —Ticketmaster, Boletia, Eventbrite, Passline o sistemas propios— para validar en tiempo real contra su base de datos, con pruebas de compatibilidad en sitio antes del evento." },
+  { q: "¿Detectan boletos duplicados o falsificados?", a: "Sí. La validación en tiempo real marca cada boleto como usado en el momento del ingreso, de modo que un duplicado o una reimpresión del mismo código se detecta al instante y no horas después. Esto previene tanto la falsificación como el uso múltiple de un mismo boleto." },
+  { q: "¿Qué pasa si se cae el internet o el sistema de boletos?", a: "Activamos un protocolo de contingencia: validación manual con listas descargadas y verificación por lote en modo offline, de modo que una caída de conectividad no detenga el ingreso. Cuando el sistema se restablece, los datos se reconcilian." },
+  { q: "¿Manejan el reingreso y el anti-passback?", a: "Sí. Podemos habilitar reingreso controlado con marcaje, y aplicar anti-passback para impedir que un mismo boleto se use para que entren varias personas pasando el código hacia afuera. La política se define con el organizador." },
+  { q: "¿Cuántas personas validan por hora?", a: "Hasta 1,200 personas por hora por punto de acceso, con una validación de pocos segundos por boleto. La velocidad real depende del número de lectores y carriles y de si se combina con detección de metales en el mismo punto." },
+  { q: "¿Leen pulseras RFID para festivales?", a: "Sí. Para festivales con pulseras RFID (cashless o de acceso), validamos el ingreso y, cuando el organizador lo integra, los niveles de acceso por zona, con los lectores correspondientes." },
+  { q: "¿Entregan reporte de aforo y asistencia?", a: "Sí. Cada validación queda registrada con hora y punto de acceso, lo que permite conocer el aforo en tiempo real durante el evento y entregar al cierre un reporte conciliado de asistencia para el organizador y, en su caso, la autoridad." },
+  { q: "¿Cómo manejan los datos personales de los asistentes?", a: "Los datos que se consultan para validar (folio, nombre en lista) se tratan solo para los fines del acceso y conforme a la normativa de protección de datos aplicable, sin conservarse ni usarse fuera del alcance del evento." },
+  { q: "¿Se integra con la detección de metales y el aforo?", a: "Sí. El escaneo de boletos es una capa del control de acceso que opera en el mismo punto que la detección de metales y el conteo de aforo, de modo que validación, revisión y registro ocurran en un solo movimiento." },
+];
+
+const pasosQr = [
+  { titulo: "Integración con el boletaje", desc: "Conectamos con la plataforma de ticketing del cliente y definimos el método de validación (en línea o por lista), los niveles de acceso y la política de reingreso." },
+  { titulo: "Pruebas de compatibilidad en sitio", desc: "Antes del evento probamos los lectores con boletos reales de muestra para confirmar compatibilidad de formatos (QR, barras, NFC) y velocidad de lectura en el recinto." },
+  { titulo: "Validación en tiempo real", desc: "Durante el ingreso, cada boleto se valida y se marca como usado al instante, detectando duplicados y falsificaciones, con varios carriles para sostener la cadencia." },
+  { titulo: "Contingencia y reporte", desc: "Ante una caída de conectividad, pasamos a validación manual offline y reconciliamos al restablecerse; al cierre entregamos el reporte de aforo y asistencia." },
+];
+
+const schemas = [
+  ...buildServicePageSchema({
+    slug,
+    parent,
+    name: titulo,
+    description: descripcion,
+    metaTitle,
+    metaDescription,
+    serviceType: "Escaneo y validación de boletos para eventos",
+    ogImage: ogImg,
+    breadcrumbName: "Escaneo de boletos (QR/NFC)",
+    offers: [
+      "Validación QR, código de barras y NFC",
+      "Integración en tiempo real con el boletaje",
+      "Detección de duplicados y falsificaciones",
+      "Protocolo de contingencia offline",
+    ],
+    faq,
+    datePublished: "2025-03-24",
+  }),
+  buildHowToSchema(
+    "Cómo validamos los boletos en el acceso a tu evento",
+    "Proceso de SEPRIEV para el escaneo y la validación de boletos en el control de acceso: de la integración con el boletaje a la contingencia y el reporte de aforo.",
+    pasosQr,
+    ["Lector de QR de alta velocidad", "Lector NFC", "Dispositivo de validación móvil"],
+    ["Base de datos de boletaje del organizador", "Lista de invitados (guest list)"],
+  ),
+];
+
+const navItems = [
+  { label: "Control de Acceso", desc: "Volver al servicio principal", href: "/servicios/control-acceso-eventos" },
+  { label: "Detección de Metales", desc: "Subcategoría: arcos, wand y revisión de objetos", href: "/servicios/control-acceso-eventos/detectores-de-metales" },
+  { label: "Eventos Masivos", desc: "Filtros y aforo para +10,000 asistentes", href: "/servicios/seguridad-masivos" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados
+const modules = [
+  {
+    eyebrow: "Subcategoría especializada",
+    badge: "Tiempo real",
+    title: "Integración con tu boletaje y validación al instante",
+    intro: "El escaneo de boletos es donde la base de datos del organizador se encuentra con la fila real de asistentes. SEPRIEV lo opera como un sistema conectado: integramos la plataforma de boletaje del cliente, validamos en tiempo real y detectamos duplicados y falsificaciones en el momento del ingreso, no en el corte del día siguiente. Un acceso bien validado protege la taquilla y el aforo a la vez.",
+    features: [
+      { title: "Integración con el sistema de boletaje", text: "Coordinamos con la plataforma de ticketing del cliente —Ticketmaster, Boletia, Eventbrite, Passline o sistemas propios— para validar en tiempo real contra su base de datos. Aseguramos la compatibilidad de los lectores con pruebas previas en sitio, no el día del evento." },
+      { title: "Detección de duplicados y falsificaciones", text: "Cada boleto se marca como usado en el instante de su validación, de modo que un duplicado, una reimpresión o una captura de pantalla del mismo código se detecta al momento. La validación en tiempo real es la única forma de frenar el fraude en la puerta." },
+      { title: "Compatibilidad probada en sitio", text: "Antes del evento probamos los lectores con boletos reales de muestra para confirmar la lectura de cada formato (QR, código de barras, NFC) y la velocidad en las condiciones del recinto, evitando sorpresas cuando ya hay fila afuera." },
+    ],
+    hero: `${IMG}/control-acceso-credenciales`,
+    small1: `${IMG}/control-acceso-eventos`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    alt: [
+      "Escaneo de boleto QR en el acceso de un evento en México",
+      "Validación de boletos en tiempo real en el control de acceso",
+      "Personal validando boletos NFC en el ingreso de un evento",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Velocidad, antifraude y contingencia",
+    badge: undefined,
+    title: "Rápido, a prueba de fraude y con plan B",
+    intro: "Validar boletos no sirve de nada si frena la fila o si una caída de red detiene el ingreso. SEPRIEV equilibra velocidad y control con lectores de alta velocidad, antifraude en tiempo real y un protocolo de contingencia offline, porque en el acceso de un evento no hay margen para que el sistema deje de funcionar justo cuando llega el público.",
+    features: [
+      { title: "Lectores de alta velocidad", text: "Validamos cada boleto en pocos segundos con lectores de QR, código de barras y NFC, distribuidos en varios carriles para sostener hasta 1,200 ingresos por hora por punto sin generar cuellos de botella en el exterior." },
+      { title: "Antifraude: un boleto, un ingreso", text: "El marcaje en tiempo real impide el uso múltiple de un mismo boleto y, con anti-passback, evita que un código se pase hacia afuera para que entren varias personas. La política de reingreso se define con el organizador." },
+      { title: "Contingencia offline y reporte", text: "Si la conectividad falla, pasamos a validación manual con listas descargadas y verificación por lote, y reconciliamos los datos al restablecerse. Al cierre entregamos un reporte de aforo y asistencia conciliado." },
+    ],
+    hero: `${IMG}/centro-monitoreo-cctv-eventos`,
+    small1: `${IMG}/control-acceso-credenciales`,
+    small2: `${IMG}/guardias-seguridad-privada`,
+    alt: [
+      "Lectores de boletos de alta velocidad en el acceso de un evento",
+      "Validación antifraude de boletos en el control de acceso",
+      "Operación de escaneo de boletos con varios carriles de ingreso",
+    ],
+    featured: true,
+  },
+];
+
+// Formatos y plataformas
+const tipos = [
+  { titulo: "QR digital", nota: "App, correo y wallet" },
+  { titulo: "Código de barras", nota: "Boleto impreso o digital" },
+  { titulo: "NFC / wallet", nota: "Apple Wallet y Google Wallet" },
+  { titulo: "PDF impreso", nota: "Boleto en papel con código" },
+  { titulo: "Pulseras RFID", nota: "Festivales y acceso por zona" },
+  { titulo: "Plataforma propia", nota: "Sistemas de boletaje del cliente" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Integración probada", desc: "Compatibilidad con las principales plataformas de boletaje, validada en sitio antes del evento." },
+  { titulo: "Validación en tiempo real", desc: "Cada boleto se marca como usado al instante, deteniendo duplicados y falsificaciones." },
+  { titulo: "Antifraude", desc: "Un boleto, un ingreso, con anti-passback y política de reingreso definida con el organizador." },
+  { titulo: "Alta velocidad", desc: "Hasta 1,200 validaciones por hora por punto, con varios carriles para sostener la cadencia." },
+  { titulo: "Contingencia offline", desc: "Validación manual por lote ante caídas de red, con reconciliación posterior." },
+  { titulo: "Reporte conciliado", desc: "Aforo en tiempo real y reporte de asistencia para el organizador y la autoridad." },
+];
+
+// Relacionados
+const relacionados = [
+  { title: "Control de Acceso", description: "El servicio principal del que forma parte esta subcategoría: validación, credencialización, detección y aforo.", features: ["Credencialización", "Detección de metales", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Servicio principal", featured: true },
+  { title: "Detección de Metales", description: "Subcategoría hermana: arcos de paso, detectores de mano y revisión de objetos en el mismo punto de acceso.", features: ["Arcos de paso", "Detector de mano", "Resguardo de objetos"], href: "/servicios/control-acceso-eventos/detectores-de-metales", image: `${IMG}/control-acceso-credenciales`, badge: "Subcategoría" },
+  { title: "Conciertos y Festivales", description: "Control de multitudes y accesos por sector para eventos musicales, donde el escaneo de boletos es la puerta de entrada.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular" },
+  { title: "Eventos Masivos", description: "Validación y aforo a escala de +10,000 asistentes, con centro de comando y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Control de Acceso', href: '/servicios/control-acceso-eventos' },
+    { label: 'Escaneo de boletos (QR/NFC)' },
+  ]} />
+
+  <PageHero
+    eyebrow="Control de Acceso — Escaneo de Boletos"
+    titulo="Escaneo de Boletos QR y NFC"
+    subtitulo="Donde la base de datos del boletaje se encuentra con la fila real. Validamos en tiempo real, detectamos duplicados y falsificaciones, y tenemos plan B cuando la red falla."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Subcategoría del servicio de <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso para eventos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Integramos tu plataforma de boletaje —<strong class="text-light font-semibold">Ticketmaster, Boletia, Eventbrite</strong> o sistemas propios— y validamos QR, código de barras y NFC en tiempo real, con detección de duplicados y falsificaciones.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Hasta <strong class="text-light font-semibold">1,200 validaciones por hora</strong> por punto, antifraude y un protocolo de contingencia offline. Opera en el mismo acceso que la <a href="/servicios/control-acceso-eventos/detectores-de-metales" class="text-secondary hover:underline font-semibold">detección de metales</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark border-t border-white/8" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo opera el escaneo</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Validar el boleto correcto, a la velocidad correcta
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            Un buen escaneo de boletos resuelve dos problemas a la vez: deja entrar rápido a quien tiene boleto válido y detiene en el acto a quien presenta uno duplicado o falso. Todo conectado a la base de datos del organizador.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Integramos tu <strong class="text-light font-semibold">boletaje en tiempo real</strong>, leemos QR, código de barras y NFC, y aplicamos <strong class="text-light font-semibold">antifraude</strong> con marcaje y anti-passback, todo con pruebas de compatibilidad antes del evento.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Y porque la red puede fallar, operamos con un <strong class="text-light font-semibold">protocolo de contingencia offline</strong> que mantiene el ingreso en marcha y reconcilia los datos al restablecerse.
+          </p>
+        </div>
+      </div>
+
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Formatos y plataformas -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué leemos</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Formatos y plataformas que validamos</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            No importa cómo emita los boletos tu plataforma: leemos los formatos estándar del mercado y nos integramos a tu sistema de boletaje para validar contra tu base de datos en tiempo real.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 21v.01M17 21h.01M21 17h.01"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para el escaneo de boletos?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El escaneo de boletos toca la taquilla, el aforo y la experiencia de entrada al mismo tiempo. Operarlo con integración real, antifraude y un plan de contingencia es lo que evita que un problema técnico se convierta en una crisis en la puerta.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection
+    eyebrow="Proceso de validación"
+    titulo="Así validamos los boletos en el acceso"
+    lead="Un proceso de cuatro fases para validar rápido, frenar el fraude y no detenerse aunque falle la red."
+    parrafos={[
+      "La validación de boletos no empieza el día del evento: arranca con la integración del boletaje y las pruebas de compatibilidad en sitio, para que el día del evento solo quede operar.",
+      "Durante el ingreso validamos en tiempo real con antifraude, y si la conectividad falla pasamos a un modo offline que mantiene el flujo y reconcilia los datos después.",
+    ]}
+    pasos={pasosQr}
+  />
+
+  <!-- Relacionados -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Parte de un operativo integral</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Servicios relacionados</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El escaneo de boletos es una de las capas del control de acceso, junto con la detección de metales y el conteo de aforo, operando en el mismo punto de ingreso. Es crítico en conciertos, eventos masivos y deportivos.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas escaneo y validación de boletos para tu evento?"
+    subtitulo="Cuéntanos tu plataforma de boletaje, el aforo y el número de accesos, y dimensionamos lectores, carriles y contingencia. Propuesta en menos de 24 horas."
+    faq={faq}
+  />
+
+</BaseLayout>

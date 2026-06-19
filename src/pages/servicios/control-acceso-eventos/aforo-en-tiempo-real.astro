@@ -1,0 +1,389 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema, buildHowToSchema } from '@/lib/seo';
+
+const slug = 'aforo-en-tiempo-real';
+const parent = { slug: 'control-acceso-eventos', name: 'Control de Acceso' };
+
+const titulo = 'Control de Aforo en Tiempo Real para Eventos';
+const descripcion = 'Servicio de control y conteo de aforo en tiempo real para eventos en México: conteo por punto de acceso y por sector, sistema de semáforo de capacidad (verde, amarillo, rojo), alertas al alcanzar los umbrales definidos, apertura y cierre coordinado de accesos y reporte de aforo conciliado para el organizador y la autoridad. Subcategoría del servicio de control de acceso para eventos de SEPRIEV.';
+
+const metaTitle = 'Control de Aforo en Tiempo Real para Eventos | SEPRIEV';
+const metaDescription = 'Control de aforo en tiempo real para eventos en México: conteo por acceso y por sector, semáforo de capacidad, alertas por umbral y reporte conciliado. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${parent.slug}/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/centro-monitoreo-cctv-eventos-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito control de aforo en tiempo real para mi evento')}`;
+
+// FAQ específica de control de aforo (10)
+const faq = [
+  { q: "¿Qué es el control de aforo en tiempo real?", a: "Es el monitoreo continuo del número de personas dentro del recinto durante el evento, contadas por punto de acceso y por sector, para no superar el aforo máximo autorizado y para tomar decisiones (abrir, cerrar o redistribuir accesos) con datos en vivo y no con estimaciones." },
+  { q: "¿Cómo cuentan el aforo?", a: "Registramos cada entrada y cada salida por punto de acceso —integrando el conteo con la validación de boletos cuando existe— y mantenemos el saldo en tiempo real por sector y total. El puesto de mando ve la evolución del aforo durante toda la operación." },
+  { q: "¿Qué es el sistema de semáforo de capacidad?", a: "Es un indicador por sector y total: verde cuando hay holgura, amarillo cuando se acerca al umbral y rojo al alcanzarlo. Permite que el equipo en campo y el organizador vean de un vistazo el estado del aforo sin interpretar cifras." },
+  { q: "¿Qué pasa cuando se alcanza el límite de aforo?", a: "Al llegar al umbral definido con el organizador y la autoridad, se detiene temporalmente el ingreso al sector o al recinto y se reabre conforme salen asistentes, distribuyendo el flujo entre accesos. El objetivo es no superar nunca el aforo autorizado." },
+  { q: "¿Se integra con el escaneo de boletos?", a: "Sí. Cuando opera junto con la validación de boletos, cada validación suma al conteo automáticamente, de modo que el aforo en tiempo real se alimenta del mismo flujo de ingreso, sin doble registro." },
+  { q: "¿Miden el aforo por sector o solo el total?", a: "Ambos. Medimos el aforo total del recinto y el de cada sector o zona, lo que permite detectar que un sector se satura aunque el recinto en conjunto tenga holgura, y actuar antes de que se vuelva un problema de densidad." },
+  { q: "¿Entregan un reporte de aforo para la autoridad?", a: "Sí. Entregamos un reporte de aforo conciliado —por hora, por acceso y por sector— que sirve como evidencia ante la autoridad y la aseguradora de que el evento operó dentro del aforo autorizado." },
+  { q: "¿Manejan el reingreso en el conteo?", a: "Sí. Si el evento permite reingreso, el conteo descuenta la salida y vuelve a sumar el ingreso con marcaje, de modo que el saldo de aforo refleje siempre a las personas realmente dentro del recinto." },
+  { q: "¿Esto sirve para prevenir aplastamientos?", a: "El control de aforo es una de las capas de la prevención: mantener cada sector por debajo de su límite reduce el riesgo de densidades peligrosas. Para eventos de gran escala se combina con la gestión de multitudes y la vigilancia aérea." },
+  { q: "¿Cómo se integra con el resto del operativo?", a: "El control de aforo es una capa del control de acceso que opera junto con el escaneo de boletos y la detección de metales, y alimenta de datos al puesto de mando, especialmente en la dirección de eventos masivos." },
+];
+
+const pasosAforo = [
+  { titulo: "Definición de umbrales", desc: "Establecemos con el organizador y la autoridad el aforo máximo total y por sector, y los umbrales que dispararán las alertas y el cierre temporal de accesos." },
+  { titulo: "Conteo por punto de acceso", desc: "Registramos entradas y salidas en cada punto —integrando la validación de boletos cuando existe— para mantener el saldo de aforo en tiempo real por sector y total." },
+  { titulo: "Semáforo y alertas", desc: "El puesto de mando monitorea el semáforo de capacidad (verde, amarillo, rojo) y, al alcanzar un umbral, coordina el cierre o la redistribución del ingreso entre accesos." },
+  { titulo: "Reporte conciliado", desc: "Al cierre entregamos un reporte de aforo por hora, acceso y sector, como evidencia de que el evento operó dentro del aforo autorizado." },
+];
+
+const schemas = [
+  ...buildServicePageSchema({
+    slug,
+    parent,
+    name: titulo,
+    description: descripcion,
+    metaTitle,
+    metaDescription,
+    serviceType: "Control de aforo en tiempo real para eventos",
+    ogImage: ogImg,
+    breadcrumbName: "Aforo en tiempo real",
+    offers: [
+      "Conteo por punto de acceso y por sector",
+      "Semáforo de capacidad y alertas por umbral",
+      "Apertura y cierre coordinado de accesos",
+      "Reporte de aforo conciliado",
+    ],
+    faq,
+    datePublished: "2025-03-26",
+    serviceExtra: { serviceOutput: { "@type": "Thing", "name": "Reporte de aforo en tiempo real y conciliado" } },
+  }),
+  buildHowToSchema(
+    "Cómo controlamos el aforo en tiempo real",
+    "Proceso de SEPRIEV para el control de aforo en tiempo real en eventos: de la definición de umbrales al reporte de aforo conciliado.",
+    pasosAforo,
+    ["Contadores por punto de acceso", "Software de gestión de aforo", "Radio en puesto de mando"],
+    ["Aforo máximo autorizado", "Plano de sectores del recinto"],
+  ),
+];
+
+const navItems = [
+  { label: "Control de Acceso", desc: "Volver al servicio principal", href: "/servicios/control-acceso-eventos" },
+  { label: "Escaneo de Boletos", desc: "Subcategoría: validación QR/NFC en tiempo real", href: "/servicios/control-acceso-eventos/escaneo-qr-boletos" },
+  { label: "Eventos Masivos", desc: "Centro de comando y densidad de aforo para +10,000", href: "/servicios/seguridad-masivos" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados
+const modules = [
+  {
+    eyebrow: "Subcategoría especializada",
+    badge: "En vivo",
+    title: "Conteo por acceso y por sector, en vivo",
+    intro: "Saber cuántas personas hay dentro del recinto en cada momento no es un dato administrativo: es la base para no superar el aforo autorizado y para anticipar la saturación de un sector antes de que se vuelva peligrosa. SEPRIEV cuenta cada entrada y cada salida por punto de acceso y mantiene el saldo de aforo en tiempo real, total y por zona, visible desde el puesto de mando.",
+    features: [
+      { title: "Conteo por punto de acceso", text: "Registramos entradas y salidas en cada acceso para mantener un saldo de aforo en vivo. Cuando el evento usa validación de boletos, el conteo se alimenta de la misma operación, sin doble registro ni interpretaciones." },
+      { title: "Aforo por sector y por zona", text: "Medimos no solo el aforo total del recinto sino el de cada sector, porque un área puede saturarse mientras el conjunto tiene holgura. Ver el aforo por zona permite actuar sobre el sector correcto antes de que la densidad sea un problema." },
+      { title: "Integración con el escaneo de boletos", text: "Cuando opera junto con la validación de boletos, cada ingreso validado suma automáticamente al conteo de aforo, de modo que el control de acceso y el control de aforo sean el mismo flujo de datos y no dos registros paralelos." },
+    ],
+    hero: `${IMG}/centro-monitoreo-cctv-eventos`,
+    small1: `${IMG}/monitoreo-camaras-evento`,
+    small2: `${IMG}/control-acceso-eventos`,
+    alt: [
+      "Monitoreo de aforo en tiempo real desde el puesto de mando de un evento",
+      "Conteo de aforo por sector en pantallas de control",
+      "Control de acceso alimentando el conteo de aforo en vivo",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Semáforo, alertas y reporte",
+    badge: undefined,
+    title: "Del dato en vivo a la decisión a tiempo",
+    intro: "Contar el aforo solo sirve si se actúa sobre el dato. SEPRIEV traduce el conteo en decisiones: un semáforo de capacidad que cualquiera entiende de un vistazo, alertas al acercarse al límite y la apertura o el cierre coordinado de accesos para distribuir el flujo. Y al cierre, un reporte que prueba que el evento operó dentro del aforo autorizado.",
+    features: [
+      { title: "Semáforo de capacidad y umbrales", text: "Un indicador por sector y total —verde, amarillo, rojo— traduce las cifras en un estado que el equipo en campo y el organizador entienden al instante, con umbrales definidos con la autoridad para anticipar la saturación, no para reaccionar a ella." },
+      { title: "Apertura y cierre coordinado de accesos", text: "Al acercarse a un umbral, coordinamos el cierre temporal del ingreso a un sector o al recinto y su reapertura conforme salen asistentes, distribuyendo el flujo entre accesos para cumplir el límite sin detener masivamente la entrada en un solo punto." },
+      { title: "Reporte de aforo conciliado", text: "Al cierre entregamos un reporte por hora, por acceso y por sector que sirve como evidencia ante la autoridad y la aseguradora de que el evento operó dentro del aforo autorizado: el control de aforo deja constancia, no solo controla." },
+    ],
+    hero: `${IMG}/centro-control-seguridad`,
+    small1: `${IMG}/control-acceso-credenciales`,
+    small2: `${IMG}/guardias-seguridad-privada`,
+    alt: [
+      "Semáforo de capacidad de aforo en el puesto de mando de un evento",
+      "Alertas de aforo por umbral en el control de acceso",
+      "Coordinación de cierre de accesos por aforo en un evento",
+    ],
+    featured: true,
+  },
+];
+
+// Qué medimos
+const tipos = [
+  { titulo: "Aforo total en vivo", nota: "Personas dentro del recinto" },
+  { titulo: "Aforo por sector", nota: "Saldo por zona o localidad" },
+  { titulo: "Entradas vs salidas", nota: "Saldo neto por punto de acceso" },
+  { titulo: "Densidad por zona", nota: "Detección de saturación local" },
+  { titulo: "Umbrales y alertas", nota: "Verde, amarillo y rojo" },
+  { titulo: "Reporte conciliado", nota: "Por hora, acceso y sector" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Conteo por acceso y sector", desc: "Saldo de aforo en vivo, total y por zona, no estimaciones a ojo." },
+  { titulo: "Semáforo y alertas", desc: "Estado de capacidad entendible de un vistazo, con umbrales definidos con la autoridad." },
+  { titulo: "Integración con boletaje", desc: "Cada validación de boleto suma al conteo, sin doble registro." },
+  { titulo: "Apertura y cierre coordinado", desc: "Distribución del flujo entre accesos para no superar el aforo autorizado." },
+  { titulo: "Cumplimiento del aforo", desc: "Operación dentro del aforo máximo autorizado por la autoridad y el recinto." },
+  { titulo: "Reporte para autoridad", desc: "Evidencia conciliada por hora, acceso y sector para autoridad y aseguradora." },
+];
+
+// Relacionados
+const relacionados = [
+  { title: "Control de Acceso", description: "El servicio principal del que forma parte esta subcategoría: validación, credencialización, detección y aforo.", features: ["Validación de boletos", "Detección de metales", "Credencialización"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Servicio principal", featured: true },
+  { title: "Escaneo de Boletos", description: "Subcategoría hermana: validación QR/NFC en tiempo real que alimenta el conteo de aforo.", features: ["Validación QR/NFC", "Antifraude", "Contingencia offline"], href: "/servicios/control-acceso-eventos/escaneo-qr-boletos", image: `${IMG}/control-acceso-credenciales`, badge: "Subcategoría" },
+  { title: "Detección de Metales", description: "Subcategoría hermana: arcos de paso, detectores de mano y revisión de objetos en el acceso.", features: ["Arcos de paso", "Detector de mano", "Resguardo de objetos"], href: "/servicios/control-acceso-eventos/detectores-de-metales", image: `${IMG}/control-acceso-eventos`, badge: "Subcategoría" },
+  { title: "Eventos Masivos", description: "Conteo de aforo y densidad a escala de +10,000 asistentes, con centro de comando y vigilancia aérea.", features: ["Centro de comando", "Densidad por sector", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Control de Acceso', href: '/servicios/control-acceso-eventos' },
+    { label: 'Aforo en tiempo real' },
+  ]} />
+
+  <PageHero
+    eyebrow="Control de Acceso — Aforo en Tiempo Real"
+    titulo="Control de Aforo en Tiempo Real"
+    subtitulo="Saber cuántas personas hay dentro, en cada momento y por sector, es la base para no superar el aforo autorizado y para anticipar la saturación antes de que sea peligrosa."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Subcategoría del servicio de <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso para eventos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Contamos entradas y salidas por punto y por sector, con un <strong class="text-light font-semibold">semáforo de capacidad</strong> y alertas por umbral, y coordinamos la apertura y el cierre de accesos para no superar el aforo autorizado.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Se alimenta del <a href="/servicios/control-acceso-eventos/escaneo-qr-boletos" class="text-secondary hover:underline font-semibold">escaneo de boletos</a> y entrega un reporte conciliado para la autoridad. A gran escala, alimenta la <a href="/servicios/seguridad-masivos" class="text-secondary hover:underline font-semibold">dirección de eventos masivos</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark border-t border-white/8" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo opera el aforo</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Del dato en vivo a la decisión a tiempo
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            El aforo no se controla contando al final: se controla en vivo, por sector, con umbrales definidos antes del evento. Es la diferencia entre cumplir el aforo autorizado y descubrir que se superó cuando ya es tarde.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Contamos <strong class="text-light font-semibold">entradas y salidas por punto y por sector</strong>, alimentando el conteo con la validación de boletos, y lo traducimos en un <strong class="text-light font-semibold">semáforo de capacidad</strong> que el puesto de mando lee al instante.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Al alcanzar un umbral, coordinamos la <strong class="text-light font-semibold">apertura y el cierre de accesos</strong>, y al cierre entregamos un reporte conciliado que prueba que el evento operó dentro del aforo autorizado.
+          </p>
+        </div>
+      </div>
+
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Qué medimos -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué medimos</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Qué medimos en tiempo real</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El control de aforo no es un solo número: es un conjunto de métricas en vivo que, juntas, permiten cumplir el aforo autorizado y anticipar la saturación de cualquier zona del recinto.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M3 3v18h18M7 16v-5M12 16V8M17 16v-9"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para el control de aforo?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Superar el aforo autorizado no solo es una falta administrativa: es el origen de las densidades peligrosas. Controlarlo en vivo, por sector y con evidencia, protege a los asistentes y al organizador a la vez.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection
+    eyebrow="Proceso de aforo"
+    titulo="Así controlamos el aforo en tiempo real"
+    lead="Un proceso de cuatro fases que va de la definición de umbrales al reporte de aforo conciliado."
+    parrafos={[
+      "El control de aforo se decide antes del evento: con el organizador y la autoridad fijamos el aforo máximo total y por sector, y los umbrales que dispararán las alertas y el cierre temporal de accesos.",
+      "Durante el evento, el puesto de mando opera sobre el semáforo de capacidad en vivo, y al cierre entrega un reporte conciliado que documenta que se operó dentro del aforo autorizado.",
+    ]}
+    pasos={pasosAforo}
+  />
+
+  <!-- Relacionados -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Parte de un operativo integral</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Las 3 subcategorías de Control de Acceso</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Con el control de aforo se completa el control de acceso: la detección de metales, el escaneo de boletos y el aforo en tiempo real operan en el mismo punto de ingreso y alimentan al puesto de mando, especialmente en eventos masivos.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas control de aforo en tiempo real para tu evento?"
+    subtitulo="Cuéntanos el aforo autorizado, los sectores y los accesos del recinto, y montamos el conteo, el semáforo y el reporte. Propuesta en menos de 24 horas."
+    faq={faq}
+  />
+
+</BaseLayout>

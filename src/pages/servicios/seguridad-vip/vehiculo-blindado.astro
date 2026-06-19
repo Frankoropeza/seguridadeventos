@@ -1,0 +1,397 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema, buildHowToSchema } from '@/lib/seo';
+
+const slug = 'vehiculo-blindado';
+const parent = { slug: 'seguridad-vip', name: 'Seguridad VIP' };
+
+const titulo = 'Traslado en Vehículo Blindado para Eventos';
+const descripcion = 'Servicio de traslado en vehículo blindado para figuras de alto perfil, artistas y ejecutivos en eventos en México: flota blindada de nivel III a V coordinada con proveedores certificados, conductores de seguridad entrenados en conducción evasiva, estudio de ruta primaria y alterna, vehículo de seguimiento (caravana), revisión anti-sabotaje y comunicación cifrada con el equipo en tierra. Subcategoría del servicio de seguridad VIP de SEPRIEV, operada bajo licencia DGSSP y certificación STPS.';
+
+const metaTitle = 'Traslado en Vehículo Blindado para Eventos y VIP | SEPRIEV';
+const metaDescription = 'Traslado en vehículo blindado para VIP y ejecutivos en México: blindaje nivel III–V, conductores de conducción evasiva, estudio de ruta, caravana y enlace cifrado. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${parent.slug}/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/proteccion-ejecutiva-mexico-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito traslado en vehículo blindado para mi evento')}`;
+
+// FAQ específica de traslado blindado (10)
+const faq = [
+  { q: "¿Qué nivel de blindaje necesito?", a: "Depende del perfil de riesgo. El nivel III protege frente a armas cortas y es habitual para ejecutivos y figuras públicas en entornos urbanos; los niveles IV y V resisten armas largas de mayor potencia y se reservan para amenazas confirmadas o perfiles de máxima exposición. El nivel se define en el análisis de riesgo, no por defecto: blindar de más es tan ineficiente como blindar de menos." },
+  { q: "¿Los conductores están entrenados en conducción evasiva?", a: "Sí. Operamos con conductores de seguridad —no simples choferes— entrenados en conducción evasiva y defensiva: mantener distancias de escape, lectura de seguimientos, maniobras de evasión y salida de cercos. Un vehículo blindado sin un conductor capacitado desperdicia la mitad de su protección." },
+  { q: "¿Qué es el estudio de ruta?", a: "Es el reconocimiento previo del recorrido: definimos una ruta primaria y una alterna, identificamos puntos de congestión y de riesgo, los hospitales y puntos seguros en el trayecto y los horarios óptimos. El día del traslado el convoy se mueve sobre ese estudio, con capacidad de cambiar a la ruta alterna en tiempo real." },
+  { q: "¿Incluye vehículo de seguimiento o caravana?", a: "Según el nivel de riesgo. Para perfiles altos operamos en caravana: un vehículo principal con el protegido y un vehículo de seguimiento (follow car) con el equipo de escoltas, y cuando aplica un vehículo de avanzada. La caravana permite contener un incidente sin exponer al protegido." },
+  { q: "¿Cómo se coordina con los escoltas?", a: "El traslado blindado y el close protection son un mismo dispositivo. El equipo de escoltas gestiona el embarque y desembarque —el punto de mayor exposición— y mantiene comunicación cifrada con el conductor durante todo el recorrido, de modo que el paso del vehículo a pie y del pie al recinto esté siempre cubierto." },
+  { q: "¿Revisan el vehículo antes del traslado?", a: "Sí. Antes de cada servicio realizamos una revisión de seguridad del vehículo: inspección anti-sabotaje (incluida la parte baja del chasis), verificación de combustible, neumáticos y sistemas, y prueba de comunicaciones. El vehículo no se acerca al punto de embarque sin esa verificación." },
+  { q: "¿Tienen cobertura en otras ciudades además de CDMX?", a: "Sí. Coordinamos transporte blindado en Ciudad de México, Guadalajara, Monterrey, Puebla y Cancún a través de proveedores certificados, con conductores de seguridad y el mismo protocolo de estudio de ruta y revisión previa en cada plaza." },
+  { q: "¿Qué pasa en caso de incidente durante el traslado?", a: "El protocolo prioriza salir de la zona de riesgo: el conductor ejecuta la maniobra de evasión hacia la ruta alterna o el punto seguro más cercano mientras el equipo mantiene la comunicación con tierra. La regla es no detenerse en el punto de peligro y llevar al protegido a un lugar controlado." },
+  { q: "¿El vehículo es propio o subcontratado?", a: "Trabajamos con una flota blindada de proveedores certificados y con conductores de seguridad bajo nuestro mando y protocolo. Esto nos permite asignar el nivel de blindaje y el tipo de vehículo adecuados a cada servicio sin comprometer la cadena de responsabilidad ni la confidencialidad." },
+  { q: "¿Firman acuerdo de confidencialidad (NDA)?", a: "Sí. El conductor y todo el personal involucrado en el traslado firman un NDA y operan bajo confidencialidad absoluta sobre la identidad del protegido, los horarios, las rutas y los puntos de origen y destino. La discreción de los movimientos es parte de la seguridad." },
+];
+
+const pasosVB = [
+  { titulo: "Análisis de riesgo y selección de vehículo", desc: "Definimos el nivel de blindaje (III a V) y la configuración del convoy —vehículo principal, de seguimiento y de avanzada— según el perfil de riesgo del protegido y el tipo de evento." },
+  { titulo: "Estudio de ruta", desc: "Trazamos la ruta primaria y la alterna, identificamos puntos de riesgo y de congestión, los hospitales y puntos seguros del trayecto y los horarios óptimos del traslado." },
+  { titulo: "Revisión y preparación", desc: "Realizamos la revisión anti-sabotaje del vehículo, verificamos combustible y sistemas, probamos la comunicación cifrada y damos el briefing al conductor y al equipo." },
+  { titulo: "Ejecución del traslado", desc: "Operamos el embarque coordinado con los escoltas, el desplazamiento en convoy con contravigilancia en ruta y el desembarque seguro en el punto de destino." },
+];
+
+const schemas = [
+  ...buildServicePageSchema({
+    slug,
+    parent,
+    name: titulo,
+    description: descripcion,
+    metaTitle,
+    metaDescription,
+    serviceType: "Traslado en vehículo blindado para eventos",
+    ogImage: ogImg,
+    breadcrumbName: "Vehículo blindado",
+    offers: [],
+    faq,
+    datePublished: "2025-03-30",
+    serviceExtra: {
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        "name": "Flota de transporte blindado y conducción de seguridad",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Vehicle", "name": "Sedán blindado nivel III", "bodyType": "Sedan", "vehicleConfiguration": "Blindaje nivel III" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Vehicle", "name": "SUV blindada nivel IV–V", "bodyType": "SUV", "vehicleConfiguration": "Blindaje nivel IV–V" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Vehicle", "name": "Van blindada para grupos", "bodyType": "Van", "vehicleConfiguration": "Blindaje para traslado de equipo" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Conducción evasiva y de seguridad" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Estudio de ruta y caravana de seguimiento" } },
+        ],
+      },
+      serviceOutput: { "@type": "Thing", "name": "Traslado blindado ejecutado con bitácora de ruta" },
+    },
+  }),
+  buildHowToSchema(
+    "Cómo operamos un traslado en vehículo blindado",
+    "Proceso de SEPRIEV para el traslado en vehículo blindado de figuras de alto perfil: del análisis de riesgo y la selección del vehículo a la ejecución del traslado.",
+    pasosVB,
+    ["Vehículo blindado", "Comunicación cifrada", "GPS y monitoreo de convoy"],
+    ["Análisis de riesgo del protegido", "Estudio de ruta primaria y alterna"],
+  ),
+];
+
+const navItems = [
+  { label: "Seguridad VIP", desc: "Volver al servicio principal", href: "/servicios/seguridad-vip" },
+  { label: "Close Protection", desc: "Subcategoría: escolta personal de cercanía", href: "/servicios/seguridad-vip/close-protection" },
+  { label: "Protección Ejecutiva", desc: "Programa continuo con traslados seguros", href: "/servicios/proteccion-ejecutiva" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados
+const modules = [
+  {
+    eyebrow: "Subcategoría especializada",
+    badge: "Blindaje III–V",
+    title: "El traslado es el momento de mayor exposición",
+    intro: "Las amenazas contra figuras de alto perfil rara vez ocurren dentro del recinto: ocurren en el trayecto, cuando la persona es predecible y está confinada en un punto en movimiento. SEPRIEV trata el traslado como lo que es —la fase más vulnerable del operativo— con vehículo blindado del nivel que el riesgo exige y un conductor de seguridad capaz de aprovecharlo. Blindar el auto sin capacitar a quien lo conduce protege solo a medias.",
+    features: [
+      { title: "Vehículo blindado según el nivel de riesgo", text: "Asignamos el nivel de blindaje al perfil de la amenaza: nivel III frente a armas cortas para la mayoría de los entornos urbanos, niveles IV y V frente a armas largas para amenazas confirmadas o máxima exposición. El vehículo —sedán, SUV o van— se elige por riesgo y por logística, no por imagen, a través de proveedores certificados." },
+      { title: "Conductor de seguridad y conducción evasiva", text: "Operamos con conductores entrenados en conducción evasiva y defensiva: distancias de escape, lectura de seguimientos, maniobras de evasión y salida de cercos. El conductor forma parte del dispositivo de protección, no es un servicio de transporte aparte, y mantiene comunicación cifrada con el equipo durante todo el recorrido." },
+      { title: "Estudio de ruta primaria y alterna", text: "Antes del traslado reconocemos el recorrido: ruta primaria y alterna, puntos de congestión y de riesgo, hospitales y puntos seguros del trayecto y horarios óptimos. El día del servicio el convoy se mueve sobre ese estudio y puede cambiar a la ruta alterna en tiempo real si la situación lo exige." },
+    ],
+    hero: `${IMG}/proteccion-ejecutiva-mexico`,
+    small1: `${IMG}/seguridad-vip-eventos`,
+    small2: `${IMG}/guardias-seguridad-privada`,
+    alt: [
+      "Vehículo blindado para traslado de una figura de alto perfil en México",
+      "Conductor de seguridad y escolta junto a un vehículo blindado",
+      "Equipo de seguridad coordinando un traslado protegido",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Caravana, seguimiento y enlace",
+    badge: undefined,
+    title: "Del punto seguro a la puerta, sin un solo tramo descubierto",
+    intro: "Un traslado seguro no termina cuando el vehículo llega: termina cuando el protegido cruza la puerta del recinto. SEPRIEV cubre el recorrido completo con caravana, vehículo de seguimiento y un enlace permanente con el equipo en tierra, de modo que el paso del auto al pie y del pie a la puerta —los segundos más expuestos— nunca quede sin cobertura.",
+    features: [
+      { title: "Caravana y vehículo de seguimiento", text: "Para perfiles de alto riesgo operamos en convoy: vehículo principal con el protegido, vehículo de seguimiento (follow car) con los escoltas y, cuando aplica, un vehículo de avanzada. La caravana permite contener un incidente y mantener una capacidad de respuesta sin exponer en ningún momento al vehículo principal." },
+      { title: "Embarque y desembarque coordinado", text: "El momento de subir y bajar del vehículo concentra a la persona, al público y a la prensa en un punto fijo. Lo coordinamos con el equipo de close protection: aproximación verificada, apertura controlada, cobertura del trayecto a pie hasta la puerta y un punto de repliegue definido por si hay que abortar el movimiento." },
+      { title: "Comunicación cifrada y contravigilancia en ruta", text: "El convoy mantiene comunicación cifrada con el puesto de mando y los escoltas durante todo el recorrido, con contravigilancia activa para detectar seguimientos. La revisión anti-sabotaje previa del vehículo cierra el círculo: el traslado se controla de extremo a extremo, no solo en movimiento." },
+    ],
+    hero: `${IMG}/seguridad-vip-eventos`,
+    small1: `${IMG}/personal-seguridad-evento`,
+    small2: `${IMG}/proteccion-vip-invitados`,
+    alt: [
+      "Caravana de seguridad con vehículo principal y de seguimiento",
+      "Embarque seguro de un protegido coordinado con escoltas",
+      "Equipo de close protection cubriendo el desembarque de un VIP",
+    ],
+    featured: true,
+  },
+];
+
+// Qué incluye
+const tipos = [
+  { titulo: "Vehículo blindado", nota: "Niveles III a V según riesgo" },
+  { titulo: "Conductor de seguridad", nota: "Conducción evasiva y defensiva" },
+  { titulo: "Estudio de ruta", nota: "Primaria, alterna y puntos seguros" },
+  { titulo: "Vehículo de seguimiento", nota: "Caravana / follow car" },
+  { titulo: "Revisión anti-sabotaje", nota: "Inspección previa del vehículo" },
+  { titulo: "Enlace cifrado", nota: "Comunicación con el equipo en tierra" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Blindaje según el riesgo", desc: "El nivel de protección se asigna en el análisis de riesgo, no por defecto: ni de más ni de menos." },
+  { titulo: "Conductores certificados", desc: "Conducción evasiva y defensiva: el conductor es parte del dispositivo, no un transporte aparte." },
+  { titulo: "Rutas verificadas", desc: "Estudio previo de ruta primaria y alterna, con hospitales y puntos seguros del trayecto." },
+  { titulo: "Caravana coordinada", desc: "Vehículo de seguimiento y avanzada para contener incidentes sin exponer al principal." },
+  { titulo: "Contravigilancia en ruta", desc: "Detección activa de seguimientos y revisión anti-sabotaje previa del vehículo." },
+  { titulo: "Confidencialidad (NDA)", desc: "Discreción contractual sobre identidad, horarios, rutas y puntos de origen y destino." },
+];
+
+// Relacionados
+const relacionados = [
+  { title: "Seguridad VIP", description: "El servicio principal del que forma parte esta subcategoría: escoltas, avanzada, inteligencia y traslados para figuras de alto perfil.", features: ["Close protection", "Avanzada de seguridad", "Inteligencia preventiva"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos`, badge: "Servicio principal", featured: true },
+  { title: "Close Protection", description: "Subcategoría hermana: la escolta personal de cercanía que gestiona el embarque, el desembarque y el trayecto a pie.", features: ["Anillos de protección", "Embarque y desembarque", "Plan de extracción"], href: "/servicios/seguridad-vip/close-protection", image: `${IMG}/proteccion-vip-invitados`, badge: "Subcategoría" },
+  { title: "Protección Ejecutiva", description: "Programa continuo de protección para directivos con traslados seguros y contravigilancia como parte del servicio.", features: ["Análisis de riesgo", "Contravigilancia", "Traslados seguros"], href: "/servicios/proteccion-ejecutiva", image: `${IMG}/proteccion-ejecutiva-mexico`, badge: "Relacionado" },
+  { title: "Eventos Corporativos", description: "Traslado discreto de directivos e invitados de alto perfil hacia convenciones, lanzamientos y galas.", features: ["Personal bilingüe", "Bajo perfil", "Confidencialidad"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Seguridad VIP', href: '/servicios/seguridad-vip' },
+    { label: 'Vehículo blindado' },
+  ]} />
+
+  <PageHero
+    eyebrow="Seguridad VIP — Vehículo Blindado"
+    titulo="Traslado en Vehículo Blindado"
+    subtitulo="Las amenazas contra figuras de alto perfil rara vez ocurren dentro del recinto: ocurren en el trayecto, cuando la persona es predecible y está confinada en un punto en movimiento."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Subcategoría del servicio de <a href="/servicios/seguridad-vip" class="text-secondary hover:underline font-semibold">seguridad VIP</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Trasladamos con <strong class="text-light font-semibold">flota blindada de nivel III a V</strong> de proveedores certificados y conductores de seguridad entrenados en <strong class="text-light font-semibold">conducción evasiva</strong>, sobre un estudio de ruta primaria y alterna.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Operamos en caravana con vehículo de seguimiento, revisión anti-sabotaje y enlace cifrado, coordinado con el <a href="/servicios/seguridad-vip/close-protection" class="text-secondary hover:underline font-semibold">close protection</a> y con la <a href="/servicios/proteccion-ejecutiva" class="text-secondary hover:underline font-semibold">protección ejecutiva</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark border-t border-white/8" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo opera un traslado blindado</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            El vehículo protege; el conductor y la ruta deciden
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            Un blindaje sin conductor capacitado y sin estudio de ruta protege solo a medias. El traslado se planea como una operación: nivel de blindaje, convoy, ruta verificada y enlace permanente con tierra.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Asignamos el <strong class="text-light font-semibold">nivel de blindaje al riesgo</strong> y operamos con <strong class="text-light font-semibold">conductores de conducción evasiva</strong>, no con choferes: el conductor es parte del dispositivo de protección.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Cada recorrido se ejecuta sobre un <strong class="text-light font-semibold">estudio de ruta primaria y alterna</strong>, en caravana cuando el riesgo lo exige, con revisión anti-sabotaje previa y comunicación cifrada.
+          </p>
+        </div>
+      </div>
+
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Qué incluye -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué incluye</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Qué incluye el traslado blindado</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El traslado blindado no es solo un auto reforzado: es un dispositivo con conductor capacitado, ruta estudiada, convoy y enlace permanente, diseñado para que el trayecto deje de ser el eslabón débil del operativo.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M3 13l2-5a2 2 0 0 1 2-1h10a2 2 0 0 1 2 1l2 5M5 13h14v4H5zM7 17v2M17 17v2"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para tu traslado blindado?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            En traslados, la seguridad la define la planeación tanto como el blindaje: una ruta estudiada y un conductor capacitado valen tanto como el acero. Cada servicio combina vehículo, conductor y convoy bajo un mismo mando y con discreción contractual.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection
+    eyebrow="Proceso de traslado"
+    titulo="Así operamos un traslado blindado"
+    lead="Un proceso de cuatro fases que va del análisis de riesgo y la selección del vehículo a la ejecución del traslado."
+    parrafos={[
+      "El traslado se decide antes de arrancar: el análisis de riesgo determina el nivel de blindaje y la configuración del convoy, y el estudio de ruta fija la primaria, la alterna y los puntos seguros del trayecto.",
+      "El día del servicio, la revisión anti-sabotaje y el briefing preceden a un traslado que se ejecuta en convoy, con contravigilancia en ruta y embarque y desembarque coordinados con los escoltas.",
+    ]}
+    pasos={pasosVB}
+  />
+
+  <!-- Relacionados -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Parte de un operativo integral</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">El traslado blindado dentro del dispositivo VIP</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El traslado blindado es inseparable del close protection: el vehículo lleva al protegido hasta la puerta y los escoltas cubren el resto. Junto con la protección ejecutiva continua, forman un dispositivo VIP sin tramos descubiertos.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas un traslado en vehículo blindado?"
+    subtitulo="Cuéntanos el perfil del protegido, el origen y destino y la ciudad, y diseñamos el traslado —nivel de blindaje, conductor, ruta y convoy— con confidencialidad garantizada. Propuesta en menos de 24 horas."
+    faq={faq}
+  />
+
+</BaseLayout>

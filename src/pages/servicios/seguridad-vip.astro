@@ -325,6 +325,29 @@ const relacionados = [
     </div>
   </section>
 
+  <!-- Subcategorías -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="subcat-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Subcategorías</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="subcat-h">Explora cada capa del dispositivo VIP</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El dispositivo VIP se compone de tres capas que operan como una sola: la escolta personal de cercanía, el traslado blindado y la discreción total. Cada una tiene su página con el detalle de cómo opera.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ServiceCard title="Close Protection" description="Escolta personal de cercanía: avanzada, anillos de protección, formaciones a pie, embarque/desembarque y plan de extracción." features={["Avanzada de seguridad", "Anillos de protección", "Plan de extracción"]} href="/servicios/seguridad-vip/close-protection" image={`${IMG}/seguridad-vip-eventos`} badge="Subcategoría" />
+        <ServiceCard title="Vehículo Blindado" description="Traslado blindado nivel III–V con conductores de conducción evasiva, estudio de ruta, caravana y enlace cifrado." features={["Blindaje III–V", "Conducción evasiva", "Estudio de ruta"]} href="/servicios/seguridad-vip/vehiculo-blindado" image={`${IMG}/proteccion-ejecutiva-mexico`} badge="Subcategoría" />
+        <ServiceCard title="Discreción Total" description="Servicio anti-paparazzi y bajo perfil: control de prensa, rutas reservadas, zonas sin cámaras y confidencialidad (NDA)." features={["Bajo perfil", "Anti-paparazzi", "Confidencialidad (NDA)"]} href="/servicios/seguridad-vip/discrecion-total" image={`${IMG}/seguridad-vip-gala`} badge="Subcategoría" />
+      </div>
+    </div>
+  </section>
+
   <ProcessSection titulo="Así operamos tu dispositivo VIP" />
 
   <!-- Otros servicios -->

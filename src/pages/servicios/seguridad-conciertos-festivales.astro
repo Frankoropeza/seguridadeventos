@@ -318,6 +318,29 @@ const relacionados = [
     </div>
   </section>
 
+  <!-- Subcategorías -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="subcat-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Subcategorías</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="subcat-h">Explora cada especialidad de conciertos</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            La seguridad de un concierto se compone de tres especialidades que operan como un solo plan: el control de multitudes en escena, el backstage seguro en las zonas técnicas y la coordinación institucional con las autoridades. Cada una tiene su página con el detalle del operativo.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ServiceCard title="Control de Multitudes" description="Diseño de flujos, densidad por sector y prevención de aplastamientos en el frente de escenario." features={["Diseño de flujos", "Densidad por sector", "Protocolo de show-stop"]} href="/servicios/seguridad-conciertos-festivales/control-de-multitudes" image={`${IMG}/seguridad-conciertos-multitud`} badge="Subcategoría" />
+        <ServiceCard title="Backstage Seguro" description="Credencialización por niveles, control de zonas técnicas y protección del talento y su staff." features={["Credencialización", "Zonas restringidas", "Protección de artistas"]} href="/servicios/seguridad-conciertos-festivales/backstage-seguro" image={`${IMG}/personal-seguridad-evento`} badge="Subcategoría" />
+        <ServiceCard title="Coordinación Institucional" description="Programa Interno de Protección Civil, permisos y mando unificado con Protección Civil, bomberos y policía." features={["Programa Interno PC", "Permisos y dictámenes", "Mando unificado"]} href="/servicios/seguridad-conciertos-festivales/coordinacion-institucional" image={`${IMG}/centro-control-seguridad`} badge="Subcategoría" />
+      </div>
+    </div>
+  </section>
+
   <ProcessSection titulo="Así protegemos tu concierto" />
 
   <!-- Otros servicios -->

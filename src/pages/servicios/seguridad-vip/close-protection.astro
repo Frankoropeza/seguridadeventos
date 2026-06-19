@@ -1,0 +1,408 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE, PHONE_PRIMARY } from '@/lib/config';
+import { buildServicePageSchema, buildHowToSchema } from '@/lib/seo';
+
+const slug = 'close-protection';
+const parent = { slug: 'seguridad-vip', name: 'Seguridad VIP' };
+
+const titulo = 'Close Protection (Escolta Personal) para Eventos';
+const descripcion = 'Servicio de close protection —protección personal de cercanía— para artistas, celebridades, ejecutivos y figuras de alto perfil en eventos en México: avanzada de seguridad, anillos de protección, formaciones a pie, embarque y desembarque seguro de vehículo, escoltas mujeres, respuesta médica y plan de extracción y evacuación. Escoltas con perfil de ex fuerzas de seguridad, certificación STPS y operación bajo licencia DGSSP. Subcategoría del servicio de seguridad VIP de SEPRIEV.';
+
+const metaTitle = 'Close Protection y Escoltas Personales para Eventos | SEPRIEV';
+const metaDescription = 'Close protection (escolta personal) para artistas, celebridades y ejecutivos en México: avanzada, anillos de protección, embarque/desembarque, escoltas mujeres y extracción. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${parent.slug}/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/seguridad-vip-eventos-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito close protection (escolta personal) para mi evento')}`;
+
+// FAQ específica de close protection (10)
+const faq = [
+  { q: "¿Qué es el close protection o protección de cercanía?", a: "Es la disciplina de proteger a una persona manteniendo a su lado a uno o varios escoltas (close protection officers) entrenados para anticipar el riesgo y, si algo ocurre, sacar al protegido de la zona de peligro. Se basa en la avanzada, la lectura del entorno y la formación de protección, no en la fuerza: el objetivo es que el incidente nunca alcance al protegido." },
+  { q: "¿En qué se diferencia un escolta de close protection de un guardaespaldas?", a: "Un guardaespaldas tradicional aporta presencia física; un escolta de close protection aporta método. Trabaja sobre una avanzada, conoce las rutas y el hospital más cercano, mantiene una formación según el entorno, gestiona el embarque y desembarque del vehículo y tiene un plan de extracción definido. La diferencia es anticipación entrenada, no tamaño." },
+  { q: "¿Qué es la avanzada de seguridad (advance)?", a: "Es el reconocimiento previo del recinto y de la agenda del protegido: accesos y salidas, puntos seguros, el hospital más cercano, las rutas primaria y alterna y los momentos de mayor exposición. El dispositivo del día se ejecuta sobre esa avanzada, de modo que cada movimiento responda a una decisión tomada con antelación y no a la improvisación." },
+  { q: "¿Qué son los anillos de protección?", a: "Es la forma de organizar el dispositivo en capas alrededor del protegido: un anillo cercano (el escolta personal, a brazo de distancia), un anillo intermedio (el resto del equipo, gestionando accesos y público) y un anillo exterior (avanzada, vehículo y enlace con la seguridad del recinto). Cada capa filtra lo que la anterior no debe ver llegar." },
+  { q: "¿Cuántos escoltas necesito?", a: "Depende del perfil de riesgo, el tipo de evento y el nivel de exposición. Un ejecutivo o influencer en un evento controlado puede requerir uno o dos escoltas; un artista internacional ante miles de personas, un equipo con supervisor, avanzada y vehículo de seguimiento. Tras el estudio del protegido y la avanzada del recinto entregamos el dimensionamiento exacto." },
+  { q: "¿Tienen escoltas mujeres?", a: "Sí. Contamos con escoltas mujeres certificadas en close protection, indispensables para la protección de figuras femeninas y para entornos donde el acceso de un escolta hombre sería inapropiado (probadores, zonas privadas, protección de menores). El género del escolta es una decisión operativa, no estética." },
+  { q: "¿Cómo manejan el embarque y desembarque del vehículo?", a: "El momento de subir y bajar del vehículo es el de mayor exposición de cualquier protegido, porque concentra a la persona, al público y a la prensa en un punto fijo. Lo coordinamos con el conductor y la avanzada: aproximación verificada, apertura controlada de la puerta, cobertura del trayecto a pie y un punto de repliegue definido por si hay que abortar." },
+  { q: "¿Los escoltas van armados?", a: "La mayoría de los dispositivos de close protection en eventos operan de forma disuasiva y no armada, porque la prioridad es evacuar al protegido, no enfrentar. Cuando el perfil de riesgo lo justifica, el porte de arma se realiza únicamente con la autorización oficial correspondiente y dentro del marco legal aplicable. Definimos esto en el análisis de riesgo, nunca por defecto." },
+  { q: "¿Qué pasa si hay un incidente durante el evento?", a: "El protocolo de close protection prioriza la extracción: ante una amenaza, el escolta cercano cubre y desplaza al protegido hacia el punto seguro o el vehículo por una ruta predefinida, mientras el resto del anillo contiene. Para niveles altos diseñamos un plan de evacuación VIP independiente del plan general del evento." },
+  { q: "¿El protegido tiene que cambiar su forma de moverse?", a: "Lo mínimo posible. Hacemos un briefing breve para acordar señales, ubicación del escolta y qué hacer ante un incidente, pero el dispositivo se adapta al protegido y no al revés. Un buen equipo de close protection se siente como un acompañamiento natural, no como una restricción a la vida o la imagen de la persona." },
+];
+
+const pasosCP = [
+  { titulo: "Estudio del protegido y avanzada", desc: "Analizamos el perfil de riesgo, la agenda y el nivel de exposición del protegido, y enviamos la avanzada al recinto: accesos, puntos seguros, hospital más cercano y rutas primaria y alterna." },
+  { titulo: "Diseño del dispositivo", desc: "Definimos el número de escoltas, los anillos de protección, las formaciones a pie, el género del personal cuando aplica y el nivel de exposición acordado con la representación del cliente." },
+  { titulo: "Ejecución y acompañamiento", desc: "Operamos el embarque y desembarque, las formaciones a pie y la gestión de público y prensa con comunicación cifrada entre el anillo cercano, el vehículo y la avanzada." },
+  { titulo: "Contingencia y extracción", desc: "Mantenemos un plan de extracción y un punto de reunión definidos, con respuesta médica inmediata y, en niveles altos, una evacuación VIP independiente del plan general del evento." },
+];
+
+const schemas = [
+  ...buildServicePageSchema({
+    slug,
+    parent,
+    name: titulo,
+    description: descripcion,
+    metaTitle,
+    metaDescription,
+    serviceType: "Close protection y escolta personal para eventos",
+    ogImage: ogImg,
+    breadcrumbName: "Close protection",
+    offers: [
+      "Escolta personal de cercanía (close protection officer)",
+      "Avanzada de seguridad y anillos de protección",
+      "Embarque y desembarque seguro de vehículo",
+      "Plan de extracción y evacuación",
+    ],
+    faq,
+    datePublished: "2025-03-28",
+    serviceExtra: {
+      availableChannel: {
+        "@type": "ServiceChannel",
+        "serviceType": "Coordinación de protección personal",
+        "serviceUrl": canonical,
+        "availableLanguage": ["es", "en"],
+        "servicePhone": {
+          "@type": "ContactPoint",
+          "telephone": PHONE_PRIMARY,
+          "contactType": "security",
+          "availableLanguage": ["Spanish", "English"],
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "00:00",
+            "closes": "23:59",
+          },
+        },
+      },
+    },
+  }),
+  buildHowToSchema(
+    "Cómo opera la protección personal (close protection)",
+    "Proceso de SEPRIEV para la protección personal de cercanía en eventos: del estudio del protegido y la avanzada al plan de extracción.",
+    pasosCP,
+    ["Comunicación cifrada", "Vehículo de seguimiento", "Equipo de primeros auxilios (RCP/DEA)"],
+    ["Perfil y agenda del protegido", "Avanzada y plano del recinto"],
+  ),
+];
+
+const navItems = [
+  { label: "Seguridad VIP", desc: "Volver al servicio principal", href: "/servicios/seguridad-vip" },
+  { label: "Protección Ejecutiva", desc: "Programa continuo de protección para directivos", href: "/servicios/proteccion-ejecutiva" },
+  { label: "Backstage Seguro", desc: "Protección del artista dentro del recinto", href: "/servicios/seguridad-conciertos-festivales/backstage-seguro" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados
+const modules = [
+  {
+    eyebrow: "Subcategoría especializada",
+    badge: "Close protection",
+    title: "El escolta que anticipa, no el que reacciona",
+    intro: "La protección personal de calidad casi nunca se nota. No es el escolta corpulento detrás de la figura: es el equipo que ya conocía la salida, que sabía dónde estaba el hospital y que movió al protegido antes de que la situación escalara. SEPRIEV despliega close protection officers con perfil de ex fuerzas de seguridad que trabajan sobre una avanzada y una formación definida, porque en protección de personas lo que no se anticipa ya no se gestiona: se sufre.",
+    features: [
+      { title: "Avanzada y estudio del protegido", text: "Antes de cada movimiento estudiamos el perfil de riesgo y la agenda del protegido y enviamos la avanzada al recinto: accesos y salidas, puntos seguros, hospital más cercano y rutas primaria y alterna. El dispositivo del día parte de esa avanzada, de modo que cada paso responda a una decisión tomada con antelación y no a la improvisación del momento." },
+      { title: "Anillos de protección y formaciones a pie", text: "Organizamos el equipo en capas alrededor del protegido —un anillo cercano a brazo de distancia, uno intermedio que gestiona accesos y público y uno exterior con avanzada y vehículo— y adaptamos la formación a pie al entorno: cerrada entre multitudes, abierta y discreta en espacios controlados. Cada capa filtra lo que la anterior no debe ver llegar." },
+      { title: "Embarque y desembarque seguro", text: "Subir y bajar del vehículo es el punto de mayor exposición de cualquier figura, porque fija a la persona, al público y a la prensa en un mismo lugar. Lo coordinamos con el conductor y la avanzada: aproximación verificada, apertura controlada, cobertura del trayecto a pie y un punto de repliegue definido por si hay que abortar el movimiento." },
+    ],
+    hero: `${IMG}/seguridad-vip-eventos`,
+    small1: `${IMG}/proteccion-vip-invitados`,
+    small2: `${IMG}/seguridad-vip-gala`,
+    alt: [
+      "Escolta de close protection acompañando a una figura de alto perfil en un evento",
+      "Anillo de protección de escoltas VIP en una alfombra roja",
+      "Escolta personal cubriendo el embarque de un protegido en una gala",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Extracción, respuesta médica y discreción",
+    badge: undefined,
+    title: "Cuando algo sale mal: extraer primero, todo lo demás después",
+    intro: "Un dispositivo de close protection se juzga por lo que hace en los segundos que siguen a un incidente. SEPRIEV entrena a sus escoltas para extraer al protegido antes que enfrentar, con un plan de evacuación definido, respuesta médica inmediata y la posibilidad de incorporar escoltas mujeres y protección familiar. La meta no es ganar la confrontación: es que la figura nunca llegue a estar en ella.",
+    features: [
+      { title: "Plan de extracción y evacuación", text: "Ante una amenaza, el escolta cercano cubre y desplaza al protegido hacia el punto seguro o el vehículo por una ruta predefinida mientras el resto del anillo contiene. Para niveles de máxima seguridad diseñamos un plan de evacuación VIP independiente del plan general del evento, con punto de reunión y vehículo de extracción asignados de antemano." },
+      { title: "Respuesta médica inmediata", text: "Todo el personal está certificado en primeros auxilios, RCP y uso de DEA, con la opción de un paramédico dedicado al equipo de protección en eventos de alto riesgo. La emergencia médica es, estadísticamente, el incidente más probable alrededor de una figura pública, y se atiende con el mismo método que cualquier otra contingencia." },
+      { title: "Escoltas mujeres y protección familiar", text: "Incorporamos escoltas mujeres certificadas cuando la protección de una figura femenina, el acceso a zonas privadas o la protección de menores así lo exige, y extendemos el dispositivo a la familia del protegido. El género y la composición del equipo son decisiones operativas que se definen en el diseño del dispositivo, no detalles estéticos." },
+    ],
+    hero: `${IMG}/proteccion-ejecutiva-mexico`,
+    small1: `${IMG}/guardias-seguridad-privada`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    alt: [
+      "Equipo de close protection ejecutando una extracción de un protegido",
+      "Escolta personal con equipo de respuesta médica en un evento",
+      "Escolta mujer en un dispositivo de protección personal VIP",
+    ],
+    featured: true,
+  },
+];
+
+// Qué incluye el dispositivo
+const tipos = [
+  { titulo: "Avanzada de seguridad", nota: "Reconocimiento previo del recinto" },
+  { titulo: "Anillos de protección", nota: "Cercano, intermedio y exterior" },
+  { titulo: "Formaciones a pie", nota: "Adaptadas al entorno y al público" },
+  { titulo: "Embarque y desembarque", nota: "El punto de mayor exposición" },
+  { titulo: "Escoltas mujeres", nota: "Protección femenina y familiar" },
+  { titulo: "Extracción y evacuación", nota: "Plan VIP independiente" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Escoltas certificados", desc: "Perfiles de ex fuerzas de seguridad con entrenamiento avanzado en close protection y certificación STPS." },
+  { titulo: "Avanzada antes de moverse", desc: "Cada desplazamiento se ejecuta sobre un reconocimiento previo de accesos, rutas y hospital más cercano." },
+  { titulo: "Dispositivo de bajo perfil", desc: "Protección presente sin acaparar la atención: la figura es la protagonista, no su equipo." },
+  { titulo: "Protección femenina", desc: "Escoltas mujeres certificadas para figuras femeninas, zonas privadas y protección de menores." },
+  { titulo: "Respuesta médica", desc: "Personal certificado en primeros auxilios, RCP y DEA, con paramédico dedicado opcional." },
+  { titulo: "Confidencialidad (NDA)", desc: "Discreción contractual sobre identidad, movimientos e información del protegido." },
+];
+
+// Relacionados
+const relacionados = [
+  { title: "Seguridad VIP", description: "El servicio principal del que forma parte esta subcategoría: escoltas, avanzada, inteligencia y traslados para figuras de alto perfil.", features: ["Close protection", "Avanzada de seguridad", "Inteligencia preventiva"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos`, badge: "Servicio principal", featured: true },
+  { title: "Protección Ejecutiva", description: "Programa continuo de protección para directivos, basado en análisis de riesgo, con contravigilancia y traslados seguros.", features: ["Análisis de riesgo", "Contravigilancia", "Traslados seguros"], href: "/servicios/proteccion-ejecutiva", image: `${IMG}/proteccion-ejecutiva-mexico`, badge: "Relacionado" },
+  { title: "Backstage Seguro", description: "Protección del artista dentro del recinto: el complemento natural del close protection en conciertos y festivales.", features: ["Acceso por anillos", "Camerinos sellados", "Acompañamiento a escenario"], href: "/servicios/seguridad-conciertos-festivales/backstage-seguro", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Subcategoría" },
+  { title: "Conciertos y Festivales", description: "Protección de artistas y dispositivos de bajo perfil para eventos musicales de cualquier escala.", features: ["Protección de artistas", "Backstage seguro", "Control de multitudes"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-multitud` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Seguridad VIP', href: '/servicios/seguridad-vip' },
+    { label: 'Close protection' },
+  ]} />
+
+  <PageHero
+    eyebrow="Seguridad VIP — Close Protection"
+    titulo="Close Protection (Escolta Personal)"
+    subtitulo="La protección personal de calidad casi nunca se nota: es el equipo que ya conocía la salida, sabía dónde estaba el hospital y movió al protegido antes de que la situación escalara."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Subcategoría del servicio de <a href="/servicios/seguridad-vip" class="text-secondary hover:underline font-semibold">seguridad VIP</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Desplegamos <strong class="text-light font-semibold">close protection officers</strong> con perfil de ex fuerzas de seguridad que trabajan sobre una avanzada, anillos de protección y formaciones a pie, con embarque y desembarque seguro y un plan de extracción definido.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Personal certificado en <strong class="text-light font-semibold">primeros auxilios, RCP y DEA</strong>, escoltas mujeres disponibles y confidencialidad contractual (NDA). Se integra con la <a href="/servicios/proteccion-ejecutiva" class="text-secondary hover:underline font-semibold">protección ejecutiva</a> y con el <a href="/servicios/seguridad-conciertos-festivales/backstage-seguro" class="text-secondary hover:underline font-semibold">backstage seguro</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark border-t border-white/8" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo opera la protección personal</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Proteger sin estorbar, anticipar sin alarmar
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            Un buen escolta de close protection es invisible para el público y omnipresente para el protegido. La planeación pesa más que la fuerza: el dispositivo se arma sobre la avanzada y la formación, no sobre la reacción.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El equipo se organiza en <strong class="text-light font-semibold">anillos de protección</strong> —cercano, intermedio y exterior— con comunicación cifrada y una avanzada que verifica accesos, rutas y hospital antes de cada movimiento.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            El <strong class="text-light font-semibold">embarque y desembarque</strong> del vehículo se trata como el punto crítico que es, y todo el dispositivo se respalda con un <strong class="text-light font-semibold">plan de extracción</strong> y respuesta médica inmediata.
+          </p>
+        </div>
+      </div>
+
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Qué incluye el dispositivo -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué incluye</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Qué incluye el dispositivo de close protection</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            La protección personal no es un solo escolta: es un dispositivo con capas, formaciones y planes de contingencia que, juntos, mantienen al protegido fuera del alcance del incidente y listo para salir de cualquier situación.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para tu close protection?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            En protección de personas, la calidad se mide por la anticipación: lo que no se previene, ya es tarde para gestionarlo. Cada escolta combina método, discreción y respuesta médica, con la seguridad del protegido como prioridad innegociable.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection
+    eyebrow="Proceso de protección"
+    titulo="Así opera la protección personal"
+    lead="Un proceso de cuatro fases que va del estudio del protegido y la avanzada al plan de extracción."
+    parrafos={[
+      "La protección personal se decide antes del evento: estudiamos el perfil de riesgo y la agenda del protegido, enviamos la avanzada al recinto y diseñamos el dispositivo —escoltas, anillos, formaciones y nivel de exposición— con la representación del cliente.",
+      "Durante el evento ejecutamos el acompañamiento sobre esa planeación, con un plan de extracción y respuesta médica siempre listos, porque un buen dispositivo se mide por lo que hace en los segundos que siguen a un incidente.",
+    ]}
+    pasos={pasosCP}
+  />
+
+  <!-- Relacionados -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Parte de un operativo integral</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">El close protection dentro del dispositivo VIP</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El close protection es el núcleo del servicio de seguridad VIP, y opera junto con la inteligencia preventiva, los traslados y la protección ejecutiva continua. En eventos musicales, se articula con el backstage seguro para cubrir al artista de la puerta al escenario.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas close protection para tu evento?"
+    subtitulo="Cuéntanos el perfil del protegido, el tipo de evento y la ciudad, y diseñamos el dispositivo —escoltas, avanzada, formaciones y extracción— con confidencialidad garantizada. Propuesta en menos de 24 horas."
+    faq={faq}
+  />
+
+</BaseLayout>

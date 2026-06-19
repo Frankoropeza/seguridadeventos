@@ -1,0 +1,386 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema, buildHowToSchema } from '@/lib/seo';
+
+const slug = 'personal-bilingue';
+const parent = { slug: 'seguridad-eventos-corporativos', name: 'Eventos Corporativos' };
+
+const titulo = 'Personal de Seguridad Bilingüe para Eventos Corporativos';
+const descripcion = 'Personal de seguridad bilingüe (español e inglés) para eventos corporativos en México: agentes con dominio del inglés para convenciones internacionales, delegaciones extranjeras, registro, áreas VIP y enlace con equipos de seguridad internacionales. Subcategoría del servicio de seguridad para eventos corporativos de SEPRIEV.';
+
+const metaTitle = 'Personal de Seguridad Bilingüe para Eventos | SEPRIEV';
+const metaDescription = 'Personal de seguridad bilingüe (español/inglés) para eventos corporativos en México: convenciones internacionales, delegaciones extranjeras y protocolo empresarial. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${parent.slug}/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/seguridad-eventos-corporativos-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito personal de seguridad bilingüe para un evento corporativo')}`;
+
+// FAQ específica de personal bilingüe
+const faq = [
+  { q: "¿En qué idiomas opera el personal bilingüe?", a: "Español e inglés. Asignamos agentes con dominio del inglés (nivel intermedio-avanzado) capaces de interactuar con asistentes y delegaciones extranjeras, gestionar accesos y coordinar con equipos de seguridad internacionales. Para eventos con otros idiomas, lo evaluamos según disponibilidad." },
+  { q: "¿En qué puntos del evento colocan personal bilingüe?", a: "En los puntos de mayor interacción con asistentes internacionales: registro y acreditación, recepción y hospitalidad, áreas VIP y green room, conferencias y paneles, y el enlace con las delegaciones o sus equipos de seguridad. El número y la ubicación se definen en el briefing previo." },
+  { q: "¿El personal bilingüe también está capacitado en protocolo corporativo?", a: "Sí. Además del idioma, los agentes asignados a eventos corporativos están formados en etiqueta empresarial, manejo de situaciones delicadas sin escalar el tono y trato discreto con directivos, prensa y delegaciones, para integrarse al ambiente sin romperlo." },
+  { q: "¿Pueden coordinar con equipos de seguridad extranjeros?", a: "Sí. El personal bilingüe sirve de enlace con los equipos de corporate security o tour security de delegaciones internacionales, alineando protocolos, accesos y roles, de modo que ambos equipos operen sin fricciones y bajo un mando claro." },
+  { q: "¿Firman acuerdo de confidencialidad (NDA)?", a: "Sí. Como todo el personal corporativo de SEPRIEV, los agentes bilingües firman un Acuerdo de Confidencialidad que cubre identidades, contenido de presentaciones e información sensible observada durante el operativo." },
+  { q: "¿El personal bilingüe se adapta al dress code del evento?", a: "Sí. Se presentan con la vestimenta que el entorno exige —traje formal, business casual o uniforme según la zona—, porque la integración visual es parte de la discreción que un evento corporativo internacional requiere." },
+  { q: "¿Cuántos agentes bilingües necesita mi evento?", a: "Depende del número de asistentes internacionales y de los puntos de contacto críticos. Tras conocer el programa y los perfiles esperados, te recomendamos cuántos agentes bilingües asignar y en qué posiciones, dentro del operativo corporativo." },
+  { q: "¿Esto cómo se integra con el resto del operativo corporativo?", a: "El personal bilingüe es una capa del operativo de seguridad para eventos corporativos: se combina con el control de acceso, la protección ejecutiva de los directivos y la seguridad VIP de los invitados de alto perfil, bajo un solo plan y un punto único de contacto." },
+];
+
+// Proceso específico (ProcessSection + HowTo)
+const pasosBil = [
+  { titulo: "Briefing de idioma y protocolo", desc: "Definimos con el cliente los perfiles de asistentes internacionales, los idiomas requeridos y el protocolo de trato, y seleccionamos a los agentes bilingües con el nivel adecuado." },
+  { titulo: "Asignación a puntos clave", desc: "Colocamos al personal bilingüe en los puntos de mayor interacción —registro, recepción, áreas VIP, enlace con delegaciones— según el programa del evento." },
+  { titulo: "Operación y enlace", desc: "Durante el evento, el personal bilingüe atiende a los asistentes extranjeros, coordina con los equipos de seguridad internacionales y resuelve situaciones sin escalar el tono." },
+  { titulo: "Reporte ejecutivo", desc: "Al cierre, las incidencias y observaciones de los puntos bilingües se integran en el informe ejecutivo post-evento que recibe el organizador." },
+];
+
+const schemas = [
+  ...buildServicePageSchema({
+    slug,
+    parent,
+    name: titulo,
+    description: descripcion,
+    metaTitle,
+    metaDescription,
+    serviceType: "Personal de seguridad bilingüe para eventos corporativos",
+    ogImage: ogImg,
+    breadcrumbName: "Personal bilingüe",
+    offers: [
+      "Agentes con dominio del inglés",
+      "Etiqueta y protocolo corporativo",
+      "Enlace con seguridad internacional",
+      "Confidencialidad contractual (NDA)",
+    ],
+    faq,
+    datePublished: "2025-03-16",
+    serviceExtra: { availableLanguage: ["Spanish", "English"] },
+  }),
+  buildHowToSchema(
+    "Cómo asignamos personal de seguridad bilingüe a tu evento",
+    "Proceso de SEPRIEV para asignar y operar personal de seguridad bilingüe en eventos corporativos: del briefing de idioma y protocolo al reporte ejecutivo.",
+    pasosBil,
+  ),
+];
+
+const navItems = [
+  { label: "Eventos Corporativos", desc: "Volver al servicio principal", href: "/servicios/seguridad-eventos-corporativos" },
+  { label: "Protección Ejecutiva", desc: "Protección de directivos y delegaciones", href: "/servicios/proteccion-ejecutiva" },
+  { label: "Seguridad VIP", desc: "Protección de invitados de alto perfil", href: "/servicios/seguridad-vip" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados
+const modules = [
+  {
+    eyebrow: "Subcategoría especializada",
+    badge: "Español / Inglés",
+    title: "Agentes con dominio del inglés y etiqueta corporativa",
+    intro: "En una convención internacional o una cumbre con delegaciones extranjeras, la seguridad también atiende, orienta y resuelve en el idioma del invitado. SEPRIEV asigna personal bilingüe formado en protocolo empresarial, capaz de moverse entre directivos y delegaciones internacionales sin generar fricciones. El idioma no es un extra: es parte de la hospitalidad ejecutiva y de la discreción que el evento exige.",
+    features: [
+      { title: "Dominio del inglés", text: "Los agentes asignados tienen un dominio del inglés suficiente para interactuar con asistentes extranjeros, gestionar accesos con representantes de otras delegaciones y coordinar con equipos de seguridad internacionales cuando el evento lo requiere, sin necesidad de un intérprete de por medio." },
+      { title: "Etiqueta y protocolo corporativo", text: "Su formación incluye etiqueta empresarial, manejo de situaciones delicadas sin escalar el tono y comunicación con el equipo de producción del cliente sin interrumpir el ritmo del evento. La seguridad bilingüe se integra al ambiente corporativo en lugar de romperlo." },
+      { title: "Posiciones de contacto bilingües", text: "Colocamos al personal bilingüe en los puntos donde más interactúa el asistente internacional —registro, recepción, áreas VIP y enlace con delegaciones—, de modo que la primera y la última impresión del evento sean en el idioma del invitado." },
+    ],
+    hero: `${IMG}/seguridad-eventos-corporativos`,
+    small1: `${IMG}/seguridad-empresarial-evento`,
+    small2: `${IMG}/equipo-seguridad-eventos`,
+    alt: [
+      "Personal de seguridad bilingüe en una convención corporativa en México",
+      "Agente bilingüe en el registro de un congreso internacional",
+      "Equipo de seguridad corporativa atendiendo a delegaciones extranjeras",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Eventos internacionales",
+    badge: undefined,
+    title: "Convenciones internacionales y delegaciones",
+    intro: "Cuando el evento reúne a delegaciones de varios países, la seguridad bilingüe deja de ser un detalle y se vuelve infraestructura: es el puente entre el operativo local y los equipos de seguridad que llegan con cada delegación. SEPRIEV opera esa capa de enlace para que todo el dispositivo funcione como uno solo, sin malentendidos de idioma ni de protocolo.",
+    features: [
+      { title: "Registro y acreditación bilingüe", text: "El personal bilingüe agiliza el registro y la acreditación de asistentes internacionales, resolviendo dudas y gestionando credenciales sin que la barrera del idioma genere filas o fricciones en el acceso." },
+      { title: "Enlace con seguridad internacional", text: "Servimos de puente con los equipos de corporate security o de protección de las delegaciones extranjeras, alineando protocolos, accesos y roles para que ambos equipos operen bajo un mando claro y sin duplicidades." },
+      { title: "Comunicación de crisis en dos idiomas", text: "Ante una contingencia, la comunicación clara en español e inglés evita la confusión que amplifica cualquier incidente. El personal bilingüe asegura que las instrucciones lleguen a todos los asistentes, sin importar su idioma." },
+    ],
+    hero: `${IMG}/proteccion-ejecutiva-mexico`,
+    small1: `${IMG}/control-acceso-eventos`,
+    small2: `${IMG}/guardias-seguridad-privada`,
+    alt: [
+      "Enlace de seguridad bilingüe con una delegación internacional",
+      "Acreditación bilingüe en el acceso de un evento corporativo",
+      "Personal de seguridad coordinando con equipos internacionales",
+    ],
+    featured: true,
+  },
+];
+
+// Dónde colocamos personal bilingüe
+const tipos = [
+  { titulo: "Registro y acreditación", nota: "Primer contacto con el asistente" },
+  { titulo: "Recepción y hospitalidad", nota: "Bienvenida y orientación" },
+  { titulo: "Áreas VIP y green room", nota: "Directivos e invitados de honor" },
+  { titulo: "Enlace con delegaciones", nota: "Puente con seguridad internacional" },
+  { titulo: "Conferencias y paneles", nota: "Control de salas y ponentes" },
+  { titulo: "Puntos de información", nota: "Atención a asistentes extranjeros" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Dominio del inglés verificado", desc: "Agentes con nivel intermedio-avanzado para interactuar y coordinar sin intérprete." },
+  { titulo: "Etiqueta corporativa", desc: "Formación en protocolo empresarial y trato discreto con directivos y prensa." },
+  { titulo: "Enlace internacional", desc: "Puente con los equipos de corporate security de las delegaciones extranjeras." },
+  { titulo: "Confidencialidad (NDA)", desc: "Acuerdo de no divulgación estándar para todo el personal corporativo." },
+  { titulo: "Imagen institucional", desc: "Dress code adaptable e integración visual al ambiente del evento." },
+  { titulo: "Reporte ejecutivo", desc: "Las incidencias de los puntos bilingües se integran al informe post-evento." },
+];
+
+// Relacionados (servicios existentes)
+const relacionados = [
+  { title: "Eventos Corporativos", description: "El servicio principal del que forma parte esta subcategoría: seguridad discreta para convenciones, lanzamientos y galas.", features: ["Confidencialidad", "Dress code adaptable", "Reporte ejecutivo"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos`, badge: "Servicio principal", featured: true },
+  { title: "Protección Ejecutiva", description: "Protección de directivos y delegaciones de alto perfil durante el evento y sus traslados.", features: ["Análisis de riesgo", "Escolta de proximidad", "Traslados seguros"], href: "/servicios/proteccion-ejecutiva", image: `${IMG}/proteccion-ejecutiva-mexico` },
+  { title: "Seguridad VIP", description: "Protección personal de invitados de honor y figuras de alto perfil con dispositivo de bajo perfil.", features: ["Close protection", "Bajo perfil", "Confidencialidad"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos` },
+  { title: "Control de Acceso", description: "Registro, credencialización y aforo en tiempo real para convenciones y congresos.", features: ["Credencialización", "Registro", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Eventos Corporativos', href: '/servicios/seguridad-eventos-corporativos' },
+    { label: 'Personal bilingüe' },
+  ]} />
+
+  <PageHero
+    eyebrow="Eventos Corporativos — Personal Bilingüe"
+    titulo="Personal de Seguridad Bilingüe"
+    subtitulo="En una convención internacional, la seguridad también atiende y resuelve en el idioma del invitado. Asignamos agentes bilingües formados en protocolo empresarial que se integran al ambiente sin romperlo."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Subcategoría especializada del servicio de <a href="/servicios/seguridad-eventos-corporativos" class="text-secondary hover:underline font-semibold">seguridad para eventos corporativos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Personal con dominio del <strong class="text-light font-semibold">español y el inglés</strong> para convenciones internacionales, delegaciones extranjeras y enlace con equipos de seguridad de otros países.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Formación en etiqueta corporativa, confidencialidad contractual y dress code adaptable, con licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>. Se combina con la <a href="/servicios/proteccion-ejecutiva" class="text-secondary hover:underline font-semibold">protección ejecutiva</a> de los directivos y el <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso</a> del evento.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark border-t border-white/8" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo opera el personal bilingüe</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Seguridad que también habla el idioma del invitado
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            En eventos con presencia internacional, un agente que no entiende al asistente extranjero genera fricción justo en los momentos de mayor exposición. El personal bilingüe elimina esa barrera.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Asignamos agentes con <strong class="text-light font-semibold">dominio del inglés y etiqueta corporativa</strong> en los puntos de mayor interacción, y los usamos como <strong class="text-light font-semibold">enlace</strong> con los equipos de seguridad de las delegaciones extranjeras.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Toda la operación se documenta y se integra en el <strong class="text-light font-semibold">reporte ejecutivo</strong> del evento, con el mismo estándar de confidencialidad y discreción del operativo corporativo.
+          </p>
+        </div>
+      </div>
+
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Dónde colocamos personal bilingüe -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Dónde lo colocamos</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Posiciones con personal bilingüe</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            No todo el operativo necesita ser bilingüe: colocamos a los agentes con inglés en los puntos donde más interactúa el asistente internacional, optimizando el recurso sin perder cobertura ni hospitalidad.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM2 12h20M12 2c2.5 2.7 4 6.3 4 10s-1.5 7.3-4 10c-2.5-2.7-4-6.3-4-10s1.5-7.3 4-10z"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para personal bilingüe?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Un agente bilingüe no es solo alguien que habla inglés: es un profesional de seguridad que además puede atender, coordinar y resolver con delegaciones internacionales sin perder el protocolo ni la discreción que un evento corporativo exige.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection
+    eyebrow="Proceso bilingüe"
+    titulo="Así asignamos personal bilingüe"
+    lead="Un proceso de cuatro fases para que el idioma y el protocolo estén resueltos desde antes del evento."
+    parrafos={[
+      "Asignar personal bilingüe no es improvisar el día del evento: parte de un briefing con el cliente sobre los perfiles de asistentes internacionales y el protocolo de trato, y termina con las observaciones integradas en el reporte ejecutivo.",
+      "Optimizamos el recurso colocando a los agentes con inglés exactamente donde más interactúa el asistente extranjero, sin sobredimensionar el operativo.",
+    ]}
+    pasos={pasosBil}
+  />
+
+  <!-- Relacionados -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Parte de un operativo integral</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Servicios relacionados</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El personal bilingüe es una de las capas del operativo corporativo, junto con el dress code adaptable y la confidencialidad. Se combina con la protección ejecutiva de los directivos, la seguridad VIP de los invitados de honor y el control de acceso del evento.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas personal de seguridad bilingüe para tu evento?"
+    subtitulo="Cuéntanos el tipo de evento, el número de asistentes internacionales y los idiomas requeridos, y recibe una propuesta en menos de 24 horas."
+    faq={faq}
+  />
+
+</BaseLayout>

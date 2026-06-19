@@ -22,31 +22,31 @@ Total L4: **30** (10 categorías × 3 subcategorías). Hechas: **1**. Pendientes
 |---|---|---|---|
 | 1 | Control de multitudes | `…/control-de-multitudes` | ✅ Hecho |
 | 2 | Backstage seguro | `…/backstage-seguro` | ✅ Hecho |
-| 3 | Coordinación institucional | `…/coordinacion-institucional` | ⬜ Pendiente |
+| 3 | Coordinación institucional | `…/coordinacion-institucional` | ✅ Hecho |
 
 ## 2. Eventos Corporativos — `/servicios/seguridad-eventos-corporativos`
 
 | # | Subcategoría | Slug (URL) | Estado |
 |---|---|---|---|
-| 1 | Personal bilingüe | `…/personal-bilingue` | ⬜ Pendiente |
-| 2 | Dress code adaptable | `…/dress-code-adaptable` | ⬜ Pendiente |
-| 3 | Confidencialidad (NDA) | `…/confidencialidad-nda` | ⬜ Pendiente |
+| 1 | Personal bilingüe | `…/personal-bilingue` | ✅ Hecho |
+| 2 | Dress code adaptable | `…/dress-code-adaptable` | ✅ Hecho |
+| 3 | Confidencialidad (NDA) | `…/confidencialidad-nda` | ✅ Hecho |
 
 ## 3. Control de Acceso — `/servicios/control-acceso-eventos`
 
 | # | Subcategoría | Slug (URL) | Estado |
 |---|---|---|---|
-| 1 | Detectores de metales | `…/detectores-de-metales` | ⬜ Pendiente |
-| 2 | Escaneo de boletos (QR/NFC) | `…/escaneo-qr-boletos` | ⬜ Pendiente |
-| 3 | Aforo en tiempo real | `…/aforo-en-tiempo-real` | ⬜ Pendiente |
+| 1 | Detectores de metales | `…/detectores-de-metales` | ✅ Hecho |
+| 2 | Escaneo de boletos (QR/NFC) | `…/escaneo-qr-boletos` | ✅ Hecho |
+| 3 | Aforo en tiempo real | `…/aforo-en-tiempo-real` | ✅ Hecho |
 
 ## 4. Seguridad VIP — `/servicios/seguridad-vip`
 
 | # | Subcategoría | Slug (URL) | Estado |
 |---|---|---|---|
-| 1 | Close protection | `…/close-protection` | ⬜ Pendiente |
-| 2 | Vehículo blindado | `…/vehiculo-blindado` | ⬜ Pendiente |
-| 3 | Discreción total / anti-paparazzi | `…/discrecion-total` | ⬜ Pendiente |
+| 1 | Close protection | `…/close-protection` | ✅ Hecho |
+| 2 | Vehículo blindado | `…/vehiculo-blindado` | ✅ Hecho |
+| 3 | Discreción total / anti-paparazzi | `…/discrecion-total` | ✅ Hecho |
 
 ## 5. Protección Ejecutiva — `/servicios/proteccion-ejecutiva`
 

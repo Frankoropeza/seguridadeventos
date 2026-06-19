@@ -321,6 +321,29 @@ const relacionados = [
     </div>
   </section>
 
+  <!-- Subcategorías -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="subcat-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Subcategorías</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="subcat-h">Explora cada especialidad corporativa</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El operativo corporativo se compone de tres capas que operan bajo un mismo plan: personal bilingüe para eventos internacionales, dress code adaptable a la imagen del evento y confidencialidad contractual sobre la información. Cada una tiene su página con el detalle.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ServiceCard title="Personal Bilingüe" description="Agentes con dominio del inglés y etiqueta corporativa para convenciones internacionales y delegaciones extranjeras." features={["Español / Inglés", "Etiqueta corporativa", "Enlace internacional"]} href="/servicios/seguridad-eventos-corporativos/personal-bilingue" image={`${IMG}/seguridad-empresarial-evento`} badge="Subcategoría" />
+        <ServiceCard title="Dress Code Adaptable" description="Vestimenta del personal a la medida de la imagen del evento, de la etiqueta formal al bajo perfil de civil." features={["Imagen institucional", "Niveles de vestimenta", "Integración discreta"]} href="/servicios/seguridad-eventos-corporativos/dress-code-adaptable" image={`${IMG}/equipo-seguridad-eventos`} badge="Subcategoría" />
+        <ServiceCard title="Confidencialidad (NDA)" description="Acuerdo de no divulgación para todo el personal, con gobernanza de la información y consecuencias reales." features={["NDA estándar", "Need-to-know", "Personal verificado"]} href="/servicios/seguridad-eventos-corporativos/confidencialidad-nda" image={`${IMG}/seguridad-eventos-corporativos`} badge="Subcategoría" />
+      </div>
+    </div>
+  </section>
+
   <ProcessSection titulo="Así protegemos tu evento corporativo" />
 
   <!-- Otros servicios -->

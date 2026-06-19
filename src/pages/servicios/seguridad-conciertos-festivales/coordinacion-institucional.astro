@@ -1,0 +1,387 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema, buildHowToSchema } from '@/lib/seo';
+
+const slug = 'coordinacion-institucional';
+const parent = { slug: 'seguridad-conciertos-festivales', name: 'Conciertos y Festivales' };
+
+const titulo = 'Coordinación Institucional para Conciertos y Festivales';
+const descripcion = 'Servicio de coordinación institucional para conciertos y festivales en México: tramitación del Programa Interno de Protección Civil, gestión de permisos y dictámenes, enlace y mando unificado con Protección Civil, bomberos, Cruz Roja/ERUM, policía y tránsito. Parte del operativo de seguridad para conciertos y festivales de SEPRIEV.';
+
+const metaTitle = 'Coordinación Institucional en Conciertos y Festivales | SEPRIEV';
+const metaDescription = 'Coordinación con Protección Civil, bomberos, Cruz Roja y policía para conciertos y festivales en México: Programa Interno de PC, permisos y mando unificado. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${parent.slug}/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/centro-control-seguridad-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito coordinación institucional para mi concierto o festival')}`;
+
+// FAQ específica de coordinación institucional (10)
+const faq = [
+  { q: "¿Qué es la coordinación institucional en un evento?", a: "Es la gestión que articula al operativo privado de seguridad con las autoridades que intervienen en un evento masivo —Protección Civil, bomberos, Cruz Roja/ERUM, policía y tránsito— bajo un mando unificado, además de la tramitación de los permisos y el Programa Interno de Protección Civil que la autoridad exige para autorizar el evento." },
+  { q: "¿Tramitan el Programa Interno de Protección Civil?", a: "Sí. Elaboramos y tramitamos el Programa Interno de Protección Civil (PIPC) y el plan de contingencia, y los presentamos ante la autoridad correspondiente. Es un requisito obligatorio para autorizar conciertos y festivales de aforo relevante." },
+  { q: "¿Qué permisos se necesitan para un concierto o festival?", a: "Según el recinto y el aforo: Programa Interno de Protección Civil aprobado, dictamen de bomberos, visto bueno de uso de suelo, permisos de Protección Civil municipal/estatal y, en su caso, informe de aforo. Hacemos el diagnóstico normativo y gestionamos la documentación con el organizador." },
+  { q: "¿Coordinan con bomberos y Cruz Roja?", a: "Sí. Integramos a bomberos en la inspección de instalaciones y el plan contra incendio, y a la Cruz Roja o el ERUM en los servicios médicos de emergencia, con un hospital de referencia definido y rutas de evacuación coordinadas antes del evento." },
+  { q: "¿Qué es el mando unificado?", a: "Es un esquema en el que todas las instituciones —Protección Civil, bomberos, servicios médicos, policía, tránsito y SEPRIEV— operan desde un mismo punto de decisión, con un canal de comunicación común y un protocolo de escalamiento, de modo que ante un incidente la respuesta sea coordinada y no dependa de decisiones aisladas." },
+  { q: "¿Quién decide detener o evacuar el evento?", a: "La decisión se toma dentro del mando unificado, según una cadena de mando y unos umbrales de escalamiento definidos antes del evento. SEPRIEV aporta la información de campo y ejecuta el protocolo de evacuación parcial o total en coordinación con Protección Civil y los servicios de emergencia." },
+  { q: "¿Coordinan el cierre de calles y vialidades con tránsito?", a: "Sí. Para eventos que afectan la vía pública coordinamos con tránsito el plan de movilidad, los cierres de calles, los accesos de emergencia y la gestión de estacionamientos, de modo que el ingreso y la salida del público no colapsen el entorno del recinto." },
+  { q: "¿Entregan una carpeta de seguridad?", a: "Sí. Documentamos el operativo en una carpeta de seguridad que reúne el PIPC, el plan de contingencia, los permisos y la evidencia de campo. Es el expediente que sustenta el evento ante la autoridad y la aseguradora." },
+  { q: "¿Cuánto tiempo antes hay que tramitar los permisos?", a: "Depende del municipio y del aforo, pero recomendamos iniciar el diagnóstico normativo y la tramitación con varias semanas de anticipación, porque algunos dictámenes (bomberos, uso de suelo) y el PIPC requieren tiempos de revisión de la autoridad." },
+  { q: "¿Cómo se integra con el resto del operativo?", a: "La coordinación institucional es el marco legal y operativo sobre el que descansan las demás subcategorías: el control de multitudes y el backstage seguro operan dentro del plan de contingencia y bajo el mando unificado que esta coordinación articula." },
+];
+
+// Pasos del proceso (se usan en ProcessSection visual y en el schema HowTo)
+const pasosCoord = [
+  { titulo: "Diagnóstico normativo", desc: "Identificamos los permisos, dictámenes y trámites que el recinto y el aforo exigen, y definimos el calendario de gestión con el organizador." },
+  { titulo: "Tramitación de permisos y PIPC", desc: "Elaboramos y presentamos el Programa Interno de Protección Civil y el plan de contingencia, junto con la documentación de bomberos, uso de suelo y autoridades locales." },
+  { titulo: "Reunión de coordinación", desc: "Sesión previa con Protección Civil, bomberos, Cruz Roja/ERUM, policía y tránsito para alinear roles, canal de radio común y protocolo de escalamiento." },
+  { titulo: "Mando unificado el día del evento", desc: "Operamos desde un puesto de mando conjunto con enlace continuo a todas las instituciones, y entregamos un reporte de cierre con incidencias al finalizar." },
+];
+
+const schemas = [
+  ...buildServicePageSchema({
+    slug,
+    parent,
+    name: titulo,
+    description: descripcion,
+    metaTitle,
+    metaDescription,
+    serviceType: "Coordinación institucional para conciertos y festivales",
+    ogImage: ogImg,
+    breadcrumbName: "Coordinación institucional",
+    offers: [
+      "Tramitación del Programa Interno de Protección Civil",
+      "Gestión de permisos y dictámenes",
+      "Mando unificado con autoridades",
+      "Enlace con servicios de emergencia",
+    ],
+    faq,
+    datePublished: "2025-03-14",
+  }),
+  buildHowToSchema(
+    "Cómo coordinamos con las autoridades para tu evento",
+    "Proceso de coordinación institucional de SEPRIEV para conciertos y festivales: del diagnóstico normativo al mando unificado el día del evento.",
+    pasosCoord,
+  ),
+];
+
+const navItems = [
+  { label: "Conciertos y Festivales", desc: "Volver al servicio principal", href: "/servicios/seguridad-conciertos-festivales" },
+  { label: "Control de Multitudes", desc: "Subcategoría: flujos y densidad en escena", href: "/servicios/seguridad-conciertos-festivales/control-de-multitudes" },
+  { label: "Backstage Seguro", desc: "Subcategoría: credencialización y zonas técnicas", href: "/servicios/seguridad-conciertos-festivales/backstage-seguro" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados
+const modules = [
+  {
+    eyebrow: "Subcategoría especializada",
+    badge: "Cumplimiento",
+    title: "Permisos, Protección Civil y carpeta de seguridad",
+    intro: "Un concierto o festival no se autoriza solo con un buen operativo: requiere un marco normativo en regla. SEPRIEV se encarga de la coordinación institucional, desde la tramitación del Programa Interno de Protección Civil hasta los dictámenes que cada autoridad exige, y lo documenta todo en una carpeta de seguridad que sustenta el evento ante la autoridad y la aseguradora. Sin este andamiaje legal, el mejor operativo del mundo opera sobre terreno inestable.",
+    features: [
+      { title: "Programa Interno de Protección Civil", text: "Elaboramos y tramitamos el PIPC y el plan de contingencia ante la autoridad correspondiente, con las rutas de evacuación, los puntos de reunión y la cadena de mando que exige la normativa para autorizar un evento de aforo relevante." },
+      { title: "Gestión de permisos y dictámenes", text: "Hacemos el diagnóstico normativo del recinto y gestionamos con el organizador el dictamen de bomberos, el visto bueno de uso de suelo y los permisos de Protección Civil municipal o estatal, según lo que el inmueble y el aforo requieran." },
+      { title: "Carpeta de seguridad documentada", text: "Reunimos el PIPC, el plan de contingencia, los permisos y la evidencia de campo en un expediente único. Esa carpeta es la que sustenta el evento ante la autoridad y la aseguradora, y convierte el cumplimiento en algo verificable y no declarativo." },
+    ],
+    hero: `${IMG}/centro-control-seguridad`,
+    small1: `${IMG}/guardias-seguridad-privada`,
+    small2: `${IMG}/control-acceso-eventos`,
+    alt: [
+      "Coordinación institucional de seguridad para un concierto en México",
+      "Personal de seguridad en enlace con autoridades durante un evento",
+      "Documentación y permisos de Protección Civil para un festival",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Mando unificado",
+    badge: undefined,
+    title: "Un solo punto de decisión con todas las autoridades",
+    intro: "El día del evento, la coordinación institucional deja de ser papeleo y se convierte en mando unificado: Protección Civil, bomberos, servicios médicos, policía, tránsito y SEPRIEV operando desde un mismo puesto de mando, con un canal común y un protocolo de escalamiento ensayado. Ante un incidente, la respuesta coordinada ya está lista y no depende de decisiones aisladas.",
+    features: [
+      { title: "Puesto de mando unificado", text: "Concentramos en un solo punto a todas las instituciones que intervienen en el evento, con un canal de radio común y la información de campo de SEPRIEV, de modo que cada decisión se tome con la misma imagen de la situación." },
+      { title: "Protocolo de escalamiento", text: "Definimos antes del evento quién decide qué y cuándo, con umbrales de activación claros para evacuación parcial o total, atención médica masiva o suspensión, ensayados con las autoridades en la reunión de coordinación previa." },
+      { title: "Enlace con servicios de emergencia", text: "Integramos a la Cruz Roja o el ERUM, las ambulancias en sitio y el hospital de referencia, con rutas de evacuación y accesos de emergencia coordinados con tránsito, para que la atención llegue en minutos y no en decisiones improvisadas." },
+    ],
+    hero: `${IMG}/centro-monitoreo-cctv-eventos`,
+    small1: `${IMG}/personal-seguridad-evento`,
+    small2: `${IMG}/seguridad-conciertos-multitud`,
+    alt: [
+      "Puesto de mando unificado con autoridades en un evento masivo",
+      "Enlace de seguridad privada con servicios de emergencia",
+      "Coordinación de evacuación y multitudes en un concierto",
+    ],
+    featured: true,
+  },
+];
+
+// Instituciones con las que coordinamos
+const tipos = [
+  { titulo: "Protección Civil", nota: "PIPC, plan de contingencia y dictamen" },
+  { titulo: "Bomberos", nota: "Inspección y plan contra incendio" },
+  { titulo: "Cruz Roja / ERUM", nota: "Servicios médicos de emergencia" },
+  { titulo: "Policía municipal/estatal", nota: "Perímetro exterior y vialidades" },
+  { titulo: "Tránsito", nota: "Movilidad, cierres y estacionamientos" },
+  { titulo: "Autoridad del recinto", nota: "Uso de suelo y permisos locales" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "PIPC tramitado", desc: "Elaboramos y presentamos el Programa Interno de Protección Civil y el plan de contingencia ante la autoridad." },
+  { titulo: "Mando unificado", desc: "Todas las instituciones operando desde un solo punto de decisión con canal común." },
+  { titulo: "Protocolo de escalamiento", desc: "Roles y umbrales definidos y ensayados: quién decide qué y cuándo, antes del evento." },
+  { titulo: "Enlace médico", desc: "Cruz Roja/ERUM, ambulancias y hospital de referencia con rutas coordinadas con tránsito." },
+  { titulo: "Experiencia con autoridades locales", desc: "Conocemos los trámites y tiempos de Protección Civil en CDMX, Guadalajara, Monterrey, Puebla y Cancún." },
+  { titulo: "Carpeta de seguridad", desc: "Expediente documentado que sustenta el evento ante la autoridad y la aseguradora." },
+];
+
+// Relacionados / cluster de subcategorías (las 3 ya existen)
+const relacionados = [
+  { title: "Conciertos y Festivales", description: "El servicio principal del que forma parte esta subcategoría: operativo integral de seguridad para eventos musicales.", features: ["Control de multitudes", "Backstage seguro", "Plan de seguridad"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Servicio principal", featured: true },
+  { title: "Control de Multitudes", description: "Subcategoría hermana: diseño de flujos, densidad por sector y prevención de aplastamientos.", features: ["Diseño de flujos", "Densidad por sector", "Show-stop"], href: "/servicios/seguridad-conciertos-festivales/control-de-multitudes", image: `${IMG}/seguridad-conciertos-multitud`, badge: "Subcategoría" },
+  { title: "Backstage Seguro", description: "Subcategoría hermana: credencialización por niveles, zonas técnicas y protección del talento.", features: ["Credencialización", "Zonas restringidas", "Protección de artistas"], href: "/servicios/seguridad-conciertos-festivales/backstage-seguro", image: `${IMG}/personal-seguridad-evento`, badge: "Subcategoría" },
+  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 con centro de comando y mando unificado con autoridades.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Conciertos y Festivales', href: '/servicios/seguridad-conciertos-festivales' },
+    { label: 'Coordinación institucional' },
+  ]} />
+
+  <PageHero
+    eyebrow="Conciertos y Festivales — Coordinación Institucional"
+    titulo="Coordinación Institucional"
+    subtitulo="Un concierto no se autoriza solo con un buen operativo: necesita un marco normativo en regla y un mando unificado con las autoridades. SEPRIEV articula ambos, del trámite al día del evento."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Subcategoría especializada del operativo de <a href="/servicios/seguridad-conciertos-festivales" class="text-secondary hover:underline font-semibold">seguridad para conciertos y festivales</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Tramitamos el <strong class="text-light font-semibold">Programa Interno de Protección Civil</strong>, gestionamos permisos y dictámenes, y articulamos el mando unificado con Protección Civil, bomberos, Cruz Roja, policía y tránsito.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Es el marco legal sobre el que operan las demás subcategorías: el <a href="/servicios/seguridad-conciertos-festivales/control-de-multitudes" class="text-secondary hover:underline font-semibold">control de multitudes</a> y el <a href="/servicios/seguridad-conciertos-festivales/backstage-seguro" class="text-secondary hover:underline font-semibold">backstage seguro</a> trabajan dentro del plan de contingencia que esta coordinación documenta. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark border-t border-white/8" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo coordinamos con las autoridades</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            Del trámite al mando unificado
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            La coordinación institucional es el andamiaje legal y operativo del evento: convierte un operativo de seguridad en uno autorizado, auditable y respaldado por las autoridades que intervienen.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Trabajamos en dos planos: el <strong class="text-light font-semibold">cumplimiento normativo</strong> previo —PIPC, permisos, dictámenes y carpeta de seguridad— y el <strong class="text-light font-semibold">mando unificado</strong> el día del evento, con todas las instituciones en un mismo punto de decisión.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            Conocemos los trámites y tiempos de Protección Civil en las principales ciudades del país, lo que reduce la incertidumbre del organizador y evita que un permiso pendiente ponga en riesgo la autorización del evento.
+          </p>
+        </div>
+      </div>
+
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Instituciones con las que coordinamos -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Con quién coordinamos</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Instituciones con las que coordinamos</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Un evento masivo involucra a varias autoridades, cada una con su competencia. La coordinación institucional las integra en un solo plan y un solo mando, para que ninguna actúe por su cuenta el día del evento.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M3 21h18M4 10h16M12 3l8 7H4l8-7zM6 10v8M10 10v8M14 10v8M18 10v8"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para la coordinación institucional?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            La coordinación con autoridades es la parte menos visible de un evento y, a la vez, la que decide si se autoriza y si la respuesta ante un incidente es ordenada. Llevarla bien es lo que distingue a una empresa de seguridad seria de una que solo aporta personal.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection
+    eyebrow="Proceso de coordinación"
+    titulo="Así coordinamos con las autoridades"
+    lead="Un proceso de cuatro fases que va del diagnóstico normativo al mando unificado el día del evento."
+    parrafos={[
+      "La coordinación institucional no improvisa el día del evento: arranca semanas antes con el diagnóstico de los permisos que el recinto y el aforo exigen, y termina con un mando unificado en operación y un reporte de cierre.",
+      "Conocer los tiempos de cada autoridad —Protección Civil, bomberos, uso de suelo— es lo que evita que un trámite pendiente ponga en riesgo la autorización del evento a última hora.",
+    ]}
+    pasos={pasosCoord}
+  />
+
+  <!-- Relacionados / subcategorías -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Parte de un operativo integral</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Las 3 subcategorías de Conciertos y Festivales</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Con la coordinación institucional se completa el operativo de conciertos y festivales: el marco legal y el mando, sobre el que operan el control de multitudes en escena y el backstage seguro en las zonas técnicas. Tres frentes, un solo plan.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas coordinación institucional para tu evento?"
+    subtitulo="Cuéntanos el recinto, el aforo y la fecha, y te ayudamos con el diagnóstico normativo, el Programa Interno de Protección Civil y el mando unificado. Propuesta en menos de 24 horas."
+    faq={faq}
+  />
+
+</BaseLayout>

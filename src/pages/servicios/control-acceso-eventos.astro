@@ -325,6 +325,29 @@ const relacionados = [
     </div>
   </section>
 
+  <!-- Subcategorías -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="subcat-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Subcategorías</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-light leading-tight" id="subcat-h">Explora cada componente del acceso</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El control de acceso opera en un solo punto de ingreso con tres componentes que trabajan juntos: la detección de metales, el escaneo y validación de boletos y el conteo de aforo en tiempo real. Cada uno tiene su página con el detalle.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ServiceCard title="Detección de Metales" description="Arcos de paso, detectores de mano (wand) y revisión de bolsos con equipo propio y trato respetuoso." features={["Equipo propio", "Revisión secundaria", "Punto de resguardo"]} href="/servicios/control-acceso-eventos/detectores-de-metales" image={`${IMG}/control-acceso-credenciales`} badge="Subcategoría" />
+        <ServiceCard title="Escaneo de Boletos (QR/NFC)" description="Validación en tiempo real integrada a tu boletaje, con antifraude y contingencia offline." features={["Validación QR/NFC", "Antifraude", "Contingencia offline"]} href="/servicios/control-acceso-eventos/escaneo-qr-boletos" image={`${IMG}/control-acceso-eventos`} badge="Subcategoría" />
+        <ServiceCard title="Aforo en Tiempo Real" description="Conteo por acceso y por sector, semáforo de capacidad, alertas por umbral y reporte conciliado." features={["Conteo por sector", "Semáforo y alertas", "Reporte conciliado"]} href="/servicios/control-acceso-eventos/aforo-en-tiempo-real" image={`${IMG}/centro-monitoreo-cctv-eventos`} badge="Subcategoría" />
+      </div>
+    </div>
+  </section>
+
   <ProcessSection titulo="Así operamos el control de acceso" />
 
   <!-- Otros servicios -->

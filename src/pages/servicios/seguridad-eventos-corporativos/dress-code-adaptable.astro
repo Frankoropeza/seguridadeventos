@@ -1,0 +1,385 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumb from '@/components/Breadcrumb.astro';
+import PageHero from '@/components/PageHero.astro';
+import PageNav from '@/components/PageNav.astro';
+import StatsSection from '@/components/StatsSection.astro';
+import ServiceCard from '@/components/ServiceCard.astro';
+import ProcessSection from '@/components/ProcessSection.astro';
+import CTABanner from '@/components/CTABanner.astro';
+import { WHATSAPP_NUMBER, SITE } from '@/lib/config';
+import { buildServicePageSchema, buildHowToSchema } from '@/lib/seo';
+
+const slug = 'dress-code-adaptable';
+const parent = { slug: 'seguridad-eventos-corporativos', name: 'Eventos Corporativos' };
+
+const titulo = 'Dress Code Adaptable para Seguridad en Eventos Corporativos';
+const descripcion = 'Personal de seguridad con dress code adaptable para eventos corporativos en México: traje formal, business casual, uniforme institucional, táctico discreto o ropa de civil según la zona y el momento del operativo, para integrarse a la imagen del evento sin romper el ambiente. Subcategoría del servicio de seguridad para eventos corporativos de SEPRIEV.';
+
+const metaTitle = 'Dress Code Adaptable | Seguridad para Eventos | SEPRIEV';
+const metaDescription = 'Personal de seguridad con dress code adaptable para eventos corporativos en México: traje formal, business casual, uniforme o bajo perfil según la zona y el momento. Licencia DGSSP.';
+
+const canonical = `${SITE}/servicios/${parent.slug}/${slug}`;
+
+const IMG = '/img/eventos';
+const ogImg = new URL(`${IMG}/seguridad-empresarial-evento-1200.jpg`, SITE).toString();
+
+const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, necesito personal de seguridad con dress code adaptable para un evento corporativo')}`;
+
+// FAQ específica de dress code adaptable
+const faq = [
+  { q: "¿Qué significa que el dress code sea adaptable?", a: "Que el personal de seguridad se presenta con la vestimenta que cada zona y momento del evento requieren: traje formal en el salón principal, uniforme táctico en el área de carga y ropa de civil en los accesos perimetrales, por ejemplo. El objetivo es que la seguridad se integre a la imagen del evento sin romper el ambiente ni delatar el dispositivo." },
+  { q: "¿Qué niveles de vestimenta manejan?", a: "Etiqueta o black tie para galas, business formal (traje oscuro y corbata), business casual, uniforme institucional identificado, táctico discreto y civil de bajo perfil. El nivel se acuerda en el briefing previo según el formato del evento y las indicaciones del cliente." },
+  { q: "¿Quién define el dress code del personal?", a: "Lo define el cliente junto con SEPRIEV en la sesión de planeación, según el protocolo del evento y la imagen de la marca. La instrucción de vestimenta queda documentada en el briefing previo y se verifica antes del despliegue." },
+  { q: "¿Pueden vestir de civil o de bajo perfil?", a: "Sí. Para eventos donde la presencia visible de seguridad no es deseable, el personal opera de civil o en bajo perfil, integrándose entre los asistentes mientras mantiene el control de accesos y el monitoreo del entorno con la misma efectividad." },
+  { q: "¿El dress code afecta la efectividad del personal?", a: "No. La vestimenta cambia, pero la capacitación, los protocolos y el equipo de comunicación son los mismos. Un agente de traje en una gala tiene la misma formación y la misma cadena de mando que uno uniformado en el perímetro." },
+  { q: "¿Se adaptan a la imagen de la marca del evento?", a: "Sí. Cuando el cliente lo solicita, el personal puede portar prendas o distintivos acordes a la identidad del evento (por ejemplo, polo con logo discreto), siempre que no comprometa la funcionalidad ni la seguridad del operativo." },
+  { q: "¿Manejan la presentación frente a prensa y medios?", a: "Sí. En eventos con cobertura mediática cuidamos especialmente la presentación del personal, porque la imagen del dispositivo de seguridad forma parte de la imagen pública del evento y de la marca del organizador." },
+  { q: "¿Esto cómo se integra con el resto del operativo?", a: "El dress code adaptable es una capa transversal del operativo corporativo: aplica al personal bilingüe, al control de acceso y a la protección de directivos, de modo que todo el dispositivo mantenga una imagen coherente con el evento." },
+];
+
+const pasosDress = [
+  { titulo: "Briefing de imagen", desc: "Definimos con el cliente el código de vestimenta por zona y momento del evento, alineado al protocolo y a la imagen de la marca." },
+  { titulo: "Asignación por zona", desc: "Asignamos el nivel de vestimenta a cada posición —salón, accesos, carga, perímetro— según la visibilidad y la función de cada punto." },
+  { titulo: "Verificación de presentación", desc: "Antes del despliegue verificamos la presentación de cada elemento: vestimenta, distintivos y equipo de comunicación discreto." },
+  { titulo: "Ajuste en sitio", desc: "Durante el evento ajustamos la vestimenta si el programa cambia (por ejemplo, de montaje a recepción formal), sin perder cobertura." },
+];
+
+const schemas = [
+  ...buildServicePageSchema({
+    slug,
+    parent,
+    name: titulo,
+    description: descripcion,
+    metaTitle,
+    metaDescription,
+    serviceType: "Personal de seguridad con dress code adaptable para eventos",
+    ogImage: ogImg,
+    breadcrumbName: "Dress code adaptable",
+    offers: [
+      "Adaptación de vestimenta por zona",
+      "Coherencia con la imagen de la marca",
+      "Niveles de etiqueta a bajo perfil",
+      "Presentación impecable",
+    ],
+    faq,
+    datePublished: "2025-03-18",
+    serviceExtra: { audience: { "@type": "BusinessAudience", "name": "Organizadores de eventos corporativos y agencias de eventos" } },
+  }),
+  buildHowToSchema(
+    "Cómo definimos el dress code del operativo de seguridad",
+    "Proceso de SEPRIEV para definir y operar el código de vestimenta del personal de seguridad en eventos corporativos: del briefing de imagen al ajuste en sitio.",
+    pasosDress,
+  ),
+];
+
+const navItems = [
+  { label: "Eventos Corporativos", desc: "Volver al servicio principal", href: "/servicios/seguridad-eventos-corporativos" },
+  { label: "Personal Bilingüe", desc: "Subcategoría: agentes con dominio del inglés", href: "/servicios/seguridad-eventos-corporativos/personal-bilingue" },
+  { label: "Seguridad VIP", desc: "Protección de bajo perfil para invitados de honor", href: "/servicios/seguridad-vip" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+];
+
+// Módulos detallados
+const modules = [
+  {
+    eyebrow: "Subcategoría especializada",
+    badge: "Imagen institucional",
+    title: "Vestimenta que se integra al ambiente del evento",
+    intro: "En un evento corporativo, un guardia con uniforme táctico donde el cliente esperaba a alguien de traje rompe la atmósfera tanto como un incidente. SEPRIEV adapta la vestimenta del personal a cada zona y momento del operativo, porque la imagen del dispositivo de seguridad es parte de la imagen del evento y de la marca. La seguridad más efectiva en este entorno es la que se integra sin que los invitados la perciban como un cuerpo ajeno.",
+    features: [
+      { title: "Adaptación por zona y momento", text: "Un mismo evento puede requerir traje en el salón principal, uniforme táctico en el área de carga y ropa de civil en los accesos perimetrales. Adaptamos la vestimenta del equipo a cada zona y momento del operativo, porque presentarse con uniforme donde el cliente no lo espera compromete tanto la imagen del evento como la efectividad del personal." },
+      { title: "Coherencia con la marca", text: "Cuando el cliente lo solicita, el personal porta prendas o distintivos acordes a la identidad del evento —por ejemplo, un polo con logo discreto—, siempre que no comprometa la funcionalidad. La seguridad se vuelve parte de la puesta en escena de la marca, no un elemento que la contradice." },
+      { title: "Instrucción en el briefing previo", text: "La indicación de vestimenta no se improvisa: forma parte del briefing previo a cada operativo, con el nivel de dress code definido por zona y momento, y se verifica la presentación de cada elemento antes del despliegue." },
+    ],
+    hero: `${IMG}/seguridad-eventos-corporativos`,
+    small1: `${IMG}/seguridad-empresarial-evento`,
+    small2: `${IMG}/equipo-seguridad-eventos`,
+    alt: [
+      "Personal de seguridad de traje en una gala corporativa en México",
+      "Agente de seguridad con vestimenta business en un evento de empresa",
+      "Equipo de seguridad integrado a la imagen de un evento corporativo",
+    ],
+    featured: false,
+  },
+  {
+    eyebrow: "Del bajo perfil al protocolo",
+    badge: undefined,
+    title: "De la etiqueta formal al bajo perfil de civil",
+    intro: "El rango de vestimenta de un operativo corporativo va desde el black tie de una cena de gala hasta la ropa de civil de un dispositivo encubierto, pasando por el uniforme institucional y el táctico discreto. SEPRIEV cubre todo ese espectro con la misma capacitación y los mismos protocolos detrás de cada prenda: cambia la imagen, no el estándar de seguridad.",
+    features: [
+      { title: "Niveles de vestimenta", text: "Manejamos etiqueta o black tie, business formal, business casual, uniforme institucional identificado, táctico discreto y civil de bajo perfil. El nivel se acuerda con el cliente según el formato del evento y la imagen que se quiere proyectar." },
+      { title: "Presentación impecable", text: "La presentación del personal —vestimenta, aseo y distintivos— se cuida especialmente en eventos con cobertura mediática, porque la imagen del dispositivo de seguridad forma parte de la imagen pública del evento y del organizador." },
+      { title: "Mismo estándar bajo cualquier prenda", text: "Un agente de traje en una gala tiene la misma formación, el mismo equipo de comunicación y la misma cadena de mando que uno uniformado en el perímetro. La vestimenta cambia la percepción, nunca la efectividad ni los protocolos." },
+    ],
+    hero: `${IMG}/seguridad-vip-gala`,
+    small1: `${IMG}/guardias-seguridad-privada`,
+    small2: `${IMG}/personal-seguridad-evento`,
+    alt: [
+      "Personal de seguridad de etiqueta en una cena de gala corporativa",
+      "Guardias con uniforme institucional en un evento de empresa",
+      "Agente de seguridad de bajo perfil entre los asistentes de un evento",
+    ],
+    featured: true,
+  },
+];
+
+// Niveles de vestimenta
+const tipos = [
+  { titulo: "Etiqueta / black tie", nota: "Cenas de gala y premiaciones" },
+  { titulo: "Business formal", nota: "Traje oscuro y corbata" },
+  { titulo: "Business casual", nota: "Eventos de ambiente relajado" },
+  { titulo: "Uniforme institucional", nota: "Presencia visible identificada" },
+  { titulo: "Táctico discreto", nota: "Zonas de carga y técnica" },
+  { titulo: "Civil / bajo perfil", nota: "Dispositivos encubiertos" },
+];
+
+// Diferenciadores
+const razones = [
+  { titulo: "Adaptación por zona", desc: "Vestimenta distinta para salón, accesos, carga y perímetro, según visibilidad y función." },
+  { titulo: "Coherencia con la marca", desc: "Prendas o distintivos acordes a la identidad del evento cuando el cliente lo solicita." },
+  { titulo: "Presentación impecable", desc: "Cuidado especial de la imagen del personal en eventos con prensa y medios." },
+  { titulo: "Integración discreta", desc: "La seguridad se integra al ambiente sin que los invitados la perciban como cuerpo ajeno." },
+  { titulo: "Briefing previo", desc: "La instrucción de vestimenta se define y verifica antes del despliegue, no se improvisa." },
+  { titulo: "Mismo estándar de seguridad", desc: "La formación, el equipo y los protocolos no cambian, sin importar la vestimenta." },
+];
+
+// Relacionados
+const relacionados = [
+  { title: "Eventos Corporativos", description: "El servicio principal del que forma parte esta subcategoría: seguridad discreta para convenciones, lanzamientos y galas.", features: ["Confidencialidad", "Punto único de contacto", "Reporte ejecutivo"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos`, badge: "Servicio principal", featured: true },
+  { title: "Personal Bilingüe", description: "Subcategoría hermana: agentes con dominio del inglés y etiqueta corporativa para eventos internacionales.", features: ["Español / Inglés", "Etiqueta corporativa", "Enlace internacional"], href: "/servicios/seguridad-eventos-corporativos/personal-bilingue", image: `${IMG}/seguridad-empresarial-evento`, badge: "Subcategoría" },
+  { title: "Seguridad VIP", description: "Protección de bajo perfil para directivos e invitados de honor, con dispositivo discreto.", features: ["Close protection", "Bajo perfil", "Discreción total"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos` },
+  { title: "Eventos Sociales", description: "Seguridad discreta con dress code formal para bodas, XV años y celebraciones privadas.", features: ["Dress code formal", "Manejo discreto", "Valet parking"], href: "/servicios/seguridad-eventos-sociales", image: `${IMG}/seguridad-vip-gala` },
+];
+---
+
+<BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
+
+  <Breadcrumb items={[
+    { label: 'Servicios', href: '/servicios' },
+    { label: 'Eventos Corporativos', href: '/servicios/seguridad-eventos-corporativos' },
+    { label: 'Dress code adaptable' },
+  ]} />
+
+  <PageHero
+    eyebrow="Eventos Corporativos — Dress Code Adaptable"
+    titulo="Dress Code Adaptable"
+    subtitulo="La imagen del dispositivo de seguridad es parte de la imagen del evento. Adaptamos la vestimenta del personal a cada zona y momento, del black tie de una gala al bajo perfil de civil."
+  >
+    <Fragment slot="right">
+      <p class="text-accent text-base leading-relaxed">
+        Subcategoría del servicio de <a href="/servicios/seguridad-eventos-corporativos" class="text-secondary hover:underline font-semibold">seguridad para eventos corporativos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. El personal se presenta con la vestimenta que cada zona y momento exigen —traje, uniforme, táctico o civil— para integrarse a la imagen de la marca sin romper el ambiente.
+      </p>
+      <p class="text-accent text-base leading-relaxed">
+        Cambia la vestimenta, no el estándar: misma capacitación, mismo equipo y misma cadena de mando bajo cualquier prenda. Se combina con el <a href="/servicios/seguridad-eventos-corporativos/personal-bilingue" class="text-secondary hover:underline font-semibold">personal bilingüe</a> y la <a href="/servicios/seguridad-vip" class="text-secondary hover:underline font-semibold">seguridad VIP</a> de los invitados. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 pt-1">
+        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+          Cotizar este servicio
+        </a>
+        <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <PageNav items={navItems} ariaLabel="Servicios relacionados" />
+
+  <StatsSection />
+
+  <!-- Módulos detallados del servicio -->
+  <section class="py-20 bg-dark border-t border-white/8" id="servicio" aria-labelledby="servicio-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-4 pb-2 lg:items-stretch">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Cómo opera el dress code</span>
+          <h2 id="servicio-h" class="text-3xl sm:text-4xl font-black text-light leading-tight mb-3">
+            La seguridad también se viste para el evento
+          </h2>
+          <p class="text-accent text-base leading-relaxed">
+            En el entorno corporativo, la vestimenta del personal de seguridad comunica tanto como su presencia. Por eso la tratamos como una decisión de imagen, definida con el cliente y ajustada a cada zona del operativo.
+          </p>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Cubrimos todo el espectro: de la <strong class="text-light font-semibold">etiqueta formal</strong> al <strong class="text-light font-semibold">bajo perfil de civil</strong>, pasando por el uniforme institucional y el táctico discreto, según la visibilidad que cada punto requiere.
+          </p>
+          <p class="text-accent text-sm leading-relaxed">
+            La vestimenta cambia, pero la <strong class="text-light font-semibold">capacitación, el equipo y los protocolos</strong> son los mismos: la imagen se adapta, el estándar de seguridad nunca baja.
+          </p>
+        </div>
+      </div>
+
+      {modules.map((m) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mt-20 pt-16 border-t ${m.featured ? 'border-secondary/30' : 'border-white/8'}`}>
+          <div class="flex flex-col h-full">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-secondary text-xs font-bold uppercase tracking-widest">{m.eyebrow}</span>
+              {m.badge && (
+                <span class="bg-secondary text-white text-[10px] font-black uppercase tracking-widest px-2 py-0.5">{m.badge}</span>
+              )}
+            </div>
+            <div class="w-8 h-0.5 bg-secondary mb-3"></div>
+            <h3 class="text-3xl sm:text-4xl font-black text-light leading-tight mb-4">{m.title}</h3>
+            <p class="text-light/80 text-base leading-relaxed mb-5">{m.intro}</p>
+            <ul class="flex flex-col gap-5 mb-6">
+              {m.features.map((f) => (
+                <li class="flex flex-col gap-1.5">
+                  <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-secondary flex-shrink-0"></span>
+                    <span class="text-light text-base font-semibold">{f.title}</span>
+                  </div>
+                  <p class="text-light/70 text-sm leading-relaxed pl-4">{f.text}</p>
+                </li>
+              ))}
+            </ul>
+            <div class="flex flex-col sm:flex-row gap-4 mt-auto">
+              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+                Cotizar este servicio
+              </a>
+              <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+                Consultar por WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-4">
+            <div class="relative w-full aspect-[16/9] overflow-hidden bg-primary">
+              <picture>
+                <source type="image/avif" srcset={`${m.hero}-640.avif 640w, ${m.hero}-1200.avif 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <source type="image/jpeg" srcset={`${m.hero}-640.jpg 640w, ${m.hero}-1200.jpg 1200w`} sizes="(max-width: 1024px) 100vw, 600px" />
+                <img src={`${m.hero}-1200.jpg`} alt={m.alt[0]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              </picture>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small1}-640.avif`} />
+                  <img src={`${m.small1}-640.jpg`} alt={m.alt[1]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+              <div class="relative w-full aspect-[4/3] overflow-hidden bg-primary">
+                <picture>
+                  <source type="image/avif" srcset={`${m.small2}-640.avif`} />
+                  <img src={`${m.small2}-640.jpg`} alt={m.alt[2]} class="w-full h-full object-cover" loading="lazy" decoding="async" width="640" height="480" />
+                </picture>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Niveles de vestimenta -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="tipos-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Qué manejamos</span>
+          <h2 id="tipos-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Niveles de vestimenta</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Del extremo más formal al más discreto, cada nivel responde a una necesidad de imagen y de visibilidad. En un mismo evento pueden coexistir varios, según la zona y el momento.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tipos.map((t) => (
+          <div class="flex flex-col gap-2 px-6 py-7 bg-primary border border-white/8">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" class="text-secondary/70" aria-hidden="true">
+              <path d="M16 3l-4 3-4-3-5 4 3 3v8h12v-8l3-3-5-4zM12 6v15"/>
+            </svg>
+            <span class="text-light font-bold text-base leading-snug mt-1">{t.titulo}</span>
+            <span class="text-accent text-sm">{t.nota}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Por qué SEPRIEV -->
+  <section class="py-20 bg-primary/30 border-t border-primary" aria-labelledby="porque-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Por qué elegirnos</span>
+          <h2 id="porque-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">¿Por qué SEPRIEV para un dispositivo a la medida de tu imagen?</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            Adaptar el dress code parece un detalle estético, pero en un evento corporativo es lo que permite que la seguridad esté presente sin desentonar. Hacerlo bien exige criterio de imagen y disciplina operativa a la vez.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {razones.map((r) => (
+          <div class="flex flex-col bg-dark border border-primary-light rounded-xl p-6">
+            <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary/15 border border-secondary/30 mb-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="text-secondary" aria-hidden="true">
+                <path d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h3 class="text-light font-bold text-base mb-2">{r.titulo}</h3>
+            <p class="text-accent text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSection
+    eyebrow="Proceso de imagen"
+    titulo="Así definimos el dress code del operativo"
+    lead="Un proceso de cuatro fases para que la imagen del personal esté resuelta y verificada desde antes del evento."
+    parrafos={[
+      "El dress code no se decide el día del evento: se define en la planeación con el cliente, se asigna por zona y se verifica antes del despliegue, para que la imagen del dispositivo sea coherente con la del evento.",
+      "Si el programa cambia durante la jornada —de montaje a recepción formal, por ejemplo—, ajustamos la vestimenta sin perder cobertura ni bajar el estándar de seguridad.",
+    ]}
+    pasos={pasosDress}
+  />
+
+  <!-- Relacionados -->
+  <section class="py-20 bg-dark border-t border-white/8" aria-labelledby="otros-h">
+    <div class="w-full px-[5%] xl:px-[7%]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 pb-10 border-b border-white/8 lg:items-center">
+        <div class="flex flex-col">
+          <span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2">Parte de un operativo integral</span>
+          <h2 id="otros-h" class="text-3xl sm:text-4xl font-black text-light leading-tight">Servicios relacionados</h2>
+        </div>
+        <div class="flex flex-col gap-3">
+          <p class="text-accent text-sm leading-relaxed">
+            El dress code adaptable es una capa transversal del operativo corporativo: aplica al personal bilingüe, a la protección de directivos y a la seguridad VIP de los invitados, para que todo el dispositivo mantenga una imagen coherente con el evento.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {relacionados.map((s) => (
+          <ServiceCard
+            title={s.title}
+            description={s.description}
+            features={s.features}
+            href={s.href}
+            image={s.image}
+            badge={s.badge}
+            featured={s.featured}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    eyebrow="Cotización gratuita"
+    titulo="¿Necesitas personal de seguridad con dress code a la medida?"
+    subtitulo="Cuéntanos el formato del evento y la imagen que quieres proyectar, y definimos el código de vestimenta del operativo. Propuesta en menos de 24 horas."
+    faq={faq}
+  />
+
+</BaseLayout>
