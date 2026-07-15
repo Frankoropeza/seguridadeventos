@@ -1,6 +1,6 @@
 // src/lib/config.ts — Configuración global SEPRIEV
 
-export const SITE = "https://seguridadeventos.com.mx";
+export const SITE = "https://seguridadeventos.com";
 export const SITE_NAME = "SEPRIEV";
 export const SITE_DESC = "Empresa líder en seguridad privada para eventos en México. Conciertos, corporativos, ferias, VIP y eventos masivos. +500 eventos protegidos. Licencia DGSSP.";
 
@@ -8,8 +8,8 @@ export const PHONE_PRIMARY   = "+525516075305";
 export const PHONE_DISPLAY   = "55 1607 5305";
 export const WHATSAPP_NUMBER = "5215516075305";
 export const WHATSAPP_DISPLAY = "55 1607 5305";
-export const EMAIL_CONTACT   = "contacto@seguridadeventos.com.mx";
-export const EMAIL_RH         = "reclutamiento@seguridadeventos.com.mx";
+export const EMAIL_CONTACT   = "contacto@seguridadeventos.com";
+export const EMAIL_RH         = "reclutamiento@seguridadeventos.com";
 export const ADDRESS_DISPLAY = "Ciudad de México, CDMX";
 
 export const WHATSAPP_URL = (msg = "Hola%2C+necesito+seguridad+para+mi+evento") =>

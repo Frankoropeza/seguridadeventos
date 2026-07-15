@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://seguridadeventos.com.mx/sitemap-index.xml
+Sitemap: https://seguridadeventos.com/sitemap-index.xml

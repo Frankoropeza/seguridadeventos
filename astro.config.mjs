@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  site: 'https://seguridadeventos.com.mx',
+  site: 'https://seguridadeventos.com',
   integrations: [mdx(), sitemap(), tailwind()],
   markdown: {
     shikiConfig: {

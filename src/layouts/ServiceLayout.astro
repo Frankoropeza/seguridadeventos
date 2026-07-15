@@ -28,7 +28,7 @@ const {
   breadcrumbs = [],
 } = Astro.props;
 
-const canonical = `https://seguridadeventos.com.mx/servicios/${slug}`;
+const canonical = `https://seguridadeventos.com/servicios/${slug}`;
 const ogImg = imagen ? new URL(`${imagen}-1200.jpg`, SITE).toString() : undefined;
 const schemas = [
   buildServiceSchema(titulo, descripcion, canonical),
