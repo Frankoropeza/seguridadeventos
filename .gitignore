@@ -27,3 +27,5 @@ yarn-error.log*
 
 # Análisis local de Graphify
 graphify-out/
+*.log
+.wrangler
