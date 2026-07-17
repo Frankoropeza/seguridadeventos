@@ -7,6 +7,8 @@ export interface Props {
   badge?: string;
   featured?: boolean;
   image?: string;
+  // Compatibilidad con llamadas existentes (no se renderiza, evita romper props)
+  icon?: string;
 }
 
 const { title, description, features = [], href, badge, featured = false, image } = Astro.props;
