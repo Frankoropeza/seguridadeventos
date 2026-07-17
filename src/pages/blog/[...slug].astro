@@ -1,13 +1,13 @@
 ---
 import ArticleLayout from '@/layouts/ArticleLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { SITE } from '@/lib/config';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }: { data: { draft: boolean } }) => !data.draft);
   return posts.map((post: CollectionEntry<'blog'>) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: post,
   }));
 }
@@ -15,8 +15,8 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
-const { Content } = await post.render();
-const canonical = `${SITE}/blog/${post.slug}`;
+const { Content } = await render(post);
+const canonical = `${SITE}/blog/${post.id}`;
 ---
 
 <ArticleLayout
@@ -28,7 +28,7 @@ const canonical = `${SITE}/blog/${post.slug}`;
   imagen={post.data.imagen}
   readTime={post.data.readTime}
   canonical={canonical}
-  slug={post.slug}
+  slug={post.id}
 >
   <Content />
 </ArticleLayout>

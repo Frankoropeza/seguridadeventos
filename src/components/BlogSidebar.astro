@@ -12,7 +12,7 @@ interface Props {
 const { currentSlug } = Astro.props;
 
 const recentPosts = allPosts
-  .filter((p: any) => p.slug !== currentSlug)
+  .filter((p: any) => p.id !== currentSlug)
   .slice(0, 5);
 
 // Categories with counts
@@ -109,7 +109,7 @@ const totalPosts = allPosts.length;
     <ul class="flex flex-col gap-4">
       {recentPosts.map((post: any) => (
         <li>
-          <a href={`/blog/${post.slug}`} class="flex gap-3 items-start">
+          <a href={`/blog/${post.id}`} class="flex gap-3 items-start">
             <div class="w-14 h-14 rounded-lg bg-primary-light flex items-center justify-center flex-shrink-0">
               {post.data.imagen ? (
                 <picture>

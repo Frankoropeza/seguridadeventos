@@ -1,6 +1,6 @@
 ---
 import ServiceLayout from '@/layouts/ServiceLayout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -8,9 +8,9 @@ export async function getStaticPaths() {
   const STANDALONE = ['seguridad-conciertos-festivales', 'seguridad-eventos-corporativos', 'control-acceso-eventos', 'seguridad-vip', 'proteccion-ejecutiva', 'seguridad-ferias-exposiciones', 'seguridad-eventos-sociales', 'seguridad-eventos-deportivos', 'seguridad-masivos', 'seguridad-montaje-desmontaje'];
   const servicios = await getCollection('servicios');
   return servicios
-    .filter((servicio: CollectionEntry<'servicios'>) => !STANDALONE.includes(servicio.slug))
+    .filter((servicio: CollectionEntry<'servicios'>) => !STANDALONE.includes(servicio.id))
     .map((servicio: CollectionEntry<'servicios'>) => ({
-      params: { slug: servicio.slug },
+      params: { slug: servicio.id },
       props: servicio,
     }));
 }
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'servicios'>;
 
 const servicio = Astro.props;
-const { Content } = await servicio.render();
+const { Content } = await render(servicio);
 
 // FAQ por servicio
 const faqMap: Record<string, Array<{ q: string; a: string }>> = {
@@ -84,7 +84,7 @@ const faqMap: Record<string, Array<{ q: string; a: string }>> = {
   ],
 };
 
-const currentFaq = faqMap[servicio.slug] || [];
+const currentFaq = faqMap[servicio.id] || [];
 
 const serviceImg: Record<string, string> = {
   "seguridad-conciertos-festivales": "/img/eventos/seguridad-conciertos-festivales",
@@ -98,7 +98,7 @@ const serviceImg: Record<string, string> = {
   "seguridad-masivos": "/img/eventos/seguridad-conciertos-multitud",
   "seguridad-montaje-desmontaje": "/img/eventos/equipo-seguridad-eventos",
 };
-const servicioImagen = serviceImg[servicio.slug];
+const servicioImagen = serviceImg[servicio.id];
 ---
 
 <ServiceLayout
@@ -106,7 +106,7 @@ const servicioImagen = serviceImg[servicio.slug];
   descripcion={servicio.data.description}
   metaTitle={servicio.data.metaTitle}
   metaDescription={servicio.data.metaDescription}
-  slug={servicio.slug}
+  slug={servicio.id}
   emoji={servicio.data.emoji}
   imagen={servicioImagen}
   faq={currentFaq}

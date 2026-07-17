@@ -77,7 +77,7 @@ const categories = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1]);
             <BlogCard
               titulo={post.data.title}
               descripcion={post.data.description}
-              slug={post.slug}
+              slug={post.id}
               categoria={post.data.categoria}
               imagen={post.data.imagen}
               readTime={post.data.readTime}
