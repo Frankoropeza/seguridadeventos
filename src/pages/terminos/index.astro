@@ -1,0 +1,38 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE_NAME, EMAIL_CONTACT, PHONE_DISPLAY } from '@/lib/config';
+---
+
+<BaseLayout title="Términos y condiciones | seguridad privada para eventos" description="Términos y condiciones de uso del sitio y de contratación de los servicios de seguridad privada para eventos de SEPRIEV." noindex={true}>
+  <section class="py-16 bg-dark">
+    <div class="w-[90%] mx-auto">
+      <h1 class="text-3xl font-black text-light mb-8">Términos y Condiciones</h1>
+      <div class="prose prose-invert prose-lg max-w-none prose-headings:font-bold prose-headings:text-light prose-p:text-accent prose-li:text-accent prose-strong:text-light">
+        <p>El presente documento establece los términos y condiciones de uso del sitio web de <strong>{SITE_NAME}</strong> y las condiciones generales bajo las cuales se cotizan y contratan nuestros servicios de seguridad privada para eventos. Al utilizar este sitio, usted acepta estos términos.</p>
+
+        <h2>1. Uso del sitio</h2>
+        <p>El contenido de este sitio tiene fines informativos y de contacto comercial. La información publicada (servicios, coberturas y zonas de atención) puede actualizarse sin previo aviso.</p>
+
+        <h2>2. Cotizaciones</h2>
+        <p>Las cotizaciones solicitadas por formulario, WhatsApp, teléfono o correo electrónico son gratuitas y no representan un compromiso de contratación. Toda cotización está sujeta a disponibilidad de personal y a la evaluación del evento (tipo, fecha, ubicación y aforo).</p>
+
+        <h2>3. Contratación de servicios</h2>
+        <p>El alcance, la duración, el número de elementos, los honorarios y las condiciones de pago y cancelación de cada servicio se establecen por escrito en el contrato o la orden de servicio correspondiente a cada evento. En caso de discrepancia entre este sitio y el contrato firmado, prevalece el contrato.</p>
+
+        <h2>4. Responsabilidad</h2>
+        <p>{SITE_NAME} presta sus servicios conforme a la normatividad aplicable en materia de seguridad privada. La responsabilidad de la empresa se limita a lo pactado en el contrato de cada servicio.</p>
+
+        <h2>5. Propiedad intelectual</h2>
+        <p>Los textos, marcas, logotipos e imágenes de este sitio son propiedad de {SITE_NAME} o se utilizan con autorización. Queda prohibida su reproducción sin consentimiento por escrito.</p>
+
+        <h2>6. Datos personales</h2>
+        <p>El tratamiento de los datos personales que nos proporcione se rige por nuestro <a href="/aviso-de-privacidad/">Aviso de Privacidad</a>.</p>
+
+        <h2>7. Contacto</h2>
+        <p>Para cualquier duda sobre estos términos: <a href={`mailto:${EMAIL_CONTACT}`}>{EMAIL_CONTACT}</a> · Tel. {PHONE_DISPLAY}</p>
+
+        <p><em>Última actualización: julio 2026</em></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
