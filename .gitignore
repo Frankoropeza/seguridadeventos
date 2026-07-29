@@ -70,3 +70,6 @@ graphify-out/
 # worktrees: copias de trabajo, nunca se versionan
 .worktrees/
 .claude/worktrees/
+
+# respaldos que deja Cloudflare al reescribir workflows
+*.cfbak
