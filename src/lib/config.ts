@@ -4,10 +4,10 @@ export const SITE = "https://seguridadeventos.com";
 export const SITE_NAME = "SEPRIEV";
 export const SITE_DESC = "Empresa líder en seguridad privada para eventos en México. Conciertos, corporativos, ferias, VIP y eventos masivos. +500 eventos protegidos. Licencia DGSSP.";
 
-export const PHONE_PRIMARY   = "+525516075305";
-export const PHONE_DISPLAY   = "55 1607 5305";
-export const WHATSAPP_NUMBER = "5215516075305";
-export const WHATSAPP_DISPLAY = "55 1607 5305";
+export const PHONE_PRIMARY   = "+525547868402";
+export const PHONE_DISPLAY   = "55 4786 8402";
+export const WHATSAPP_NUMBER = "5215547868402";
+export const WHATSAPP_DISPLAY = "55 4786 8402";
 export const EMAIL_CONTACT   = "contacto@seguridadeventos.com";
 export const EMAIL_RH         = "reclutamiento@seguridadeventos.com";
 export const ADDRESS_DISPLAY = "Ciudad de México, CDMX";

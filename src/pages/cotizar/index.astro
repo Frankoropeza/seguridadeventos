@@ -3,7 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumb from '@/components/Breadcrumb.astro';
 import PageHero from '@/components/PageHero.astro';
 import PageNav from '@/components/PageNav.astro';
-import { WHATSAPP_NUMBER, WHATSAPP_DISPLAY, PHONE_DISPLAY, EMAIL_CONTACT } from '@/lib/config';
+import { WHATSAPP_NUMBER, WHATSAPP_DISPLAY, PHONE_PRIMARY, PHONE_DISPLAY, EMAIL_CONTACT } from '@/lib/config';
 
 const navItems = [
   {
@@ -163,7 +163,7 @@ const navItems = [
                   <div class="text-accent text-xs">{WHATSAPP_DISPLAY}</div>
                 </div>
               </a>
-              <a href={`tel:${PHONE_DISPLAY.replace(/\s/g,'')}`} class="flex items-center gap-3 p-3 bg-secondary/10 border border-secondary/20 rounded-lg">
+              <a href={`tel:${PHONE_PRIMARY}`} class="flex items-center gap-3 p-3 bg-secondary/10 border border-secondary/20 rounded-lg">
                 <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center flex-shrink-0">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" aria-hidden="true">
                     <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
@@ -210,17 +210,18 @@ const navItems = [
     </div>
   </section>
 
-  <script>
-    const form = document.getElementById('cotizar-form') as HTMLFormElement;
+  <script define:vars={{ WA: WHATSAPP_NUMBER }}>
+    const val = (id) => document.getElementById(id)?.value || '';
+    const form = document.getElementById('cotizar-form');
     form?.addEventListener('submit', (e) => {
       e.preventDefault();
-      const nombre = (document.getElementById('nombre') as HTMLInputElement)?.value || '';
-      const empresa = (document.getElementById('empresa') as HTMLInputElement)?.value || '';
-      const telefono = (document.getElementById('telefono') as HTMLInputElement)?.value || '';
-      const tipo = (document.getElementById('tipo') as HTMLSelectElement)?.value || '';
-      const aforo = (document.getElementById('aforo') as HTMLSelectElement)?.value || '';
-      const ciudad = (document.getElementById('ciudad') as HTMLSelectElement)?.value || '';
-      const detalles = (document.getElementById('detalles') as HTMLTextAreaElement)?.value || '';
+      const nombre = val('nombre');
+      const empresa = val('empresa');
+      const telefono = val('telefono');
+      const tipo = val('tipo');
+      const aforo = val('aforo');
+      const ciudad = val('ciudad');
+      const detalles = val('detalles');
 
       let msg = `Hola, solicito cotización de seguridad:\n\n`;
       msg += `Nombre: ${nombre}\n`;
@@ -231,7 +232,7 @@ const navItems = [
       msg += `Ciudad: ${ciudad}\n`;
       if (detalles) msg += `\nDetalles: ${detalles}`;
 
-      window.open(`https://wa.me/5215516075305?text=${encodeURIComponent(msg)}`, '_blank');
+      window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(msg), '_blank');
     });
   </script>
 </BaseLayout>

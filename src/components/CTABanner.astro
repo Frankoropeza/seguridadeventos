@@ -1,5 +1,5 @@
 ---
-import { WHATSAPP_NUMBER, PHONE_DISPLAY } from '@/lib/config';
+import { WHATSAPP_NUMBER, PHONE_PRIMARY, PHONE_DISPLAY } from '@/lib/config';
 import SectionHeader from '@/components/SectionHeader.astro';
 
 export interface Props {
@@ -52,7 +52,7 @@ const {
 } = Astro.props;
 
 const waDirecto = `https://wa.me/${WHATSAPP_NUMBER}?text=Hola%2C+quiero+cotizar+seguridad+para+mi+evento`;
-const telHref = `tel:${PHONE_DISPLAY.replace(/\s/g, '')}`;
+const telHref = `tel:${PHONE_PRIMARY}`;
 
 const inputBase =
   "w-full bg-dark border border-primary-light rounded-lg px-4 py-3 text-light text-sm focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-colors";
