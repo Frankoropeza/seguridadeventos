@@ -66,10 +66,10 @@ const schemas = buildServicePageSchema({
 });
 
 const navItems = [
-  { label: "Conciertos y Festivales", desc: "Control de multitudes para grandes aforos", href: "/servicios/seguridad-conciertos-festivales" },
-  { label: "Control de Acceso", desc: "Aforo en tiempo real y filtros por sector", href: "/servicios/control-acceso-eventos" },
-  { label: "Eventos Deportivos", desc: "Estadios, aficiones y manejo de multitudes", href: "/servicios/seguridad-eventos-deportivos" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Conciertos y Festivales", desc: "Control de multitudes para grandes aforos", href: "/servicios/seguridad-conciertos-festivales/" },
+  { label: "Control de Acceso", desc: "Aforo en tiempo real y filtros por sector", href: "/servicios/control-acceso-eventos/" },
+  { label: "Eventos Deportivos", desc: "Estadios, aficiones y manejo de multitudes", href: "/servicios/seguridad-eventos-deportivos/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
@@ -138,16 +138,16 @@ const razones = [
 
 // Otros servicios relacionados (ServiceCards homologadas con servicios/index)
 const relacionados = [
-  { title: "Conciertos y Festivales", description: "Control de multitudes, coordinación institucional y protocolos de emergencia para eventos musicales de cualquier escala.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular", featured: true },
-  { title: "Eventos Deportivos", description: "Gestión de aficiones, protección del terreno de juego y cumplimiento federativo en estadios y arenas.", features: ["Separación de barras", "Anti-invasión", "Protocolo de liga"], href: "/servicios/seguridad-eventos-deportivos", image: `${IMG}/seguridad-conciertos-multitud` },
-  { title: "Control de Acceso", description: "Validación de boletos, control de aforo por sección y detección de objetos para grandes aforos.", features: ["Aforo en tiempo real", "Detección de metales", "Anti-reventa"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
-  { title: "Montaje y Desmontaje", description: "Custodia 24/7, acreditación de proveedores e inventario durante el montaje de escenarios y producción.", features: ["Custodia 24/7", "Control de proveedores", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje", image: `${IMG}/equipo-seguridad-eventos` },
+  { title: "Conciertos y Festivales", description: "Control de multitudes, coordinación institucional y protocolos de emergencia para eventos musicales de cualquier escala.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales/", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular", featured: true },
+  { title: "Eventos Deportivos", description: "Gestión de aficiones, protección del terreno de juego y cumplimiento federativo en estadios y arenas.", features: ["Separación de barras", "Anti-invasión", "Protocolo de liga"], href: "/servicios/seguridad-eventos-deportivos/", image: `${IMG}/seguridad-conciertos-multitud` },
+  { title: "Control de Acceso", description: "Validación de boletos, control de aforo por sección y detección de objetos para grandes aforos.", features: ["Aforo en tiempo real", "Detección de metales", "Anti-reventa"], href: "/servicios/control-acceso-eventos/", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Montaje y Desmontaje", description: "Custodia 24/7, acreditación de proveedores e inventario durante el montaje de escenarios y producción.", features: ["Custodia 24/7", "Control de proveedores", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje/", image: `${IMG}/equipo-seguridad-eventos` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
-  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Eventos Masivos' }]} />
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios/' }, { label: 'Eventos Masivos' }]} />
 
   <PageHero
     eyebrow="SEPRIEV — Eventos Masivos"
@@ -156,13 +156,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        <strong class="text-light font-semibold">SEPRIEV</strong> dirige operativos de <strong class="text-light font-semibold">seguridad para eventos masivos</strong> de 10,000 a 100,000+ asistentes con centro de comando propio, vigilancia aérea con drones y mando unificado, articulado desde antes de que llegue el primer asistente. La diferencia la marca la información que llega a tiempo a quien decide. Es el mismo músculo que opera nuestra <a href="/servicios/seguridad-conciertos-festivales" class="text-secondary hover:underline font-semibold">seguridad de conciertos y festivales</a>.
+        <strong class="text-light font-semibold">SEPRIEV</strong> dirige operativos de <strong class="text-light font-semibold">seguridad para eventos masivos</strong> de 10,000 a 100,000+ asistentes con centro de comando propio, vigilancia aérea con drones y mando unificado, articulado desde antes de que llegue el primer asistente. La diferencia la marca la información que llega a tiempo a quien decide. Es el mismo músculo que opera nuestra <a href="/servicios/seguridad-conciertos-festivales/" class="text-secondary hover:underline font-semibold">seguridad de conciertos y festivales</a>.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Coordinamos con Protección Civil, bomberos, Cruz Roja/ERUM, policía y tránsito, con Programa Interno de Protección Civil y póliza de responsabilidad civil por aforo. Operamos también <a href="/servicios/seguridad-eventos-deportivos" class="text-secondary hover:underline font-semibold">eventos deportivos en estadios</a>, con <strong class="text-light font-semibold">licencia DGSSP y STPS</strong> y cobertura nacional. Cotización en menos de 24 horas.
+        Coordinamos con Protección Civil, bomberos, Cruz Roja/ERUM, policía y tránsito, con Programa Interno de Protección Civil y póliza de responsabilidad civil por aforo. Operamos también <a href="/servicios/seguridad-eventos-deportivos/" class="text-secondary hover:underline font-semibold">eventos deportivos en estadios</a>, con <strong class="text-light font-semibold">licencia DGSSP y STPS</strong> y cobertura nacional. Cotización en menos de 24 horas.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -231,7 +231,7 @@ const relacionados = [
             </ul>
 
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

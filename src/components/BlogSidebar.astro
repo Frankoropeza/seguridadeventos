@@ -42,7 +42,7 @@ const totalPosts = allPosts.length;
       Cotiza tu evento y recibe propuesta personalizada en menos de 24 hrs.
     </p>
     <a
-      href="/cotizar"
+      href="/cotizar/"
       class="w-full block bg-secondary hover:bg-red-700 text-white text-center px-4 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide transition-colors"
     >
       Cotizar ahora
@@ -71,7 +71,7 @@ const totalPosts = allPosts.length;
     <ul class="flex flex-col gap-1">
       <li>
         <a
-          href="/blog"
+          href="/blog/"
           class="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-accent hover:text-light hover:bg-white/5 transition-colors group"
         >
           <span class="flex items-center gap-2">
@@ -84,7 +84,7 @@ const totalPosts = allPosts.length;
       {categories.map(([cat, count]) => (
         <li>
           <a
-            href={`/blog/categoria/${catSlug(cat)}`}
+            href={`/blog/categoria/${catSlug(cat)}/`}
             class="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-accent hover:text-light hover:bg-white/5 transition-colors group"
           >
             <span class="flex items-center gap-2">
@@ -109,7 +109,7 @@ const totalPosts = allPosts.length;
     <ul class="flex flex-col gap-4">
       {recentPosts.map((post: any) => (
         <li>
-          <a href={`/blog/${post.id}`} class="flex gap-3 items-start">
+          <a href={`/blog/${post.id}/`} class="flex gap-3 items-start">
             <div class="w-14 h-14 rounded-lg bg-primary-light flex items-center justify-center flex-shrink-0">
               {post.data.imagen ? (
                 <picture>
@@ -149,7 +149,7 @@ const totalPosts = allPosts.length;
       ))}
     </ul>
     <a
-      href="/blog"
+      href="/blog/"
       class="mt-4 flex items-center gap-1.5 text-secondary text-xs font-semibold hover:text-red-400 transition-colors"
     >
       Ver todos los artículos
@@ -171,7 +171,7 @@ const totalPosts = allPosts.length;
       {SERVICIOS_NAV.slice(0, 7).map(s => (
         <li>
           <a
-            href={`/servicios/${s.slug}`}
+            href={`/servicios/${s.slug}/`}
             class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-accent hover:text-light hover:bg-white/5 transition-colors group"
           >
             <span class="w-1.5 h-1.5 rounded-full bg-secondary/40 group-hover:bg-secondary transition-colors flex-shrink-0"></span>
@@ -181,7 +181,7 @@ const totalPosts = allPosts.length;
       ))}
     </ul>
     <a
-      href="/servicios"
+      href="/servicios/"
       class="mt-3 flex items-center gap-1.5 text-secondary text-xs font-semibold hover:text-red-400 transition-colors px-3"
     >
       Ver todos los servicios →
@@ -199,7 +199,7 @@ const totalPosts = allPosts.length;
     <div class="flex flex-wrap gap-2">
       {ZONAS_NAV.map(z => (
         <a
-          href={`/zonas/${z.slug}`}
+          href={`/zonas/${z.slug}/`}
           class="bg-white/5 hover:bg-secondary/20 hover:border-secondary/40 border border-white/10 text-accent hover:text-light text-xs px-3 py-1.5 rounded-full transition-all"
         >
           {z.nombre}

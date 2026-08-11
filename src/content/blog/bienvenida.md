@@ -30,12 +30,12 @@ Organizamos el blog por temas, para que llegues rápido a lo que necesitas segú
 
 | Tema | De qué trata | Por dónde empezar |
 |---|---|---|
-| Guías prácticas | Cálculo de personal, cotización y planeación paso a paso | [Cuántos guardias necesita tu evento](/blog/cuantos-guardias-necesita-mi-evento) |
-| Eventos sociales | Bodas, XV años y celebraciones privadas | [Seguridad para bodas: guía para novios](/blog/seguridad-bodas-guia-completa-novios) |
-| Eventos masivos | Conciertos, festivales y grandes aforos | [Protocolo de seguridad para conciertos](/blog/protocolo-seguridad-conciertos-mexico) |
-| Eventos deportivos | Fútbol, barras y carreras de calle | [Seguridad en eventos de fútbol](/blog/seguridad-eventos-deportivos-futbol-guia) |
-| Costos y presupuesto | Cuánto cuesta y cómo presupuestar | [Costo de seguridad para eventos](/blog/costo-seguridad-eventos-cuanto-presupuestar) |
-| Prevención y errores | Fallas frecuentes y cómo evitarlas | [Errores de seguridad en eventos](/blog/errores-seguridad-eventos-como-evitarlos) |
+| Guías prácticas | Cálculo de personal, cotización y planeación paso a paso | [Cuántos guardias necesita tu evento](/blog/cuantos-guardias-necesita-mi-evento/) |
+| Eventos sociales | Bodas, XV años y celebraciones privadas | [Seguridad para bodas: guía para novios](/blog/seguridad-bodas-guia-completa-novios/) |
+| Eventos masivos | Conciertos, festivales y grandes aforos | [Protocolo de seguridad para conciertos](/blog/protocolo-seguridad-conciertos-mexico/) |
+| Eventos deportivos | Fútbol, barras y carreras de calle | [Seguridad en eventos de fútbol](/blog/seguridad-eventos-deportivos-futbol-guia/) |
+| Costos y presupuesto | Cuánto cuesta y cómo presupuestar | [Costo de seguridad para eventos](/blog/costo-seguridad-eventos-cuanto-presupuestar/) |
+| Prevención y errores | Fallas frecuentes y cómo evitarlas | [Errores de seguridad en eventos](/blog/errores-seguridad-eventos-como-evitarlos/) |
 
 No tienes que leer todo. Toma el tema que te toca hoy y, si te queda una duda, lo más probable es que tengamos un artículo que la responda.
 
@@ -55,6 +55,6 @@ Este blog persigue lo mismo: que tu evento salga tan bien que la seguridad pase 
 
 ## Quédate, lee y pregunta
 
-Te invitamos a recorrer el blog, a guardar los artículos que te sirvan y a volver cada que tengas una duda nueva. Y cuando quieras pasar de leer a planear tu evento con nosotros, estaremos del otro lado. Conoce quiénes somos en [nuestra página](/nosotros) o cuéntanos de tu evento por [contacto](/contacto).
+Te invitamos a recorrer el blog, a guardar los artículos que te sirvan y a volver cada que tengas una duda nueva. Y cuando quieras pasar de leer a planear tu evento con nosotros, estaremos del otro lado. Conoce quiénes somos en [nuestra página](/nosotros/) o cuéntanos de tu evento por [contacto](/contacto/).
 
-Cuando estés listo, **[solicita tu cotización sin compromiso](/cotizar)** y diseñamos un plan a la medida de tu evento. Gracias por confiar tu tranquilidad en quienes llevamos más de 30 años cuidándola. Bienvenido a SEPRIEV.
+Cuando estés listo, **[solicita tu cotización sin compromiso](/cotizar/)** y diseñamos un plan a la medida de tu evento. Gracias por confiar tu tranquilidad en quienes llevamos más de 30 años cuidándola. Bienvenido a SEPRIEV.

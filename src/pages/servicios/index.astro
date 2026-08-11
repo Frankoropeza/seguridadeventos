@@ -30,22 +30,22 @@ const navItems = [
   {
     label: "Conciertos y Festivales",
     desc: "Control masivo para eventos musicales de cualquier escala",
-    href: "/servicios/seguridad-conciertos-festivales",
+    href: "/servicios/seguridad-conciertos-festivales/",
   },
   {
     label: "Eventos Corporativos",
     desc: "Seguridad ejecutiva discreta y profesional",
-    href: "/servicios/seguridad-eventos-corporativos",
+    href: "/servicios/seguridad-eventos-corporativos/",
   },
   {
     label: "Seguridad VIP",
     desc: "Protección personal para celebridades y ejecutivos",
-    href: "/servicios/seguridad-vip",
+    href: "/servicios/seguridad-vip/",
   },
   {
     label: "Solicitar Cotización",
     desc: "Propuesta personalizada en menos de 24 horas",
-    href: "/cotizar",
+    href: "/cotizar/",
   },
 ];
 
@@ -54,7 +54,7 @@ const IMG = "/img/eventos";
 const serviceModules = [
   {
     title: "Conciertos y Festivales",
-    href: "/servicios/seguridad-conciertos-festivales",
+    href: "/servicios/seguridad-conciertos-festivales/",
     badge: "Popular",
     hero: `${IMG}/seguridad-conciertos-festivales`,
     small1: `${IMG}/seguridad-conciertos-multitud`,
@@ -68,7 +68,7 @@ const serviceModules = [
   },
   {
     title: "Eventos Corporativos",
-    href: "/servicios/seguridad-eventos-corporativos",
+    href: "/servicios/seguridad-eventos-corporativos/",
     hero: `${IMG}/seguridad-eventos-corporativos`,
     small1: `${IMG}/seguridad-empresarial-evento`,
     small2: `${IMG}/equipo-seguridad-eventos`,
@@ -81,7 +81,7 @@ const serviceModules = [
   },
   {
     title: "Control de Acceso",
-    href: "/servicios/control-acceso-eventos",
+    href: "/servicios/control-acceso-eventos/",
     badge: "Esencial",
     hero: `${IMG}/control-acceso-eventos`,
     small1: `${IMG}/control-acceso-credenciales`,
@@ -95,7 +95,7 @@ const serviceModules = [
   },
   {
     title: "Seguridad VIP",
-    href: "/servicios/seguridad-vip",
+    href: "/servicios/seguridad-vip/",
     hero: `${IMG}/seguridad-vip-eventos`,
     small1: `${IMG}/proteccion-vip-invitados`,
     small2: `${IMG}/seguridad-vip-gala`,
@@ -108,7 +108,7 @@ const serviceModules = [
   },
   {
     title: "Protección Ejecutiva",
-    href: "/servicios/proteccion-ejecutiva",
+    href: "/servicios/proteccion-ejecutiva/",
     hero: `${IMG}/proteccion-ejecutiva-mexico`,
     small1: `${IMG}/guardias-seguridad-privada`,
     small2: `${IMG}/seguridad-eventos-corporativos`,
@@ -121,7 +121,7 @@ const serviceModules = [
   },
   {
     title: "Ferias y Exposiciones",
-    href: "/servicios/seguridad-ferias-exposiciones",
+    href: "/servicios/seguridad-ferias-exposiciones/",
     hero: `${IMG}/seguridad-empresarial-evento`,
     small1: `${IMG}/control-acceso-eventos`,
     small2: `${IMG}/equipo-seguridad-eventos`,
@@ -134,7 +134,7 @@ const serviceModules = [
   },
   {
     title: "Eventos Sociales",
-    href: "/servicios/seguridad-eventos-sociales",
+    href: "/servicios/seguridad-eventos-sociales/",
     hero: `${IMG}/seguridad-vip-gala`,
     small1: `${IMG}/proteccion-vip-invitados`,
     small2: `${IMG}/personal-seguridad-evento`,
@@ -147,7 +147,7 @@ const serviceModules = [
   },
   {
     title: "Eventos Deportivos",
-    href: "/servicios/seguridad-eventos-deportivos",
+    href: "/servicios/seguridad-eventos-deportivos/",
     hero: `${IMG}/seguridad-conciertos-multitud`,
     small1: `${IMG}/seguridad-conciertos-festivales`,
     small2: `${IMG}/guardias-seguridad-privada`,
@@ -160,7 +160,7 @@ const serviceModules = [
   },
   {
     title: "Eventos Masivos",
-    href: "/servicios/seguridad-masivos",
+    href: "/servicios/seguridad-masivos/",
     badge: "Destacado",
     featured: true,
     hero: `${IMG}/centro-control-seguridad`,
@@ -175,7 +175,7 @@ const serviceModules = [
   },
   {
     title: "Montaje y Desmontaje",
-    href: "/servicios/seguridad-montaje-desmontaje",
+    href: "/servicios/seguridad-montaje-desmontaje/",
     hero: `${IMG}/equipo-seguridad-eventos`,
     small1: `${IMG}/seguridad-empresarial-evento`,
     small2: `${IMG}/guardias-seguridad-privada`,
@@ -220,7 +220,7 @@ const serviceModules = [
           title={s.title}
           description={s.desc}
           features={s.features}
-          href={`/servicios/${s.slug}`}
+          href={`/servicios/${s.slug}/`}
           image={servImg[s.slug]}
           badge={s.badge}
           featured={s.featured}
@@ -229,7 +229,7 @@ const serviceModules = [
     </div>
 
     <div class="text-center mt-10">
-      <a href="/cotizar" class="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-white px-8 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+      <a href="/cotizar/" class="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-white px-8 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
         Solicitar Cotización
       </a>
     </div>

@@ -61,10 +61,10 @@ const schemas = buildServicePageSchema({
 });
 
 const navItems = [
-  { label: "Seguridad VIP", desc: "Protección de figuras de alto perfil en eventos", href: "/servicios/seguridad-vip" },
-  { label: "Eventos Corporativos", desc: "Seguridad discreta para convenciones y galas", href: "/servicios/seguridad-eventos-corporativos" },
-  { label: "Control de Acceso", desc: "Registro ejecutivo y credencialización por niveles", href: "/servicios/control-acceso-eventos" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Seguridad VIP", desc: "Protección de figuras de alto perfil en eventos", href: "/servicios/seguridad-vip/" },
+  { label: "Eventos Corporativos", desc: "Seguridad discreta para convenciones y galas", href: "/servicios/seguridad-eventos-corporativos/" },
+  { label: "Control de Acceso", desc: "Registro ejecutivo y credencialización por niveles", href: "/servicios/control-acceso-eventos/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
@@ -133,16 +133,16 @@ const razones = [
 
 // Otros servicios relacionados (ServiceCards homologadas con servicios/index)
 const relacionados = [
-  { title: "Seguridad VIP", description: "Protección personal para artistas, celebridades e invitados de alto perfil durante eventos, con dispositivo de bajo perfil.", features: ["Close protection", "Avanzada de seguridad", "Bajo perfil"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos`, badge: "Destacado", featured: true },
-  { title: "Eventos Corporativos", description: "Seguridad discreta para convenciones, lanzamientos y galas, con personal bilingüe y confidencialidad contractual.", features: ["Personal bilingüe", "Confidencialidad", "Imagen institucional"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos` },
-  { title: "Ferias y Exposiciones", description: "Cobertura por zonas y por jornada para recintos multi-expositor, con inventario conciliado y enlace con el recinto.", features: ["Cobertura por turnos", "Inventario conciliado", "Enlace con el recinto"], href: "/servicios/seguridad-ferias-exposiciones", image: `${IMG}/seguridad-empresarial-evento` },
-  { title: "Control de Acceso", description: "Registro ejecutivo, credencialización por niveles y gestión de aforo para eventos de empresa.", features: ["Registro ejecutivo", "Credencialización", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos` },
+  { title: "Seguridad VIP", description: "Protección personal para artistas, celebridades e invitados de alto perfil durante eventos, con dispositivo de bajo perfil.", features: ["Close protection", "Avanzada de seguridad", "Bajo perfil"], href: "/servicios/seguridad-vip/", image: `${IMG}/seguridad-vip-eventos`, badge: "Destacado", featured: true },
+  { title: "Eventos Corporativos", description: "Seguridad discreta para convenciones, lanzamientos y galas, con personal bilingüe y confidencialidad contractual.", features: ["Personal bilingüe", "Confidencialidad", "Imagen institucional"], href: "/servicios/seguridad-eventos-corporativos/", image: `${IMG}/seguridad-eventos-corporativos` },
+  { title: "Ferias y Exposiciones", description: "Cobertura por zonas y por jornada para recintos multi-expositor, con inventario conciliado y enlace con el recinto.", features: ["Cobertura por turnos", "Inventario conciliado", "Enlace con el recinto"], href: "/servicios/seguridad-ferias-exposiciones/", image: `${IMG}/seguridad-empresarial-evento` },
+  { title: "Control de Acceso", description: "Registro ejecutivo, credencialización por niveles y gestión de aforo para eventos de empresa.", features: ["Registro ejecutivo", "Credencialización", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos/", image: `${IMG}/control-acceso-eventos` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
-  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Protección Ejecutiva' }]} />
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios/' }, { label: 'Protección Ejecutiva' }]} />
 
   <PageHero
     eyebrow="SEPRIEV — Protección Ejecutiva"
@@ -156,9 +156,9 @@ const relacionados = [
       <p class="text-accent text-base leading-relaxed">
         Agentes con <strong class="text-light font-semibold">licencia DGSSP individual</strong>, 5 años de experiencia, certificación STPS, evaluación psicométrica e inglés. Contravigilancia, conducción evasiva y <strong class="text-light font-semibold">confidencialidad contractual (NDA)</strong>. Presencia en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Cotización en menos de 24 horas.
       </p>
-      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/seguridad-vip" class="text-secondary hover:underline font-semibold">seguridad VIP</a> y <a href="/servicios/seguridad-eventos-corporativos" class="text-secondary hover:underline font-semibold">eventos corporativos</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
+      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/seguridad-vip/" class="text-secondary hover:underline font-semibold">seguridad VIP</a> y <a href="/servicios/seguridad-eventos-corporativos/" class="text-secondary hover:underline font-semibold">eventos corporativos</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -227,7 +227,7 @@ const relacionados = [
             </ul>
 
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

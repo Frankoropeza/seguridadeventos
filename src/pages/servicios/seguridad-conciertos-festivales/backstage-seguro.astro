@@ -59,10 +59,10 @@ const schemas = buildServicePageSchema({
 });
 
 const navItems = [
-  { label: "Conciertos y Festivales", desc: "Volver al servicio principal", href: "/servicios/seguridad-conciertos-festivales" },
-  { label: "Control de Multitudes", desc: "Subcategoría: frente de escenario y flujos", href: "/servicios/seguridad-conciertos-festivales/control-de-multitudes" },
-  { label: "Seguridad VIP", desc: "Protección de artistas y figuras de alto perfil", href: "/servicios/seguridad-vip" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Conciertos y Festivales", desc: "Volver al servicio principal", href: "/servicios/seguridad-conciertos-festivales/" },
+  { label: "Control de Multitudes", desc: "Subcategoría: frente de escenario y flujos", href: "/servicios/seguridad-conciertos-festivales/control-de-multitudes/" },
+  { label: "Seguridad VIP", desc: "Protección de artistas y figuras de alto perfil", href: "/servicios/seguridad-vip/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados
@@ -131,18 +131,18 @@ const razones = [
 
 // Relacionados y subcategorías hermanas (todas existentes)
 const relacionados = [
-  { title: "Conciertos y Festivales", description: "El servicio principal del que forma parte esta subcategoría: operativo integral de seguridad para eventos musicales.", features: ["Control de multitudes", "Coordinación institucional", "Plan de seguridad"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Servicio principal", featured: true },
-  { title: "Control de Multitudes", description: "Subcategoría hermana: diseño de flujos, densidad por sector y prevención de aplastamientos en el frente de escenario.", features: ["Diseño de flujos", "Densidad por sector", "Show-stop"], href: "/servicios/seguridad-conciertos-festivales/control-de-multitudes", image: `${IMG}/seguridad-conciertos-multitud`, badge: "Subcategoría" },
-  { title: "Seguridad VIP", description: "Protección personal de artistas, celebridades y figuras de alto perfil con dispositivo de bajo perfil.", features: ["Close protection", "Avanzada de seguridad", "Bajo perfil"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos` },
-  { title: "Montaje y Desmontaje", description: "Custodia 24/7, acreditación de proveedores e inventario en las zonas técnicas del backstage.", features: ["Custodia 24/7", "Control de proveedores", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje", image: `${IMG}/equipo-seguridad-eventos` },
+  { title: "Conciertos y Festivales", description: "El servicio principal del que forma parte esta subcategoría: operativo integral de seguridad para eventos musicales.", features: ["Control de multitudes", "Coordinación institucional", "Plan de seguridad"], href: "/servicios/seguridad-conciertos-festivales/", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Servicio principal", featured: true },
+  { title: "Control de Multitudes", description: "Subcategoría hermana: diseño de flujos, densidad por sector y prevención de aplastamientos en el frente de escenario.", features: ["Diseño de flujos", "Densidad por sector", "Show-stop"], href: "/servicios/seguridad-conciertos-festivales/control-de-multitudes/", image: `${IMG}/seguridad-conciertos-multitud`, badge: "Subcategoría" },
+  { title: "Seguridad VIP", description: "Protección personal de artistas, celebridades y figuras de alto perfil con dispositivo de bajo perfil.", features: ["Close protection", "Avanzada de seguridad", "Bajo perfil"], href: "/servicios/seguridad-vip/", image: `${IMG}/seguridad-vip-eventos` },
+  { title: "Montaje y Desmontaje", description: "Custodia 24/7, acreditación de proveedores e inventario en las zonas técnicas del backstage.", features: ["Custodia 24/7", "Control de proveedores", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje/", image: `${IMG}/equipo-seguridad-eventos` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
   <Breadcrumb items={[
-    { label: 'Servicios', href: '/servicios' },
-    { label: 'Conciertos y Festivales', href: '/servicios/seguridad-conciertos-festivales' },
+    { label: 'Servicios', href: '/servicios/' },
+    { label: 'Conciertos y Festivales', href: '/servicios/seguridad-conciertos-festivales/' },
     { label: 'Backstage seguro' },
   ]} />
 
@@ -153,13 +153,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        Subcategoría especializada del operativo de <a href="/servicios/seguridad-conciertos-festivales" class="text-secondary hover:underline font-semibold">seguridad para conciertos y festivales</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. El backstage seguro controla quién entra, cuándo y a qué zona: camerinos, plataformas técnicas, foso, producción y accesos de talento, cada uno con su propio nivel de acceso.
+        Subcategoría especializada del operativo de <a href="/servicios/seguridad-conciertos-festivales/" class="text-secondary hover:underline font-semibold">seguridad para conciertos y festivales</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. El backstage seguro controla quién entra, cuándo y a qué zona: camerinos, plataformas técnicas, foso, producción y accesos de talento, cada uno con su propio nivel de acceso.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Credencialización por niveles, protección de artistas y enlace con el tour security, con personal certificado y licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>. Se integra con el <a href="/servicios/seguridad-conciertos-festivales/control-de-multitudes" class="text-secondary hover:underline font-semibold">control de multitudes</a> y la <a href="/servicios/seguridad-montaje-desmontaje" class="text-secondary hover:underline font-semibold">custodia de montaje</a>.
+        Credencialización por niveles, protección de artistas y enlace con el tour security, con personal certificado y licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>. Se integra con el <a href="/servicios/seguridad-conciertos-festivales/control-de-multitudes/" class="text-secondary hover:underline font-semibold">control de multitudes</a> y la <a href="/servicios/seguridad-montaje-desmontaje/" class="text-secondary hover:underline font-semibold">custodia de montaje</a>.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -221,7 +221,7 @@ const relacionados = [
               ))}
             </ul>
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

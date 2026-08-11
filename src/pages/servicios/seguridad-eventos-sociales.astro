@@ -63,10 +63,10 @@ const schemas = buildServicePageSchema({
 });
 
 const navItems = [
-  { label: "Seguridad VIP", desc: "Protección discreta para familias de alto perfil", href: "/servicios/seguridad-vip" },
-  { label: "Control de Acceso", desc: "Lista de invitados y credencialización discreta", href: "/servicios/control-acceso-eventos" },
-  { label: "Eventos Corporativos", desc: "Galas y cenas con seguridad de etiqueta", href: "/servicios/seguridad-eventos-corporativos" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Seguridad VIP", desc: "Protección discreta para familias de alto perfil", href: "/servicios/seguridad-vip/" },
+  { label: "Control de Acceso", desc: "Lista de invitados y credencialización discreta", href: "/servicios/control-acceso-eventos/" },
+  { label: "Eventos Corporativos", desc: "Galas y cenas con seguridad de etiqueta", href: "/servicios/seguridad-eventos-corporativos/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
@@ -135,16 +135,16 @@ const razones = [
 
 // Otros servicios relacionados (ServiceCards homologadas con servicios/index)
 const relacionados = [
-  { title: "Seguridad VIP", description: "Protección personal y de bajo perfil para familias y figuras de alto perfil durante eventos privados.", features: ["Close protection", "Bajo perfil", "Confidencialidad"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos`, badge: "Destacado", featured: true },
-  { title: "Control de Acceso", description: "Lista de invitados, credencialización discreta y control de reingreso para celebraciones privadas.", features: ["Lista de invitados", "Credencialización", "Control de reingreso"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
-  { title: "Eventos Corporativos", description: "Seguridad de etiqueta para galas, cenas y premiaciones, con personal bilingüe y confidencialidad.", features: ["Personal de etiqueta", "Confidencialidad", "Imagen institucional"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos` },
-  { title: "Conciertos y Festivales", description: "Control de multitudes y protección de artistas para eventos musicales privados o de gran aforo.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales` },
+  { title: "Seguridad VIP", description: "Protección personal y de bajo perfil para familias y figuras de alto perfil durante eventos privados.", features: ["Close protection", "Bajo perfil", "Confidencialidad"], href: "/servicios/seguridad-vip/", image: `${IMG}/seguridad-vip-eventos`, badge: "Destacado", featured: true },
+  { title: "Control de Acceso", description: "Lista de invitados, credencialización discreta y control de reingreso para celebraciones privadas.", features: ["Lista de invitados", "Credencialización", "Control de reingreso"], href: "/servicios/control-acceso-eventos/", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Eventos Corporativos", description: "Seguridad de etiqueta para galas, cenas y premiaciones, con personal bilingüe y confidencialidad.", features: ["Personal de etiqueta", "Confidencialidad", "Imagen institucional"], href: "/servicios/seguridad-eventos-corporativos/", image: `${IMG}/seguridad-eventos-corporativos` },
+  { title: "Conciertos y Festivales", description: "Control de multitudes y protección de artistas para eventos musicales privados o de gran aforo.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales/", image: `${IMG}/seguridad-conciertos-festivales` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
-  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Eventos Sociales' }]} />
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios/' }, { label: 'Eventos Sociales' }]} />
 
   <PageHero
     eyebrow="SEPRIEV — Eventos Sociales"
@@ -153,13 +153,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        <strong class="text-light font-semibold">SEPRIEV</strong> ofrece seguridad para eventos sociales con personal capaz de integrarse a la celebración y de resolver cualquier incidente sin convertirlo en el tema de la noche: control de la lista de invitados, manejo discreto y resguardo de valores. Para familias de alto perfil lo combinamos con <a href="/servicios/seguridad-vip" class="text-secondary hover:underline font-semibold">seguridad VIP</a>.
+        <strong class="text-light font-semibold">SEPRIEV</strong> ofrece seguridad para eventos sociales con personal capaz de integrarse a la celebración y de resolver cualquier incidente sin convertirlo en el tema de la noche: control de la lista de invitados, manejo discreto y resguardo de valores. Para familias de alto perfil lo combinamos con <a href="/servicios/seguridad-vip/" class="text-secondary hover:underline font-semibold">seguridad VIP</a>.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Personal con <strong class="text-light font-semibold">dress code adaptable</strong>, valet parking seguro, primeros auxilios y <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso</a> discreto. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>, presencia en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Cotización en menos de 24 horas.
+        Personal con <strong class="text-light font-semibold">dress code adaptable</strong>, valet parking seguro, primeros auxilios y <a href="/servicios/control-acceso-eventos/" class="text-secondary hover:underline font-semibold">control de acceso</a> discreto. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>, presencia en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Cotización en menos de 24 horas.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -228,7 +228,7 @@ const relacionados = [
             </ul>
 
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

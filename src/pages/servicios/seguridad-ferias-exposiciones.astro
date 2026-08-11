@@ -62,10 +62,10 @@ const schemas = buildServicePageSchema({
 });
 
 const navItems = [
-  { label: "Control de Acceso", desc: "Credencialización diferenciada y aforo en tiempo real", href: "/servicios/control-acceso-eventos" },
-  { label: "Montaje y Desmontaje", desc: "Custodia 24/7 y acreditación de proveedores", href: "/servicios/seguridad-montaje-desmontaje" },
-  { label: "Eventos Corporativos", desc: "Seguridad discreta para convenciones y congresos", href: "/servicios/seguridad-eventos-corporativos" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Control de Acceso", desc: "Credencialización diferenciada y aforo en tiempo real", href: "/servicios/control-acceso-eventos/" },
+  { label: "Montaje y Desmontaje", desc: "Custodia 24/7 y acreditación de proveedores", href: "/servicios/seguridad-montaje-desmontaje/" },
+  { label: "Eventos Corporativos", desc: "Seguridad discreta para convenciones y congresos", href: "/servicios/seguridad-eventos-corporativos/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
@@ -134,16 +134,16 @@ const razones = [
 
 // Otros servicios relacionados (ServiceCards homologadas con servicios/index)
 const relacionados = [
-  { title: "Montaje y Desmontaje", description: "Custodia 24/7 del recinto, acreditación de proveedores e inventario fotográfico durante todo el ciclo del evento.", features: ["Custodia 24/7", "Control de proveedores", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje", image: `${IMG}/equipo-seguridad-eventos`, badge: "Destacado", featured: true },
-  { title: "Control de Acceso", description: "Credencialización diferenciada, detección de objetos y gestión de aforo en tiempo real para recintos feriales.", features: ["Credencialización", "Registro de visitantes", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
-  { title: "Eventos Corporativos", description: "Seguridad discreta para convenciones, congresos y lanzamientos, con personal bilingüe y confidencialidad.", features: ["Personal bilingüe", "Confidencialidad", "Imagen institucional"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos` },
-  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada` },
+  { title: "Montaje y Desmontaje", description: "Custodia 24/7 del recinto, acreditación de proveedores e inventario fotográfico durante todo el ciclo del evento.", features: ["Custodia 24/7", "Control de proveedores", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje/", image: `${IMG}/equipo-seguridad-eventos`, badge: "Destacado", featured: true },
+  { title: "Control de Acceso", description: "Credencialización diferenciada, detección de objetos y gestión de aforo en tiempo real para recintos feriales.", features: ["Credencialización", "Registro de visitantes", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos/", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Eventos Corporativos", description: "Seguridad discreta para convenciones, congresos y lanzamientos, con personal bilingüe y confidencialidad.", features: ["Personal bilingüe", "Confidencialidad", "Imagen institucional"], href: "/servicios/seguridad-eventos-corporativos/", image: `${IMG}/seguridad-eventos-corporativos` },
+  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos/", image: `${IMG}/guardias-seguridad-privada` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
-  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Ferias y Exposiciones' }]} />
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios/' }, { label: 'Ferias y Exposiciones' }]} />
 
   <PageHero
     eyebrow="SEPRIEV — Ferias y Exposiciones"
@@ -152,13 +152,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        <strong class="text-light font-semibold">SEPRIEV</strong> opera ferias con un modelo de cobertura por zonas y por jornada que distingue el recinto con público del recinto vacío de madrugada, con custodia nocturna documentada e inventario conciliado. Integramos el <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso</a> y la credencialización diferenciada de expositores, visitantes, prensa y staff.
+        <strong class="text-light font-semibold">SEPRIEV</strong> opera ferias con un modelo de cobertura por zonas y por jornada que distingue el recinto con público del recinto vacío de madrugada, con custodia nocturna documentada e inventario conciliado. Integramos el <a href="/servicios/control-acceso-eventos/" class="text-secondary hover:underline font-semibold">control de acceso</a> y la credencialización diferenciada de expositores, visitantes, prensa y staff.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Experiencia en Centro Citibanamex, Expo Guadalajara, CINTERMEX y World Trade Center, con <a href="/servicios/seguridad-montaje-desmontaje" class="text-secondary hover:underline font-semibold">seguridad de montaje y desmontaje</a> incluida. Un solo proveedor, responsabilidad civil incluida, <strong class="text-light font-semibold">licencia DGSSP y STPS</strong>. Cotización en menos de 24 horas.
+        Experiencia en Centro Citibanamex, Expo Guadalajara, CINTERMEX y World Trade Center, con <a href="/servicios/seguridad-montaje-desmontaje/" class="text-secondary hover:underline font-semibold">seguridad de montaje y desmontaje</a> incluida. Un solo proveedor, responsabilidad civil incluida, <strong class="text-light font-semibold">licencia DGSSP y STPS</strong>. Cotización en menos de 24 horas.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -227,7 +227,7 @@ const relacionados = [
             </ul>
 
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

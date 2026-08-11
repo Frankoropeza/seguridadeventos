@@ -77,10 +77,10 @@ const schemas = [
 ];
 
 const navItems = [
-  { label: "Eventos Corporativos", desc: "Volver al servicio principal", href: "/servicios/seguridad-eventos-corporativos" },
-  { label: "Personal Bilingüe", desc: "Subcategoría: agentes con dominio del inglés", href: "/servicios/seguridad-eventos-corporativos/personal-bilingue" },
-  { label: "Dress Code Adaptable", desc: "Subcategoría: imagen e integración al evento", href: "/servicios/seguridad-eventos-corporativos/dress-code-adaptable" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Eventos Corporativos", desc: "Volver al servicio principal", href: "/servicios/seguridad-eventos-corporativos/" },
+  { label: "Personal Bilingüe", desc: "Subcategoría: agentes con dominio del inglés", href: "/servicios/seguridad-eventos-corporativos/personal-bilingue/" },
+  { label: "Dress Code Adaptable", desc: "Subcategoría: imagen e integración al evento", href: "/servicios/seguridad-eventos-corporativos/dress-code-adaptable/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados
@@ -149,18 +149,18 @@ const razones = [
 
 // Relacionados (cluster corporativo completo)
 const relacionados = [
-  { title: "Eventos Corporativos", description: "El servicio principal del que forma parte esta subcategoría: seguridad discreta para convenciones, lanzamientos y galas.", features: ["Personal bilingüe", "Dress code adaptable", "Reporte ejecutivo"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos`, badge: "Servicio principal", featured: true },
-  { title: "Personal Bilingüe", description: "Subcategoría hermana: agentes con dominio del inglés y etiqueta corporativa para eventos internacionales.", features: ["Español / Inglés", "Etiqueta corporativa", "Enlace internacional"], href: "/servicios/seguridad-eventos-corporativos/personal-bilingue", image: `${IMG}/seguridad-empresarial-evento`, badge: "Subcategoría" },
-  { title: "Dress Code Adaptable", description: "Subcategoría hermana: vestimenta del personal a la medida de la imagen del evento, de la etiqueta al bajo perfil.", features: ["Imagen institucional", "Niveles de vestimenta", "Integración discreta"], href: "/servicios/seguridad-eventos-corporativos/dress-code-adaptable", image: `${IMG}/equipo-seguridad-eventos`, badge: "Subcategoría" },
-  { title: "Protección Ejecutiva", description: "Protección de directivos con gobernanza estricta de la información y confidencialidad contractual.", features: ["Análisis de riesgo", "Personal verificado", "Gobernanza de la información"], href: "/servicios/proteccion-ejecutiva", image: `${IMG}/proteccion-ejecutiva-mexico` },
+  { title: "Eventos Corporativos", description: "El servicio principal del que forma parte esta subcategoría: seguridad discreta para convenciones, lanzamientos y galas.", features: ["Personal bilingüe", "Dress code adaptable", "Reporte ejecutivo"], href: "/servicios/seguridad-eventos-corporativos/", image: `${IMG}/seguridad-eventos-corporativos`, badge: "Servicio principal", featured: true },
+  { title: "Personal Bilingüe", description: "Subcategoría hermana: agentes con dominio del inglés y etiqueta corporativa para eventos internacionales.", features: ["Español / Inglés", "Etiqueta corporativa", "Enlace internacional"], href: "/servicios/seguridad-eventos-corporativos/personal-bilingue/", image: `${IMG}/seguridad-empresarial-evento`, badge: "Subcategoría" },
+  { title: "Dress Code Adaptable", description: "Subcategoría hermana: vestimenta del personal a la medida de la imagen del evento, de la etiqueta al bajo perfil.", features: ["Imagen institucional", "Niveles de vestimenta", "Integración discreta"], href: "/servicios/seguridad-eventos-corporativos/dress-code-adaptable/", image: `${IMG}/equipo-seguridad-eventos`, badge: "Subcategoría" },
+  { title: "Protección Ejecutiva", description: "Protección de directivos con gobernanza estricta de la información y confidencialidad contractual.", features: ["Análisis de riesgo", "Personal verificado", "Gobernanza de la información"], href: "/servicios/proteccion-ejecutiva/", image: `${IMG}/proteccion-ejecutiva-mexico` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
   <Breadcrumb items={[
-    { label: 'Servicios', href: '/servicios' },
-    { label: 'Eventos Corporativos', href: '/servicios/seguridad-eventos-corporativos' },
+    { label: 'Servicios', href: '/servicios/' },
+    { label: 'Eventos Corporativos', href: '/servicios/seguridad-eventos-corporativos/' },
     { label: 'Confidencialidad (NDA)' },
   ]} />
 
@@ -171,13 +171,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        Subcategoría del servicio de <a href="/servicios/seguridad-eventos-corporativos" class="text-secondary hover:underline font-semibold">seguridad para eventos corporativos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Todo el personal firma un <strong class="text-light font-semibold">Acuerdo de Confidencialidad (NDA)</strong> que protege información estratégica, identidades, presentaciones y datos sensibles, con instrucciones explícitas sobre fotografía, redes y medios.
+        Subcategoría del servicio de <a href="/servicios/seguridad-eventos-corporativos/" class="text-secondary hover:underline font-semibold">seguridad para eventos corporativos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Todo el personal firma un <strong class="text-light font-semibold">Acuerdo de Confidencialidad (NDA)</strong> que protege información estratégica, identidades, presentaciones y datos sensibles, con instrucciones explícitas sobre fotografía, redes y medios.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Personal verificado, gobernanza de la información bajo need-to-know y consecuencias reales ante cualquier filtración. Es una capa transversal que cubre al <a href="/servicios/seguridad-eventos-corporativos/personal-bilingue" class="text-secondary hover:underline font-semibold">personal bilingüe</a>, al <a href="/servicios/seguridad-eventos-corporativos/dress-code-adaptable" class="text-secondary hover:underline font-semibold">dress code adaptable</a> y a la protección de directivos. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+        Personal verificado, gobernanza de la información bajo need-to-know y consecuencias reales ante cualquier filtración. Es una capa transversal que cubre al <a href="/servicios/seguridad-eventos-corporativos/personal-bilingue/" class="text-secondary hover:underline font-semibold">personal bilingüe</a>, al <a href="/servicios/seguridad-eventos-corporativos/dress-code-adaptable/" class="text-secondary hover:underline font-semibold">dress code adaptable</a> y a la protección de directivos. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -239,7 +239,7 @@ const relacionados = [
               ))}
             </ul>
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

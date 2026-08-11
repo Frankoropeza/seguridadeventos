@@ -97,10 +97,10 @@ const schemas = [
 ];
 
 const navItems = [
-  { label: "Seguridad VIP", desc: "Volver al servicio principal", href: "/servicios/seguridad-vip" },
-  { label: "Protección Ejecutiva", desc: "Programa continuo de protección para directivos", href: "/servicios/proteccion-ejecutiva" },
-  { label: "Backstage Seguro", desc: "Protección del artista dentro del recinto", href: "/servicios/seguridad-conciertos-festivales/backstage-seguro" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Seguridad VIP", desc: "Volver al servicio principal", href: "/servicios/seguridad-vip/" },
+  { label: "Protección Ejecutiva", desc: "Programa continuo de protección para directivos", href: "/servicios/proteccion-ejecutiva/" },
+  { label: "Backstage Seguro", desc: "Protección del artista dentro del recinto", href: "/servicios/seguridad-conciertos-festivales/backstage-seguro/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados
@@ -169,18 +169,18 @@ const razones = [
 
 // Relacionados
 const relacionados = [
-  { title: "Seguridad VIP", description: "El servicio principal del que forma parte esta subcategoría: escoltas, avanzada, inteligencia y traslados para figuras de alto perfil.", features: ["Close protection", "Avanzada de seguridad", "Inteligencia preventiva"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos`, badge: "Servicio principal", featured: true },
-  { title: "Protección Ejecutiva", description: "Programa continuo de protección para directivos, basado en análisis de riesgo, con contravigilancia y traslados seguros.", features: ["Análisis de riesgo", "Contravigilancia", "Traslados seguros"], href: "/servicios/proteccion-ejecutiva", image: `${IMG}/proteccion-ejecutiva-mexico`, badge: "Relacionado" },
-  { title: "Backstage Seguro", description: "Protección del artista dentro del recinto: el complemento natural del close protection en conciertos y festivales.", features: ["Acceso por anillos", "Camerinos sellados", "Acompañamiento a escenario"], href: "/servicios/seguridad-conciertos-festivales/backstage-seguro", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Subcategoría" },
-  { title: "Conciertos y Festivales", description: "Protección de artistas y dispositivos de bajo perfil para eventos musicales de cualquier escala.", features: ["Protección de artistas", "Backstage seguro", "Control de multitudes"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-multitud` },
+  { title: "Seguridad VIP", description: "El servicio principal del que forma parte esta subcategoría: escoltas, avanzada, inteligencia y traslados para figuras de alto perfil.", features: ["Close protection", "Avanzada de seguridad", "Inteligencia preventiva"], href: "/servicios/seguridad-vip/", image: `${IMG}/seguridad-vip-eventos`, badge: "Servicio principal", featured: true },
+  { title: "Protección Ejecutiva", description: "Programa continuo de protección para directivos, basado en análisis de riesgo, con contravigilancia y traslados seguros.", features: ["Análisis de riesgo", "Contravigilancia", "Traslados seguros"], href: "/servicios/proteccion-ejecutiva/", image: `${IMG}/proteccion-ejecutiva-mexico`, badge: "Relacionado" },
+  { title: "Backstage Seguro", description: "Protección del artista dentro del recinto: el complemento natural del close protection en conciertos y festivales.", features: ["Acceso por anillos", "Camerinos sellados", "Acompañamiento a escenario"], href: "/servicios/seguridad-conciertos-festivales/backstage-seguro/", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Subcategoría" },
+  { title: "Conciertos y Festivales", description: "Protección de artistas y dispositivos de bajo perfil para eventos musicales de cualquier escala.", features: ["Protección de artistas", "Backstage seguro", "Control de multitudes"], href: "/servicios/seguridad-conciertos-festivales/", image: `${IMG}/seguridad-conciertos-multitud` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
   <Breadcrumb items={[
-    { label: 'Servicios', href: '/servicios' },
-    { label: 'Seguridad VIP', href: '/servicios/seguridad-vip' },
+    { label: 'Servicios', href: '/servicios/' },
+    { label: 'Seguridad VIP', href: '/servicios/seguridad-vip/' },
     { label: 'Close protection' },
   ]} />
 
@@ -191,13 +191,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        Subcategoría del servicio de <a href="/servicios/seguridad-vip" class="text-secondary hover:underline font-semibold">seguridad VIP</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Desplegamos <strong class="text-light font-semibold">close protection officers</strong> con perfil de ex fuerzas de seguridad que trabajan sobre una avanzada, anillos de protección y formaciones a pie, con embarque y desembarque seguro y un plan de extracción definido.
+        Subcategoría del servicio de <a href="/servicios/seguridad-vip/" class="text-secondary hover:underline font-semibold">seguridad VIP</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Desplegamos <strong class="text-light font-semibold">close protection officers</strong> con perfil de ex fuerzas de seguridad que trabajan sobre una avanzada, anillos de protección y formaciones a pie, con embarque y desembarque seguro y un plan de extracción definido.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Personal certificado en <strong class="text-light font-semibold">primeros auxilios, RCP y DEA</strong>, escoltas mujeres disponibles y confidencialidad contractual (NDA). Se integra con la <a href="/servicios/proteccion-ejecutiva" class="text-secondary hover:underline font-semibold">protección ejecutiva</a> y con el <a href="/servicios/seguridad-conciertos-festivales/backstage-seguro" class="text-secondary hover:underline font-semibold">backstage seguro</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+        Personal certificado en <strong class="text-light font-semibold">primeros auxilios, RCP y DEA</strong>, escoltas mujeres disponibles y confidencialidad contractual (NDA). Se integra con la <a href="/servicios/proteccion-ejecutiva/" class="text-secondary hover:underline font-semibold">protección ejecutiva</a> y con el <a href="/servicios/seguridad-conciertos-festivales/backstage-seguro/" class="text-secondary hover:underline font-semibold">backstage seguro</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -259,7 +259,7 @@ const relacionados = [
               ))}
             </ul>
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

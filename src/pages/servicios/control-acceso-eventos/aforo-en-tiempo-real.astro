@@ -78,10 +78,10 @@ const schemas = [
 ];
 
 const navItems = [
-  { label: "Control de Acceso", desc: "Volver al servicio principal", href: "/servicios/control-acceso-eventos" },
-  { label: "Escaneo de Boletos", desc: "Subcategoría: validación QR/NFC en tiempo real", href: "/servicios/control-acceso-eventos/escaneo-qr-boletos" },
-  { label: "Eventos Masivos", desc: "Centro de comando y densidad de aforo para +10,000", href: "/servicios/seguridad-masivos" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Control de Acceso", desc: "Volver al servicio principal", href: "/servicios/control-acceso-eventos/" },
+  { label: "Escaneo de Boletos", desc: "Subcategoría: validación QR/NFC en tiempo real", href: "/servicios/control-acceso-eventos/escaneo-qr-boletos/" },
+  { label: "Eventos Masivos", desc: "Centro de comando y densidad de aforo para +10,000", href: "/servicios/seguridad-masivos/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados
@@ -150,18 +150,18 @@ const razones = [
 
 // Relacionados
 const relacionados = [
-  { title: "Control de Acceso", description: "El servicio principal del que forma parte esta subcategoría: validación, credencialización, detección y aforo.", features: ["Validación de boletos", "Detección de metales", "Credencialización"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Servicio principal", featured: true },
-  { title: "Escaneo de Boletos", description: "Subcategoría hermana: validación QR/NFC en tiempo real que alimenta el conteo de aforo.", features: ["Validación QR/NFC", "Antifraude", "Contingencia offline"], href: "/servicios/control-acceso-eventos/escaneo-qr-boletos", image: `${IMG}/control-acceso-credenciales`, badge: "Subcategoría" },
-  { title: "Detección de Metales", description: "Subcategoría hermana: arcos de paso, detectores de mano y revisión de objetos en el acceso.", features: ["Arcos de paso", "Detector de mano", "Resguardo de objetos"], href: "/servicios/control-acceso-eventos/detectores-de-metales", image: `${IMG}/control-acceso-eventos`, badge: "Subcategoría" },
-  { title: "Eventos Masivos", description: "Conteo de aforo y densidad a escala de +10,000 asistentes, con centro de comando y vigilancia aérea.", features: ["Centro de comando", "Densidad por sector", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada` },
+  { title: "Control de Acceso", description: "El servicio principal del que forma parte esta subcategoría: validación, credencialización, detección y aforo.", features: ["Validación de boletos", "Detección de metales", "Credencialización"], href: "/servicios/control-acceso-eventos/", image: `${IMG}/control-acceso-eventos`, badge: "Servicio principal", featured: true },
+  { title: "Escaneo de Boletos", description: "Subcategoría hermana: validación QR/NFC en tiempo real que alimenta el conteo de aforo.", features: ["Validación QR/NFC", "Antifraude", "Contingencia offline"], href: "/servicios/control-acceso-eventos/escaneo-qr-boletos/", image: `${IMG}/control-acceso-credenciales`, badge: "Subcategoría" },
+  { title: "Detección de Metales", description: "Subcategoría hermana: arcos de paso, detectores de mano y revisión de objetos en el acceso.", features: ["Arcos de paso", "Detector de mano", "Resguardo de objetos"], href: "/servicios/control-acceso-eventos/detectores-de-metales/", image: `${IMG}/control-acceso-eventos`, badge: "Subcategoría" },
+  { title: "Eventos Masivos", description: "Conteo de aforo y densidad a escala de +10,000 asistentes, con centro de comando y vigilancia aérea.", features: ["Centro de comando", "Densidad por sector", "Mando unificado"], href: "/servicios/seguridad-masivos/", image: `${IMG}/guardias-seguridad-privada` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
   <Breadcrumb items={[
-    { label: 'Servicios', href: '/servicios' },
-    { label: 'Control de Acceso', href: '/servicios/control-acceso-eventos' },
+    { label: 'Servicios', href: '/servicios/' },
+    { label: 'Control de Acceso', href: '/servicios/control-acceso-eventos/' },
     { label: 'Aforo en tiempo real' },
   ]} />
 
@@ -172,13 +172,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        Subcategoría del servicio de <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso para eventos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Contamos entradas y salidas por punto y por sector, con un <strong class="text-light font-semibold">semáforo de capacidad</strong> y alertas por umbral, y coordinamos la apertura y el cierre de accesos para no superar el aforo autorizado.
+        Subcategoría del servicio de <a href="/servicios/control-acceso-eventos/" class="text-secondary hover:underline font-semibold">control de acceso para eventos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Contamos entradas y salidas por punto y por sector, con un <strong class="text-light font-semibold">semáforo de capacidad</strong> y alertas por umbral, y coordinamos la apertura y el cierre de accesos para no superar el aforo autorizado.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Se alimenta del <a href="/servicios/control-acceso-eventos/escaneo-qr-boletos" class="text-secondary hover:underline font-semibold">escaneo de boletos</a> y entrega un reporte conciliado para la autoridad. A gran escala, alimenta la <a href="/servicios/seguridad-masivos" class="text-secondary hover:underline font-semibold">dirección de eventos masivos</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+        Se alimenta del <a href="/servicios/control-acceso-eventos/escaneo-qr-boletos/" class="text-secondary hover:underline font-semibold">escaneo de boletos</a> y entrega un reporte conciliado para la autoridad. A gran escala, alimenta la <a href="/servicios/seguridad-masivos/" class="text-secondary hover:underline font-semibold">dirección de eventos masivos</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -240,7 +240,7 @@ const relacionados = [
               ))}
             </ul>
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

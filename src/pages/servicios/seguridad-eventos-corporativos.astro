@@ -57,10 +57,10 @@ const schemas = buildServicePageSchema({
 });
 
 const navItems = [
-  { label: "Protección Ejecutiva", desc: "Programa continuo de protección para directivos", href: "/servicios/proteccion-ejecutiva" },
-  { label: "Control de Acceso", desc: "Registro, credencialización y aforo en tiempo real", href: "/servicios/control-acceso-eventos" },
-  { label: "Seguridad VIP", desc: "Escoltas de bajo perfil para directivos e invitados", href: "/servicios/seguridad-vip" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Protección Ejecutiva", desc: "Programa continuo de protección para directivos", href: "/servicios/proteccion-ejecutiva/" },
+  { label: "Control de Acceso", desc: "Registro, credencialización y aforo en tiempo real", href: "/servicios/control-acceso-eventos/" },
+  { label: "Seguridad VIP", desc: "Escoltas de bajo perfil para directivos e invitados", href: "/servicios/seguridad-vip/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
@@ -129,16 +129,16 @@ const razones = [
 
 // Otros servicios relacionados (ServiceCards homologadas con servicios/index)
 const relacionados = [
-  { title: "Protección Ejecutiva", description: "Programa continuo de protección para directivos basado en análisis de riesgo, con personal verificado y gobernanza estricta de la información.", features: ["Análisis de riesgo", "Personal verificado", "Traslados seguros"], href: "/servicios/proteccion-ejecutiva", image: `${IMG}/proteccion-ejecutiva-mexico`, badge: "Destacado", featured: true },
-  { title: "Control de Acceso", description: "Registro, credencialización por niveles, detección de objetos y gestión de aforo en tiempo real para eventos de empresa.", features: ["Credencialización", "Registro y gafetes", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
-  { title: "Seguridad VIP", description: "Escoltas certificados en protección personal para directivos e invitados de alto perfil, con dispositivo de bajo perfil.", features: ["Close protection", "Coordinación con management", "Discreción total"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos` },
-  { title: "Ferias y Exposiciones", description: "Cobertura por zonas y por jornada para recintos multi-expositor, con inventario conciliado y enlace con la administración del recinto.", features: ["Cobertura por turnos", "Inventario conciliado", "Enlace con el recinto"], href: "/servicios/seguridad-ferias-exposiciones", image: `${IMG}/seguridad-empresarial-evento` },
+  { title: "Protección Ejecutiva", description: "Programa continuo de protección para directivos basado en análisis de riesgo, con personal verificado y gobernanza estricta de la información.", features: ["Análisis de riesgo", "Personal verificado", "Traslados seguros"], href: "/servicios/proteccion-ejecutiva/", image: `${IMG}/proteccion-ejecutiva-mexico`, badge: "Destacado", featured: true },
+  { title: "Control de Acceso", description: "Registro, credencialización por niveles, detección de objetos y gestión de aforo en tiempo real para eventos de empresa.", features: ["Credencialización", "Registro y gafetes", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos/", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Seguridad VIP", description: "Escoltas certificados en protección personal para directivos e invitados de alto perfil, con dispositivo de bajo perfil.", features: ["Close protection", "Coordinación con management", "Discreción total"], href: "/servicios/seguridad-vip/", image: `${IMG}/seguridad-vip-eventos` },
+  { title: "Ferias y Exposiciones", description: "Cobertura por zonas y por jornada para recintos multi-expositor, con inventario conciliado y enlace con la administración del recinto.", features: ["Cobertura por turnos", "Inventario conciliado", "Enlace con el recinto"], href: "/servicios/seguridad-ferias-exposiciones/", image: `${IMG}/seguridad-empresarial-evento` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
-  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Eventos Corporativos' }]} />
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios/' }, { label: 'Eventos Corporativos' }]} />
 
   <PageHero
     eyebrow="SEPRIEV — Eventos Corporativos"
@@ -152,9 +152,9 @@ const relacionados = [
       <p class="text-accent text-base leading-relaxed">
         Más de <strong class="text-light font-semibold">500 eventos protegidos</strong>, personal <strong class="text-light font-semibold">bilingüe</strong> con <strong class="text-light font-semibold">licencia DGSSP y certificación STPS</strong>, y presencia en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Cotización gratuita y propuesta en menos de 24 horas, con un solo interlocutor responsable de toda la operación.
       </p>
-      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/proteccion-ejecutiva" class="text-secondary hover:underline font-semibold">protección ejecutiva</a> y <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
+      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/proteccion-ejecutiva/" class="text-secondary hover:underline font-semibold">protección ejecutiva</a> y <a href="/servicios/control-acceso-eventos/" class="text-secondary hover:underline font-semibold">control de acceso</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -223,7 +223,7 @@ const relacionados = [
             </ul>
 
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -337,9 +337,9 @@ const relacionados = [
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <ServiceCard title="Personal Bilingüe" description="Agentes con dominio del inglés y etiqueta corporativa para convenciones internacionales y delegaciones extranjeras." features={["Español / Inglés", "Etiqueta corporativa", "Enlace internacional"]} href="/servicios/seguridad-eventos-corporativos/personal-bilingue" image={`${IMG}/seguridad-empresarial-evento`} badge="Subcategoría" />
-        <ServiceCard title="Dress Code Adaptable" description="Vestimenta del personal a la medida de la imagen del evento, de la etiqueta formal al bajo perfil de civil." features={["Imagen institucional", "Niveles de vestimenta", "Integración discreta"]} href="/servicios/seguridad-eventos-corporativos/dress-code-adaptable" image={`${IMG}/equipo-seguridad-eventos`} badge="Subcategoría" />
-        <ServiceCard title="Confidencialidad (NDA)" description="Acuerdo de no divulgación para todo el personal, con gobernanza de la información y consecuencias reales." features={["NDA estándar", "Need-to-know", "Personal verificado"]} href="/servicios/seguridad-eventos-corporativos/confidencialidad-nda" image={`${IMG}/seguridad-eventos-corporativos`} badge="Subcategoría" />
+        <ServiceCard title="Personal Bilingüe" description="Agentes con dominio del inglés y etiqueta corporativa para convenciones internacionales y delegaciones extranjeras." features={["Español / Inglés", "Etiqueta corporativa", "Enlace internacional"]} href="/servicios/seguridad-eventos-corporativos/personal-bilingue/" image={`${IMG}/seguridad-empresarial-evento`} badge="Subcategoría" />
+        <ServiceCard title="Dress Code Adaptable" description="Vestimenta del personal a la medida de la imagen del evento, de la etiqueta formal al bajo perfil de civil." features={["Imagen institucional", "Niveles de vestimenta", "Integración discreta"]} href="/servicios/seguridad-eventos-corporativos/dress-code-adaptable/" image={`${IMG}/equipo-seguridad-eventos`} badge="Subcategoría" />
+        <ServiceCard title="Confidencialidad (NDA)" description="Acuerdo de no divulgación para todo el personal, con gobernanza de la información y consecuencias reales." features={["NDA estándar", "Need-to-know", "Personal verificado"]} href="/servicios/seguridad-eventos-corporativos/confidencialidad-nda/" image={`${IMG}/seguridad-eventos-corporativos`} badge="Subcategoría" />
       </div>
     </div>
   </section>

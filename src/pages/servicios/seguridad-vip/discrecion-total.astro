@@ -85,10 +85,10 @@ const schemas = [
 ];
 
 const navItems = [
-  { label: "Seguridad VIP", desc: "Volver al servicio principal", href: "/servicios/seguridad-vip" },
-  { label: "Close Protection", desc: "Subcategoría: escolta personal de cercanía", href: "/servicios/seguridad-vip/close-protection" },
-  { label: "Vehículo Blindado", desc: "Subcategoría: traslado blindado con bajo perfil", href: "/servicios/seguridad-vip/vehiculo-blindado" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Seguridad VIP", desc: "Volver al servicio principal", href: "/servicios/seguridad-vip/" },
+  { label: "Close Protection", desc: "Subcategoría: escolta personal de cercanía", href: "/servicios/seguridad-vip/close-protection/" },
+  { label: "Vehículo Blindado", desc: "Subcategoría: traslado blindado con bajo perfil", href: "/servicios/seguridad-vip/vehiculo-blindado/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados
@@ -157,18 +157,18 @@ const razones = [
 
 // Relacionados
 const relacionados = [
-  { title: "Seguridad VIP", description: "El servicio principal del que forma parte esta subcategoría: escoltas, avanzada, inteligencia y traslados para figuras de alto perfil.", features: ["Close protection", "Inteligencia preventiva", "Bajo perfil"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos`, badge: "Servicio principal", featured: true },
-  { title: "Close Protection", description: "Subcategoría hermana: la escolta personal de cercanía sobre la que se monta el bajo perfil y el control de imagen.", features: ["Anillos de protección", "Embarque y desembarque", "Plan de extracción"], href: "/servicios/seguridad-vip/close-protection", image: `${IMG}/proteccion-vip-invitados`, badge: "Subcategoría" },
-  { title: "Vehículo Blindado", description: "Subcategoría hermana: el traslado blindado operado también en bajo perfil, con rutas reservadas y vehículos sin distintivos.", features: ["Blindaje III–V", "Conducción evasiva", "Estudio de ruta"], href: "/servicios/seguridad-vip/vehiculo-blindado", image: `${IMG}/proteccion-ejecutiva-mexico`, badge: "Subcategoría" },
-  { title: "Eventos Sociales", description: "Discreción y control de invitados para bodas, XV años y celebraciones privadas de familias y figuras públicas.", features: ["Control de invitados", "Manejo discreto", "Privacidad"], href: "/servicios/seguridad-eventos-sociales", image: `${IMG}/seguridad-vip-gala` },
+  { title: "Seguridad VIP", description: "El servicio principal del que forma parte esta subcategoría: escoltas, avanzada, inteligencia y traslados para figuras de alto perfil.", features: ["Close protection", "Inteligencia preventiva", "Bajo perfil"], href: "/servicios/seguridad-vip/", image: `${IMG}/seguridad-vip-eventos`, badge: "Servicio principal", featured: true },
+  { title: "Close Protection", description: "Subcategoría hermana: la escolta personal de cercanía sobre la que se monta el bajo perfil y el control de imagen.", features: ["Anillos de protección", "Embarque y desembarque", "Plan de extracción"], href: "/servicios/seguridad-vip/close-protection/", image: `${IMG}/proteccion-vip-invitados`, badge: "Subcategoría" },
+  { title: "Vehículo Blindado", description: "Subcategoría hermana: el traslado blindado operado también en bajo perfil, con rutas reservadas y vehículos sin distintivos.", features: ["Blindaje III–V", "Conducción evasiva", "Estudio de ruta"], href: "/servicios/seguridad-vip/vehiculo-blindado/", image: `${IMG}/proteccion-ejecutiva-mexico`, badge: "Subcategoría" },
+  { title: "Eventos Sociales", description: "Discreción y control de invitados para bodas, XV años y celebraciones privadas de familias y figuras públicas.", features: ["Control de invitados", "Manejo discreto", "Privacidad"], href: "/servicios/seguridad-eventos-sociales/", image: `${IMG}/seguridad-vip-gala` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
   <Breadcrumb items={[
-    { label: 'Servicios', href: '/servicios' },
-    { label: 'Seguridad VIP', href: '/servicios/seguridad-vip' },
+    { label: 'Servicios', href: '/servicios/' },
+    { label: 'Seguridad VIP', href: '/servicios/seguridad-vip/' },
     { label: 'Discreción total' },
   ]} />
 
@@ -179,13 +179,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        Subcategoría del servicio de <a href="/servicios/seguridad-vip" class="text-secondary hover:underline font-semibold">seguridad VIP</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Montamos un <strong class="text-light font-semibold">dispositivo de bajo perfil</strong> que controla accesos, rutas y prensa, con burbuja de privacidad y zonas sin cámaras, coordinado con la representación del protegido.
+        Subcategoría del servicio de <a href="/servicios/seguridad-vip/" class="text-secondary hover:underline font-semibold">seguridad VIP</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Montamos un <strong class="text-light font-semibold">dispositivo de bajo perfil</strong> que controla accesos, rutas y prensa, con burbuja de privacidad y zonas sin cámaras, coordinado con la representación del protegido.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Confidencialidad contractual (NDA) y control de filtraciones bajo <em class="text-light not-italic font-semibold">need to know</em>. Se monta sobre el <a href="/servicios/seguridad-vip/close-protection" class="text-secondary hover:underline font-semibold">close protection</a> y el <a href="/servicios/seguridad-vip/vehiculo-blindado" class="text-secondary hover:underline font-semibold">traslado blindado</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+        Confidencialidad contractual (NDA) y control de filtraciones bajo <em class="text-light not-italic font-semibold">need to know</em>. Se monta sobre el <a href="/servicios/seguridad-vip/close-protection/" class="text-secondary hover:underline font-semibold">close protection</a> y el <a href="/servicios/seguridad-vip/vehiculo-blindado/" class="text-secondary hover:underline font-semibold">traslado blindado</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -247,7 +247,7 @@ const relacionados = [
               ))}
             </ul>
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

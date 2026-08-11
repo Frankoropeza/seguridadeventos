@@ -44,12 +44,12 @@ const VACANTE_CORTO: Record<string, string> = {
       <div>
         <h3 class="text-light font-semibold text-sm uppercase tracking-wider mb-4">Servicios</h3>
         <ul class="space-y-2 text-accent text-sm">
-          <li><a href="/servicios/seguridad-conciertos-festivales" class="hover:text-light transition-colors">Conciertos y Festivales</a></li>
-          <li><a href="/servicios/seguridad-eventos-corporativos" class="hover:text-light transition-colors">Eventos Corporativos</a></li>
-          <li><a href="/servicios/control-acceso-eventos" class="hover:text-light transition-colors">Control de Acceso</a></li>
-          <li><a href="/servicios/seguridad-vip" class="hover:text-light transition-colors">Seguridad VIP</a></li>
-          <li><a href="/servicios/proteccion-ejecutiva" class="hover:text-light transition-colors">Proteccion Ejecutiva</a></li>
-          <li><a href="/servicios" class="text-secondary hover:text-red-400 transition-colors font-medium">Ver todos →</a></li>
+          <li><a href="/servicios/seguridad-conciertos-festivales/" class="hover:text-light transition-colors">Conciertos y Festivales</a></li>
+          <li><a href="/servicios/seguridad-eventos-corporativos/" class="hover:text-light transition-colors">Eventos Corporativos</a></li>
+          <li><a href="/servicios/control-acceso-eventos/" class="hover:text-light transition-colors">Control de Acceso</a></li>
+          <li><a href="/servicios/seguridad-vip/" class="hover:text-light transition-colors">Seguridad VIP</a></li>
+          <li><a href="/servicios/proteccion-ejecutiva/" class="hover:text-light transition-colors">Proteccion Ejecutiva</a></li>
+          <li><a href="/servicios/" class="text-secondary hover:text-red-400 transition-colors font-medium">Ver todos →</a></li>
         </ul>
       </div>
 
@@ -57,11 +57,11 @@ const VACANTE_CORTO: Record<string, string> = {
       <div>
         <h3 class="text-light font-semibold text-sm uppercase tracking-wider mb-4">Cobertura</h3>
         <ul class="space-y-2 text-accent text-sm">
-          <li><a href="/zonas/cdmx" class="hover:text-light transition-colors">Ciudad de Mexico</a></li>
-          <li><a href="/zonas/guadalajara" class="hover:text-light transition-colors">Guadalajara</a></li>
-          <li><a href="/zonas/monterrey" class="hover:text-light transition-colors">Monterrey</a></li>
-          <li><a href="/zonas/puebla" class="hover:text-light transition-colors">Puebla</a></li>
-          <li><a href="/zonas/cancun" class="hover:text-light transition-colors">Cancun</a></li>
+          <li><a href="/zonas/cdmx/" class="hover:text-light transition-colors">Ciudad de Mexico</a></li>
+          <li><a href="/zonas/guadalajara/" class="hover:text-light transition-colors">Guadalajara</a></li>
+          <li><a href="/zonas/monterrey/" class="hover:text-light transition-colors">Monterrey</a></li>
+          <li><a href="/zonas/puebla/" class="hover:text-light transition-colors">Puebla</a></li>
+          <li><a href="/zonas/cancun/" class="hover:text-light transition-colors">Cancun</a></li>
         </ul>
       </div>
 
@@ -70,9 +70,9 @@ const VACANTE_CORTO: Record<string, string> = {
         <h3 class="text-light font-semibold text-sm uppercase tracking-wider mb-4">Bolsa de Trabajo</h3>
         <ul class="space-y-2 text-accent text-sm">
           {VACANTES.map((v) => (
-            <li><a href={`/bolsa-de-trabajo/${v.slug}`} class="hover:text-light transition-colors">{VACANTE_CORTO[v.slug] ?? v.puesto}</a></li>
+            <li><a href={`/bolsa-de-trabajo/${v.slug}/`} class="hover:text-light transition-colors">{VACANTE_CORTO[v.slug] ?? v.puesto}</a></li>
           ))}
-          <li><a href="/bolsa-de-trabajo" class="text-secondary hover:text-red-400 transition-colors font-medium">Ver todas →</a></li>
+          <li><a href="/bolsa-de-trabajo/" class="text-secondary hover:text-red-400 transition-colors font-medium">Ver todas →</a></li>
         </ul>
       </div>
 
@@ -101,11 +101,11 @@ const VACANTE_CORTO: Record<string, string> = {
           </li>
         </ul>
         <div class="mt-4 flex flex-wrap gap-2">
-          <a href="/nosotros" class="text-accent hover:text-light text-xs transition-colors">Nosotros</a>
+          <a href="/nosotros/" class="text-accent hover:text-light text-xs transition-colors">Nosotros</a>
           <span class="text-accent/30">|</span>
-          <a href="/certificaciones" class="text-accent hover:text-light text-xs transition-colors">Certificaciones</a>
+          <a href="/certificaciones/" class="text-accent hover:text-light text-xs transition-colors">Certificaciones</a>
           <span class="text-accent/30">|</span>
-          <a href="/cotizar" class="text-accent hover:text-light text-xs transition-colors">Cotizar</a>
+          <a href="/cotizar/" class="text-accent hover:text-light text-xs transition-colors">Cotizar</a>
         </div>
       </div>
     </div>

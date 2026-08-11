@@ -76,10 +76,10 @@ const schemas = [
 ];
 
 const navItems = [
-  { label: "Control de Acceso", desc: "Volver al servicio principal", href: "/servicios/control-acceso-eventos" },
-  { label: "Conciertos y Festivales", desc: "Control de multitudes y accesos por sector", href: "/servicios/seguridad-conciertos-festivales" },
-  { label: "Eventos Masivos", desc: "Filtros y aforo para +10,000 asistentes", href: "/servicios/seguridad-masivos" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Control de Acceso", desc: "Volver al servicio principal", href: "/servicios/control-acceso-eventos/" },
+  { label: "Conciertos y Festivales", desc: "Control de multitudes y accesos por sector", href: "/servicios/seguridad-conciertos-festivales/" },
+  { label: "Eventos Masivos", desc: "Filtros y aforo para +10,000 asistentes", href: "/servicios/seguridad-masivos/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados
@@ -148,18 +148,18 @@ const razones = [
 
 // Relacionados
 const relacionados = [
-  { title: "Control de Acceso", description: "El servicio principal del que forma parte esta subcategoría: validación de boletos, credencialización y aforo en tiempo real.", features: ["Validación de boletos", "Credencialización", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Servicio principal", featured: true },
-  { title: "Conciertos y Festivales", description: "Control de multitudes y accesos por sector para eventos musicales, donde la detección de metales es clave.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular" },
-  { title: "Eventos Masivos", description: "Filtros de acceso y detección a escala de +10,000 asistentes, con centro de comando y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada`, badge: "Destacado" },
-  { title: "Eventos Deportivos", description: "Filtros y revisión por sección en estadios, con control de pirotecnia y objetos prohibidos.", features: ["Filtros por sección", "Anti-pirotecnia", "Separación de barras"], href: "/servicios/seguridad-eventos-deportivos", image: `${IMG}/seguridad-conciertos-multitud` },
+  { title: "Control de Acceso", description: "El servicio principal del que forma parte esta subcategoría: validación de boletos, credencialización y aforo en tiempo real.", features: ["Validación de boletos", "Credencialización", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos/", image: `${IMG}/control-acceso-eventos`, badge: "Servicio principal", featured: true },
+  { title: "Conciertos y Festivales", description: "Control de multitudes y accesos por sector para eventos musicales, donde la detección de metales es clave.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales/", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular" },
+  { title: "Eventos Masivos", description: "Filtros de acceso y detección a escala de +10,000 asistentes, con centro de comando y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos/", image: `${IMG}/guardias-seguridad-privada`, badge: "Destacado" },
+  { title: "Eventos Deportivos", description: "Filtros y revisión por sección en estadios, con control de pirotecnia y objetos prohibidos.", features: ["Filtros por sección", "Anti-pirotecnia", "Separación de barras"], href: "/servicios/seguridad-eventos-deportivos/", image: `${IMG}/seguridad-conciertos-multitud` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
   <Breadcrumb items={[
-    { label: 'Servicios', href: '/servicios' },
-    { label: 'Control de Acceso', href: '/servicios/control-acceso-eventos' },
+    { label: 'Servicios', href: '/servicios/' },
+    { label: 'Control de Acceso', href: '/servicios/control-acceso-eventos/' },
     { label: 'Detectores de metales' },
   ]} />
 
@@ -170,13 +170,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        Subcategoría del servicio de <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso para eventos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Operamos con <strong class="text-light font-semibold">equipo propio</strong>: arcos detectores de paso, detectores de mano (wand) e inspección de bolsos, con sensibilidad configurable por perfil de riesgo.
+        Subcategoría del servicio de <a href="/servicios/control-acceso-eventos/" class="text-secondary hover:underline font-semibold">control de acceso para eventos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Operamos con <strong class="text-light font-semibold">equipo propio</strong>: arcos detectores de paso, detectores de mano (wand) e inspección de bolsos, con sensibilidad configurable por perfil de riesgo.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Hasta <strong class="text-light font-semibold">1,200 ingresos por hora</strong> por punto, con personal femenino para la revisión de mujeres y punto de resguardo de objetos. Se integra con la <a href="/servicios/seguridad-conciertos-festivales/control-de-multitudes" class="text-secondary hover:underline font-semibold">gestión de multitudes</a> en el acceso. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+        Hasta <strong class="text-light font-semibold">1,200 ingresos por hora</strong> por punto, con personal femenino para la revisión de mujeres y punto de resguardo de objetos. Se integra con la <a href="/servicios/seguridad-conciertos-festivales/control-de-multitudes/" class="text-secondary hover:underline font-semibold">gestión de multitudes</a> en el acceso. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -238,7 +238,7 @@ const relacionados = [
               ))}
             </ul>
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

@@ -3,6 +3,7 @@ import BaseLayout from './BaseLayout.astro';
 import CTABanner from '@/components/CTABanner.astro';
 import { SERVICIOS_NAV, WHATSAPP_NUMBER, SITE } from '@/lib/config';
 import { buildServiceSchema, buildFAQSchema } from '@/lib/seo';
+import { canonicalUrl } from '@/lib/canonical';
 
 export interface Props {
   titulo: string;
@@ -28,7 +29,8 @@ const {
   breadcrumbs = [],
 } = Astro.props;
 
-const canonical = `https://seguridadeventos.com/servicios/${slug}`;
+// canonicalUrl() añade el trailing slash: /servicios/<slug> responde 308.
+const canonical = canonicalUrl(`/servicios/${slug}/`, SITE);
 const ogImg = imagen ? new URL(`${imagen}-1200.jpg`, SITE).toString() : undefined;
 const schemas = [
   buildServiceSchema(titulo, descripcion, canonical),
@@ -37,7 +39,7 @@ const schemas = [
 
 const allBreadcrumbs = [
   { name: "Inicio", href: "/" },
-  { name: "Servicios", href: "/servicios" },
+  { name: "Servicios", href: "/servicios/" },
   { name: titulo },
   ...breadcrumbs,
 ];
@@ -92,7 +94,7 @@ const relacionados = SERVICIOS_NAV.filter(s => s.slug !== slug).slice(0, 4);
             {descripcion}
           </p>
           <div class="flex flex-col sm:flex-row gap-4">
-            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3.5 rounded-lg font-bold uppercase text-sm tracking-wide transition-colors">
+            <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3.5 rounded-lg font-bold uppercase text-sm tracking-wide transition-colors">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                 <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
               </svg>
@@ -146,7 +148,7 @@ const relacionados = SERVICIOS_NAV.filter(s => s.slug !== slug).slice(0, 4);
           <div class="text-3xl mb-3">🛡️</div>
           <h3 class="text-white font-black text-lg mb-2">¿Necesitas este servicio?</h3>
           <p class="text-red-100 text-sm mb-5">Cotización gratuita en menos de 24 hrs</p>
-          <a href="/cotizar" class="block w-full bg-white text-secondary hover:bg-gray-100 px-4 py-3 rounded-lg font-bold text-sm uppercase tracking-wide transition-colors mb-3">
+          <a href="/cotizar/" class="block w-full bg-white text-secondary hover:bg-gray-100 px-4 py-3 rounded-lg font-bold text-sm uppercase tracking-wide transition-colors mb-3">
             Solicitar cotización
           </a>
           <a
@@ -164,7 +166,7 @@ const relacionados = SERVICIOS_NAV.filter(s => s.slug !== slug).slice(0, 4);
           <ul class="space-y-2">
             {relacionados.map(s => (
               <li>
-                <a href={`/servicios/${s.slug}`} class="text-accent hover:text-secondary text-sm transition-colors flex items-center gap-2">
+                <a href={`/servicios/${s.slug}/`} class="text-accent hover:text-secondary text-sm transition-colors flex items-center gap-2">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>

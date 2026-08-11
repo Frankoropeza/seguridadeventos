@@ -15,16 +15,16 @@ import { getCollection } from 'astro:content';
 const blogPosts = (await getCollection('blog', ({ data }: { data: { draft: boolean } }) => !data.draft)).slice(0, 6);
 
 const serviciosHome = [
-  { title: "Conciertos y Festivales",  description: "Control de multitudes, protección de artistas y coordinación con autoridades. Más de 200 eventos musicales protegidos.",              features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"],    href: "/servicios/seguridad-conciertos-festivales",  badge: "Popular"  },
-  { title: "Eventos Corporativos",     description: "Seguridad discreta para convenciones, lanzamientos y galas. Personal bilingüe y protocolos de confidencialidad.",                   features: ["Personal bilingüe", "Dress code adaptable", "NDA incluido"],                  href: "/servicios/seguridad-eventos-corporativos"                        },
-  { title: "Control de Acceso",        description: "Verificación de boletos, detección de armas, gestión de aforo y credencialización para cualquier tipo de evento.",                  features: ["Detectores de metales", "Escaneo QR", "Aforo en tiempo real"],               href: "/servicios/control-acceso-eventos",            badge: "Esencial" },
-  { title: "Seguridad VIP",            description: "Protección de celebridades, artistas y ejecutivos. Escoltas certificados, anti-paparazzi y rutas seguras.",                         features: ["Close protection", "Vehículo blindado", "Discreción total"],                  href: "/servicios/seguridad-vip"                                         },
-  { title: "Protección Ejecutiva",     description: "Seguridad personal para directivos, empresarios y figuras públicas. Evaluación de riesgos, contravigilancia y traslados seguros.",  features: ["Análisis de riesgo", "Contravigilancia", "Traslados seguros"],                href: "/servicios/proteccion-ejecutiva"                                   },
-  { title: "Ferias y Exposiciones",    description: "Operativos de seguridad para recintos feriales con múltiples expositores, flujos constantes de visitantes y activos de alto valor.", features: ["Seguridad de stands", "Control de accesos", "Resguardo de activos"],          href: "/servicios/seguridad-ferias-exposiciones"                          },
-  { title: "Eventos Sociales",         description: "Bodas, XV años y fiestas privadas con seguridad invisible pero presente. Valet parking y control de invitados.",                    features: ["Dress code formal", "Valet parking", "Manejo discreto"],                      href: "/servicios/seguridad-eventos-sociales"                             },
-  { title: "Eventos Deportivos",       description: "Seguridad para estadios, arenas y competencias. Barras, zonas VIP, protección de atletas y coordinación con federaciones.",         features: ["Separación de barras", "Zona VIP", "Protocolo federativo"],                   href: "/servicios/seguridad-eventos-deportivos"                           },
-  { title: "Eventos Masivos",          description: "Operación de seguridad para +10,000 asistentes. Drones, centro de comando y coordinación con Protección Civil.",                   features: ["Drones de vigilancia", "Puesto de mando", "Plan de contingencia"],            href: "/servicios/seguridad-masivos",                featured: true    },
-  { title: "Montaje y Desmontaje",     description: "Resguardo de equipo, artistas, materiales y activos durante las fases de instalación y retiro del evento.",                         features: ["Custodia de equipo", "Control de proveedores", "Accesos restringidos"],       href: "/servicios/seguridad-montaje-desmontaje"                           },
+  { title: "Conciertos y Festivales",  description: "Control de multitudes, protección de artistas y coordinación con autoridades. Más de 200 eventos musicales protegidos.",              features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"],    href: "/servicios/seguridad-conciertos-festivales/",  badge: "Popular"  },
+  { title: "Eventos Corporativos",     description: "Seguridad discreta para convenciones, lanzamientos y galas. Personal bilingüe y protocolos de confidencialidad.",                   features: ["Personal bilingüe", "Dress code adaptable", "NDA incluido"],                  href: "/servicios/seguridad-eventos-corporativos/"                        },
+  { title: "Control de Acceso",        description: "Verificación de boletos, detección de armas, gestión de aforo y credencialización para cualquier tipo de evento.",                  features: ["Detectores de metales", "Escaneo QR", "Aforo en tiempo real"],               href: "/servicios/control-acceso-eventos/",            badge: "Esencial" },
+  { title: "Seguridad VIP",            description: "Protección de celebridades, artistas y ejecutivos. Escoltas certificados, anti-paparazzi y rutas seguras.",                         features: ["Close protection", "Vehículo blindado", "Discreción total"],                  href: "/servicios/seguridad-vip/"                                         },
+  { title: "Protección Ejecutiva",     description: "Seguridad personal para directivos, empresarios y figuras públicas. Evaluación de riesgos, contravigilancia y traslados seguros.",  features: ["Análisis de riesgo", "Contravigilancia", "Traslados seguros"],                href: "/servicios/proteccion-ejecutiva/"                                   },
+  { title: "Ferias y Exposiciones",    description: "Operativos de seguridad para recintos feriales con múltiples expositores, flujos constantes de visitantes y activos de alto valor.", features: ["Seguridad de stands", "Control de accesos", "Resguardo de activos"],          href: "/servicios/seguridad-ferias-exposiciones/"                          },
+  { title: "Eventos Sociales",         description: "Bodas, XV años y fiestas privadas con seguridad invisible pero presente. Valet parking y control de invitados.",                    features: ["Dress code formal", "Valet parking", "Manejo discreto"],                      href: "/servicios/seguridad-eventos-sociales/"                             },
+  { title: "Eventos Deportivos",       description: "Seguridad para estadios, arenas y competencias. Barras, zonas VIP, protección de atletas y coordinación con federaciones.",         features: ["Separación de barras", "Zona VIP", "Protocolo federativo"],                   href: "/servicios/seguridad-eventos-deportivos/"                           },
+  { title: "Eventos Masivos",          description: "Operación de seguridad para +10,000 asistentes. Drones, centro de comando y coordinación con Protección Civil.",                   features: ["Drones de vigilancia", "Puesto de mando", "Plan de contingencia"],            href: "/servicios/seguridad-masivos/",                featured: true    },
+  { title: "Montaje y Desmontaje",     description: "Resguardo de equipo, artistas, materiales y activos durante las fases de instalación y retiro del evento.",                         features: ["Custodia de equipo", "Control de proveedores", "Accesos restringidos"],       href: "/servicios/seguridad-montaje-desmontaje/"                           },
 ];
 
 const servImg: Record<string,string> = {
@@ -93,7 +93,7 @@ const servImg: Record<string,string> = {
       </div>
 
       <div class="text-center mt-10">
-        <a href="/cotizar" class="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-white px-8 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-white px-8 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Solicitar Cotización
         </a>
       </div>
@@ -147,10 +147,10 @@ const servImg: Record<string,string> = {
           </ul>
 
           <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-            <a href="/servicios/seguridad-conciertos-festivales" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+            <a href="/servicios/seguridad-conciertos-festivales/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
               Ver servicio
             </a>
-            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+            <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
               Solicitar Cotización
             </a>
           </div>
@@ -235,10 +235,10 @@ const servImg: Record<string,string> = {
           </ul>
 
           <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-            <a href="/servicios/seguridad-eventos-corporativos" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+            <a href="/servicios/seguridad-eventos-corporativos/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
               Ver servicio
             </a>
-            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+            <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
               Solicitar Cotización
             </a>
           </div>
@@ -324,10 +324,10 @@ const servImg: Record<string,string> = {
           </ul>
 
           <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-            <a href="/servicios/control-acceso-eventos" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+            <a href="/servicios/control-acceso-eventos/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
               Ver servicio
             </a>
-            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+            <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
               Solicitar Cotización
             </a>
           </div>
@@ -412,10 +412,10 @@ const servImg: Record<string,string> = {
           </ul>
 
           <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-            <a href="/servicios/seguridad-vip" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+            <a href="/servicios/seguridad-vip/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
               Ver servicio
             </a>
-            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+            <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
               Solicitar Cotización
             </a>
           </div>
@@ -499,10 +499,10 @@ const servImg: Record<string,string> = {
           </ul>
 
           <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-            <a href="/servicios/proteccion-ejecutiva" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+            <a href="/servicios/proteccion-ejecutiva/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
               Ver servicio
             </a>
-            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+            <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
               Solicitar Cotización
             </a>
           </div>
@@ -580,10 +580,10 @@ const servImg: Record<string,string> = {
           </ul>
 
           <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-            <a href="/servicios/seguridad-ferias-exposiciones" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+            <a href="/servicios/seguridad-ferias-exposiciones/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
               Ver servicio
             </a>
-            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+            <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
               Solicitar Cotización
             </a>
           </div>
@@ -661,10 +661,10 @@ const servImg: Record<string,string> = {
           </ul>
 
           <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-            <a href="/servicios/seguridad-eventos-sociales" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+            <a href="/servicios/seguridad-eventos-sociales/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
               Ver servicio
             </a>
-            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+            <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
               Solicitar Cotización
             </a>
           </div>
@@ -742,10 +742,10 @@ const servImg: Record<string,string> = {
           </ul>
 
           <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-            <a href="/servicios/seguridad-eventos-deportivos" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+            <a href="/servicios/seguridad-eventos-deportivos/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
               Ver servicio
             </a>
-            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+            <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
               Solicitar Cotización
             </a>
           </div>
@@ -824,10 +824,10 @@ const servImg: Record<string,string> = {
           </ul>
 
           <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-            <a href="/servicios/seguridad-masivos" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+            <a href="/servicios/seguridad-masivos/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
               Ver servicio
             </a>
-            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+            <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
               Solicitar Cotización
             </a>
           </div>
@@ -905,10 +905,10 @@ const servImg: Record<string,string> = {
           </ul>
 
           <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-            <a href="/servicios/seguridad-montaje-desmontaje" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+            <a href="/servicios/seguridad-montaje-desmontaje/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
               Ver servicio
             </a>
-            <a href="/cotizar" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
+            <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
               Solicitar Cotización
             </a>
           </div>
@@ -964,7 +964,7 @@ const servImg: Record<string,string> = {
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
         {ZONAS_NAV.map((z: {slug: string; nombre: string}) => (
           <a
-            href={`/zonas/${z.slug}`}
+            href={`/zonas/${z.slug}/`}
             class="flex flex-col items-center gap-3 px-4 py-6 bg-primary border border-white/8 text-center"
           >
             <div class="w-10 h-10 flex items-center justify-center border border-white/10 bg-dark">
@@ -1014,7 +1014,7 @@ const servImg: Record<string,string> = {
         </div>
 
         <div class="text-center mt-10">
-          <a href="/blog" class="inline-flex items-center gap-2 text-secondary hover:text-red-400 font-bold text-sm uppercase tracking-wide transition-colors group">
+          <a href="/blog/" class="inline-flex items-center gap-2 text-secondary hover:text-red-400 font-bold text-sm uppercase tracking-wide transition-colors group">
             Ver todos los artículos
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition-transform" aria-hidden="true">
               <path d="M5 12h14M12 5l7 7-7 7"/>

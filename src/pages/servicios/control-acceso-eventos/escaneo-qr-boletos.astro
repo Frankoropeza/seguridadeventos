@@ -77,10 +77,10 @@ const schemas = [
 ];
 
 const navItems = [
-  { label: "Control de Acceso", desc: "Volver al servicio principal", href: "/servicios/control-acceso-eventos" },
-  { label: "Detección de Metales", desc: "Subcategoría: arcos, wand y revisión de objetos", href: "/servicios/control-acceso-eventos/detectores-de-metales" },
-  { label: "Eventos Masivos", desc: "Filtros y aforo para +10,000 asistentes", href: "/servicios/seguridad-masivos" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Control de Acceso", desc: "Volver al servicio principal", href: "/servicios/control-acceso-eventos/" },
+  { label: "Detección de Metales", desc: "Subcategoría: arcos, wand y revisión de objetos", href: "/servicios/control-acceso-eventos/detectores-de-metales/" },
+  { label: "Eventos Masivos", desc: "Filtros y aforo para +10,000 asistentes", href: "/servicios/seguridad-masivos/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados
@@ -149,18 +149,18 @@ const razones = [
 
 // Relacionados
 const relacionados = [
-  { title: "Control de Acceso", description: "El servicio principal del que forma parte esta subcategoría: validación, credencialización, detección y aforo.", features: ["Credencialización", "Detección de metales", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Servicio principal", featured: true },
-  { title: "Detección de Metales", description: "Subcategoría hermana: arcos de paso, detectores de mano y revisión de objetos en el mismo punto de acceso.", features: ["Arcos de paso", "Detector de mano", "Resguardo de objetos"], href: "/servicios/control-acceso-eventos/detectores-de-metales", image: `${IMG}/control-acceso-credenciales`, badge: "Subcategoría" },
-  { title: "Conciertos y Festivales", description: "Control de multitudes y accesos por sector para eventos musicales, donde el escaneo de boletos es la puerta de entrada.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular" },
-  { title: "Eventos Masivos", description: "Validación y aforo a escala de +10,000 asistentes, con centro de comando y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada` },
+  { title: "Control de Acceso", description: "El servicio principal del que forma parte esta subcategoría: validación, credencialización, detección y aforo.", features: ["Credencialización", "Detección de metales", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos/", image: `${IMG}/control-acceso-eventos`, badge: "Servicio principal", featured: true },
+  { title: "Detección de Metales", description: "Subcategoría hermana: arcos de paso, detectores de mano y revisión de objetos en el mismo punto de acceso.", features: ["Arcos de paso", "Detector de mano", "Resguardo de objetos"], href: "/servicios/control-acceso-eventos/detectores-de-metales/", image: `${IMG}/control-acceso-credenciales`, badge: "Subcategoría" },
+  { title: "Conciertos y Festivales", description: "Control de multitudes y accesos por sector para eventos musicales, donde el escaneo de boletos es la puerta de entrada.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales/", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular" },
+  { title: "Eventos Masivos", description: "Validación y aforo a escala de +10,000 asistentes, con centro de comando y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos/", image: `${IMG}/guardias-seguridad-privada` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
   <Breadcrumb items={[
-    { label: 'Servicios', href: '/servicios' },
-    { label: 'Control de Acceso', href: '/servicios/control-acceso-eventos' },
+    { label: 'Servicios', href: '/servicios/' },
+    { label: 'Control de Acceso', href: '/servicios/control-acceso-eventos/' },
     { label: 'Escaneo de boletos (QR/NFC)' },
   ]} />
 
@@ -171,13 +171,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        Subcategoría del servicio de <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso para eventos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Integramos tu plataforma de boletaje —<strong class="text-light font-semibold">Ticketmaster, Boletia, Eventbrite</strong> o sistemas propios— y validamos QR, código de barras y NFC en tiempo real, con detección de duplicados y falsificaciones.
+        Subcategoría del servicio de <a href="/servicios/control-acceso-eventos/" class="text-secondary hover:underline font-semibold">control de acceso para eventos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Integramos tu plataforma de boletaje —<strong class="text-light font-semibold">Ticketmaster, Boletia, Eventbrite</strong> o sistemas propios— y validamos QR, código de barras y NFC en tiempo real, con detección de duplicados y falsificaciones.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Hasta <strong class="text-light font-semibold">1,200 validaciones por hora</strong> por punto, antifraude y un protocolo de contingencia offline. Opera en el mismo acceso que la <a href="/servicios/control-acceso-eventos/detectores-de-metales" class="text-secondary hover:underline font-semibold">detección de metales</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+        Hasta <strong class="text-light font-semibold">1,200 validaciones por hora</strong> por punto, antifraude y un protocolo de contingencia offline. Opera en el mismo acceso que la <a href="/servicios/control-acceso-eventos/detectores-de-metales/" class="text-secondary hover:underline font-semibold">detección de metales</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -239,7 +239,7 @@ const relacionados = [
               ))}
             </ul>
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

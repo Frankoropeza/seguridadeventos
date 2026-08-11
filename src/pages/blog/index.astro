@@ -99,11 +99,11 @@ const categories = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1]);
           Explora por categoría para encontrar exactamente lo que necesitas — desde aspectos legales hasta guías operativas para eventos de cualquier escala.
         </p>
         <div class="flex flex-wrap gap-2">
-          <a href="/blog" class="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-secondary text-white border border-secondary transition-colors">
+          <a href="/blog/" class="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-secondary text-white border border-secondary transition-colors">
             Todos ({posts.length})
           </a>
           {categories.map(([cat, count]) => (
-            <a href={`/blog/categoria/${catSlug(cat)}`} class="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-white/5 text-accent border border-white/10 hover:border-secondary/40 hover:text-light transition-colors">
+            <a href={`/blog/categoria/${catSlug(cat)}/`} class="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide bg-white/5 text-accent border border-white/10 hover:border-secondary/40 hover:text-light transition-colors">
               {cat} ({count})
             </a>
           ))}

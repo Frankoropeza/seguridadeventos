@@ -61,10 +61,10 @@ const schemas = buildServicePageSchema({
 });
 
 const navItems = [
-  { label: "Conciertos y Festivales", desc: "Volver al servicio principal", href: "/servicios/seguridad-conciertos-festivales" },
-  { label: "Eventos Masivos", desc: "Dirección de seguridad para +10,000 asistentes", href: "/servicios/seguridad-masivos" },
-  { label: "Control de Acceso", desc: "Filtros, aforo por sector y detección de objetos", href: "/servicios/control-acceso-eventos" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Conciertos y Festivales", desc: "Volver al servicio principal", href: "/servicios/seguridad-conciertos-festivales/" },
+  { label: "Eventos Masivos", desc: "Dirección de seguridad para +10,000 asistentes", href: "/servicios/seguridad-masivos/" },
+  { label: "Control de Acceso", desc: "Filtros, aforo por sector y detección de objetos", href: "/servicios/control-acceso-eventos/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
@@ -133,18 +133,18 @@ const razones = [
 
 // Parte de un operativo integral (relacionados existentes)
 const relacionados = [
-  { title: "Conciertos y Festivales", description: "El servicio principal del que forma parte esta subcategoría: operativo integral de seguridad para eventos musicales.", features: ["Backstage seguro", "Coordinación institucional", "Plan de seguridad"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Servicio principal", featured: true },
-  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada`, badge: "Destacado" },
-  { title: "Control de Acceso", description: "Validación de boletos, control de aforo por sección y detección de objetos: la puerta de entrada al control de multitudes.", features: ["Aforo por sección", "Detección de metales", "Anti-reventa"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
-  { title: "Eventos Deportivos", description: "Gestión de aficiones, anti-invasión y manejo de multitudes en estadios y arenas con marco federativo.", features: ["Separación de barras", "Anti-invasión", "Protocolo de liga"], href: "/servicios/seguridad-eventos-deportivos", image: `${IMG}/seguridad-conciertos-multitud` },
+  { title: "Conciertos y Festivales", description: "El servicio principal del que forma parte esta subcategoría: operativo integral de seguridad para eventos musicales.", features: ["Backstage seguro", "Coordinación institucional", "Plan de seguridad"], href: "/servicios/seguridad-conciertos-festivales/", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Servicio principal", featured: true },
+  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos/", image: `${IMG}/guardias-seguridad-privada`, badge: "Destacado" },
+  { title: "Control de Acceso", description: "Validación de boletos, control de aforo por sección y detección de objetos: la puerta de entrada al control de multitudes.", features: ["Aforo por sección", "Detección de metales", "Anti-reventa"], href: "/servicios/control-acceso-eventos/", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Eventos Deportivos", description: "Gestión de aficiones, anti-invasión y manejo de multitudes en estadios y arenas con marco federativo.", features: ["Separación de barras", "Anti-invasión", "Protocolo de liga"], href: "/servicios/seguridad-eventos-deportivos/", image: `${IMG}/seguridad-conciertos-multitud` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
   <Breadcrumb items={[
-    { label: 'Servicios', href: '/servicios' },
-    { label: 'Conciertos y Festivales', href: '/servicios/seguridad-conciertos-festivales' },
+    { label: 'Servicios', href: '/servicios/' },
+    { label: 'Conciertos y Festivales', href: '/servicios/seguridad-conciertos-festivales/' },
     { label: 'Control de multitudes' },
   ]} />
 
@@ -155,13 +155,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        Esta es una subcategoría especializada del operativo de <a href="/servicios/seguridad-conciertos-festivales" class="text-secondary hover:underline font-semibold">seguridad para conciertos y festivales</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. El control de multitudes se ocupa de cómo se mueve y se distribuye el público dentro del recinto: el factor que decide la diferencia entre un evento seguro y una tragedia.
+        Esta es una subcategoría especializada del operativo de <a href="/servicios/seguridad-conciertos-festivales/" class="text-secondary hover:underline font-semibold">seguridad para conciertos y festivales</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. El control de multitudes se ocupa de cómo se mueve y se distribuye el público dentro del recinto: el factor que decide la diferencia entre un evento seguro y una tragedia.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Diseñamos flujos, medimos densidad por sector y monitoreamos en tiempo real con CCTV y drones, con personal <strong class="text-light font-semibold">certificado en manejo de multitudes</strong>, licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>. Se integra con el <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso</a> y la <a href="/servicios/seguridad-masivos" class="text-secondary hover:underline font-semibold">dirección de eventos masivos</a>.
+        Diseñamos flujos, medimos densidad por sector y monitoreamos en tiempo real con CCTV y drones, con personal <strong class="text-light font-semibold">certificado en manejo de multitudes</strong>, licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>. Se integra con el <a href="/servicios/control-acceso-eventos/" class="text-secondary hover:underline font-semibold">control de acceso</a> y la <a href="/servicios/seguridad-masivos/" class="text-secondary hover:underline font-semibold">dirección de eventos masivos</a>.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -230,7 +230,7 @@ const relacionados = [
             </ul>
 
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

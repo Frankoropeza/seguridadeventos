@@ -18,22 +18,22 @@ const navItems = [
   {
     label: "Ciudad de México",
     desc: "Todas las alcaldías y venues principales de la capital",
-    href: "/zonas/cdmx",
+    href: "/zonas/cdmx/",
   },
   {
     label: "Guadalajara",
     desc: "Expo Guadalajara, Auditorio Telmex y zona metropolitana",
-    href: "/zonas/guadalajara",
+    href: "/zonas/guadalajara/",
   },
   {
     label: "Monterrey",
     desc: "CINTERMEX, Arena Monterrey y Estadio BBVA",
-    href: "/zonas/monterrey",
+    href: "/zonas/monterrey/",
   },
   {
     label: "Cancún y Más",
     desc: "Riviera Maya, Puebla y más ciudades de la República",
-    href: "/zonas/cancun",
+    href: "/zonas/cancun/",
   },
 ];
 ---
@@ -74,7 +74,7 @@ const navItems = [
           </div>
           <p class="text-accent text-sm leading-relaxed flex-1 mb-5">{z.desc}</p>
           <div class="flex gap-3">
-            <a href={`/zonas/${z.slug}`} class="flex-1 bg-secondary hover:bg-red-700 text-white px-4 py-2.5 rounded-lg text-sm font-bold text-center transition-colors">
+            <a href={`/zonas/${z.slug}/`} class="flex-1 bg-secondary hover:bg-red-700 text-white px-4 py-2.5 rounded-lg text-sm font-bold text-center transition-colors">
               Ver cobertura →
             </a>
             <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola%2C+necesito+seguridad+para+un+evento+en+${encodeURIComponent(z.nombre)}`} target="_blank" rel="noopener" class="bg-green-600 hover:bg-green-500 text-white px-4 py-2.5 rounded-lg text-sm font-bold text-center transition-colors">
@@ -89,7 +89,7 @@ const navItems = [
     <div class="mt-16 bg-primary border border-primary-light rounded-xl p-8 text-center">
       <h2 class="text-2xl font-black text-light mb-3">¿Tu evento está en otra ciudad?</h2>
       <p class="text-accent mb-6 max-w-xl mx-auto">Nuestra licencia DGSSP federal nos permite operar en toda la República Mexicana. Si tu evento es en una ciudad no listada, contáctanos y coordinamos personal certificado.</p>
-      <a href="/cotizar" class="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold uppercase text-sm tracking-wide transition-colors">
+      <a href="/cotizar/" class="inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-white px-6 py-3 rounded-lg font-bold uppercase text-sm tracking-wide transition-colors">
         Cotizar en otra ciudad
       </a>
     </div>

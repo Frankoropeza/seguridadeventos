@@ -74,10 +74,10 @@ const schemas = [
 ];
 
 const navItems = [
-  { label: "Eventos Corporativos", desc: "Volver al servicio principal", href: "/servicios/seguridad-eventos-corporativos" },
-  { label: "Personal Bilingüe", desc: "Subcategoría: agentes con dominio del inglés", href: "/servicios/seguridad-eventos-corporativos/personal-bilingue" },
-  { label: "Seguridad VIP", desc: "Protección de bajo perfil para invitados de honor", href: "/servicios/seguridad-vip" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Eventos Corporativos", desc: "Volver al servicio principal", href: "/servicios/seguridad-eventos-corporativos/" },
+  { label: "Personal Bilingüe", desc: "Subcategoría: agentes con dominio del inglés", href: "/servicios/seguridad-eventos-corporativos/personal-bilingue/" },
+  { label: "Seguridad VIP", desc: "Protección de bajo perfil para invitados de honor", href: "/servicios/seguridad-vip/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados
@@ -146,18 +146,18 @@ const razones = [
 
 // Relacionados
 const relacionados = [
-  { title: "Eventos Corporativos", description: "El servicio principal del que forma parte esta subcategoría: seguridad discreta para convenciones, lanzamientos y galas.", features: ["Confidencialidad", "Punto único de contacto", "Reporte ejecutivo"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos`, badge: "Servicio principal", featured: true },
-  { title: "Personal Bilingüe", description: "Subcategoría hermana: agentes con dominio del inglés y etiqueta corporativa para eventos internacionales.", features: ["Español / Inglés", "Etiqueta corporativa", "Enlace internacional"], href: "/servicios/seguridad-eventos-corporativos/personal-bilingue", image: `${IMG}/seguridad-empresarial-evento`, badge: "Subcategoría" },
-  { title: "Seguridad VIP", description: "Protección de bajo perfil para directivos e invitados de honor, con dispositivo discreto.", features: ["Close protection", "Bajo perfil", "Discreción total"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos` },
-  { title: "Eventos Sociales", description: "Seguridad discreta con dress code formal para bodas, XV años y celebraciones privadas.", features: ["Dress code formal", "Manejo discreto", "Valet parking"], href: "/servicios/seguridad-eventos-sociales", image: `${IMG}/seguridad-vip-gala` },
+  { title: "Eventos Corporativos", description: "El servicio principal del que forma parte esta subcategoría: seguridad discreta para convenciones, lanzamientos y galas.", features: ["Confidencialidad", "Punto único de contacto", "Reporte ejecutivo"], href: "/servicios/seguridad-eventos-corporativos/", image: `${IMG}/seguridad-eventos-corporativos`, badge: "Servicio principal", featured: true },
+  { title: "Personal Bilingüe", description: "Subcategoría hermana: agentes con dominio del inglés y etiqueta corporativa para eventos internacionales.", features: ["Español / Inglés", "Etiqueta corporativa", "Enlace internacional"], href: "/servicios/seguridad-eventos-corporativos/personal-bilingue/", image: `${IMG}/seguridad-empresarial-evento`, badge: "Subcategoría" },
+  { title: "Seguridad VIP", description: "Protección de bajo perfil para directivos e invitados de honor, con dispositivo discreto.", features: ["Close protection", "Bajo perfil", "Discreción total"], href: "/servicios/seguridad-vip/", image: `${IMG}/seguridad-vip-eventos` },
+  { title: "Eventos Sociales", description: "Seguridad discreta con dress code formal para bodas, XV años y celebraciones privadas.", features: ["Dress code formal", "Manejo discreto", "Valet parking"], href: "/servicios/seguridad-eventos-sociales/", image: `${IMG}/seguridad-vip-gala` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
   <Breadcrumb items={[
-    { label: 'Servicios', href: '/servicios' },
-    { label: 'Eventos Corporativos', href: '/servicios/seguridad-eventos-corporativos' },
+    { label: 'Servicios', href: '/servicios/' },
+    { label: 'Eventos Corporativos', href: '/servicios/seguridad-eventos-corporativos/' },
     { label: 'Dress code adaptable' },
   ]} />
 
@@ -168,13 +168,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        Subcategoría del servicio de <a href="/servicios/seguridad-eventos-corporativos" class="text-secondary hover:underline font-semibold">seguridad para eventos corporativos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. El personal se presenta con la vestimenta que cada zona y momento exigen —traje, uniforme, táctico o civil— para integrarse a la imagen de la marca sin romper el ambiente.
+        Subcategoría del servicio de <a href="/servicios/seguridad-eventos-corporativos/" class="text-secondary hover:underline font-semibold">seguridad para eventos corporativos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. El personal se presenta con la vestimenta que cada zona y momento exigen —traje, uniforme, táctico o civil— para integrarse a la imagen de la marca sin romper el ambiente.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Cambia la vestimenta, no el estándar: misma capacitación, mismo equipo y misma cadena de mando bajo cualquier prenda. Se combina con el <a href="/servicios/seguridad-eventos-corporativos/personal-bilingue" class="text-secondary hover:underline font-semibold">personal bilingüe</a> y la <a href="/servicios/seguridad-vip" class="text-secondary hover:underline font-semibold">seguridad VIP</a> de los invitados. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+        Cambia la vestimenta, no el estándar: misma capacitación, mismo equipo y misma cadena de mando bajo cualquier prenda. Se combina con el <a href="/servicios/seguridad-eventos-corporativos/personal-bilingue/" class="text-secondary hover:underline font-semibold">personal bilingüe</a> y la <a href="/servicios/seguridad-vip/" class="text-secondary hover:underline font-semibold">seguridad VIP</a> de los invitados. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -236,7 +236,7 @@ const relacionados = [
               ))}
             </ul>
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

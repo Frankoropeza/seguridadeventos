@@ -3,6 +3,7 @@ import '@/styles/global.css';
 import { organizationSchema, websiteSchema } from '@/lib/seo';
 import { SITE, SITE_NAME, SITE_DESC, PHONE_PRIMARY, PHONE_DISPLAY, WHATSAPP_NUMBER, SERVICIOS_NAV, ZONAS_NAV } from '@/lib/config';
 import { VACANTES } from '@/lib/vacantes';
+import { canonicalUrl } from '@/lib/canonical';
 import type { CollectionEntry } from 'astro:content';
 
 export interface Props {
@@ -23,7 +24,10 @@ const {
   noindex = false,
 } = Astro.props;
 
-const canonicalURL = canonical || new URL(Astro.url.pathname, SITE).toString();
+// canonicalUrl() resuelve la cadena de redirects y normaliza el trailing slash.
+// Antes se emitía la ruta cruda, que el dominio responde con 308 hacia la
+// forma con slash: eso es el defecto "Canonical points to redirect".
+const canonicalURL = canonicalUrl(canonical ?? Astro.url.pathname, SITE);
 // El <title> se usa tal cual (meta title con keywords, sin la marca). La marca va en og:site_name y el schema.
 const fullTitle = title;
 
@@ -43,16 +47,16 @@ const VAC_CORTO: Record<string, string> = {
   'coordinador-de-eventos-logistica': 'Coordinador de Eventos',
   'personal-control-acceso-acreditacion': 'Control de Acceso',
 };
-const vacantesNav = VACANTES.map(v => ({ href: `/bolsa-de-trabajo/${v.slug}`, label: VAC_CORTO[v.slug] ?? v.puesto }));
+const vacantesNav = VACANTES.map(v => ({ href: `/bolsa-de-trabajo/${v.slug}/`, label: VAC_CORTO[v.slug] ?? v.puesto }));
 
 const navMain = [
   { href: "/",                label: "Inicio",          dropdown: null },
-  { href: "/servicios",       label: "Servicios",       dropdown: SERVICIOS_NAV.map(s => ({ href: `/servicios/${s.slug}`, label: s.nombre })) },
-  { href: "/nosotros",        label: "Nosotros",        dropdown: null },
-  { href: "/certificaciones", label: "Certificaciones", dropdown: null },
-  { href: "/bolsa-de-trabajo", label: "Bolsa de Trabajo", dropdown: vacantesNav },
-  { href: "/blog",            label: "Blog",            dropdown: null },
-  { href: "/contacto",        label: "Contacto",        dropdown: null },
+  { href: "/servicios/",       label: "Servicios",       dropdown: SERVICIOS_NAV.map(s => ({ href: `/servicios/${s.slug}/`, label: s.nombre })) },
+  { href: "/nosotros/",        label: "Nosotros",        dropdown: null },
+  { href: "/certificaciones/", label: "Certificaciones", dropdown: null },
+  { href: "/bolsa-de-trabajo/", label: "Bolsa de Trabajo", dropdown: vacantesNav },
+  { href: "/blog/",            label: "Blog",            dropdown: null },
+  { href: "/contacto/",        label: "Contacto",        dropdown: null },
 ];
 ---
 
@@ -223,7 +227,7 @@ const navMain = [
             WhatsApp
           </a>
           <a
-            href="/cotizar"
+            href="/cotizar/"
             class="hidden sm:inline-flex items-center gap-2 bg-secondary hover:bg-red-700 text-white px-5 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wide transition-all duration-200 shadow-md shadow-secondary/20 hover:shadow-secondary/40 hover:-translate-y-px"
           >
             Cotizar
@@ -339,7 +343,7 @@ const navMain = [
         Contactar por WhatsApp
       </a>
       <a
-        href="/cotizar"
+        href="/cotizar/"
         class="flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-4 py-3.5 rounded-xl text-sm font-bold uppercase tracking-wide transition-all duration-200 shadow-lg shadow-secondary/30"
       >
         Solicitar Cotización
@@ -387,13 +391,13 @@ const navMain = [
           <ul class="space-y-2">
             {SERVICIOS_NAV.slice(0, 6).map(s => (
               <li>
-                <a href={`/servicios/${s.slug}`} class="text-accent hover:text-light text-sm transition-colors">
+                <a href={`/servicios/${s.slug}/`} class="text-accent hover:text-light text-sm transition-colors">
                   {s.nombre}
                 </a>
               </li>
             ))}
             <li>
-              <a href="/servicios" class="text-secondary hover:text-red-400 text-sm font-semibold transition-colors">
+              <a href="/servicios/" class="text-secondary hover:text-red-400 text-sm font-semibold transition-colors">
                 Ver todos los servicios →
               </a>
             </li>
@@ -406,7 +410,7 @@ const navMain = [
           <ul class="space-y-2">
             {ZONAS_NAV.map(z => (
               <li>
-                <a href={`/zonas/${z.slug}`} class="text-accent hover:text-light text-sm transition-colors">
+                <a href={`/zonas/${z.slug}/`} class="text-accent hover:text-light text-sm transition-colors">
                   {z.nombre}
                 </a>
               </li>
@@ -414,11 +418,11 @@ const navMain = [
           </ul>
           <h3 class="text-light font-bold text-sm uppercase tracking-widest mt-6 mb-4">Empresa</h3>
           <ul class="space-y-2">
-            <li><a href="/nosotros" class="text-accent hover:text-light text-sm transition-colors">Nosotros</a></li>
-            <li><a href="/certificaciones" class="text-accent hover:text-light text-sm transition-colors">Certificaciones</a></li>
-            <li><a href="/bolsa-de-trabajo" class="text-accent hover:text-light text-sm transition-colors">Bolsa de Trabajo</a></li>
-            <li><a href="/blog" class="text-accent hover:text-light text-sm transition-colors">Blog</a></li>
-            <li><a href="/contacto" class="text-accent hover:text-light text-sm transition-colors">Contacto</a></li>
+            <li><a href="/nosotros/" class="text-accent hover:text-light text-sm transition-colors">Nosotros</a></li>
+            <li><a href="/certificaciones/" class="text-accent hover:text-light text-sm transition-colors">Certificaciones</a></li>
+            <li><a href="/bolsa-de-trabajo/" class="text-accent hover:text-light text-sm transition-colors">Bolsa de Trabajo</a></li>
+            <li><a href="/blog/" class="text-accent hover:text-light text-sm transition-colors">Blog</a></li>
+            <li><a href="/contacto/" class="text-accent hover:text-light text-sm transition-colors">Contacto</a></li>
           </ul>
         </div>
 
@@ -432,7 +436,7 @@ const navMain = [
               </li>
             ))}
             <li>
-              <a href="/bolsa-de-trabajo" class="text-secondary hover:text-red-400 text-sm font-semibold transition-colors">Ver todas las vacantes →</a>
+              <a href="/bolsa-de-trabajo/" class="text-secondary hover:text-red-400 text-sm font-semibold transition-colors">Ver todas las vacantes →</a>
             </li>
           </ul>
         </div>
@@ -460,7 +464,7 @@ const navMain = [
               <span class="text-accent text-sm">Ciudad de México, CDMX</span>
             </li>
           </ul>
-          <a href="/cotizar" class="mt-6 w-full block bg-secondary hover:bg-red-700 text-white px-4 py-3 rounded-lg text-sm font-bold uppercase text-center transition-colors">
+          <a href="/cotizar/" class="mt-6 w-full block bg-secondary hover:bg-red-700 text-white px-4 py-3 rounded-lg text-sm font-bold uppercase text-center transition-colors">
             Solicitar Cotización
           </a>
         </div>
@@ -470,7 +474,7 @@ const navMain = [
       <div class="border-t border-primary-light mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-accent">
         <p>© {new Date().getFullYear()} {SITE_NAME}. Todos los derechos reservados.</p>
         <div class="flex gap-4">
-          <a href="/aviso-de-privacidad" class="hover:text-light transition-colors">Aviso de Privacidad</a>
+          <a href="/aviso-de-privacidad/" class="hover:text-light transition-colors">Aviso de Privacidad</a>
           <a href="/terminos/" class="hover:text-light transition-colors">Términos y Condiciones</a>
         </div>
       </div>

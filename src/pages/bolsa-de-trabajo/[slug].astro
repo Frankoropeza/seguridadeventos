@@ -102,7 +102,7 @@ const inputBase =
   schema={schemas}
 >
   <Breadcrumb items={[
-    { label: 'Bolsa de Trabajo', href: '/bolsa-de-trabajo' },
+    { label: 'Bolsa de Trabajo', href: '/bolsa-de-trabajo/' },
     { label: v.puesto },
   ]} />
 
@@ -303,7 +303,7 @@ const inputBase =
             <h4 class="text-light font-bold text-sm uppercase tracking-wider mb-3">Otras vacantes</h4>
             <div class="flex flex-wrap gap-2">
               {otras.map((o) => (
-                <a href={`/bolsa-de-trabajo/${o.slug}`} class="text-xs text-accent hover:text-secondary border border-primary-light hover:border-secondary rounded-full px-3 py-1.5 transition-colors">
+                <a href={`/bolsa-de-trabajo/${o.slug}/`} class="text-xs text-accent hover:text-secondary border border-primary-light hover:border-secondary rounded-full px-3 py-1.5 transition-colors">
                   {o.puesto}
                 </a>
               ))}
@@ -415,7 +415,7 @@ const inputBase =
 
             <p class="text-accent text-xs text-center leading-relaxed">
               Al enviar se abrirá WhatsApp o tu correo con tus datos. Aceptas nuestro
-              <a href="/aviso-de-privacidad" class="text-secondary hover:underline">aviso de privacidad</a>.
+              <a href="/aviso-de-privacidad/" class="text-secondary hover:underline">aviso de privacidad</a>.
             </p>
           </form>
         </div>
@@ -423,7 +423,7 @@ const inputBase =
       </div>
 
       <div class="mt-10 text-center">
-        <a href="/bolsa-de-trabajo" class="inline-flex items-center gap-2 text-secondary hover:text-red-400 text-sm font-bold uppercase tracking-[0.1em] transition-colors">
+        <a href="/bolsa-de-trabajo/" class="inline-flex items-center gap-2 text-secondary hover:text-red-400 text-sm font-bold uppercase tracking-[0.1em] transition-colors">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           Ver todas las vacantes
         </a>

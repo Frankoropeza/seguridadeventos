@@ -55,10 +55,10 @@ const schemas = buildServicePageSchema({
 });
 
 const navItems = [
-  { label: "Eventos Masivos", desc: "Operativos de +10,000 asistentes con centro de comando", href: "/servicios/seguridad-masivos" },
-  { label: "Control de Acceso", desc: "Filtros, detección de objetos y aforo en tiempo real", href: "/servicios/control-acceso-eventos" },
-  { label: "Seguridad VIP", desc: "Protección de artistas, backstage y zonas restringidas", href: "/servicios/seguridad-vip" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Eventos Masivos", desc: "Operativos de +10,000 asistentes con centro de comando", href: "/servicios/seguridad-masivos/" },
+  { label: "Control de Acceso", desc: "Filtros, detección de objetos y aforo en tiempo real", href: "/servicios/control-acceso-eventos/" },
+  { label: "Seguridad VIP", desc: "Protección de artistas, backstage y zonas restringidas", href: "/servicios/seguridad-vip/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
@@ -126,16 +126,16 @@ const razones = [
 
 // Otros servicios relacionados (ServiceCards homologadas con servicios/index)
 const relacionados = [
-  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado con autoridades.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada`, badge: "Destacado", featured: true },
-  { title: "Control de Acceso", description: "Verificación de boletos, detección de objetos prohibidos, gestión de aforo y credencialización para cualquier escala de evento.", features: ["Detección de metales", "Escaneo QR", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
-  { title: "Seguridad VIP", description: "Escoltas certificados en protección personal para artistas y celebridades, con avanzada de seguridad y bajo perfil.", features: ["Close protection", "Anti-paparazzi", "Rutas seguras"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos` },
-  { title: "Montaje y Desmontaje", description: "Custodia 24/7 del recinto, acreditación de proveedores e inventario fotográfico de activos durante todo el ciclo del evento.", features: ["Custodia 24/7", "Control de proveedores", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje", image: `${IMG}/equipo-seguridad-eventos` },
+  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado con autoridades.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos/", image: `${IMG}/guardias-seguridad-privada`, badge: "Destacado", featured: true },
+  { title: "Control de Acceso", description: "Verificación de boletos, detección de objetos prohibidos, gestión de aforo y credencialización para cualquier escala de evento.", features: ["Detección de metales", "Escaneo QR", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos/", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Seguridad VIP", description: "Escoltas certificados en protección personal para artistas y celebridades, con avanzada de seguridad y bajo perfil.", features: ["Close protection", "Anti-paparazzi", "Rutas seguras"], href: "/servicios/seguridad-vip/", image: `${IMG}/seguridad-vip-eventos` },
+  { title: "Montaje y Desmontaje", description: "Custodia 24/7 del recinto, acreditación de proveedores e inventario fotográfico de activos durante todo el ciclo del evento.", features: ["Custodia 24/7", "Control de proveedores", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje/", image: `${IMG}/equipo-seguridad-eventos` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
-  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Conciertos y Festivales' }]} />
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios/' }, { label: 'Conciertos y Festivales' }]} />
 
   <PageHero
     eyebrow="SEPRIEV — Conciertos y Festivales"
@@ -149,9 +149,9 @@ const relacionados = [
       <p class="text-accent text-base leading-relaxed">
         Todo el personal cuenta con <strong class="text-light font-semibold">licencia DGSSP y certificación STPS</strong>, y operamos en CDMX, Guadalajara, Monterrey, Puebla y Cancún con cobertura en todo el país. Cotización gratuita y propuesta en menos de 24 horas.
       </p>
-      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/seguridad-masivos" class="text-secondary hover:underline font-semibold">eventos masivos</a> y <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
+      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/seguridad-masivos/" class="text-secondary hover:underline font-semibold">eventos masivos</a> y <a href="/servicios/control-acceso-eventos/" class="text-secondary hover:underline font-semibold">control de acceso</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -220,7 +220,7 @@ const relacionados = [
             </ul>
 
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -334,9 +334,9 @@ const relacionados = [
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <ServiceCard title="Control de Multitudes" description="Diseño de flujos, densidad por sector y prevención de aplastamientos en el frente de escenario." features={["Diseño de flujos", "Densidad por sector", "Protocolo de show-stop"]} href="/servicios/seguridad-conciertos-festivales/control-de-multitudes" image={`${IMG}/seguridad-conciertos-multitud`} badge="Subcategoría" />
-        <ServiceCard title="Backstage Seguro" description="Credencialización por niveles, control de zonas técnicas y protección del talento y su staff." features={["Credencialización", "Zonas restringidas", "Protección de artistas"]} href="/servicios/seguridad-conciertos-festivales/backstage-seguro" image={`${IMG}/personal-seguridad-evento`} badge="Subcategoría" />
-        <ServiceCard title="Coordinación Institucional" description="Programa Interno de Protección Civil, permisos y mando unificado con Protección Civil, bomberos y policía." features={["Programa Interno PC", "Permisos y dictámenes", "Mando unificado"]} href="/servicios/seguridad-conciertos-festivales/coordinacion-institucional" image={`${IMG}/centro-control-seguridad`} badge="Subcategoría" />
+        <ServiceCard title="Control de Multitudes" description="Diseño de flujos, densidad por sector y prevención de aplastamientos en el frente de escenario." features={["Diseño de flujos", "Densidad por sector", "Protocolo de show-stop"]} href="/servicios/seguridad-conciertos-festivales/control-de-multitudes/" image={`${IMG}/seguridad-conciertos-multitud`} badge="Subcategoría" />
+        <ServiceCard title="Backstage Seguro" description="Credencialización por niveles, control de zonas técnicas y protección del talento y su staff." features={["Credencialización", "Zonas restringidas", "Protección de artistas"]} href="/servicios/seguridad-conciertos-festivales/backstage-seguro/" image={`${IMG}/personal-seguridad-evento`} badge="Subcategoría" />
+        <ServiceCard title="Coordinación Institucional" description="Programa Interno de Protección Civil, permisos y mando unificado con Protección Civil, bomberos y policía." features={["Programa Interno PC", "Permisos y dictámenes", "Mando unificado"]} href="/servicios/seguridad-conciertos-festivales/coordinacion-institucional/" image={`${IMG}/centro-control-seguridad`} badge="Subcategoría" />
       </div>
     </div>
   </section>

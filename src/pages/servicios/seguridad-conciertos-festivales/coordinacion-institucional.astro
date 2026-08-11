@@ -76,10 +76,10 @@ const schemas = [
 ];
 
 const navItems = [
-  { label: "Conciertos y Festivales", desc: "Volver al servicio principal", href: "/servicios/seguridad-conciertos-festivales" },
-  { label: "Control de Multitudes", desc: "Subcategoría: flujos y densidad en escena", href: "/servicios/seguridad-conciertos-festivales/control-de-multitudes" },
-  { label: "Backstage Seguro", desc: "Subcategoría: credencialización y zonas técnicas", href: "/servicios/seguridad-conciertos-festivales/backstage-seguro" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Conciertos y Festivales", desc: "Volver al servicio principal", href: "/servicios/seguridad-conciertos-festivales/" },
+  { label: "Control de Multitudes", desc: "Subcategoría: flujos y densidad en escena", href: "/servicios/seguridad-conciertos-festivales/control-de-multitudes/" },
+  { label: "Backstage Seguro", desc: "Subcategoría: credencialización y zonas técnicas", href: "/servicios/seguridad-conciertos-festivales/backstage-seguro/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados
@@ -148,18 +148,18 @@ const razones = [
 
 // Relacionados / cluster de subcategorías (las 3 ya existen)
 const relacionados = [
-  { title: "Conciertos y Festivales", description: "El servicio principal del que forma parte esta subcategoría: operativo integral de seguridad para eventos musicales.", features: ["Control de multitudes", "Backstage seguro", "Plan de seguridad"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Servicio principal", featured: true },
-  { title: "Control de Multitudes", description: "Subcategoría hermana: diseño de flujos, densidad por sector y prevención de aplastamientos.", features: ["Diseño de flujos", "Densidad por sector", "Show-stop"], href: "/servicios/seguridad-conciertos-festivales/control-de-multitudes", image: `${IMG}/seguridad-conciertos-multitud`, badge: "Subcategoría" },
-  { title: "Backstage Seguro", description: "Subcategoría hermana: credencialización por niveles, zonas técnicas y protección del talento.", features: ["Credencialización", "Zonas restringidas", "Protección de artistas"], href: "/servicios/seguridad-conciertos-festivales/backstage-seguro", image: `${IMG}/personal-seguridad-evento`, badge: "Subcategoría" },
-  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 con centro de comando y mando unificado con autoridades.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada` },
+  { title: "Conciertos y Festivales", description: "El servicio principal del que forma parte esta subcategoría: operativo integral de seguridad para eventos musicales.", features: ["Control de multitudes", "Backstage seguro", "Plan de seguridad"], href: "/servicios/seguridad-conciertos-festivales/", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Servicio principal", featured: true },
+  { title: "Control de Multitudes", description: "Subcategoría hermana: diseño de flujos, densidad por sector y prevención de aplastamientos.", features: ["Diseño de flujos", "Densidad por sector", "Show-stop"], href: "/servicios/seguridad-conciertos-festivales/control-de-multitudes/", image: `${IMG}/seguridad-conciertos-multitud`, badge: "Subcategoría" },
+  { title: "Backstage Seguro", description: "Subcategoría hermana: credencialización por niveles, zonas técnicas y protección del talento.", features: ["Credencialización", "Zonas restringidas", "Protección de artistas"], href: "/servicios/seguridad-conciertos-festivales/backstage-seguro/", image: `${IMG}/personal-seguridad-evento`, badge: "Subcategoría" },
+  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 con centro de comando y mando unificado con autoridades.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos/", image: `${IMG}/guardias-seguridad-privada` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
   <Breadcrumb items={[
-    { label: 'Servicios', href: '/servicios' },
-    { label: 'Conciertos y Festivales', href: '/servicios/seguridad-conciertos-festivales' },
+    { label: 'Servicios', href: '/servicios/' },
+    { label: 'Conciertos y Festivales', href: '/servicios/seguridad-conciertos-festivales/' },
     { label: 'Coordinación institucional' },
   ]} />
 
@@ -170,13 +170,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        Subcategoría especializada del operativo de <a href="/servicios/seguridad-conciertos-festivales" class="text-secondary hover:underline font-semibold">seguridad para conciertos y festivales</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Tramitamos el <strong class="text-light font-semibold">Programa Interno de Protección Civil</strong>, gestionamos permisos y dictámenes, y articulamos el mando unificado con Protección Civil, bomberos, Cruz Roja, policía y tránsito.
+        Subcategoría especializada del operativo de <a href="/servicios/seguridad-conciertos-festivales/" class="text-secondary hover:underline font-semibold">seguridad para conciertos y festivales</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Tramitamos el <strong class="text-light font-semibold">Programa Interno de Protección Civil</strong>, gestionamos permisos y dictámenes, y articulamos el mando unificado con Protección Civil, bomberos, Cruz Roja, policía y tránsito.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Es el marco legal sobre el que operan las demás subcategorías: el <a href="/servicios/seguridad-conciertos-festivales/control-de-multitudes" class="text-secondary hover:underline font-semibold">control de multitudes</a> y el <a href="/servicios/seguridad-conciertos-festivales/backstage-seguro" class="text-secondary hover:underline font-semibold">backstage seguro</a> trabajan dentro del plan de contingencia que esta coordinación documenta. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
+        Es el marco legal sobre el que operan las demás subcategorías: el <a href="/servicios/seguridad-conciertos-festivales/control-de-multitudes/" class="text-secondary hover:underline font-semibold">control de multitudes</a> y el <a href="/servicios/seguridad-conciertos-festivales/backstage-seguro/" class="text-secondary hover:underline font-semibold">backstage seguro</a> trabajan dentro del plan de contingencia que esta coordinación documenta. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -238,7 +238,7 @@ const relacionados = [
               ))}
             </ul>
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

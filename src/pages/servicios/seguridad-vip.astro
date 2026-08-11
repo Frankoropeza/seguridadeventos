@@ -61,10 +61,10 @@ const schemas = buildServicePageSchema({
 });
 
 const navItems = [
-  { label: "Protección Ejecutiva", desc: "Programa continuo de protección para directivos", href: "/servicios/proteccion-ejecutiva" },
-  { label: "Eventos Corporativos", desc: "Seguridad discreta para convenciones y galas", href: "/servicios/seguridad-eventos-corporativos" },
-  { label: "Conciertos y Festivales", desc: "Protección de artistas y backstage seguro", href: "/servicios/seguridad-conciertos-festivales" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Protección Ejecutiva", desc: "Programa continuo de protección para directivos", href: "/servicios/proteccion-ejecutiva/" },
+  { label: "Eventos Corporativos", desc: "Seguridad discreta para convenciones y galas", href: "/servicios/seguridad-eventos-corporativos/" },
+  { label: "Conciertos y Festivales", desc: "Protección de artistas y backstage seguro", href: "/servicios/seguridad-conciertos-festivales/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
@@ -133,16 +133,16 @@ const razones = [
 
 // Otros servicios relacionados (ServiceCards homologadas con servicios/index)
 const relacionados = [
-  { title: "Protección Ejecutiva", description: "Programa continuo de protección para directivos basado en análisis de riesgo, con personal verificado y traslados seguros.", features: ["Análisis de riesgo", "Contravigilancia", "Traslados seguros"], href: "/servicios/proteccion-ejecutiva", image: `${IMG}/proteccion-ejecutiva-mexico`, badge: "Destacado", featured: true },
-  { title: "Conciertos y Festivales", description: "Protección de artistas, control de backstage y dispositivos de bajo perfil para eventos musicales de cualquier escala.", features: ["Protección de artistas", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular" },
-  { title: "Eventos Corporativos", description: "Seguridad discreta para directivos e invitados de alto perfil en convenciones, lanzamientos y galas.", features: ["Personal bilingüe", "Confidencialidad", "Bajo perfil"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos` },
-  { title: "Eventos Sociales", description: "Protección discreta para bodas, XV años y celebraciones privadas de familias de alto perfil.", features: ["Control de invitados", "Manejo discreto", "Resguardo de valores"], href: "/servicios/seguridad-eventos-sociales", image: `${IMG}/seguridad-vip-gala` },
+  { title: "Protección Ejecutiva", description: "Programa continuo de protección para directivos basado en análisis de riesgo, con personal verificado y traslados seguros.", features: ["Análisis de riesgo", "Contravigilancia", "Traslados seguros"], href: "/servicios/proteccion-ejecutiva/", image: `${IMG}/proteccion-ejecutiva-mexico`, badge: "Destacado", featured: true },
+  { title: "Conciertos y Festivales", description: "Protección de artistas, control de backstage y dispositivos de bajo perfil para eventos musicales de cualquier escala.", features: ["Protección de artistas", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales/", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular" },
+  { title: "Eventos Corporativos", description: "Seguridad discreta para directivos e invitados de alto perfil en convenciones, lanzamientos y galas.", features: ["Personal bilingüe", "Confidencialidad", "Bajo perfil"], href: "/servicios/seguridad-eventos-corporativos/", image: `${IMG}/seguridad-eventos-corporativos` },
+  { title: "Eventos Sociales", description: "Protección discreta para bodas, XV años y celebraciones privadas de familias de alto perfil.", features: ["Control de invitados", "Manejo discreto", "Resguardo de valores"], href: "/servicios/seguridad-eventos-sociales/", image: `${IMG}/seguridad-vip-gala` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
-  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Seguridad VIP' }]} />
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios/' }, { label: 'Seguridad VIP' }]} />
 
   <PageHero
     eyebrow="SEPRIEV — Seguridad VIP"
@@ -156,9 +156,9 @@ const relacionados = [
       <p class="text-accent text-base leading-relaxed">
         Personal certificado en <strong class="text-light font-semibold">primeros auxilios, RCP y DEA</strong>, vehículos blindados con conducción evasiva, inteligencia preventiva y <strong class="text-light font-semibold">confidencialidad contractual (NDA)</strong>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>, presencia en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Cotización en menos de 24 horas.
       </p>
-      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/proteccion-ejecutiva" class="text-secondary hover:underline font-semibold">protección ejecutiva</a> y <a href="/servicios/seguridad-eventos-corporativos" class="text-secondary hover:underline font-semibold">eventos corporativos</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
+      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/proteccion-ejecutiva/" class="text-secondary hover:underline font-semibold">protección ejecutiva</a> y <a href="/servicios/seguridad-eventos-corporativos/" class="text-secondary hover:underline font-semibold">eventos corporativos</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -227,7 +227,7 @@ const relacionados = [
             </ul>
 
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -341,9 +341,9 @@ const relacionados = [
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <ServiceCard title="Close Protection" description="Escolta personal de cercanía: avanzada, anillos de protección, formaciones a pie, embarque/desembarque y plan de extracción." features={["Avanzada de seguridad", "Anillos de protección", "Plan de extracción"]} href="/servicios/seguridad-vip/close-protection" image={`${IMG}/seguridad-vip-eventos`} badge="Subcategoría" />
-        <ServiceCard title="Vehículo Blindado" description="Traslado blindado nivel III–V con conductores de conducción evasiva, estudio de ruta, caravana y enlace cifrado." features={["Blindaje III–V", "Conducción evasiva", "Estudio de ruta"]} href="/servicios/seguridad-vip/vehiculo-blindado" image={`${IMG}/proteccion-ejecutiva-mexico`} badge="Subcategoría" />
-        <ServiceCard title="Discreción Total" description="Servicio anti-paparazzi y bajo perfil: control de prensa, rutas reservadas, zonas sin cámaras y confidencialidad (NDA)." features={["Bajo perfil", "Anti-paparazzi", "Confidencialidad (NDA)"]} href="/servicios/seguridad-vip/discrecion-total" image={`${IMG}/seguridad-vip-gala`} badge="Subcategoría" />
+        <ServiceCard title="Close Protection" description="Escolta personal de cercanía: avanzada, anillos de protección, formaciones a pie, embarque/desembarque y plan de extracción." features={["Avanzada de seguridad", "Anillos de protección", "Plan de extracción"]} href="/servicios/seguridad-vip/close-protection/" image={`${IMG}/seguridad-vip-eventos`} badge="Subcategoría" />
+        <ServiceCard title="Vehículo Blindado" description="Traslado blindado nivel III–V con conductores de conducción evasiva, estudio de ruta, caravana y enlace cifrado." features={["Blindaje III–V", "Conducción evasiva", "Estudio de ruta"]} href="/servicios/seguridad-vip/vehiculo-blindado/" image={`${IMG}/proteccion-ejecutiva-mexico`} badge="Subcategoría" />
+        <ServiceCard title="Discreción Total" description="Servicio anti-paparazzi y bajo perfil: control de prensa, rutas reservadas, zonas sin cámaras y confidencialidad (NDA)." features={["Bajo perfil", "Anti-paparazzi", "Confidencialidad (NDA)"]} href="/servicios/seguridad-vip/discrecion-total/" image={`${IMG}/seguridad-vip-gala`} badge="Subcategoría" />
       </div>
     </div>
   </section>

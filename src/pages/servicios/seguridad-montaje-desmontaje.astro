@@ -65,10 +65,10 @@ const schemas = buildServicePageSchema({
 });
 
 const navItems = [
-  { label: "Ferias y Exposiciones", desc: "Custodia por zonas y por jornada del recinto", href: "/servicios/seguridad-ferias-exposiciones" },
-  { label: "Conciertos y Festivales", desc: "Backstage seguro y producción protegida", href: "/servicios/seguridad-conciertos-festivales" },
-  { label: "Control de Acceso", desc: "Credencialización y registro de proveedores", href: "/servicios/control-acceso-eventos" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Ferias y Exposiciones", desc: "Custodia por zonas y por jornada del recinto", href: "/servicios/seguridad-ferias-exposiciones/" },
+  { label: "Conciertos y Festivales", desc: "Backstage seguro y producción protegida", href: "/servicios/seguridad-conciertos-festivales/" },
+  { label: "Control de Acceso", desc: "Credencialización y registro de proveedores", href: "/servicios/control-acceso-eventos/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
@@ -137,16 +137,16 @@ const razones = [
 
 // Otros servicios relacionados (ServiceCards homologadas con servicios/index)
 const relacionados = [
-  { title: "Ferias y Exposiciones", description: "Cobertura por zonas y por jornada para recintos multi-expositor, con inventario conciliado y custodia nocturna.", features: ["Cobertura por turnos", "Inventario conciliado", "Custodia nocturna"], href: "/servicios/seguridad-ferias-exposiciones", image: `${IMG}/seguridad-empresarial-evento`, badge: "Destacado", featured: true },
-  { title: "Conciertos y Festivales", description: "Control de multitudes, backstage seguro y protección de la producción para eventos musicales de cualquier escala.", features: ["Backstage seguro", "Control de multitudes", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular" },
-  { title: "Control de Acceso", description: "Credencialización por niveles, registro de proveedores y control de aforo para el ciclo completo del evento.", features: ["Credencialización", "Registro de proveedores", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
-  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada` },
+  { title: "Ferias y Exposiciones", description: "Cobertura por zonas y por jornada para recintos multi-expositor, con inventario conciliado y custodia nocturna.", features: ["Cobertura por turnos", "Inventario conciliado", "Custodia nocturna"], href: "/servicios/seguridad-ferias-exposiciones/", image: `${IMG}/seguridad-empresarial-evento`, badge: "Destacado", featured: true },
+  { title: "Conciertos y Festivales", description: "Control de multitudes, backstage seguro y protección de la producción para eventos musicales de cualquier escala.", features: ["Backstage seguro", "Control de multitudes", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales/", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular" },
+  { title: "Control de Acceso", description: "Credencialización por niveles, registro de proveedores y control de aforo para el ciclo completo del evento.", features: ["Credencialización", "Registro de proveedores", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos/", image: `${IMG}/control-acceso-eventos`, badge: "Esencial" },
+  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos/", image: `${IMG}/guardias-seguridad-privada` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
-  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Montaje y Desmontaje' }]} />
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios/' }, { label: 'Montaje y Desmontaje' }]} />
 
   <PageHero
     eyebrow="SEPRIEV — Montaje y Desmontaje"
@@ -155,13 +155,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        <strong class="text-light font-semibold">SEPRIEV</strong> cubre el ciclo completo del evento, del primer camión de producción al último técnico, con custodia 24/7, acreditación de proveedores e inventario fotográfico de activos. Es el complemento natural de nuestra <a href="/servicios/seguridad-ferias-exposiciones" class="text-secondary hover:underline font-semibold">seguridad para ferias y exposiciones</a> y de la operación de conciertos.
+        <strong class="text-light font-semibold">SEPRIEV</strong> cubre el ciclo completo del evento, del primer camión de producción al último técnico, con custodia 24/7, acreditación de proveedores e inventario fotográfico de activos. Es el complemento natural de nuestra <a href="/servicios/seguridad-ferias-exposiciones/" class="text-secondary hover:underline font-semibold">seguridad para ferias y exposiciones</a> y de la operación de conciertos.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Un solo equipo de sonido puede valer millones, y el <strong class="text-light font-semibold">80% de los robos ocurre en estas fases</strong>. Lo protegemos con cobertura nocturna documentada y un control de salida con vale, integrado a la <a href="/servicios/seguridad-conciertos-festivales" class="text-secondary hover:underline font-semibold">seguridad de conciertos y festivales</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>. Cotización en menos de 24 horas.
+        Un solo equipo de sonido puede valer millones, y el <strong class="text-light font-semibold">80% de los robos ocurre en estas fases</strong>. Lo protegemos con cobertura nocturna documentada y un control de salida con vale, integrado a la <a href="/servicios/seguridad-conciertos-festivales/" class="text-secondary hover:underline font-semibold">seguridad de conciertos y festivales</a>. Licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>. Cotización en menos de 24 horas.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -230,7 +230,7 @@ const relacionados = [
             </ul>
 
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">

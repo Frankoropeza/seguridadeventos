@@ -61,10 +61,10 @@ const schemas = buildServicePageSchema({
 });
 
 const navItems = [
-  { label: "Conciertos y Festivales", desc: "Control de multitudes y accesos por sector", href: "/servicios/seguridad-conciertos-festivales" },
-  { label: "Eventos Masivos", desc: "Operativos de +10,000 asistentes con centro de comando", href: "/servicios/seguridad-masivos" },
-  { label: "Eventos Corporativos", desc: "Registro ejecutivo y credencialización", href: "/servicios/seguridad-eventos-corporativos" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Conciertos y Festivales", desc: "Control de multitudes y accesos por sector", href: "/servicios/seguridad-conciertos-festivales/" },
+  { label: "Eventos Masivos", desc: "Operativos de +10,000 asistentes con centro de comando", href: "/servicios/seguridad-masivos/" },
+  { label: "Eventos Corporativos", desc: "Registro ejecutivo y credencialización", href: "/servicios/seguridad-eventos-corporativos/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados (mismo layout que index/servicios: texto izq + galería der)
@@ -133,16 +133,16 @@ const razones = [
 
 // Otros servicios relacionados (ServiceCards homologadas con servicios/index)
 const relacionados = [
-  { title: "Conciertos y Festivales", description: "Control de multitudes, accesos por sector y backstage seguro para eventos musicales de cualquier escala.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular", featured: true },
-  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos", image: `${IMG}/guardias-seguridad-privada`, badge: "Destacado" },
-  { title: "Eventos Corporativos", description: "Registro ejecutivo, credencialización por niveles y control de acceso discreto para convenciones y galas.", features: ["Registro ejecutivo", "Credencialización", "Discreción total"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos` },
-  { title: "Montaje y Desmontaje", description: "Acreditación de proveedores, control de andén de carga e inventario fotográfico durante el ciclo del evento.", features: ["Acreditación de proveedores", "Control de carga", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje", image: `${IMG}/equipo-seguridad-eventos` },
+  { title: "Conciertos y Festivales", description: "Control de multitudes, accesos por sector y backstage seguro para eventos musicales de cualquier escala.", features: ["Control de multitudes", "Backstage seguro", "Coordinación institucional"], href: "/servicios/seguridad-conciertos-festivales/", image: `${IMG}/seguridad-conciertos-festivales`, badge: "Popular", featured: true },
+  { title: "Eventos Masivos", description: "Dirección de seguridad a escala de +10,000 asistentes con centro de comando, vigilancia aérea y mando unificado.", features: ["Centro de comando", "Vigilancia aérea", "Mando unificado"], href: "/servicios/seguridad-masivos/", image: `${IMG}/guardias-seguridad-privada`, badge: "Destacado" },
+  { title: "Eventos Corporativos", description: "Registro ejecutivo, credencialización por niveles y control de acceso discreto para convenciones y galas.", features: ["Registro ejecutivo", "Credencialización", "Discreción total"], href: "/servicios/seguridad-eventos-corporativos/", image: `${IMG}/seguridad-eventos-corporativos` },
+  { title: "Montaje y Desmontaje", description: "Acreditación de proveedores, control de andén de carga e inventario fotográfico durante el ciclo del evento.", features: ["Acreditación de proveedores", "Control de carga", "Inventario fotográfico"], href: "/servicios/seguridad-montaje-desmontaje/", image: `${IMG}/equipo-seguridad-eventos` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
-  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios' }, { label: 'Control de Acceso' }]} />
+  <Breadcrumb items={[{ label: 'Servicios', href: '/servicios/' }, { label: 'Control de Acceso' }]} />
 
   <PageHero
     eyebrow="SEPRIEV — Control de Acceso"
@@ -156,9 +156,9 @@ const relacionados = [
       <p class="text-accent text-base leading-relaxed">
         Integramos tu boletaje (<strong class="text-light font-semibold">Ticketmaster, Boletia, Eventbrite</strong> o sistemas propios), procesamos hasta <strong class="text-light font-semibold">1,200 ingresos por hora</strong> por punto con equipo propio, y operamos con <strong class="text-light font-semibold">licencia DGSSP y certificación STPS</strong> en CDMX, Guadalajara, Monterrey, Puebla y Cancún. Cotización en menos de 24 horas.
       </p>
-      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/seguridad-conciertos-festivales" class="text-secondary hover:underline font-semibold">conciertos y festivales</a> y <a href="/servicios/seguridad-masivos" class="text-secondary hover:underline font-semibold">eventos masivos</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
+      <p class="text-accent text-base leading-relaxed">Lo combinamos con <a href="/servicios/seguridad-conciertos-festivales/" class="text-secondary hover:underline font-semibold">conciertos y festivales</a> y <a href="/servicios/seguridad-masivos/" class="text-secondary hover:underline font-semibold">eventos masivos</a> en un solo operativo coordinado, con un único interlocutor responsable.</p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -227,7 +227,7 @@ const relacionados = [
             </ul>
 
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -341,9 +341,9 @@ const relacionados = [
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <ServiceCard title="Detección de Metales" description="Arcos de paso, detectores de mano (wand) y revisión de bolsos con equipo propio y trato respetuoso." features={["Equipo propio", "Revisión secundaria", "Punto de resguardo"]} href="/servicios/control-acceso-eventos/detectores-de-metales" image={`${IMG}/control-acceso-credenciales`} badge="Subcategoría" />
-        <ServiceCard title="Escaneo de Boletos (QR/NFC)" description="Validación en tiempo real integrada a tu boletaje, con antifraude y contingencia offline." features={["Validación QR/NFC", "Antifraude", "Contingencia offline"]} href="/servicios/control-acceso-eventos/escaneo-qr-boletos" image={`${IMG}/control-acceso-eventos`} badge="Subcategoría" />
-        <ServiceCard title="Aforo en Tiempo Real" description="Conteo por acceso y por sector, semáforo de capacidad, alertas por umbral y reporte conciliado." features={["Conteo por sector", "Semáforo y alertas", "Reporte conciliado"]} href="/servicios/control-acceso-eventos/aforo-en-tiempo-real" image={`${IMG}/centro-monitoreo-cctv-eventos`} badge="Subcategoría" />
+        <ServiceCard title="Detección de Metales" description="Arcos de paso, detectores de mano (wand) y revisión de bolsos con equipo propio y trato respetuoso." features={["Equipo propio", "Revisión secundaria", "Punto de resguardo"]} href="/servicios/control-acceso-eventos/detectores-de-metales/" image={`${IMG}/control-acceso-credenciales`} badge="Subcategoría" />
+        <ServiceCard title="Escaneo de Boletos (QR/NFC)" description="Validación en tiempo real integrada a tu boletaje, con antifraude y contingencia offline." features={["Validación QR/NFC", "Antifraude", "Contingencia offline"]} href="/servicios/control-acceso-eventos/escaneo-qr-boletos/" image={`${IMG}/control-acceso-eventos`} badge="Subcategoría" />
+        <ServiceCard title="Aforo en Tiempo Real" description="Conteo por acceso y por sector, semáforo de capacidad, alertas por umbral y reporte conciliado." features={["Conteo por sector", "Semáforo y alertas", "Reporte conciliado"]} href="/servicios/control-acceso-eventos/aforo-en-tiempo-real/" image={`${IMG}/centro-monitoreo-cctv-eventos`} badge="Subcategoría" />
       </div>
     </div>
   </section>

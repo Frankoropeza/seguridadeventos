@@ -75,10 +75,10 @@ const schemas = [
 ];
 
 const navItems = [
-  { label: "Eventos Corporativos", desc: "Volver al servicio principal", href: "/servicios/seguridad-eventos-corporativos" },
-  { label: "Protección Ejecutiva", desc: "Protección de directivos y delegaciones", href: "/servicios/proteccion-ejecutiva" },
-  { label: "Seguridad VIP", desc: "Protección de invitados de alto perfil", href: "/servicios/seguridad-vip" },
-  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar" },
+  { label: "Eventos Corporativos", desc: "Volver al servicio principal", href: "/servicios/seguridad-eventos-corporativos/" },
+  { label: "Protección Ejecutiva", desc: "Protección de directivos y delegaciones", href: "/servicios/proteccion-ejecutiva/" },
+  { label: "Seguridad VIP", desc: "Protección de invitados de alto perfil", href: "/servicios/seguridad-vip/" },
+  { label: "Solicitar Cotización", desc: "Propuesta personalizada en menos de 24 horas", href: "/cotizar/" },
 ];
 
 // Módulos detallados
@@ -147,18 +147,18 @@ const razones = [
 
 // Relacionados (servicios existentes)
 const relacionados = [
-  { title: "Eventos Corporativos", description: "El servicio principal del que forma parte esta subcategoría: seguridad discreta para convenciones, lanzamientos y galas.", features: ["Confidencialidad", "Dress code adaptable", "Reporte ejecutivo"], href: "/servicios/seguridad-eventos-corporativos", image: `${IMG}/seguridad-eventos-corporativos`, badge: "Servicio principal", featured: true },
-  { title: "Protección Ejecutiva", description: "Protección de directivos y delegaciones de alto perfil durante el evento y sus traslados.", features: ["Análisis de riesgo", "Escolta de proximidad", "Traslados seguros"], href: "/servicios/proteccion-ejecutiva", image: `${IMG}/proteccion-ejecutiva-mexico` },
-  { title: "Seguridad VIP", description: "Protección personal de invitados de honor y figuras de alto perfil con dispositivo de bajo perfil.", features: ["Close protection", "Bajo perfil", "Confidencialidad"], href: "/servicios/seguridad-vip", image: `${IMG}/seguridad-vip-eventos` },
-  { title: "Control de Acceso", description: "Registro, credencialización y aforo en tiempo real para convenciones y congresos.", features: ["Credencialización", "Registro", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos", image: `${IMG}/control-acceso-eventos` },
+  { title: "Eventos Corporativos", description: "El servicio principal del que forma parte esta subcategoría: seguridad discreta para convenciones, lanzamientos y galas.", features: ["Confidencialidad", "Dress code adaptable", "Reporte ejecutivo"], href: "/servicios/seguridad-eventos-corporativos/", image: `${IMG}/seguridad-eventos-corporativos`, badge: "Servicio principal", featured: true },
+  { title: "Protección Ejecutiva", description: "Protección de directivos y delegaciones de alto perfil durante el evento y sus traslados.", features: ["Análisis de riesgo", "Escolta de proximidad", "Traslados seguros"], href: "/servicios/proteccion-ejecutiva/", image: `${IMG}/proteccion-ejecutiva-mexico` },
+  { title: "Seguridad VIP", description: "Protección personal de invitados de honor y figuras de alto perfil con dispositivo de bajo perfil.", features: ["Close protection", "Bajo perfil", "Confidencialidad"], href: "/servicios/seguridad-vip/", image: `${IMG}/seguridad-vip-eventos` },
+  { title: "Control de Acceso", description: "Registro, credencialización y aforo en tiempo real para convenciones y congresos.", features: ["Credencialización", "Registro", "Aforo en tiempo real"], href: "/servicios/control-acceso-eventos/", image: `${IMG}/control-acceso-eventos` },
 ];
 ---
 
 <BaseLayout title={metaTitle} description={metaDescription} canonical={canonical} ogImage={ogImg} schema={schemas}>
 
   <Breadcrumb items={[
-    { label: 'Servicios', href: '/servicios' },
-    { label: 'Eventos Corporativos', href: '/servicios/seguridad-eventos-corporativos' },
+    { label: 'Servicios', href: '/servicios/' },
+    { label: 'Eventos Corporativos', href: '/servicios/seguridad-eventos-corporativos/' },
     { label: 'Personal bilingüe' },
   ]} />
 
@@ -169,13 +169,13 @@ const relacionados = [
   >
     <Fragment slot="right">
       <p class="text-accent text-base leading-relaxed">
-        Subcategoría especializada del servicio de <a href="/servicios/seguridad-eventos-corporativos" class="text-secondary hover:underline font-semibold">seguridad para eventos corporativos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Personal con dominio del <strong class="text-light font-semibold">español y el inglés</strong> para convenciones internacionales, delegaciones extranjeras y enlace con equipos de seguridad de otros países.
+        Subcategoría especializada del servicio de <a href="/servicios/seguridad-eventos-corporativos/" class="text-secondary hover:underline font-semibold">seguridad para eventos corporativos</a> de <strong class="text-light font-semibold">SEPRIEV</strong>. Personal con dominio del <strong class="text-light font-semibold">español y el inglés</strong> para convenciones internacionales, delegaciones extranjeras y enlace con equipos de seguridad de otros países.
       </p>
       <p class="text-accent text-base leading-relaxed">
-        Formación en etiqueta corporativa, confidencialidad contractual y dress code adaptable, con licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>. Se combina con la <a href="/servicios/proteccion-ejecutiva" class="text-secondary hover:underline font-semibold">protección ejecutiva</a> de los directivos y el <a href="/servicios/control-acceso-eventos" class="text-secondary hover:underline font-semibold">control de acceso</a> del evento.
+        Formación en etiqueta corporativa, confidencialidad contractual y dress code adaptable, con licencia <strong class="text-light font-semibold">DGSSP y STPS</strong>. Se combina con la <a href="/servicios/proteccion-ejecutiva/" class="text-secondary hover:underline font-semibold">protección ejecutiva</a> de los directivos y el <a href="/servicios/control-acceso-eventos/" class="text-secondary hover:underline font-semibold">control de acceso</a> del evento.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 pt-1">
-        <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+        <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
           Cotizar este servicio
         </a>
         <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
@@ -237,7 +237,7 @@ const relacionados = [
               ))}
             </ul>
             <div class="flex flex-col sm:flex-row gap-4 mt-auto">
-              <a href="/cotizar" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
+              <a href="/cotizar/" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-red-700 text-white px-7 py-3 text-sm font-bold uppercase tracking-wide transition-colors">
                 Cotizar este servicio
               </a>
               <a href={waHref} target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-accent hover:text-light px-7 py-3 text-sm font-semibold transition-colors">
